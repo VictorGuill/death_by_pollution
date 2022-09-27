@@ -1,2 +1,2 @@
-# death_by_pollution
+# Death by Pollution
 Games.
