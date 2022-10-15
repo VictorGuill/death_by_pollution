@@ -1,19 +1,36 @@
+:root {
+  --casillas: 25;
+}
+
 * {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    height: 100vh;
-    width: 100vw;
-    background-color: #121212;
-    display: grid;
-    place-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #121212;
+  display: grid;
+  place-items: center;
 }
 
-#canvas {
-    height: 95vmin;
-    width: 95vmin;
-    background-color: #fff;
-    border-radius: 10px;
+#map {
+  height: 95vmin;
+  width: 95vmin;
+  background-color: #fff;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(var(--casillas), 1fr);
+  grid-template-rows: repeat(var(--casillas), 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+#player {
+  height: 100%;
+  width: 100%;
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  background-color: red;
 }
