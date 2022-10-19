@@ -18,19 +18,18 @@ body {
 #map {
   height: 95vmin;
   width: 95vmin;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.307);
   border-radius: 10px;
   display: grid;
-  grid-template-columns: repeat(var(--casillas), 1fr);
-  grid-template-rows: repeat(var(--casillas), 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  place-items: center;
+  position: relative;
 }
 
 #player {
-  height: 100%;
-  width: 100%;
-  grid-column: 1 / 1;
-  grid-row: 1 / 1;
+  width: 5%;
+  aspect-ratio: 1 / 1;
   background-color: red;
+  position: absolute;
+  top: calc(50% - 2.5%);
+  left: calc(50% - 2.5%);
 }
