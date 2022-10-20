@@ -1,4 +1,7 @@
 const player = document.getElementById("player");
+const fps = document.getElementById("fps");
+const time = document.getElementById("time");
+const style = window.getComputedStyle(player, null);
 
 // create assoc array
 let userInputs = {};
@@ -11,17 +14,29 @@ document.onkeydown = document.onkeyup = function (e) {
 };
 
 // Game loop
-setInterval(function () {
-  movePlayer();
-}, 1000 / 60);
 
-function movePlayer() {
-  const style = window.getComputedStyle(player, null);
+let lastTime;
 
+function playAnimation(millis) {
+  if (lastTime != null) {
+    const delta = millis - lastTime;
+    time.innerHTML = "Time: " + (millis / 1000).toFixed(1) + "s";
+    fps.innerHTML = "FPS: " + ((1 / delta) * 1000).toFixed(2);
+    movePlayer(delta);
+  }
+
+
+
+  lastTime = millis;
+  window.requestAnimationFrame(playAnimation);
+}
+window.requestAnimationFrame(playAnimation);
+
+function movePlayer(delta) {
   let currentPosX = parseInt(style.getPropertyValue("top"));
   let currentPosY = parseInt(style.getPropertyValue("left"));
 
-  let speed = 10;
+  let speed = 0.6 * delta;
 
   if (userInputs["ArrowUp"] && userInputs["ArrowRight"]) {
     currentPosX -= speed;
@@ -57,26 +72,24 @@ function movePlayer() {
     player.style.left = currentPosY + "px";
   } else if (userInputs[" "]) {
   }
-
-  /*
-  if (userInputs["ArrowUp"] && userInputs["ArrowRight"]) {
-    inputText.innerHTML = "↗";
-  } else if (userInputs["ArrowRight"] && userInputs["ArrowDown"]) {
-    inputText.innerHTML = "↘";
-  } else if (userInputs["ArrowDown"] && userInputs["ArrowLeft"]) {
-    inputText.innerHTML = "↙";
-  } else if (userInputs["ArrowLeft"] && userInputs["ArrowUp"]) {
-    inputText.innerHTML = "↖";
-  } else if (userInputs["ArrowUp"]) {
-    inputText.innerHTML = "⬆";
-  } else if (userInputs["ArrowRight"]) {
-    inputText.innerHTML = "➡";
-  } else if (userInputs["ArrowDown"]) {
-    inputText.innerHTML = "⬇";
-  } else if (userInputs["ArrowLeft"]) {
-    inputText.innerHTML = "⬅";
-  } else if (userInputs[" "]) {
-    inputText.innerHTML = "🌌";
-  }
-  */
 }
+
+/*
+document.getElementById("fps");
+
+let lastTime;
+
+function callback(millis) {
+  if (lastTime) {
+    update((millis - lastTime) / 1000);
+  }
+  lastTime = millis;
+  requestAnimationFrame(callback);
+}
+
+function update(dt) {
+  fps.innerHTML = dt;
+}
+
+callback();
+*/

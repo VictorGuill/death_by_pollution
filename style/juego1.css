@@ -1,7 +1,3 @@
-:root {
-  --casillas: 25;
-}
-
 * {
   margin: 0;
   box-sizing: border-box;
@@ -23,6 +19,10 @@ body {
   display: grid;
   place-items: center;
   position: relative;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 #player {
@@ -32,4 +32,16 @@ body {
   position: absolute;
   top: calc(50% - 2.5%);
   left: calc(50% - 2.5%);
+}
+
+#stats {
+  position: fixed;
+  background-color: white;
+  top: 0;
+  left: 0;
+}
+
+#stats p{
+  padding: 5px 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
