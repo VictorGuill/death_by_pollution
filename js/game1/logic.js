@@ -1,64 +1,61 @@
+window.onload = init;
+
+function init() {
+  // Start the first frame request
+  window.requestAnimationFrame(gameLoop);
+}
+
+// map
+const map = document.getElementById("map");
+const mapStyle = window.getComputedStyle(map, null);
+
+// player
 const player = document.getElementById("player");
-const fps = document.getElementById("fps");
-const time = document.getElementById("time");
-const style = window.getComputedStyle(player, null);
+const playerStyle = window.getComputedStyle(player, null);
+
+// stats
+const fpsText = document.getElementById("fps");
+const timeText = document.getElementById("time");
+const frameTimeText = document.getElementById("frameTime");
 
 // create assoc array
 let userInputs = {};
 
-// Detects keydown/keyup presses.
-// If keypress type is "keydown", stores true.
-// Otherwise store false.
+// Detects keydown/keyup presses. If keypress type is "keydown", stores true.
 document.onkeydown = document.onkeyup = function (e) {
   userInputs[e.key] = e.type == "keydown";
 };
 
-// Game loop
+let dt, oldTime;
 
-let lastTime;
+function gameLoop(newTime) {
+  // Calculate time between frames
+  dt = (newTime - oldTime) / 1000;
+  oldTime = newTime;
 
-function playAnimation(millis) {
-  if (lastTime != null) {
-    const delta = millis - lastTime;
-    time.innerHTML = "Time: " + (millis / 1000).toFixed(1) + "s";
-    fps.innerHTML = "FPS: " + ((1 / delta) * 1000).toFixed(2);
-    movePlayer(delta);
-  }
+  // Perform the drawing operation
+  updateStats(newTime, dt);
+  draw(dt);
 
-
-
-  lastTime = millis;
-  window.requestAnimationFrame(playAnimation);
+  // Request new frame
+  window.requestAnimationFrame(gameLoop);
 }
-window.requestAnimationFrame(playAnimation);
 
-function movePlayer(delta) {
-  let currentPosX = parseInt(style.getPropertyValue("top"));
-  let currentPosY = parseInt(style.getPropertyValue("left"));
+// FUNCTIONS //
 
-  let speed = 0.6 * delta;
+function updateStats(runtime, dt) {
+  time.innerHTML = "Time: " + (runtime / 1000).toFixed(2) + "s";
+  fpsText.innerHTML = "FPS: " + Math.round(1 / dt);
+  frameTimeText.innerHTML = "FrameTime:<br>" + dt.toFixed(6) + "s";
+}
 
-  if (userInputs["ArrowUp"] && userInputs["ArrowRight"]) {
-    currentPosX -= speed;
-    player.style.top = currentPosX + "px";
-    currentPosY += speed;
-    player.style.left = currentPosY + "px";
-  } else if (userInputs["ArrowRight"] && userInputs["ArrowDown"]) {
-    currentPosY += speed;
-    player.style.left = currentPosY + "px";
-    currentPosX += speed;
-    player.style.top = currentPosX + "px";
-  } else if (userInputs["ArrowDown"] && userInputs["ArrowLeft"]) {
-    currentPosX += speed;
-    player.style.top = currentPosX + "px";
-    currentPosY -= speed;
-    player.style.left = currentPosY + "px";
-  } else if (userInputs["ArrowLeft"] && userInputs["ArrowUp"]) {
-    currentPosY -= speed;
-    player.style.left = currentPosY + "px";
-    currentPosX -= speed;
-    player.style.top = currentPosX + "px";
-  } else if (userInputs["ArrowUp"]) {
+function draw(dt) {
+  // let speedUnit = parseInt(mapStyle.getPropertyValue("width")) / 1000;
+  let speed = 100 * dt;
+  let currentPosX = parseInt(playerStyle.getPropertyValue("top"));
+  let currentPosY = parseInt(playerStyle.getPropertyValue("left"));
+
+  if (userInputs["ArrowUp"]) {
     currentPosX -= speed;
     player.style.top = currentPosX + "px";
   } else if (userInputs["ArrowRight"]) {
@@ -70,26 +67,19 @@ function movePlayer(delta) {
   } else if (userInputs["ArrowLeft"]) {
     currentPosY -= speed;
     player.style.left = currentPosY + "px";
-  } else if (userInputs[" "]) {
   }
+
+  // if (userInputs["ArrowUp"]) {
+  //   currentPosX -= speed;
+  //   player.style.top = currentPosX + "px";
+  // } else if (userInputs["ArrowRight"]) {
+  //   currentPosY += speed;
+  //   player.style.left = currentPosY + "px";
+  // } else if (userInputs["ArrowDown"]) {
+  //   currentPosX += speed;
+  //   player.style.top = currentPosX + "px";
+  // } else if (userInputs["ArrowLeft"]) {
+  //   currentPosY -= speed;
+  //   player.style.left = currentPosY + "px";
+  // }
 }
-
-/*
-document.getElementById("fps");
-
-let lastTime;
-
-function callback(millis) {
-  if (lastTime) {
-    update((millis - lastTime) / 1000);
-  }
-  lastTime = millis;
-  requestAnimationFrame(callback);
-}
-
-function update(dt) {
-  fps.innerHTML = dt;
-}
-
-callback();
-*/
