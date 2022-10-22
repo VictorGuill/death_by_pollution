@@ -1,10 +1,3 @@
-window.onload = init;
-
-function init() {
-  // Start the first frame request
-  window.requestAnimationFrame(gameLoop);
-}
-
 // map
 const map = document.getElementById("map");
 const mapStyle = window.getComputedStyle(map, null);
@@ -12,11 +5,27 @@ const mapStyle = window.getComputedStyle(map, null);
 // player
 const player = document.getElementById("player");
 const playerStyle = window.getComputedStyle(player, null);
+const playerPosText = document.getElementById("playerPos");
 
 // stats
 const fpsText = document.getElementById("fps");
 const timeText = document.getElementById("time");
-const frameTimeText = document.getElementById("frameTime");
+const inputText = document.getElementById("userInput");
+
+////////////////////////////////
+// START
+////////////////////////////////
+
+window.onload = init;
+
+function init() {
+  // Start the first frame request
+  window.requestAnimationFrame(gameLoop);
+}
+
+////////////////////////////////
+// INPUTS
+////////////////////////////////
 
 // create assoc array
 let userInputs = {};
@@ -26,60 +35,181 @@ document.onkeydown = document.onkeyup = function (e) {
   userInputs[e.key] = e.type == "keydown";
 };
 
-let dt, oldTime;
+////////////////////////////////
+// GAME LOOP
+////////////////////////////////
+const step = 1 / 200;
+let acc = 0;
+let oldTime = 0;
 
-function gameLoop(newTime) {
-  // Calculate time between frames
-  dt = (newTime - oldTime) / 1000;
-  oldTime = newTime;
+function gameLoop(runtime) {
+  let dt = (runtime - oldTime) / 1000;
+  acc += dt;
+  oldTime = runtime;
 
-  // Perform the drawing operation
-  updateStats(newTime, dt);
-  draw(dt);
+  while (acc > step) {
+    // console.log("Step", step);
+    update(step);
+    acc -= step;
+  }
 
-  // Request new frame
+  draw(dt, runtime);
   window.requestAnimationFrame(gameLoop);
 }
 
-// FUNCTIONS //
+function update() {
+  let playerCenter = parseFloat(playerStyle.getPropertyValue("height")) / 2;
 
-function updateStats(runtime, dt) {
-  time.innerHTML = "Time: " + (runtime / 1000).toFixed(2) + "s";
-  fpsText.innerHTML = "FPS: " + Math.round(1 / dt);
-  frameTimeText.innerHTML = "FrameTime:<br>" + dt.toFixed(6) + "s";
-}
+  let PosY = parseFloat(playerStyle.getPropertyValue("top"));
+  let PosX = parseFloat(playerStyle.getPropertyValue("left"));
 
-function draw(dt) {
-  // let speedUnit = parseInt(mapStyle.getPropertyValue("width")) / 1000;
-  let speed = 100 * dt;
-  let currentPosX = parseInt(playerStyle.getPropertyValue("top"));
-  let currentPosY = parseInt(playerStyle.getPropertyValue("left"));
+  let limitY = parseFloat(mapStyle.getPropertyValue("height"));
+  let limitX = parseFloat(mapStyle.getPropertyValue("width"));
 
-  if (userInputs["ArrowUp"]) {
-    currentPosX -= speed;
-    player.style.top = currentPosX + "px";
+  let speed = 400 * step;
+  // console.log(speed);
+
+  if (userInputs["ArrowUp"] && userInputs["ArrowRight"]) {
+    inputText.innerHTML = "Input: ↗️";
+    if (PosY > 0) {
+      if (PosY - speed < 0) {
+        PosY = 0;
+        player.style.top = PosY + "px";
+      } else {
+        PosY -= speed;
+        player.style.top = PosY + "px";
+      }
+    }
+    if (PosX + playerCenter * 2 < limitX) {
+      if (limitX - (PosX + playerCenter * 2) > speed) {
+        PosX += speed;
+        player.style.left = PosX + "px";
+      } else {
+        PosX += limitX - (PosX + playerCenter * 2);
+        player.style.left = PosX + "px";
+      }
+    }
+  } else if (userInputs["ArrowRight"] && userInputs["ArrowDown"]) {
+    inputText.innerHTML = "Input: ↘️";
+    if (PosX + playerCenter * 2 < limitX) {
+      if (limitX - (PosX + playerCenter * 2) > speed) {
+        PosX += speed;
+        player.style.left = PosX + "px";
+      } else {
+        PosX += limitX - (PosX + playerCenter * 2);
+        player.style.left = PosX + "px";
+      }
+    }
+    if (PosY + playerCenter * 2 < limitY) {
+      if (limitY - (PosY + playerCenter * 2) > speed) {
+        PosY += speed;
+        player.style.top = PosY + "px";
+      } else {
+        PosY += limitY - (PosY + playerCenter * 2);
+        player.style.top = PosY + "px";
+      }
+    }
+  } else if (userInputs["ArrowDown"] && userInputs["ArrowLeft"]) {
+    inputText.innerHTML = "Input: ↙️";
+    if (PosY + playerCenter * 2 < limitY) {
+      if (limitY - (PosY + playerCenter * 2) > speed) {
+        PosY += speed;
+        player.style.top = PosY + "px";
+      } else {
+        PosY += limitY - (PosY + playerCenter * 2);
+        player.style.top = PosY + "px";
+      }
+    }
+    if (PosX > 0) {
+      if (PosX - speed < 0) {
+        PosX = 0;
+        player.style.left = PosX + "px";
+      } else {
+        PosX -= speed;
+        player.style.left = PosX + "px";
+      }
+    }
+  } else if (userInputs["ArrowLeft"] && userInputs["ArrowUp"]) {
+    inputText.innerHTML = "Input: ↖️";
+    if (PosX > 0) {
+      if (PosX - speed < 0) {
+        PosX = 0;
+        player.style.left = PosX + "px";
+      } else {
+        PosX -= speed;
+        player.style.left = PosX + "px";
+      }
+    }
+    if (PosY > 0) {
+      if (PosY - speed < 0) {
+        PosY = 0;
+        player.style.top = PosY + "px";
+      } else {
+        PosY -= speed;
+        player.style.top = PosY + "px";
+      }
+    }
+  } else if (userInputs["ArrowUp"]) {
+    inputText.innerHTML = "Input: ⬆️";
+    if (PosY > 0) {
+      if (PosY - speed < 0) {
+        PosY = 0;
+        player.style.top = PosY + "px";
+      } else {
+        PosY -= speed;
+        player.style.top = PosY + "px";
+      }
+    }
   } else if (userInputs["ArrowRight"]) {
-    currentPosY += speed;
-    player.style.left = currentPosY + "px";
+    inputText.innerHTML = "Input: ➡️";
+    if (PosX + playerCenter * 2 < limitX) {
+      if (limitX - (PosX + playerCenter * 2) > speed) {
+        PosX += speed;
+        player.style.left = PosX + "px";
+      } else {
+        PosX += limitX - (PosX + playerCenter * 2);
+        player.style.left = PosX + "px";
+      }
+    }
   } else if (userInputs["ArrowDown"]) {
-    currentPosX += speed;
-    player.style.top = currentPosX + "px";
+    inputText.innerHTML = "Input: ⬇️";
+    if (PosY + playerCenter * 2 < limitY) {
+      if (limitY - (PosY + playerCenter * 2) > speed) {
+        PosY += speed;
+        player.style.top = PosY + "px";
+      } else {
+        PosY += limitY - (PosY + playerCenter * 2);
+        player.style.top = PosY + "px";
+      }
+    }
   } else if (userInputs["ArrowLeft"]) {
-    currentPosY -= speed;
-    player.style.left = currentPosY + "px";
+    inputText.innerHTML = "Input: ⬅️";
+    if (PosX > 0) {
+      if (PosX - speed < 0) {
+        PosX = 0;
+        player.style.left = PosX + "px";
+      } else {
+        PosX -= speed;
+        player.style.left = PosX + "px";
+      }
+    }
+  } else {
+    inputText.innerHTML = "Input: 🟦";
   }
 
-  // if (userInputs["ArrowUp"]) {
-  //   currentPosX -= speed;
-  //   player.style.top = currentPosX + "px";
-  // } else if (userInputs["ArrowRight"]) {
-  //   currentPosY += speed;
-  //   player.style.left = currentPosY + "px";
-  // } else if (userInputs["ArrowDown"]) {
-  //   currentPosX += speed;
-  //   player.style.top = currentPosX + "px";
-  // } else if (userInputs["ArrowLeft"]) {
-  //   currentPosY -= speed;
-  //   player.style.left = currentPosY + "px";
-  // }
+  playerPosText.innerHTML =
+    "_Y: " + PosY.toFixed(2) + "<br>X: " + PosX.toFixed(2);
+}
+
+function draw(dt, runtime) {
+  // console.log("Dt", dt);
+  updateStats(dt, runtime);
+}
+
+////////////////////////////////
+// FUNCTIONS
+////////////////////////////////
+function updateStats(dt, runtime) {
+  time.innerHTML = "Time: " + (runtime / 1000).toFixed(2) + "s";
+  fpsText.innerHTML = "FPS: " + Math.round(1 / dt);
 }

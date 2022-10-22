@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego 1</title>
-    <link rel="stylesheet" href="../style/juego1.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GAME 1</title>
+    <link rel="stylesheet" href="../style/juego1.css" />
+  </head>
+  <body>
     <div id="stats">
-        <p id="time">0</p>
-        <p id="fps">0</p>
-        <p id="frameTime">0</p>
+      <p id="fps">FPS: 0</p>
+      <p id="time">Time: 0s</p>
+      <p id="userInput">Input:</p>
     </div>
     <div id="map">
-        <div id="player"></div>
+      <div id="player">
+        <p id="playerPos"></p>
+      </div>
     </div>
     <script src="../js/game1/logic.js"></script>
-</body>
+  </body>
 </html>

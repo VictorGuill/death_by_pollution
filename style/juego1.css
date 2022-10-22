@@ -1,3 +1,8 @@
+:root {
+  --mapSize: 90vmin;
+  --playerSize: 50px;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -7,42 +12,42 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: #121212;
-  display: grid;
-  place-items: center;
-}
-
-#map {
-  height: 95vmin;
-  width: 95vmin;
-  background-color: rgba(255, 255, 255, 0.307);
-  border-radius: 10px;
-  display: grid;
-  place-items: center;
-  position: relative;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-}
-
-#player {
-  width: 5%;
-  aspect-ratio: 1 / 1;
-  background-color: red;
-  position: absolute;
-  top: calc(50% - 2.5%);
-  left: calc(50% - 2.5%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #stats {
   position: fixed;
-  background-color: white;
   top: 0;
   left: 0;
+  background-color: #fff;
   user-select: none;
 }
 
-#stats p{
-  padding: 5px 10px;
+#stats p {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+}
+
+#map {
+  height: var(--mapSize);
+  width: var(--mapSize);
+  background-color: white;
+  position: relative;
+}
+
+#player {
+  height: var(--playerSize);
+  width: var(--playerSize);
+  background-color: red;
+  position: absolute;
+  top: calc(50% - calc(var(--playerSize) / 2));
+  left: calc(50% - calc(var(--playerSize) / 2));
+  overflow: hidden;
+}
+
+#player p {
+  font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
 }
