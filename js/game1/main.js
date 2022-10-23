@@ -11,8 +11,8 @@ import Stats from "./stats.js";
 // START
 ////////////////////////////////
 
-const map = new Map("#323232", "map");
-const player = new Player("red", map);
+const map = new Map("#202020", "map");
+const player = new Player("#ffc300", map);
 const stats = new Stats();
 
 // request first frame
@@ -71,3 +71,13 @@ function update(step) {
 function draw() {
   player.DRAW();
 }
+
+////////////////////////////////
+// RESIZE EVENT
+////////////////////////////////
+
+addEventListener("resize", (e) => {
+  map.uppdateMapSize();
+
+  player.updatePlayerLimits(map.height, map.width);
+});

@@ -13,4 +13,9 @@ export default class Map {
     this.height = map.getBoundingClientRect().height;
     this.width = map.getBoundingClientRect().width;
   }
+
+  uppdateMapSize() {
+    this.height = map.getBoundingClientRect().height;
+    this.width = map.getBoundingClientRect().width;
+  }
 }

@@ -68,9 +68,27 @@ export default class Player {
     player.style.top = this.Ypos + "px";
     player.style.left = this.Xpos + "px";
 
+    // set player size
+    player.style.height = this.height + "px";
+    player.style.width = this.width + "px";
+
     // change coords info
     const coordText = document.getElementById("coords");
     coordText.innerHTML =
       "Y: " + this.Ypos.toFixed(3) + "<br>X: " + this.Xpos.toFixed(3);
+  }
+
+  updatePlayerLimits(height, width) {
+    let newPosY = (this.Ypos / this.limitY) * height;
+    let newPosX = (this.Xpos / this.limitX) * width;
+
+    this.Ypos = newPosY;
+    this.Xpos = newPosX;
+
+    this.limitY = height;
+    this.limitX = width;
+
+    this.height = Math.min(height, width) / 25;
+    this.width = Math.min(height, width) / 25;
   }
 }
