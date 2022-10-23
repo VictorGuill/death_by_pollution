@@ -41,7 +41,22 @@ body {
   overflow: hidden;
 }
 
-#player p {
-  font-size: 12px;
+#playerCoord {
+  font-size: 10px;
   font-family: Arial, Helvetica, sans-serif;
+  user-select: none;
+}
+
+#gameInfo {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: white;
+  padding: 5px 10px;
+}
+
+#coords {
+  font-size: 1.2em;
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: none;
 }

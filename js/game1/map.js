@@ -1,13 +1,15 @@
 export default class Map {
-  constructor(color) {
+  constructor(color, id) {
     this.color = color;
-    this.id = "map";
+    this.id = id;
 
-    // Add map to html
+    // add map to html
     const map = document.createElement("div");
     map.setAttribute("id", this.id);
     map.style.backgroundColor = this.color;
+
     document.body.appendChild(map);
+
     this.height = map.getBoundingClientRect().height;
     this.width = map.getBoundingClientRect().width;
   }

@@ -5,30 +5,29 @@ export default class Stats {
     this.delta = 0;
     this.runtime = 0;
 
-    // Add stats to html
+    // add stats to html
     const statsContainer = document.createElement("div");
     statsContainer.setAttribute("id", this.id);
     statsContainer.style.backgroundColor = this.color;
+
     document.body.appendChild(statsContainer);
 
     const fpsText = document.createElement("p");
     fpsText.setAttribute("id", "fps");
-    fpsText.innerHTML = "FPS: 0";
 
     const timeText = document.createElement("p");
     timeText.setAttribute("id", "time");
-    timeText.innerHTML = "Time: 0s";
 
     const inputText = document.createElement("p");
     inputText.setAttribute("id", "input");
-    inputText.innerHTML = "Input: 🟦";
 
     document.getElementById(this.id).appendChild(fpsText);
     document.getElementById(this.id).appendChild(timeText);
     document.getElementById(this.id).appendChild(inputText);
   }
 
-  update(dt, runtime, userInputs) {
+  // updates stats info
+  update(dt, runtime, userInput) {
     const fpsText = document.getElementById("fps");
     const timeText = document.getElementById("time");
     const inputText = document.getElementById("input");
@@ -36,22 +35,24 @@ export default class Stats {
     fpsText.innerHTML = "FPS: " + Math.round(1 / dt);
     timeText.innerHTML = "Time: " + (runtime / 1000).toFixed(2) + "s";
 
-    if (userInputs["ArrowUp"] && userInputs["ArrowRight"]) {
+    if (userInput["ArrowUp"] && userInput["ArrowRight"]) {
       inputText.innerHTML = "Input: ↗️";
-    } else if (userInputs["ArrowRight"] && userInputs["ArrowDown"]) {
+    } else if (userInput["ArrowRight"] && userInput["ArrowDown"]) {
       inputText.innerHTML = "Input: ↘️";
-    } else if (userInputs["ArrowDown"] && userInputs["ArrowLeft"]) {
+    } else if (userInput["ArrowDown"] && userInput["ArrowLeft"]) {
       inputText.innerHTML = "Input: ↙️";
-    } else if (userInputs["ArrowLeft"] && userInputs["ArrowUp"]) {
+    } else if (userInput["ArrowLeft"] && userInput["ArrowUp"]) {
       inputText.innerHTML = "Input: ↖️";
-    } else if (userInputs["ArrowUp"]) {
+    } else if (userInput["ArrowUp"]) {
       inputText.innerHTML = "Input: ⬆️";
-    } else if (userInputs["ArrowRight"]) {
+    } else if (userInput["ArrowRight"]) {
       inputText.innerHTML = "Input: ➡️";
-    } else if (userInputs["ArrowDown"]) {
+    } else if (userInput["ArrowDown"]) {
       inputText.innerHTML = "Input: ⬇️";
-    } else if (userInputs["ArrowLeft"]) {
+    } else if (userInput["ArrowLeft"]) {
       inputText.innerHTML = "Input: ⬅️";
+    } else if (userInput[" "]) {
+      inputText.innerHTML = "Input: *️⃣";
     } else {
       inputText.innerHTML = "Input: 🟦";
     }
