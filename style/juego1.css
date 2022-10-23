@@ -1,6 +1,5 @@
 :root {
   --mapSize: 90vmin;
-  --playerSize: 50px;
 }
 
 * {
@@ -21,7 +20,6 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #fff;
   user-select: none;
 }
 
@@ -33,14 +31,10 @@ body {
 #map {
   height: var(--mapSize);
   width: var(--mapSize);
-  background-color: white;
   position: relative;
 }
 
 #player {
-  height: var(--playerSize);
-  width: var(--playerSize);
-  background-color: red;
   position: absolute;
   top: calc(50% - calc(var(--playerSize) / 2));
   left: calc(50% - calc(var(--playerSize) / 2));
