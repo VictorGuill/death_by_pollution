@@ -1,16 +1,22 @@
+:root {
+  --BACKGROUND: #222222;
+  --DARK: #3d0066;
+  --SECONDARY-DARK: #510087;
+  --DARK-ACCENT: #ab09ae;
+  --ACCENT: #fdc500;
+  --LIGHT: #faffff;
+}
+
 * {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    height: 100vh;
-    width: 100vw;
-    background-color: #121212;
-    display: grid;
-    place-items: center;
-}
-
-h1 {
-    color: #fff;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--BACKGROUND);
+  display: grid;
+  place-items: center;
+  color: var(--LIGHT);
 }
