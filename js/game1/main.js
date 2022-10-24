@@ -22,22 +22,14 @@ window.requestAnimationFrame(gameLoop);
 // GAME LOOP
 ////////////////////////////////
 
-const step = 1 / 200;
-let acc = 0;
 let oldTime = 0;
 
 function gameLoop(runtime) {
   let dt = (runtime - oldTime) / 1000;
-  acc += dt;
   oldTime = runtime;
+  console.log(dt);
 
-  while (acc > step) {
-    update(step);
-    acc -= step;
-  }
-
-  draw();
-
+  update(dt);
   stats.update(dt, runtime, userInput);
 
   window.requestAnimationFrame(gameLoop);
@@ -47,8 +39,8 @@ function gameLoop(runtime) {
 // UPDATE
 ////////////////////////////////
 
-function update(step) {
-  let speed = 300 * ((map.height + map.width / 2) * 0.001) * step;
+function update(dt) {
+  let speed = 300 * ((map.height + map.width / 2) * 0.001) * dt;
 
   if (userInput["ArrowUp"]) {
     player.UP(speed);
@@ -62,13 +54,6 @@ function update(step) {
   if (userInput["ArrowLeft"]) {
     player.LEFT(speed);
   }
-}
-
-////////////////////////////////
-// DRAW
-////////////////////////////////
-
-function draw() {
   player.DRAW();
 }
 
