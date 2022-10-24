@@ -1,60 +1,74 @@
+const stats_values = ["fps", "time", "input", "y", "x", "accel"];
+
 export default class Stats {
-  constructor() {
-    this.id = "stats";
-    this.color = "#ffffff";
-    this.delta = 0;
-    this.runtime = 0;
+  constructor(id) {
+    this.id = id;
 
-    // add stats to html
-    const statsContainer = document.createElement("div");
-    statsContainer.setAttribute("id", this.id);
-    statsContainer.style.backgroundColor = this.color;
-
-    document.body.appendChild(statsContainer);
-
-    const fpsText = document.createElement("p");
-    fpsText.setAttribute("id", "fps");
-
-    const timeText = document.createElement("p");
-    timeText.setAttribute("id", "time");
-
-    const inputText = document.createElement("p");
-    inputText.setAttribute("id", "input");
-
-    document.getElementById(this.id).appendChild(fpsText);
-    document.getElementById(this.id).appendChild(timeText);
-    document.getElementById(this.id).appendChild(inputText);
+    this.addToDOM();
   }
 
-  // updates stats info
-  update(dt, runtime, userInput) {
-    const fpsText = document.getElementById("fps");
-    const timeText = document.getElementById("time");
-    const inputText = document.getElementById("input");
+  // create div with texts to the DOM
+  addToDOM() {
+    // add container
+    const statsContainer = document.createElement("div");
+    statsContainer.setAttribute("id", this.id);
+    document.body.appendChild(statsContainer);
 
-    fpsText.innerHTML = "FPS: " + Math.round(1 / dt);
+    stats_values.forEach((element) => {
+      const text = document.createElement("p");
+      text.setAttribute("id", element);
+      statsContainer.appendChild(text);
+    });
+  }
+
+  updateValues(dt, runtime, userInput, player) {
+    // fps
+    const fpsText = document.getElementById("fps");
+    fpsText.innerHTML = "FPS:  " + Math.round(1 / dt);
+
+    // time
+    const timeText = document.getElementById("time");
     timeText.innerHTML = "Time: " + (runtime / 1000).toFixed(2) + "s";
 
+    // user input
+    const inputText = document.getElementById("input");
+    let inputString = "Input: ";
+
     if (userInput["ArrowUp"] && userInput["ArrowRight"]) {
-      inputText.innerHTML = "Input: ↗️";
+      inputString += "↗️";
     } else if (userInput["ArrowRight"] && userInput["ArrowDown"]) {
-      inputText.innerHTML = "Input: ↘️";
+      inputString += "↘️";
     } else if (userInput["ArrowDown"] && userInput["ArrowLeft"]) {
-      inputText.innerHTML = "Input: ↙️";
+      inputString += "↙️";
     } else if (userInput["ArrowLeft"] && userInput["ArrowUp"]) {
-      inputText.innerHTML = "Input: ↖️";
+      inputString += "↖️";
     } else if (userInput["ArrowUp"]) {
-      inputText.innerHTML = "Input: ⬆️";
+      inputString += "⬆️";
     } else if (userInput["ArrowRight"]) {
-      inputText.innerHTML = "Input: ➡️";
+      inputString += "➡️";
     } else if (userInput["ArrowDown"]) {
-      inputText.innerHTML = "Input: ⬇️";
+      inputString += "⬇️";
     } else if (userInput["ArrowLeft"]) {
-      inputText.innerHTML = "Input: ⬅️";
+      inputString += "⬅️";
     } else if (userInput[" "]) {
-      inputText.innerHTML = "Input: *️⃣";
+      inputString += "*️⃣";
     } else {
-      inputText.innerHTML = "Input: 🟦";
+      inputString += "🟦";
     }
+
+    inputText.innerHTML = inputString;
+
+    // player stats
+    // Ypos
+    const posYtext = document.getElementById("y");
+    posYtext.innerHTML = "--------<br>Y: " + player.Ypos.toFixed(2);
+
+    // Xpos
+    const posXtext = document.getElementById("x");
+    posXtext.innerHTML = "Y: " + player.Xpos.toFixed(2);
+
+    // // Accel
+    // const accelText = document.getElementById("accel");
+    // accelText.innerHTML = "Accel: " + player.accel.toFixed(2);
   }
 }

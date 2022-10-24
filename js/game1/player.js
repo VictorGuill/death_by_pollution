@@ -1,94 +1,100 @@
+const playerScale = 5;
+const speed_base = 1200;
+
 export default class Player {
-  constructor(color, map) {
-    this.color = color;
-    this.id = "player";
+  constructor(id, map) {
+    this.id = id;
+    this.mapID = map.id;
+
+    let size = Math.min(map.height, map.width) / (100 / playerScale);
+    this.height = size;
+    this.width = size;
 
     this.limitY = map.height;
     this.limitX = map.width;
 
-    let playerSize = Math.min(map.height, map.width) / 25;
-    this.height = playerSize;
-    this.width = playerSize;
+    this.Ypos = map.height / 2 - size / 2;
+    this.Xpos = map.width / 2 - size / 2;
 
-    // this.Ypos = 0;
-    // this.Xpos = 0;
-    this.Ypos = map.height / 2 - playerSize / 2;
-    this.Xpos = map.width / 2 - playerSize / 2;
+    this.addToDOM();
+  }
 
-    // add player to html
+  // create div with object id and appends to DOM
+  addToDOM() {
+    const map = document.getElementById(this.mapID);
     const player = document.createElement("div");
+
     player.setAttribute("id", this.id);
-    player.style.backgroundColor = this.color;
+    player.style.position = "absolute";
+    player.style.backgroundColor = "#ffc300";
 
-    document.getElementById(map.id).appendChild(player);
+    map.appendChild(player);
 
-    // set player size
+    this.updateCSS();
+  }
+
+  // calculates new player values
+  Resize(newHeight, newWidth) {
+    this.Ypos = (this.Ypos / this.limitY) * newHeight;
+    this.Xpos = (this.Xpos / this.limitX) * newWidth;
+
+    this.limitY = newHeight;
+    this.limitX = newWidth;
+
+    let size = Math.min(newHeight, newWidth) / (100 / playerScale);
+    this.height = size;
+    this.width = size;
+
+    this.updateCSS();
+  }
+
+  // change css visual values
+  updateCSS() {
+    const player = document.getElementById(this.id);
+
     player.style.height = this.height + "px";
     player.style.width = this.width + "px";
-
-    // set player pos
     player.style.top = this.Ypos + "px";
     player.style.left = this.Xpos + "px";
   }
 
-  UP(distance) {
-    if (this.Ypos - distance > 0) {
-      this.Ypos -= distance;
+  moveUP(dt) {
+    let speed = speed_base * ((this.limitY + this.limitX / 2) * 0.001) * dt;
+
+    if (this.Ypos - speed > 0) {
+      this.Ypos -= speed;
     } else {
       this.Ypos = 0;
     }
   }
 
-  DOWN(distance) {
-    if (this.Ypos + this.height + distance < this.limitY) {
-      this.Ypos += distance;
+  moveDOWN(dt) {
+    let speed = speed_base * ((this.limitY + this.limitX / 2) * 0.001) * dt;
+
+    if (this.Ypos + this.height + speed < this.limitY) {
+      this.Ypos += speed;
     } else {
       this.Ypos = this.limitY - this.height;
     }
   }
 
-  LEFT(distance) {
-    if (this.Xpos - distance > 0) {
-      this.Xpos -= distance;
+  moveLEFT(dt) {
+    let speed = speed_base * ((this.limitY + this.limitX / 2) * 0.001) * dt;
+
+    if (this.Xpos - speed > 0) {
+      this.Xpos -= speed;
     } else {
       this.Xpos = 0;
     }
   }
 
-  RIGHT(distance) {
-    if (this.Xpos + this.width + distance < this.limitX) {
-      this.Xpos += distance;
+  moveRIGHT(dt) {
+    let speed = speed_base * ((this.limitY + this.limitX / 2) * 0.001) * dt;
+
+    if (this.Xpos + this.width + speed < this.limitX) {
+      this.Xpos += speed;
     } else {
       this.Xpos = this.limitX - this.width;
     }
-  }
-
-  DRAW() {
-    // set player pos
-    player.style.top = this.Ypos + "px";
-    player.style.left = this.Xpos + "px";
-
-    // set player size
-    player.style.height = this.height + "px";
-    player.style.width = this.width + "px";
-
-    // change coords info
-    const coordText = document.getElementById("coords");
-    coordText.innerHTML =
-      "Y: " + this.Ypos.toFixed(3) + "<br>X: " + this.Xpos.toFixed(3);
-  }
-
-  updatePlayerLimits(height, width) {
-    let newPosY = (this.Ypos / this.limitY) * height;
-    let newPosX = (this.Xpos / this.limitX) * width;
-
-    this.Ypos = newPosY;
-    this.Xpos = newPosX;
-
-    this.limitY = height;
-    this.limitX = width;
-
-    this.height = Math.min(height, width) / 25;
-    this.width = Math.min(height, width) / 25;
   }
 }

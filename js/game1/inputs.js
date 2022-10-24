@@ -1,13 +1,15 @@
-// create assoc array
+// create empty object
 let userInput = {};
 
 export default userInput;
 
 ////////////////////////////////
-// KEYBOARD
-////////////////////////////////
+/// KEYBOARD
 
-// detects keydown/keyup presses. If keypress type is "keydown", stores true.
-document.onkeydown = document.onkeyup = function (e) {
-  userInput[e.key] = e.type == "keydown";
+document.onkeydown = function (e) {
+  userInput[e.key] = true;
+};
+
+document.onkeyup = function (e) {
+  userInput[e.key] = false;
 };

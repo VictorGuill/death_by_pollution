@@ -1,6 +1,5 @@
 ////////////////////////////////
 // IMPORTS
-////////////////////////////////
 
 import userInput from "./inputs.js";
 import Map from "./map.js";
@@ -8,61 +7,74 @@ import Player from "./player.js";
 import Stats from "./stats.js";
 
 ////////////////////////////////
-// START
+// SETTIGNS
+
+let mapScale = 0.9;
+
 ////////////////////////////////
+// START
 
-const map = new Map("#202020", "map");
-const player = new Player("#ffc300", map);
-const stats = new Stats();
+const map = new Map(
+  "map",
+  window.innerHeight * mapScale,
+  window.innerWidth * mapScale,
+  "#202020"
+);
 
-// request first frame
-window.requestAnimationFrame(gameLoop);
+const player = new Player("player", map);
+
+const stats = new Stats("statsContainer");
+
+window.requestAnimationFrame(gameLoop); // request first frame
 
 ////////////////////////////////
 // GAME LOOP
-////////////////////////////////
 
 let oldTime = 0;
 
 function gameLoop(runtime) {
   let dt = (runtime - oldTime) / 1000;
   oldTime = runtime;
-  console.log(dt);
 
-  update(dt);
-  stats.update(dt, runtime, userInput);
+  stats.updateValues(dt, runtime, userInput, player);
+  updateGameState(dt);
 
   window.requestAnimationFrame(gameLoop);
 }
 
 ////////////////////////////////
 // UPDATE
-////////////////////////////////
 
-function update(dt) {
-  let speed = 300 * ((map.height + map.width / 2) * 0.001) * dt;
-
+function updateGameState(dt) {
+  // player
   if (userInput["ArrowUp"]) {
-    player.UP(speed);
+    player.moveUP(dt);
+    player.updateCSS();
   }
   if (userInput["ArrowRight"]) {
-    player.RIGHT(speed);
+    player.moveRIGHT(dt);
+    player.updateCSS();
   }
   if (userInput["ArrowDown"]) {
-    player.DOWN(speed);
+    player.moveDOWN(dt);
+    player.updateCSS();
   }
   if (userInput["ArrowLeft"]) {
-    player.LEFT(speed);
+    player.moveLEFT(dt);
+    player.updateCSS();
   }
-  player.DRAW();
 }
 
 ////////////////////////////////
 // RESIZE EVENT
-////////////////////////////////
 
 addEventListener("resize", (e) => {
-  map.uppdateMapSize();
+  map.Resize(window.innerHeight * mapScale, window.innerWidth * mapScale);
+  player.Resize(map.height, map.width);
 
-  player.updatePlayerLimits(map.height, map.width);
+  // prevent bug: input sometime remain true when resizing
+  userInput["ArrowUp"] = false;
+  userInput["ArrowRight"] = false;
+  userInput["ArrowDown"] = false;
+  userInput["ArrowLeft"] = false;
 });
