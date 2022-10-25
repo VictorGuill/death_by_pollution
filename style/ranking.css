@@ -1,0 +1,151 @@
+body {
+    background-color: var(--LIGHT);
+}
+
+.rankings {
+    height: 95vmin;
+    background-color: var(--BACKGROUND);
+    border-radius: 10px;
+}
+
+.rankingheader {
+    margin: 10px;
+}
+
+#title {
+    margin: 30px 30px -58px 30px;
+    border-left: 6px solid var(--ACCENT);
+}
+
+h1 {
+    color: var(--LIGHT);
+    margin-left: 10px;
+}
+
+.gameselection {
+    float: right;
+    position: relative;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    display: block;
+}
+
+.gameselection-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.gameselection a {
+    color: var(--DARK);
+    font-weight: bold;
+    padding: 9.5px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: right;
+}
+
+.gameselection-content a:hover {
+    background-color: var(--ACCENT);
+}
+
+.gameselection:hover .gameselection-content {
+    display: block;
+}
+
+.gameselection:hover .GAME1 {
+    background-color: var(--ACCENT);
+}
+
+.container,
+.others {
+    clear: both;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 30px;
+}
+
+.name {
+    color: var(--LIGHT);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.first,
+.second,
+.third {
+    color: var(--SECONDARY-DARK);
+    background: linear-gradient(360deg, #510087 -4.39%, #AB09AE 100%);
+    border: 2px solid var(--LIGHT);
+    border-radius: 5px 5px 0px 0px;
+}
+
+.item {
+    width: 200px;
+}
+
+.rank {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    color: #fff;
+}
+
+.name {
+    text-align: center;
+    padding: 0 .5rem;
+}
+
+.podium .first {
+    min-height: 230px;
+    color: var(--ACCENT);
+}
+
+.podium .second {
+    min-height: 130px;
+    color: var(--ACCENT);
+}
+
+.podium .third {
+    min-height: 80px;
+    color: var(--ACCENT);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: var(--LIGHT);
+}
+
+th,
+td {
+    border-bottom: 1px solid var(--DARK-ACCENT);
+    padding: 15px;
+}
+
+th {
+    background-color: var(--DARK-ACCENT);
+    color: var(--LIGHT);
+}
+
+td {
+    background-color: var(--LIGHT);
+    color: var(--DARK);
+}
+
+#position {
+    width: 15%;
+}
+
+#user {
+    width: 65%;
+}
+
+#score {
+    width: 20%;
+}
