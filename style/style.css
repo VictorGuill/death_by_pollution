@@ -1,24 +1,14 @@
-<<<<<<< HEAD
-=======
 @font-face {
   font-family: outfit;
   src: url("../tercers/font/Outfit-Light.otf") format("opentype");
 }
 
->>>>>>> b0b33dc (wip landing navbar)
 * {
   margin: 0;
   box-sizing: border-box;
 }
 
 body {
-<<<<<<< HEAD
-  height: 100vh;
-  width: 100vw;
-  color: var(--LIGHT);
-}
-
-=======
   font-family: 'outfit', Arial, Helvetica, sans-serif;
   height: 100vh;
   width: 100vw;
@@ -121,7 +111,6 @@ a:active { text-decoration: none; }
 
 
 
->>>>>>> b0b33dc (wip landing navbar)
 #contenedorMenuJuegos {
   height: 100vh;
   width: 100vw;
