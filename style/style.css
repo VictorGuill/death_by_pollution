@@ -1,14 +1,127 @@
+<<<<<<< HEAD
+=======
+@font-face {
+  font-family: outfit;
+  src: url("../tercers/font/Outfit-Light.otf") format("opentype");
+}
+
+>>>>>>> b0b33dc (wip landing navbar)
 * {
   margin: 0;
   box-sizing: border-box;
 }
 
 body {
+<<<<<<< HEAD
   height: 100vh;
   width: 100vw;
   color: var(--LIGHT);
 }
 
+=======
+  font-family: 'outfit', Arial, Helvetica, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  color: var(--LIGHT);
+  background-color: var(--BACKGROUND);
+}
+
+a { color: white; }
+a:link { text-decoration: none;}
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+
+.background-landing {
+  position: absolute;
+  z-index: -2;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: var(--BACKGROUND);
+}
+
+.background-landing-linear {
+  position: absolute;
+  z-index: -1;
+  width: 846px;
+  height: 1077px;
+  left: 0px;
+  top: 0px;
+  background: linear-gradient(90deg, rgba(81, 0, 135, 0.85) 6.77%, rgba(81, 0, 135, 0) 100%);
+}
+
+#navbar {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+
+.nav-center{
+  margin-left: auto;
+}
+
+.nav-right{
+  margin-left: auto;
+}
+
+.nav-right a {
+  padding: 0 20px;
+}
+
+.nav-right a svg {
+  stroke-width: 8px;
+  width: 30px;
+}
+
+#navbar-list {
+  list-style: none;
+  align-items: center;
+  display: inline-flex;
+}
+
+.nav-link {
+  font-size: 20px;
+  padding: 0 40px;
+}
+
+
+#logo svg { width: 40px; }
+
+#logo{}
+
+
+
+#logo .fill-accent{
+  fill: var(--ACCENT);
+}
+
+#login .fill-white, #lenguage .fill-white{
+  fill: var(--LIGHT);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> b0b33dc (wip landing navbar)
 #contenedorMenuJuegos {
   height: 100vh;
   width: 100vw;
