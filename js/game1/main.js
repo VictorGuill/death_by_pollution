@@ -10,6 +10,7 @@ import Stats from "./stats.js";
 // SETTIGNS
 
 let mapScale = 0.9;
+let usePhysics = true;
 
 ////////////////////////////////
 // START
@@ -32,11 +33,20 @@ window.requestAnimationFrame(gameLoop); // request first frame
 
 let oldTime = 0;
 
+let statsUpdateStep = 1000 / 10;
+let statsAcc = 0;
+
 function gameLoop(runtime) {
   let dt = (runtime - oldTime) / 1000;
   oldTime = runtime;
 
-  stats.updateValues(dt, runtime, userInput, player);
+  statsAcc += dt;
+
+  while (statsAcc * 1000 > statsUpdateStep) {
+    stats.updateValues(dt, runtime, userInput, player);
+    statsAcc = 0;
+  }
+
   updateGameState(dt);
 
   window.requestAnimationFrame(gameLoop);
@@ -46,22 +56,10 @@ function gameLoop(runtime) {
 // UPDATE
 
 function updateGameState(dt) {
-  // player
-  if (userInput["ArrowUp"]) {
-    player.moveUP(dt);
-    player.updateCSS();
-  }
-  if (userInput["ArrowRight"]) {
-    player.moveRIGHT(dt);
-    player.updateCSS();
-  }
-  if (userInput["ArrowDown"]) {
-    player.moveDOWN(dt);
-    player.updateCSS();
-  }
-  if (userInput["ArrowLeft"]) {
-    player.moveLEFT(dt);
-    player.updateCSS();
+  if (usePhysics) {
+    player.movePhysics(dt, userInput);
+  } else {
+    player.move(dt, userInput);
   }
 }
 

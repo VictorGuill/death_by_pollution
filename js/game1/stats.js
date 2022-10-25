@@ -1,4 +1,4 @@
-const stats_values = ["fps", "time", "input", "y", "x", "accel"];
+const stats_values = ["fps", "time", "input", "y", "x", "playerPhysics"];
 
 export default class Stats {
   constructor(id) {
@@ -61,14 +61,22 @@ export default class Stats {
     // player stats
     // Ypos
     const posYtext = document.getElementById("y");
-    posYtext.innerHTML = "--------<br>Y: " + player.Ypos.toFixed(2);
+    posYtext.innerHTML = "-----------<br>Y: " + player.Ypos.toFixed(2);
 
     // Xpos
     const posXtext = document.getElementById("x");
-    posXtext.innerHTML = "Y: " + player.Xpos.toFixed(2);
+    posXtext.innerHTML = "X: " + player.Xpos.toFixed(2);
 
-    // // Accel
-    // const accelText = document.getElementById("accel");
-    // accelText.innerHTML = "Accel: " + player.accel.toFixed(2);
+    // Accel
+    const physicsText = document.getElementById("playerPhysics");
+    physicsText.innerHTML =
+      "<br>Yvel: " +
+      Math.abs(player.Yvel / dt).toFixed(3) +
+      "<br>Xvel: " +
+      Math.abs(player.Xvel / dt).toFixed(3) +
+      "<br><br>Yacc: " +
+      Math.abs(player.Yaccel / dt).toFixed(3) +
+      "<br>Xacc: " +
+      Math.abs(player.Xaccel / dt).toFixed(3);
   }
 }

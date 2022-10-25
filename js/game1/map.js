@@ -21,6 +21,11 @@ export default class Map {
     document.body.appendChild(map);
 
     this.updateCSS();
+
+    let coords = map.getBoundingClientRect();
+
+    this.Ypos = coords.top;
+    this.Xpos = coords.left;
   }
 
   // calculates new height and width
