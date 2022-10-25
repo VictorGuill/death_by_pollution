@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#gamesContainer {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--LIGHT);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -ms-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+}
+
+#games {
+  height: auto;
+  width: 75vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.game:nth-child(2) {
+  margin: 0 4.5vw;
+}
+
+.game {
+  width: 50vmin;
+  aspect-ratio: 1 / 1.5;
+  max-width: 350px;
+  background-color: var(--BACKGROUND);
+  transition: 0.1s transform ease-in-out;
+  -webkit-transition: 0.1s transform ease-in-out;
+  -moz-transition: 0.1s transform ease-in-out;
+  -ms-transition: 0.1s transform ease-in-out;
+  -o-transition: 0.1s transform ease-in-out;
+}
+
+.game:hover {
+  cursor: pointer;
+  transform: scale(1.075);
+  -webkit-transform: scale(1.075);
+  -moz-transform: scale(1.075);
+  -ms-transform: scale(1.075);
+  -o-transform: scale(1.075);
+}
+
+#scoresBtn {
+}
