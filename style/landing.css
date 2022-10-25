@@ -1,75 +1,92 @@
+/* standard-link-noblue */
 a { color: white; }
 a:link { text-decoration: none;}
 a:visited { text-decoration: none; }
 a:hover { text-decoration: none; }
 a:active { text-decoration: none; }
 
-.background-landing {
-  position: absolute;
-  z-index: -2;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: var(--BACKGROUND);
+/* intro-bg-colors */
+.background-landing-intro {
+    position: absolute;
+    z-index: -2;
+    width: 1440px;
+    height: 1077px;
+    left: 0px;
+    top: 0px;
+    background-color: #000000;
 }
 
-.background-landing-linear {
-  position: absolute;
-  z-index: -1;
-  width: 846px;
-  height: 1077px;
-  left: 0px;
-  top: 0px;
-  background: linear-gradient(90deg, rgba(81, 0, 135, 0.85) 6.77%, rgba(81, 0, 135, 0) 100%);
+.linear-background-landing-intro {
+    position: absolute;
+    z-index: -2;
+    width: 846px;
+    height: 1077px;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(90deg, rgba(81, 0, 135, 0.85) 6.77%, rgba(81, 0, 135, 0) 100%);
 }
 
+#img-landing-intro img {
+    position: absolute;
+    width: 558px;
+    height: 722px;
+    left: 822px;
+    top: 170px;
+
+}
+
+/* navbar */
 #navbar {
-  height: 100px;
-  display: flex;
-  align-items: center;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-
-.nav-center{
-  margin-left: auto;
-}
-
-.nav-right{
-  margin-left: auto;
-}
-
-.nav-right a {
-  padding: 0 20px;
-}
-
-.nav-right a svg {
-  stroke-width: 8px;
-  width: 30px;
+.nav-center {
+    position: absolute;
 }
 
 #navbar-list {
-  list-style: none;
-  align-items: center;
-  display: inline-flex;
+    list-style: none;
+    align-items: center;
+    display: inline-flex;
 }
 
 .nav-link {
-  font-size: 20px;
-  padding: 0 40px;
+    font-size: 30px;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    padding-top: 6px;
+}
+
+.nav-logo svg {
+    width: 40px;
+}
+
+.fill-accent {
+    fill: var(--ACCENT);
 }
 
 
-#logo svg { width: 40px; }
-
-#logo{}
-
-
-
-#logo .fill-accent{
-  fill: var(--ACCENT);
+/* Nav login + lenguage */
+.nav-right {
+    position: absolute;
+    right: 30px;
 }
 
-#login .fill-white, #lenguage .fill-white{
-  fill: var(--LIGHT);
+.nav-right a {
+    padding: 0 10px;
 }
+
+.nav-right a svg {
+    stroke-width: 8px;
+    width: 30px;
+}
+
+
+
+
+
