@@ -1,3 +1,8 @@
+@font-face {
+  font-family: outfit;
+  src: url("../tercers/font/Outfit-Light.otf") format("opentype");
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
