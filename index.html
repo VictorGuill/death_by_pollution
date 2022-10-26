@@ -9,19 +9,24 @@
     <link rel="stylesheet" href="./style/colores.css">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/landing.css">
+
 </head>
 
 <body>
-    <div class="background-landing-intro"></div>
-    <div class="linear-background-landing-intro"></div>
-    <header>
-        <div id="navbar">
-            <div class="nav-center">
-                <ul id="navbar-list">
-                    <li class="nav-link nav-about">
+    <div class="first-slide-bg">
+        <div class="background-landing-intro"></div>
+        <div class="linear-background-landing-intro"></div>
+        <div id="img-landing-intro"><img src="./media/fotoVentanaAvion.png" alt=""></div>
+    </div>
+
+    <div id="header">
+        <div class="header-inner">
+            <div id="nav-center">
+                <ul class="nav-links">
+                    <li class="nav-item" id="nav-about" >
                         <a href="#">ABOUT US</a>
                     </li>
-                    <li class="nav-link nav-logo">
+                    <li class="nav-item" id="nav-logo">
                         <a href="#">
                             <svg version="1.1" x="0px" y="0px" viewBox="0 0 512 512">
                                 <title>Company Logo</title>
@@ -33,14 +38,14 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="nav-link nav-games">
+                    <li class="nav-item" id="nav-games">
                         <a href="#">GAMES</a>
                     </li>
                 </ul>
             </div>
-            <div class="nav-right">
+            <div id="nav-right">
                 <a id="login" href="#">
-                    <svg viewBox="0 0 205 205">
+                    <svg viewBox="0 0 210 210">
                         <g transform="translate(-36.240997-34.171997)">
                             <ellipse rx="40" ry="40" transform="translate(138.741 96.6717)" fill="none" stroke="#fff" stroke-width="8"/>
                             <path d="M61.537637,200.085782c0,0,15.980137-57.55919,76.838943-57.55919s77.56809,58.845915,77.56809,58.845915" transform="matrix(.950375 0 0 1.16585 6.88503-29.1374)" fill="none" stroke="#fff" stroke-width="8"/>
@@ -49,7 +54,7 @@
                     </svg>
                 </a>
                 <a id="lenguage" href="#">
-                    <svg viewBox="0 0 205 205">
+                    <svg viewBox="0 0 210 210">
                         <g transform="translate(1.000001 0)">
                             <line x1="-0.000001" y1="-98.068298" x2="0.000001" y2="98.068299" transform="matrix(0 1-1.019697 0 101.500003 102.499999)" fill="none" stroke="#fff" stroke-width="8"/>
                             <ellipse rx="100" ry="100" transform="translate(101.221711 102.500051)" paint-order="stroke fill markers" fill="none" stroke="#fff" stroke-width="8"/>
@@ -60,15 +65,13 @@
                             <path d="M73.814336,8.073593c0,0,13.156094,34.659219,13.156093,95.633178s-13.156092,96.366822-13.156092,96.366822" transform="translate(57.58882-1.573592)" fill="none" stroke="#fff" stroke-width="8"/>
                         </g>
                     </svg>
+<!-- debug align icons<div style="position: absolute; height: 2px; background-color:red; bottom:16px; right:0;width: 1000px;"></div> -->
                 </a>
             </div>
         </div>
-    </header>
-
-    <div id="img-landing-intro">
-        <img src="./media/fotoVentanaAvion.png" alt="">
     </div>
-   
+
+
 </body>
 
 </html>

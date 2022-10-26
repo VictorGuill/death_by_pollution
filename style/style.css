@@ -15,3 +15,7 @@ body {
   color: var(--LIGHT);
   background-color: var(--BACKGROUND);
 }
+
+div {
+  display: block;
+}
