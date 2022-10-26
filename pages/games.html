@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="../style/gamesMenu.css" />
   </head>
   <body>
+    <div id="infoContainer">
+      <div id="infoPanel">
+        <div id="infoTitle">
+          <p>INFORMACIÓN</p>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam a
+          veniam alias iusto, nemo asperiores ex, mollitia, sapiente tempore
+          harum optio animi non exercitationem veritatis. Hic beatae veniam
+          earum at!
+        </p>
+        <div id="okBtn" onclick="hideInfo()">ACEPTAR</div>
+      </div>
+    </div>
     <div id="gamesContainer">
       <div id="headerContainer">
         <p id="title">| GAMES</p>
@@ -26,7 +40,9 @@
       </div>
     </div>
 
-    <div id="info"><a href="#">i</a></div>
+    <div id="info" onclick="showInfo()">
+      <p>i</p>
+    </div>
 
     <script src="../js/gamesMenuLogic.js"></script>
   </body>

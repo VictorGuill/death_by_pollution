@@ -1,3 +1,5 @@
+// background change
+
 const gamesContainer = document.getElementById("gamesContainer");
 
 const game1 = document.getElementById("game1");
@@ -29,4 +31,16 @@ function changeBackground(id) {
   }
 
   gamesContainer.style.backgroundColor = color;
+}
+
+// info button panel
+
+const infoContainer = document.getElementById("infoContainer");
+
+function showInfo() {
+  infoContainer.style.display = "inline-block";
+}
+
+function hideInfo() {
+  infoContainer.style.display = "none";
 }

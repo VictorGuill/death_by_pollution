@@ -10,6 +10,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Outfit", sans-serif;
+  user-select: none;
 }
 
 #gamesContainer {
@@ -154,7 +155,6 @@ a {
   justify-content: center;
   align-items: center;
   font-size: 150%;
-  user-select: none;
   cursor: pointer;
   transition: all 0.1s cubic-bezier(0.21, 0.37, 0.51, 0.87);
   -webkit-transition: all 0.1s cubic-bezier(0.21, 0.37, 0.51, 0.87);
@@ -164,8 +164,7 @@ a {
   font-weight: 500;
 }
 
-#info a {
-  text-decoration: none;
+#info p {
   color: var(--SECONDARY-DARK);
 }
 
@@ -177,4 +176,78 @@ a {
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
+}
+
+#infoContainer {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  z-index: 10;
+  display: none;
+}
+
+#infoPanel {
+  height: 50vmin;
+  aspect-ratio: 4 / 2;
+  position: fixed;
+  background-color: var(--LIGHT);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+#infoTitle {
+  height: 15%;
+  width: 100%;
+  background-color: var(--SECONDARY-DARK);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#infoTitle p {
+  margin-left: 4vmin;
+  font-size: 4vmin;
+  color: var(--LIGHT);
+}
+
+#infoTitle p::before {
+  content: "";
+  display: inline-block;
+  background-color: var(--ACCENT);
+  height: 4vmin;
+  width: 5px;
+  position: absolute;
+  top: 17px;
+  left: 25px;
+}
+
+#okBtn {
+  background-color: var(--DARK);
+  padding: 20px;
+  color: var(--ACCENT);
+  width: 20%;
+  aspect-ratio: 4 / 1;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 200;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+#okBtn:hover {
+  background-color: var(--ACCENT);
+  color: var(--DARK);
+  font-weight: 700;
 }
