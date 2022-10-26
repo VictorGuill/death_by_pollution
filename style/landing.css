@@ -1,5 +1,5 @@
 /* standard-link-no_blue */
-a { color: white; }
+a { color: var(--LIGHT); }
 a:link { text-decoration: none;}
 a:visited { text-decoration: none; }
 a:hover { text-decoration: none; }
@@ -40,7 +40,7 @@ a:active { text-decoration: none; }
     top: 0;
     left: 0;
     width: 100%;
-    height: 100px;
+    height: 70px;
     z-index: 100;
 }
 
@@ -52,9 +52,13 @@ a:active { text-decoration: none; }
     margin: 0 auto;
 }
 
-#nav-center, #nav-right {
+.nav-center {
+    display: flex;
+}
+
+.nav-right {
     position: absolute;
-    top: 30px;
+    top: 16px
 }
 
 
@@ -96,7 +100,7 @@ a:active { text-decoration: none; }
 }
 
 
-#nav-right {
+.nav-right {
     right: 40px;
 }
 
@@ -105,18 +109,26 @@ a:active { text-decoration: none; }
     width: 40px;
 }
 
+/* coloring and background  */
 .fill-accent {
     fill: var(--ACCENT);
 }
 
+.text-accent a{
+    color: var(--ACCENT);
+}
+
+.header-bg {
+    background-color: var(--SECONDARY-DARK);
+}
 
 /* Nav login + lenguage */
-#nav-right a {
+.nav-right a {
     display: inline-block;
     padding: 0 10px;
 }
 
-#nav-right a svg {
+.nav-right a svg {
     padding-top: 4px;
     stroke-width: 8px;
     width: 30px;
@@ -124,38 +136,27 @@ a:active { text-decoration: none; }
 
 /* navbar-line-highlight */
 
-#nav-center .nav-links li a{
+.nav-center .nav-links li a{
     transition: opacity .6s linear;
 }
 
-#nav-center .nav-links li a:hover:after {
+.nav-center .nav-links li a:hover:after {
     transition-duration: .4s;
     transform: scaleX(1);
     transform-origin: center center;
 }
 
-#nav-center .nav-links li a:after {
+.nav-center .nav-links li a:after {
     content: '';
     position: absolute;
     bottom: -6px;
     left: 0;
     width: 100%;
     height: 2px;
-    background: var(--ACCENT);
     transform: scaleX(0);
     transition: transform .6s cubic-bezier(.19,1,.22,1);
 }
 
+.header-no-bg .nav-center .nav-links li a:after{ background: var(--ACCENT);}
 
-.nav-line-highlight-accent {
-    height: 2px;
-    margin: auto;
-    background-color: var(--ACCENT);
-}
-
-.nav-line-highlight-light {
-    height: 2px;
-    margin: auto;
-    background-color: var(--LIGHT);
-}
-
+.header-bg .nav-center .nav-links li a:after{ background: var(--LIGHT);}
