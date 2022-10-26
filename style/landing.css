@@ -114,10 +114,6 @@ a:active { text-decoration: none; }
     fill: var(--ACCENT);
 }
 
-.text-accent a{
-    color: var(--ACCENT);
-}
-
 .header-bg {
     background-color: var(--SECONDARY-DARK);
 }
@@ -157,6 +153,7 @@ a:active { text-decoration: none; }
     transition: transform .6s cubic-bezier(.19,1,.22,1);
 }
 
+.header-no-bg a { color: var(--LIGHT); }
+.header-bg a { color: var(--ACCENT); }
 .header-no-bg .nav-center .nav-links li a:after{ background: var(--ACCENT);}
-
 .header-bg .nav-center .nav-links li a:after{ background: var(--LIGHT);}
