@@ -1,21 +1,21 @@
 @font-face {
   font-family: outfit;
-  src: url("../tercers/font/Outfit-Light.otf") format("opentype");
+  src: url("../tercers/fonts/Outfit-ExtraLight.otf") format("opentype");
 }
 
 * {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    height: 100vh;
-    width: 100vw;
-    background-color: #121212;
-    display: grid;
-    place-items: center;
+  font-family: 'outfit', 'Franklin Gothic Medium', 'Arial Narrow';
+  height: 100vh;
+  width: 100vw;
+  color: var(--LIGHT);
+  background-color: var(--BACKGROUND);
 }
 
-h1 {
-    color: #fff;
+div {
+  display: block;
 }
