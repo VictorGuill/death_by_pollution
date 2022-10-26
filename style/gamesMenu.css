@@ -1,26 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Roboto&display=swap");
+
+:root {
+  --gamesSpacing: 5vw;
+  --gamesSize: 25vw;
+  --gamesMaxWith: 300px;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
 }
 
 #gamesContainer {
   height: 100vh;
   width: 100vw;
-  background-color: var(--LIGHT);
+  background-color: var(--BACKGROUND);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  transition: 0.5s ease-in-out;
-  -webkit-transition: 0.5s ease-in-out;
-  -moz-transition: 0.5s ease-in-out;
-  -ms-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
+  transition: background-color 0.7s ease-in-out;
+  color: var(--LIGHT);
 }
 
 #games {
   height: auto;
-  width: 75vw;
+  width: auto;
 
   display: flex;
   justify-content: center;
@@ -29,19 +35,16 @@
 }
 
 .game:nth-child(2) {
-  margin: 0 4.5vw;
+  margin: 0 var(--gamesSpacing);
 }
 
 .game {
-  width: 50vmin;
-  aspect-ratio: 1 / 1.5;
-  max-width: 350px;
-  background-color: var(--BACKGROUND);
-  transition: 0.1s transform ease-in-out;
-  -webkit-transition: 0.1s transform ease-in-out;
-  -moz-transition: 0.1s transform ease-in-out;
-  -ms-transition: 0.1s transform ease-in-out;
-  -o-transition: 0.1s transform ease-in-out;
+  width: var(--gamesSize);
+  max-width: var(--gamesMaxWith);
+  aspect-ratio: 1 / 1.45;
+  /* aspect-ratio: 1 / 1.45; */
+  background-color: var(--LIGHT);
+  transition: transform 0.1s cubic-bezier(0.14, 1.17, 0.46, 0.98);
 }
 
 .game:hover {
@@ -55,3 +58,96 @@
 
 #scoresBtn {
 }
+
+#headerContainer {
+  height: 100%;
+  width: calc(var(--gamesSize) * 3 + (var(--gamesSpacing) * 2));
+  max-width: calc(var(--gamesMaxWith) * 3 + (var(--gamesSpacing) * 2));
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#btnContainer {
+  height: 100%;
+  width: calc(var(--gamesSize) * 3 + (var(--gamesSpacing) * 2));
+  max-width: calc(var(--gamesMaxWith) * 3 + (var(--gamesSpacing) * 2));
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#title {
+  font-size: max(4vw, 60px);
+}
+
+a {
+  text-decoration: none;
+  color: var(--LIGHT);
+}
+
+#scoresBtn {
+  height: 40px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: max(2vw, 20px);
+  font-weight: 200;
+  text-decoration: none;
+  position: relative;
+  color: var(--LIGHT);
+  transition: all 0.2s cubic-bezier(0.14, 1.17, 0.46, 0.98);
+  cursor: pointer;
+}
+
+#scoresBtn:hover {
+  font-size: calc(max(2vw, 20px) * 0.7);
+  transform: scale(1.2);
+  padding: 0 20px;
+  background-color: var(--SECONDARY-DARK);
+  font-weight: 600;
+}
+
+#scoresBtn:hover a {
+  color: var(--ACCENT);
+}
+
+#scoresBtn:active {
+  transform: scale(0.9);
+}
+
+#scoresBtn a:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  bottom: -2px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: var(--LIGHT);
+  transition: 0.2s;
+}
+
+#scoresBtn a:hover {
+}
+
+/* #scoresBtn::after {
+  position: absolute;
+  content: "";
+  height: 2px;
+   bottom: 5px;
+   margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: var(--LIGHT);
+  transition: 0.2s;
+}
+
+#scoresBtn:hover {
+  font-size: 20px;
+  transition: 0.2s;
+} */

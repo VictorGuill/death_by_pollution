@@ -23,8 +23,8 @@ function changeBackground(id) {
     case "game3":
       color = "blue";
       break;
-    case "gamesContainer":
-      color = "white";
+    default:
+      color = "#222222";
       break;
   }
 
