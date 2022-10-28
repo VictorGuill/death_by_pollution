@@ -39,72 +39,7 @@ function gameLoop(runtime) {
 // GAME UPDATE
 
 function updateGameState(dt) {
-  let local_accel = accel * dt;
-  let local_friction = friction * dt;
-  let local_top_speed = top_speed;
-
-  if (userInput["ArrowRight"]) {
-    if (player.vel_x + local_accel < local_top_speed) {
-      player.vel_x += local_accel;
-    } else {
-      player.vel_x = local_top_speed;
-    }
-  }
-
-  if (userInput["ArrowLeft"]) {
-    if (player.vel_x - local_accel > -local_top_speed) {
-      player.vel_x -= local_accel;
-    } else {
-      player.vel_x = -local_top_speed;
-    }
-  }
-
-  if (userInput["ArrowDown"]) {
-    if (player.vel_y + local_accel < local_top_speed) {
-      player.vel_y += local_accel;
-    } else {
-      player.vel_y = local_top_speed;
-    }
-  }
-
-  if (userInput["ArrowUp"]) {
-    if (player.vel_y - local_accel > -local_top_speed) {
-      player.vel_y -= local_accel;
-    } else {
-      player.vel_y = -local_top_speed;
-    }
-  }
-
-  if (
-    (!userInput["ArrowRight"] && !userInput["ArrowLeft"]) ||
-    (userInput["ArrowRight"] && userInput["ArrowLeft"])
-  ) {
-    if (player.vel_x - local_friction > 0) {
-      player.vel_x -= local_friction;
-    } else if (player.vel_x + local_friction < 0) {
-      player.vel_x += local_friction;
-    } else {
-      player.vel_x = 0;
-    }
-  }
-
-  if (
-    (!userInput["ArrowDown"] && !userInput["ArrowUp"]) ||
-    (userInput["ArrowDown"] && userInput["ArrowUp"])
-  ) {
-    if (player.vel_y - local_friction > 0) {
-      player.vel_y -= local_friction;
-    } else if (player.vel_y + local_friction < 0) {
-      player.vel_y += local_friction;
-    } else {
-      player.vel_y = 0;
-    }
-  }
-
-  player.x += player.vel_x * dt;
-  player.y += player.vel_y * dt;
-
-  player.draw();
+  player.move(dt, accel * dt, top_speed, friction * dt);
 }
 
 ////////////////////////////////

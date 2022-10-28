@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;400;700&family=Space+Mono:wght@400;700&display=swap");
 
 :root {
-  --mapSize: 95vmin;
+  --mapSize: 90vmin;
   --playerSize: calc(var(--mapSize) / 35);
 }
 
@@ -20,46 +20,22 @@ body {
   flex-direction: column;
 }
 
-#player {
-  position: relative;
-  height: var(--playerSize);
-  width: var(--playerSize);
-  background-color: #d69b11;
-  position: fixed;
-  top: calc(50% - (var(--playerSize) / 2));
-  left: calc(50% - (var(--playerSize) / 2));
-}
-
-#statsContainer {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-
-  width: 150px;
-
-  color: rgba(255, 255, 255, 0.5);
-
-  font-family: "JetBrains Mono", monospace;
-  font-size: 1.1em;
-  font-weight: 200;
-
-  user-select: none;
-}
-
-#vel {
-  color: white;
-  font-size: 3em;
-}
-
-#velDiv {
-  height: 30px;
-  width: 0.1vw;
-  background-color: red;
-}
-
 .map-style {
   height: var(--mapSize);
   width: var(--mapSize);
-  position: absolute;
   background-color: #fff;
+}
+
+#map {
+  position: relative;
+}
+
+#player {
+  position: absolute;
+  height: var(--playerSize);
+  width: var(--playerSize);
+  background-color: #d69b11;
+  /* Set player at the middle of the map */
+  top: calc(50% - (var(--playerSize) / 2));
+  left: calc(50% - (var(--playerSize) / 2));
 }
