@@ -1,0 +1,68 @@
+body {
+    background-color: var(--LIGHT);
+    color: var(--BACKGROUND);
+}
+
+.aboutus {
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+    height: 100%;
+    width: 95%;
+    margin-left: 10px;
+}
+
+#title {
+    border-left: 6px solid var(--ACCENT);
+}
+
+h1 {
+    margin-left: 10px;
+}
+
+.info-group {
+    display: flex;
+    align-items: center;
+}
+
+.info-group img {
+    margin: 10px;
+    width: 400px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+p {
+    margin-left: 20px;
+    float: right;
+    text-align: justify;
+}
+
+.info-indiv img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.info-indiv {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 0vmin;
+    width: 100vmax;
+}
+
+.rrss img {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin: 10px;
+}
+
+.person1, .person2, .person3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
