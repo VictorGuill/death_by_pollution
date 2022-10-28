@@ -41,53 +41,69 @@ export default class Player {
   }
 
   move(dt, accel, top_speed, friction, map) {
-    // console.log("Inside: ", this.x > 0);
-    // console.log("Inside: ", this.x + this.width < map.width);
-
-    if (
-      this.x > 0 &&
-      this.x + this.width < map.width &&
-      this.y > 0 &&
-      this.y + this.height < map.height
-    ) {
-      if (userInput["ArrowRight"]) {
-        this.vel_x = this.positiveMove(this.vel_x, accel, top_speed);
+    if (userInput["ArrowRight"]) {
+      if (this.x + this.width + this.vel_x + accel < map.width) {
+        this.vel_x = this.positiveVel(this.vel_x, accel, top_speed);
+      } else {
+        this.x = map.width - this.width;
       }
-
-      if (userInput["ArrowLeft"]) {
-        this.vel_x = this.negativeMove(this.vel_x, accel, top_speed);
-      }
-
-      if (userInput["ArrowDown"]) {
-        this.vel_y = this.positiveMove(this.vel_y, accel, top_speed);
-      }
-
-      if (userInput["ArrowUp"]) {
-        this.vel_y = this.negativeMove(this.vel_y, accel, top_speed);
-      }
-
-      if (
-        (!userInput["ArrowRight"] && !userInput["ArrowLeft"]) ||
-        (userInput["ArrowRight"] && userInput["ArrowLeft"])
-      ) {
+    } else {
+      if (this.x + this.width + this.vel_x + accel < map.width) {
         this.vel_x = this.applyFriction(this.vel_x, friction);
+      } else {
+        this.x = map.width - this.width;
       }
-
-      if (
-        (!userInput["ArrowDown"] && !userInput["ArrowUp"]) ||
-        (userInput["ArrowDown"] && userInput["ArrowUp"])
-      ) {
-        this.vel_y = this.applyFriction(this.vel_y, friction);
-      }
-
-      this.x += this.vel_x * dt;
-      this.y += this.vel_y * dt;
     }
+
+    if (userInput["ArrowLeft"]) {
+      if (this.x + this.vel_x + accel > 0) {
+        this.vel_x = this.negativeVel(this.vel_x, accel, top_speed);
+      } else {
+        this.x = 0;
+      }
+    } else {
+      if (this.x + this.vel_x + accel > 0) {
+        this.vel_x = this.applyFriction(this.vel_x, friction);
+      } else {
+        this.x = 0;
+      }
+    }
+
+    if (userInput["ArrowDown"]) {
+      if (this.y + this.height + this.vel_y + accel < map.height) {
+        this.vel_y = this.positiveVel(this.vel_y, accel, top_speed);
+      } else {
+        this.y = map.height - this.height;
+      }
+    } else {
+      if (this.y + this.height + this.vel_y + accel < map.height) {
+        this.vel_y = this.applyFriction(this.vel_y, friction);
+      } else {
+        this.y = map.height - this.height;
+      }
+    }
+
+    if (userInput["ArrowUp"]) {
+      if (this.y + this.vel_y + accel > 0) {
+        this.vel_y = this.negativeVel(this.vel_y, accel, top_speed);
+      } else {
+        this.y = 0;
+      }
+    } else {
+      if (this.y + this.vel_y + accel > 0) {
+        this.vel_y = this.applyFriction(this.vel_y, friction);
+      } else {
+        this.y = 0;
+      }
+    }
+
+    this.x += this.vel_x * dt;
+    this.y += this.vel_y * dt;
 
     this.draw();
   }
 
-  positiveMove(vel, accel, top_speed) {
+  positiveVel(vel, accel, top_speed) {
     if (vel + accel < top_speed) {
       vel += accel;
     } else {
@@ -96,7 +112,7 @@ export default class Player {
     return vel;
   }
 
-  negativeMove(vel, accel, top_speed) {
+  negativeVel(vel, accel, top_speed) {
     if (vel - accel > -top_speed) {
       vel -= accel;
     } else {

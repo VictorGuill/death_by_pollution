@@ -23,7 +23,7 @@ body {
 .map-style {
   height: var(--mapSize);
   width: var(--mapSize);
-  background-color: #fff;
+  background-color: rgb(12, 12, 12);
 }
 
 #map {

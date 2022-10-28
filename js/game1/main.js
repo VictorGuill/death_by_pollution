@@ -1,9 +1,9 @@
 ////////////////////////////////
 // GAME PARAMETERS
 
-let accel = 10;
-let top_speed = 40;
-let friction = 1;
+let accel = 100;
+let top_speed = 150;
+let friction = 8;
 
 ////////////////////////////////
 // IMPORTS
@@ -40,6 +40,7 @@ function gameLoop(runtime) {
 
 function updateGameState(dt) {
   player.move(dt, accel * dt, top_speed, friction * dt, map_0);
+  // console.log(player.x, player.y);
 }
 
 ////////////////////////////////
