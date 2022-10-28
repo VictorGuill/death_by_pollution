@@ -6,6 +6,10 @@ a:hover { text-decoration: none; }
 a:active { text-decoration: none; }
 
 /* intro-bg-colors */
+.first-slide-bg {
+    display: block;
+    height: 100%;
+}
 .background-landing-intro {
     position: absolute;
     z-index: -2;
@@ -34,34 +38,45 @@ a:active { text-decoration: none; }
 }
 
 
-/* navbar */
+/* ---------------- NAVBAR ---------------- */
 #header{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
+    height: auto;
     z-index: 100;
 }
+/* nav with background */
+.navbar-bg { background-color: RGBA(61,0,102,0.9); }
+.navbar-bg a { color: var(--ACCENT); }
+.navbar-bg a:after{ background: var(--LIGHT);}
 
-.header-inner {
+/* nav without background */
+.navbar-no-bg a { color: var(--LIGHT); }
+.navbar-no-bg a:after{ background: var(--ACCENT);}
+
+/*smooth transition for all changes above*/
+.navbar-bg, .navbar-no-bg, 
+.navbar-bg a, .navbar-no-bg a{
+    transition: all .5s linear;
+}
+
+#navbar {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 90px;
     width: 100%;
-    height: 100%;
-    margin: 0 auto;
 }
 
-.nav-center {
+.nav-center, .nav-right {
     display: flex;
+    position: fixed;
+    height: 40px;
 }
 
-.nav-right {
-    position: absolute;
-    top: 16px
-}
-
-
+/*nav center*/
 .nav-links {
     list-style-type: none;
     position: relative;
@@ -76,10 +91,7 @@ a:active { text-decoration: none; }
 }
 
 .nav-item {
-    position: relative;
     font-size: 24px;
-    margin: 0;
-    padding: 0;
 }
 
 #nav-about{
@@ -90,6 +102,9 @@ a:active { text-decoration: none; }
     grid-area: 1 / 2 / 2 / 3;
     justify-self: center;
 }
+#nav-logo a img {
+    width: 40px;
+}
 #nav-games{
     grid-area: 1 / 3 / 2 / 4;
     justify-self: start;
@@ -99,43 +114,31 @@ a:active { text-decoration: none; }
     display: block;
 }
 
-
+/*nav right*/
 .nav-right {
     right: 40px;
 }
-
-
-#nav-logo svg {
-    width: 40px;
-}
-
-/* coloring and background  */
-.fill-accent {
-    fill: var(--ACCENT);
-}
-
-.header-bg {
-    background-color: var(--SECONDARY-DARK);
-}
-
-/* Nav login + lenguage */
 .nav-right a {
-    display: inline-block;
+    display: flex;
     padding: 0 10px;
 }
-
-.nav-right a svg {
-    padding-top: 4px;
-    stroke-width: 8px;
+.nav-right a img {
     width: 30px;
 }
 
-/* navbar-line-highlight */
-
-.nav-center .nav-links li a{
-    transition: opacity .6s linear;
+/* NAVBAR links select animation */
+/* scale */
+.nav-center a, .nav-right  a{
+    transform: scale(1);
+    transition: transform .2s linear;
 }
 
+.nav-center a:hover, .nav-right  a:hover{
+    transform: scale(1.04);
+    transition: transform .4s linear;
+}
+
+/* underline */
 .nav-center .nav-links li a:hover:after {
     transition-duration: .4s;
     transform: scaleX(1);
@@ -152,8 +155,3 @@ a:active { text-decoration: none; }
     transform: scaleX(0);
     transition: transform .6s cubic-bezier(.19,1,.22,1);
 }
-
-.header-no-bg a { color: var(--LIGHT); }
-.header-bg a { color: var(--ACCENT); }
-.header-no-bg .nav-center .nav-links li a:after{ background: var(--ACCENT);}
-.header-bg .nav-center .nav-links li a:after{ background: var(--LIGHT);}
