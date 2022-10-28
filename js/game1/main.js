@@ -2,7 +2,7 @@
 // GAME PARAMETERS
 
 let accel = 10;
-let top_speed = 100;
+let top_speed = 40;
 let friction = 1;
 
 ////////////////////////////////
@@ -15,9 +15,9 @@ import Map from "./map.js";
 ////////////////////////////////
 // START
 
-const map = new Map("map");
+const map_0 = new Map("map");
 
-const player = new Player("player", map);
+const player = new Player("player", map_0);
 
 ////////////////////////////////
 // GAME LOOP
@@ -39,19 +39,14 @@ function gameLoop(runtime) {
 // GAME UPDATE
 
 function updateGameState(dt) {
-  player.move(dt, accel * dt, top_speed, friction * dt);
+  player.move(dt, accel * dt, top_speed, friction * dt, map_0);
 }
-
-////////////////////////////////
-// CHECK COLLISIONS
-
-function checkCollision(x1, y1, x2, y2) {}
 
 ////////////////////////////////
 // RESIZE EVENT
 
 addEventListener("resize", (e) => {
-  map.Resize();
+  map_0.Resize();
 
   // prevent bug: input sometime remain true when resizing
   userInput["ArrowUp"] = false;

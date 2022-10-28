@@ -35,6 +35,7 @@ body {
   height: var(--playerSize);
   width: var(--playerSize);
   background-color: #d69b11;
+
   /* Set player at the middle of the map */
   top: calc(50% - (var(--playerSize) / 2));
   left: calc(50% - (var(--playerSize) / 2));

@@ -38,5 +38,12 @@ export default class Map {
     this.height = properties.height;
   }
 
-  // isInside(entity) {}
+  isInside(entity) {
+    let inside_left = entity.x > 0;
+    let inside_right = entity.x + entity.width < map.width;
+    let inside_top = entity.y > 0;
+    let inside_bottom = entity.y + entity.height < map.height;
+
+    return inside_left && inside_right && inside_top && inside_bottom;
+  }
 }
