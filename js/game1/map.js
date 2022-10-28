@@ -1,11 +1,12 @@
 export default class Map {
-  constructor(id, height, width, color) {
+  constructor(id) {
     this.id = id;
 
-    let size = Math.min(height, width);
-    this.height = size;
-    this.width = size;
-    this.color = color;
+    this.width = 0;
+    this.height = 0;
+
+    this.x = 0;
+    this.y = 0;
 
     this.addToDOM();
   }
@@ -15,33 +16,27 @@ export default class Map {
     const map = document.createElement("div");
 
     map.setAttribute("id", this.id);
-    map.style.position = "relative";
-    map.style.backgroundColor = this.color;
+    map.setAttribute("class", "map-style");
 
     document.body.appendChild(map);
 
-    this.updateCSS();
+    let properties = map.getBoundingClientRect();
 
-    let coords = map.getBoundingClientRect();
+    this.x = properties.left;
+    this.y = properties.top;
 
-    this.Ypos = coords.top;
-    this.Xpos = coords.left;
+    this.width = properties.width;
+    this.height = properties.height;
   }
 
-  // calculates new height and width
-  Resize(height, width) {
-    let size = Math.min(height, width);
-    this.height = size;
-    this.width = size;
-
-    this.updateCSS();
-  }
-
-  // change css visual values
-  updateCSS() {
+  // sets new map height and width
+  Resize() {
     const map = document.getElementById(this.id);
+    let properties = map.getBoundingClientRect();
 
-    map.style.height = this.height + "px";
-    map.style.width = this.width + "px";
+    this.width = properties.width;
+    this.height = properties.height;
   }
+
+  // isInside(entity) {}
 }
