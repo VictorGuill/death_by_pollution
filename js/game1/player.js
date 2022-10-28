@@ -44,91 +44,110 @@ export default class Player {
     if (userInput["ArrowRight"]) {
       if (this.x + this.width + this.vel_x + accel < map.width) {
         this.vel_x = this.positiveVel(this.vel_x, accel, top_speed);
-      } else {
+      } else if (this.x + this.width > map.width) {
         this.x = map.width - this.width;
+        this.vel_x = 0;
       }
-    } else {
-      if (this.x + this.width + this.vel_x + accel < map.width) {
-        this.vel_x = this.applyFriction(this.vel_x, friction);
-      } else {
-        this.x = map.width - this.width;
-      }
+    } else if (this.x + this.width > map.width) {
+      this.x = map.width - this.width;
+      this.vel_x = 0;
     }
 
     if (userInput["ArrowLeft"]) {
-      if (this.x + this.vel_x + accel > 0) {
+      if (this.x + this.vel_x > 0) {
         this.vel_x = this.negativeVel(this.vel_x, accel, top_speed);
-      } else {
+      } else if (this.x < 0) {
         this.x = 0;
+        this.vel_x = 0;
       }
-    } else {
-      if (this.x + this.vel_x + accel > 0) {
-        this.vel_x = this.applyFriction(this.vel_x, friction);
-      } else {
-        this.x = 0;
-      }
+    } else if (this.x < 0) {
+      this.x = 0;
+      this.vel_x = 0;
+    }
+
+    if (
+      (!userInput["ArrowRight"] && !userInput["ArrowLeft"]) ||
+      (userInput["ArrowRight"] && userInput["ArrowLeft"])
+    ) {
+      this.vel_x = this.applyFriction(this.vel_x, friction);
     }
 
     if (userInput["ArrowDown"]) {
       if (this.y + this.height + this.vel_y + accel < map.height) {
         this.vel_y = this.positiveVel(this.vel_y, accel, top_speed);
-      } else {
+      } else if (this.y + this.height > map.height) {
         this.y = map.height - this.height;
+        this.vel_y = 0;
       }
-    } else {
-      if (this.y + this.height + this.vel_y + accel < map.height) {
-        this.vel_y = this.applyFriction(this.vel_y, friction);
-      } else {
-        this.y = map.height - this.height;
-      }
+    } else if (this.y + this.height > map.height) {
+      this.y = map.height - this.height;
+      this.vel_y = 0;
     }
 
     if (userInput["ArrowUp"]) {
-      if (this.y + this.vel_y + accel > 0) {
+      if (this.y + this.vel_y > 0) {
         this.vel_y = this.negativeVel(this.vel_y, accel, top_speed);
-      } else {
+      } else if (this.y < 0) {
         this.y = 0;
+        this.vel_y = 0;
       }
-    } else {
-      if (this.y + this.vel_y + accel > 0) {
-        this.vel_y = this.applyFriction(this.vel_y, friction);
-      } else {
-        this.y = 0;
-      }
+    } else if (this.y < 0) {
+      this.y = 0;
+      this.vel_y = 0;
+    }
+
+    if (
+      (!userInput["ArrowDown"] && !userInput["ArrowUp"]) ||
+      (userInput["ArrowDown"] && userInput["ArrowUp"])
+    ) {
+      this.vel_y = this.applyFriction(this.vel_y, friction);
     }
 
     this.x += this.vel_x * dt;
     this.y += this.vel_y * dt;
+
+    if (this.x < 0) {
+      this.x = 0;
+      this.vel_x = 0;
+    } else if (this.x + this.width > map.width) {
+      this.x = map.width - this.width;
+      this.vel_x = 0;
+    }
+
+    if (this.y < 0) {
+      this.y = 0;
+      this.vel_y = 0;
+    } else if (this.y + this.height > map.height) {
+      this.y = map.height - this.height;
+      this.vel_y = 0;
+    }
 
     this.draw();
   }
 
   positiveVel(vel, accel, top_speed) {
     if (vel + accel < top_speed) {
-      vel += accel;
+      return (vel += accel);
     } else {
-      vel = top_speed;
+      return top_speed;
     }
-    return vel;
   }
 
   negativeVel(vel, accel, top_speed) {
     if (vel - accel > -top_speed) {
-      vel -= accel;
+      return (vel -= accel);
     } else {
-      vel = -top_speed;
+      return -top_speed;
     }
-    return vel;
   }
 
   applyFriction(vel, friction) {
     if (vel - friction > 0) {
-      vel -= friction;
+      return (vel -= friction);
     } else if (vel + friction < 0) {
-      vel += friction;
+      return (vel += friction);
     } else {
-      vel = 0;
+      return (vel = 0);
     }
-    return vel;
   }
 }

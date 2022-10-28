@@ -1,9 +1,9 @@
 ////////////////////////////////
 // GAME PARAMETERS
 
-let accel = 100;
-let top_speed = 150;
-let friction = 8;
+let accel = 20;
+let top_speed = 80;
+let friction = 10;
 
 ////////////////////////////////
 // IMPORTS
