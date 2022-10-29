@@ -3,7 +3,7 @@
 
 let accel = 20;
 let top_speed = 80;
-let friction = 10;
+let friction = 20;
 
 ////////////////////////////////
 // IMPORTS
