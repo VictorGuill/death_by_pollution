@@ -1,6 +1,5 @@
-import {Plane}  from './plane.js';
-import {Map} from './map.js';
-
+import Plane from './plane.js';
+import Map from './map.js';
 
 export class GamePanel {
     constructor (){
@@ -12,7 +11,7 @@ export class GamePanel {
 
         this.addGPelement(); //gp div on document
         this.map = new Map(this);
-        this.plane = new Plane(this);
+        this.plane = new Plane(this, 5, 5 , 30, 30);
     }
 
     addGPelement(){

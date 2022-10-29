@@ -1,6 +1,6 @@
 import {GamePanel}  from './gamePanel.js';
 
-const gp = new GamePanel();
+const gp = new GamePanel("gp");
 
 function loop(timestamp) {
     var progress = timestamp - lastRender;

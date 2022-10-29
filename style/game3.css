@@ -28,9 +28,5 @@ html, body {
 
 #plane{
     position: absolute;
-    bottom: 0px;
-    left:0px;
-    height: 40px;
-    width: 40px;
     background-color: blueviolet;
 }
