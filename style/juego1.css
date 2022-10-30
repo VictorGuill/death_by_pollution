@@ -8,6 +8,8 @@
   margin: 0;
   box-sizing: border-box;
   image-rendering: pixelated;
+  border: 1px solid white;
+  overflow: hidden;
 }
 
 body {
@@ -35,7 +37,6 @@ body {
 
 #player {
   position: absolute;
-  /* border: 1px solid white; */
   background-image: url("../games/game1_assets/player.gif");
   background-repeat: no-repeat;
   background-size: contain;

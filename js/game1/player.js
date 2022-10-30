@@ -85,6 +85,18 @@ export default class Player {
     top_speed *= this.limit_x / 1000;
     friction *= this.limit_x / 1000;
 
+    let diagonal_speed_limit = 1.25;
+
+    if (userInput["ArrowUp"] && userInput["ArrowRight"]) {
+      top_speed /= diagonal_speed_limit;
+    } else if (userInput["ArrowRight"] && userInput["ArrowDown"]) {
+      top_speed /= diagonal_speed_limit;
+    } else if (userInput["ArrowDown"] && userInput["ArrowLeft"]) {
+      top_speed /= diagonal_speed_limit;
+    } else if (userInput["ArrowLeft"] && userInput["ArrowUp"]) {
+      top_speed /= diagonal_speed_limit;
+    }
+
     if (userInput["ArrowRight"]) {
       this.vel_x = this.calcVel(this.vel_x + accel, top_speed);
 
