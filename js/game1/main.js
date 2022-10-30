@@ -2,9 +2,9 @@
 // GAME PARAMETERS
 
 // player movement
-let accel = 50;
-let top_speed = 80;
-let friction = 30;
+let accel = 10;
+let top_speed = 32;
+let friction = 5;
 
 ////////////////////////////////
 // IMPORTS

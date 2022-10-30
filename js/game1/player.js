@@ -3,8 +3,8 @@ import userInput from "./inputs.js";
 ////////////////////////////////
 // PLAYER PARAMETERS
 
-let player_scale_x = 35;
-let player_scale_y = player_scale_x;
+let player_scale_x = 12;
+let player_scale_y = 14;
 
 ////////////////////////////////
 
@@ -87,10 +87,16 @@ export default class Player {
 
     if (userInput["ArrowRight"]) {
       this.vel_x = this.calcVel(this.vel_x + accel, top_speed);
+
+      const player = document.getElementById(this.id);
+      player.style.transform = "scaleX(1)";
     }
 
     if (userInput["ArrowLeft"]) {
       this.vel_x = this.calcVel(this.vel_x + -accel, top_speed);
+
+      const player = document.getElementById(this.id);
+      player.style.transform = "scaleX(-1)";
     }
 
     if (userInput["ArrowDown"]) {

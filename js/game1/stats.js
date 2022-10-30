@@ -52,7 +52,6 @@ export default class Stats {
     inputText.innerHTML = inputString;
 
     // player stats
-
     // X position
     const posXtext = document.getElementById("x");
     posXtext.innerHTML =

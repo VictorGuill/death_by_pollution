@@ -7,6 +7,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  image-rendering: pixelated;
 }
 
 body {
@@ -22,7 +23,10 @@ body {
 .map-style {
   height: var(--mapSize);
   width: var(--mapSize);
-  background-color: rgb(12, 12, 12);
+  background-color: #041f4a;
+  background-image: url("../games/game1_assets/background.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 #map {
@@ -31,7 +35,11 @@ body {
 
 #player {
   position: absolute;
-  background-color: #d69b11;
+  /* border: 1px solid white; */
+  background-image: url("../games/game1_assets/player.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: scaleX(-1);
 }
 
 #statsContainer {
