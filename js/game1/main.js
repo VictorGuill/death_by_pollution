@@ -1,9 +1,10 @@
 ////////////////////////////////
 // GAME PARAMETERS
 
-let accel = 20;
+// player movement
+let accel = 50;
 let top_speed = 80;
-let friction = 20;
+let friction = 30;
 
 ////////////////////////////////
 // IMPORTS
@@ -24,8 +25,6 @@ const player = new Player("player", map_0);
 
 let oldTime = 0;
 
-window.requestAnimationFrame(gameLoop);
-
 function gameLoop(runtime) {
   let dt = (runtime - oldTime) / 100;
   oldTime = runtime;
@@ -35,12 +34,13 @@ function gameLoop(runtime) {
   window.requestAnimationFrame(gameLoop);
 }
 
+window.requestAnimationFrame(gameLoop);
+
 ////////////////////////////////
 // GAME UPDATE
 
 function updateGameState(dt) {
   player.move(dt, accel * dt, top_speed, friction * dt, map_0);
-  // console.log(player.x, player.y);
 }
 
 ////////////////////////////////
@@ -48,6 +48,7 @@ function updateGameState(dt) {
 
 addEventListener("resize", (e) => {
   map_0.Resize();
+  player.Resize();
 
   // prevent bug: input sometime remain true when resizing
   userInput["ArrowUp"] = false;
