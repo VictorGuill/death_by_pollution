@@ -13,6 +13,8 @@ export default class Player {
     this.id = id;
     this.map_id = map.id;
 
+    this.trash_collected = 0;
+
     this.x = 0;
     this.y = 0;
 
@@ -147,8 +149,8 @@ export default class Player {
       this.vel_x = -wallBounceForce;
     }
 
-    if (this.y < 0) {
-      this.y = 0;
+    if (this.y < this.limit_y * 0.14) {
+      this.y = this.limit_y * 0.14;
       this.vel_y = wallBounceForce;
     } else if (this.y + this.height > this.limit_y) {
       this.y = this.limit_y - this.height;
@@ -179,5 +181,18 @@ export default class Player {
     } else {
       return 0;
     }
+  }
+
+  detectCollision(entity) {
+    if (
+      entity.x + entity.width >= this.x && // r1 right edge past r2 left
+      entity.x <= this.x + this.width && // r1 left edge past r2 right
+      entity.y + entity.height >= this.y && // r1 top edge past r2 bottom
+      entity.y <= this.y + this.height
+    ) {
+      // r1 bottom edge past r2 top
+      return true;
+    }
+    return false;
   }
 }

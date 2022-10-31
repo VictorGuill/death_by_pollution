@@ -8,11 +8,11 @@ export default class Map {
     this.x = 0;
     this.y = 0;
 
-    this.addToDOM();
+    this.add();
   }
 
   // create div with object id and appends to DOM
-  addToDOM() {
+  add() {
     const map = document.createElement("div");
 
     map.setAttribute("id", this.id);

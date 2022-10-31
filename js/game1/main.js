@@ -13,6 +13,7 @@ import userInput from "./inputs.js";
 import Stats from "./stats.js";
 import Player from "./player.js";
 import Map from "./map.js";
+import Trash from "./trash.js";
 
 ////////////////////////////////
 // START
@@ -22,6 +23,12 @@ const map_0 = new Map("map");
 const player = new Player("player", map_0);
 
 const stats = new Stats("statsContainer");
+
+let trash_array = [];
+
+for (let i = 1; i <= 5; i++) {
+  trash_array.push(new Trash("trash_" + i, map_0));
+}
 
 ////////////////////////////////
 // GAME LOOP
@@ -45,6 +52,19 @@ window.requestAnimationFrame(gameLoop);
 
 function updateGame(dt) {
   player.move(dt, accel * dt, top_speed, friction * dt, map_0);
+
+  trash_array.forEach(function (element, i) {
+    let collision = player.detectCollision(element);
+
+    if (collision) {
+      player.trash_collected++;
+      const trash = document.getElementById(element.id);
+      trash.remove();
+      trash_array.splice(i, 1);
+      // let new_trash = new Trash("trash_" + i, map_0);
+      // trash_array.push(new_trash);
+    }
+  });
 }
 
 ////////////////////////////////

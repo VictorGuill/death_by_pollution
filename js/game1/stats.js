@@ -1,4 +1,12 @@
-const stats_values = ["fps", "time", "input", "x", "y", "playerPhysics"];
+const stats_values = [
+  "fps",
+  "time",
+  "input",
+  "x",
+  "y",
+  "playerPhysics",
+  "playerProgress",
+];
 export default class Stats {
   constructor(id) {
     this.id = id;
@@ -58,7 +66,7 @@ export default class Stats {
       "-----------<br>X: " +
       player.x.toFixed(0) +
       "px " +
-      ((player.x / player.limit_x) * 103).toFixed(0) +
+      ((player.x / player.limit_x) * 109).toFixed(0) +
       "% ";
 
     // Y position
@@ -67,7 +75,7 @@ export default class Stats {
       "Y: " +
       player.y.toFixed(0) +
       "px " +
-      ((player.y / player.limit_y) * 103).toFixed(0) +
+      ((player.y / player.limit_y) * 108).toFixed(0) +
       "% ";
 
     // Accel
@@ -79,5 +87,9 @@ export default class Stats {
       "<br>Y vel: " +
       Math.abs(player.vel_y).toFixed(0) +
       "px/s";
+
+    // player progres
+    const progressText = document.getElementById("playerProgress");
+    progressText.innerHTML = "-----------<br>Trash: " + player.trash_collected;
   }
 }
