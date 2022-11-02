@@ -23,10 +23,30 @@ html, body {
     position: relative;
     width: 100vw;
     height: 50vh;
-    background-color: azure;
+    background-position-y: bottom;
+}
+
+#progress-bar{
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    align-items:flex-end;
+    border-bottom: 1px solid red;
+    transform: translateX(-50%);
+}
+
+#bar {
+    width: 100%;
+    height: 10px;
+    background-color: red;
+
 }
 
 #plane{
     position: absolute;
-    background-color: blueviolet;
+    width: 50px;
+    border: 2px solid red;
 }

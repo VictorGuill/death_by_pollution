@@ -1,5 +1,8 @@
 import Plane from './plane.js';
 import Map from './map.js';
+import UI from './UI.js';
+import CollisionDetection from './collisionDetection.js'
+import Phisics from './physics.js';
 
 export class GamePanel {
     constructor (){
@@ -11,7 +14,12 @@ export class GamePanel {
 
         this.addGPelement(); //gp div on document
         this.map = new Map(this);
-        this.plane = new Plane(this, 5, 5 , 30, 30);
+        this.ui = new UI (this);
+        this.collisionDetection = new CollisionDetection(this);
+        this.physics = new Phisics(this);
+        this.plane = new Plane(this, 20, 20);
+        
+
     }
 
     addGPelement(){
@@ -28,6 +36,8 @@ export class GamePanel {
 
     draw() {
         this.plane.draw();
+        this.map.draw();
+        this.ui.draw();
     }
 
 
