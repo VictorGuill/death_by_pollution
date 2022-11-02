@@ -66,13 +66,7 @@ window.requestAnimationFrame(gameLoop);
 function updateGame(dt) {
   player.move(dt, accel * dt, top_speed, friction * dt, map_0);
 
-  if (trash_array.length < cantidad_basura) {
-    const new_trash = new Trash("trash_" + trash_id_counter, map_0);
-    trash_array.push(new_trash);
-    trash_id_counter++;
-  }
-
-  trash_array.forEach(function (element, i) {
+  trash_array.forEach((element) => {
     let collision = player.detectCollision(element);
 
     if (collision) {
@@ -84,6 +78,12 @@ function updateGame(dt) {
       trash.remove();
 
       trash_array.splice(elementPos, 1);
+    }
+
+    if (trash_array.length < cantidad_basura) {
+      const new_trash = new Trash("trash_" + trash_id_counter, map_0);
+      trash_array.push(new_trash);
+      trash_id_counter++;
     }
   });
 }
