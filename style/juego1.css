@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;400;700&family=Space+Mono:wght@400;700&display=swap");
 
 :root {
-  --mapSize: 90vmin;
+  --mapSize: 94vmin;
 }
 
 * {
@@ -10,6 +10,23 @@
   image-rendering: pixelated;
   /* border: 1px solid white; */
   overflow: hidden;
+}
+
+html::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  background-image: url("../games/game1_assets/background.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(10px);
 }
 
 body {
@@ -23,21 +40,6 @@ body {
   position: relative;
 }
 
-body::before {
-  content: " ";
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.2;
-  background-image: url("../games/game1_assets/background.gif");
-  background-repeat: no-repeat;
-  background-size: cover;
-  filter: blur(10px);
-}
-
 .map-style {
   height: var(--mapSize);
   width: var(--mapSize);
@@ -45,6 +47,21 @@ body::before {
   background-image: url("../games/game1_assets/background.gif");
   background-repeat: no-repeat;
   background-size: contain;
+  box-shadow: 0px 0px 5vmin 5vmin rgba(0, 0, 0, 1);
+}
+
+.map-style::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../games/game1_assets/crt.png");
+  background-repeat: no-repeat;
+  background-size: 100.5% 100.5%;
 }
 
 #map {
@@ -75,4 +92,158 @@ body::before {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+}
+
+.scanline {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 300;
+  opacity: 0.6;
+  will-change: opacity;
+  animation: opacity 3s linear infinite;
+}
+
+.scanline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.5) 51%
+  );
+  background-size: 100% 4px;
+  will-change: background, background-size;
+  animation: scanlines 0.2s linear infinite;
+}
+
+/* Animations */
+
+@keyframes scanline {
+  0% {
+    bottom: 100%;
+  }
+  80% {
+    bottom: 100%;
+  }
+  100% {
+    bottom: 0%;
+  }
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.27861;
+  }
+  5% {
+    opacity: 0.34769;
+  }
+  10% {
+    opacity: 0.23604;
+  }
+  15% {
+    opacity: 0.90626;
+  }
+  20% {
+    opacity: 0.18128;
+  }
+  25% {
+    opacity: 0.83891;
+  }
+  30% {
+    opacity: 0.65583;
+  }
+  35% {
+    opacity: 0.67807;
+  }
+  40% {
+    opacity: 0.26559;
+  }
+  45% {
+    opacity: 0.84693;
+  }
+  50% {
+    opacity: 0.96019;
+  }
+  55% {
+    opacity: 0.08594;
+  }
+  60% {
+    opacity: 0.20313;
+  }
+  65% {
+    opacity: 0.71988;
+  }
+  70% {
+    opacity: 0.53455;
+  }
+  75% {
+    opacity: 0.37288;
+  }
+  80% {
+    opacity: 0.71428;
+  }
+  85% {
+    opacity: 0.70419;
+  }
+  90% {
+    opacity: 0.7003;
+  }
+  95% {
+    opacity: 0.36108;
+  }
+  100% {
+    opacity: 0.24387;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0.6;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  35% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes scanlines {
+  from {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.5) 51%
+    );
+    background-size: 100% 4px;
+  }
+  to {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5) 50%,
+      transparent 51%
+    );
+    background-size: 100% 4px;
+  }
 }
