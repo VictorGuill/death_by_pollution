@@ -1,6 +1,7 @@
 export default class Map {
   constructor(id) {
     this.id = id;
+    this.map = document.createElement("div");
 
     this.width = 0;
     this.height = 0;
@@ -13,14 +14,12 @@ export default class Map {
 
   // create div with object id and appends to DOM
   add() {
-    const map = document.createElement("div");
+    this.map.setAttribute("id", this.id);
+    this.map.setAttribute("class", "map-style");
 
-    map.setAttribute("id", this.id);
-    map.setAttribute("class", "map-style");
+    document.body.appendChild(this.map);
 
-    document.body.appendChild(map);
-
-    let properties = map.getBoundingClientRect();
+    let properties = this.map.getBoundingClientRect();
 
     this.x = properties.left;
     this.y = properties.top;
@@ -31,8 +30,7 @@ export default class Map {
 
   // sets new map height and width
   Resize() {
-    const map = document.getElementById(this.id);
-    let properties = map.getBoundingClientRect();
+    let properties = this.map.getBoundingClientRect();
 
     this.width = properties.width;
     this.height = properties.height;

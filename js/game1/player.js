@@ -11,7 +11,7 @@ let player_scale_y = 14;
 export default class Player {
   constructor(id, map) {
     this.id = id;
-    this.map_id = map.id;
+    this.map = document.getElementById(map.id);
 
     this.trash_collected = 0;
 
@@ -27,19 +27,18 @@ export default class Player {
     this.limit_x = 0;
     this.limit_y = 0;
 
+    this.playerDOM = document.createElement("div");
+
     this.add();
   }
 
   // create div with object id and appends to DOM
   add() {
-    const map = document.getElementById(this.map_id);
-    let map_width = map.getBoundingClientRect().width;
-    let map_height = map.getBoundingClientRect().height;
+    let map_width = this.map.getBoundingClientRect().width;
+    let map_height = this.map.getBoundingClientRect().height;
 
-    const player = document.createElement("div");
-
-    player.setAttribute("id", this.id);
-    map.appendChild(player);
+    this.playerDOM.setAttribute("id", this.id);
+    this.map.appendChild(this.playerDOM);
 
     this.width = map_width / player_scale_x;
     this.height = map_height / player_scale_y;
@@ -55,20 +54,17 @@ export default class Player {
 
   // change css visual values
   draw() {
-    const player = document.getElementById(this.id);
+    this.playerDOM.style.top = this.y + "px";
+    this.playerDOM.style.left = this.x + "px";
 
-    player.style.top = this.y + "px";
-    player.style.left = this.x + "px";
-
-    player.style.width = this.width + "px";
-    player.style.height = this.height + "px";
+    this.playerDOM.style.width = this.width + "px";
+    this.playerDOM.style.height = this.height + "px";
   }
 
   // sets new player height and width
   Resize() {
-    const map = document.getElementById(this.map_id);
-    let map_width = map.getBoundingClientRect().width;
-    let map_height = map.getBoundingClientRect().height;
+    let map_width = this.map.getBoundingClientRect().width;
+    let map_height = this.map.getBoundingClientRect().height;
 
     this.x = (this.x / this.limit_x) * map_width;
     this.y = (this.y / this.limit_y) * map_height;
@@ -102,15 +98,13 @@ export default class Player {
     if (userInput["ArrowRight"]) {
       this.vel_x = this.calcVel(this.vel_x + accel, top_speed);
 
-      const player = document.getElementById(this.id);
-      player.style.transform = "scaleX(1)";
+      this.playerDOM.style.transform = "scaleX(1)";
     }
 
     if (userInput["ArrowLeft"]) {
       this.vel_x = this.calcVel(this.vel_x + -accel, top_speed);
 
-      const player = document.getElementById(this.id);
-      player.style.transform = "scaleX(-1)";
+      this.playerDOM.style.transform = "scaleX(-1)";
     }
 
     if (userInput["ArrowDown"]) {

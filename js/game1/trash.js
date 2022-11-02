@@ -7,7 +7,7 @@ let trash_scale_y = 30;
 export default class Trash {
   constructor(id, map) {
     this.id = id;
-    this.map_id = map.id;
+    this.map = document.getElementById(map.id);
 
     this.trash_type;
 
@@ -17,20 +17,22 @@ export default class Trash {
     this.x = 0;
     this.y = 0;
 
+    this.limit_x = 0;
+    this.limit_y = 0;
+
+    this.trashDOM = document.createElement("div");
+
     this.add();
   }
 
   // create div with object id and appends to DOM
   add() {
-    const map = document.getElementById(this.map_id);
-    let map_width = map.getBoundingClientRect().width;
-    let map_height = map.getBoundingClientRect().height;
+    let map_width = this.map.getBoundingClientRect().width;
+    let map_height = this.map.getBoundingClientRect().height;
 
-    const trash = document.createElement("div");
-
-    trash.setAttribute("id", this.id);
-    trash.setAttribute("class", "trash");
-    map.appendChild(trash);
+    this.trashDOM.setAttribute("id", this.id);
+    this.trashDOM.setAttribute("class", "trash");
+    this.map.appendChild(this.trashDOM);
 
     this.width = map_width / trash_scale_x;
     this.height = map_height / trash_scale_y;
@@ -48,16 +50,16 @@ export default class Trash {
 
     switch (this.trash_type) {
       case 1:
-        trash.style.backgroundColor = "red";
+        this.trashDOM.style.backgroundColor = "red";
         break;
       case 2:
-        trash.style.backgroundColor = "yellow";
+        this.trashDOM.style.backgroundColor = "yellow";
         break;
       case 3:
-        trash.style.backgroundColor = "green";
+        this.trashDOM.style.backgroundColor = "green";
         break;
       case 4:
-        trash.style.backgroundColor = "purple";
+        this.trashDOM.style.backgroundColor = "purple";
         break;
     }
 
@@ -66,23 +68,29 @@ export default class Trash {
 
   // change css visual values
   draw() {
-    const player = document.getElementById(this.id);
+    this.trashDOM.style.top = this.y + "px";
+    this.trashDOM.style.left = this.x + "px";
 
-    player.style.top = this.y + "px";
-    player.style.left = this.x + "px";
-
-    player.style.width = this.width + "px";
-    player.style.height = this.height + "px";
+    this.trashDOM.style.width = this.width + "px";
+    this.trashDOM.style.height = this.height + "px";
   }
 
-  //   // sets new map height and width
-  //   Resize() {
-  //     const map = document.getElementById(this.id);
-  //     let properties = map.getBoundingClientRect();
+  // sets new player height and width
+  Resize() {
+    let map_width = this.map.getBoundingClientRect().width;
+    let map_height = this.map.getBoundingClientRect().height;
 
-  //     this.width = properties.width;
-  //     this.height = properties.height;
-  //   }
+    this.x = (this.x / this.limit_x) * map_width;
+    this.y = (this.y / this.limit_y) * map_height;
+
+    this.limit_x = map_width;
+    this.limit_y = map_height;
+
+    this.width = map_width / trash_scale_x;
+    this.height = map_height / trash_scale_y;
+
+    this.draw();
+  }
 }
 
 function randomIntFromInterval(min, max) {
