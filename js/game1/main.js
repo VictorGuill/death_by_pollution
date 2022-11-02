@@ -3,10 +3,10 @@
 
 // player movement
 let accel = 10;
-let top_speed = 32;
-let friction = 5;
+let top_speed = 50;
+let friction = 7;
 
-let cantidad_basura = 2;
+let cantidad_basura = 8;
 
 ////////////////////////////////
 // IMPORTS
@@ -27,12 +27,19 @@ const player = new Player("player", map_0);
 const stats = new Stats("statsContainer");
 
 let trash_array = [];
+let trash_id_counter = 0;
 
 for (let i = 1; i <= cantidad_basura; i++) {
-  const new_trash = new Trash("trash_" + i, map_0);
+  const new_trash = new Trash("trash_" + trash_id_counter, map_0);
 
   if (!player.detectCollision(new_trash)) {
     trash_array.push(new_trash);
+    trash_id_counter++;
+  } else {
+    console.log(new_trash);
+    const trash = document.getElementById(new_trash.id);
+    trash.remove();
+    i--;
   }
 }
 
@@ -59,12 +66,10 @@ window.requestAnimationFrame(gameLoop);
 function updateGame(dt) {
   player.move(dt, accel * dt, top_speed, friction * dt, map_0);
 
-  console.log(trash_array);
-
   if (trash_array.length < cantidad_basura) {
-    const new_trash = new Trash("trash_" + (trash_array.length + 1), map_0);
-
+    const new_trash = new Trash("trash_" + trash_id_counter, map_0);
     trash_array.push(new_trash);
+    trash_id_counter++;
   }
 
   trash_array.forEach(function (element, i) {
