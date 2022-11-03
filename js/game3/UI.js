@@ -8,9 +8,7 @@ export default class UI {
     addUI(){
         this.element = document.createElement("div");
         this.element.setAttribute("id", "ui");
-        this.element.style.height = "100%";
-        this.element.style.position = "relative";
-        this.gp.map.element.appendChild(this.element);
+        this.gp.element.appendChild(this.element);
     }
 
     createElement(uiElement, id, x, y, w, h) {

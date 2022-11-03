@@ -1,18 +1,11 @@
-let input = [];
+let input_codes = [];
 
-/* let input = {
-    "up": input_code["ArrowUp"],
-    "down": input_code["ArrowDown"],
-    "left": input_code["ArrowLeft"],
-    "right": input_code["ArrowRight"]
-};
- */
 
-export default input;
+export default input_codes;
 document.onkeydown = function keydown (event) {
-    input[event.key] = true;
+    input_codes[event.key] = true;
 };
 
 document.onkeyup = function keyup (event) {
-    input[event.key] = false;
+    input_codes[event.key] = false;
 };

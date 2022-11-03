@@ -4,32 +4,45 @@ export default class CollisionDetection{
     }
 
     mapBounderiesCheck(entity) {
-        let entityLeftMapX = entity.getMapX();
-        let entityRightMapX = entity.getMapX() + entity.w;
-        let entiyTopMapY = entity.getMapY() + entity.h;
-        let entityBottomMapY = entity.getMapY();
+        let entityLeftMapX = entity.getScreenX();
+        let entityRightMapX = entity.getScreenX() + entity.w;
+        let entityTopMapY = entity.getScreenY() + entity.h;
+        let entityBottomMapY = entity.getScreenY();
 
-        switch (entity.getDirection()){
-            case "down":
-                if (entiyTopMapY + entity.getSpeed() >= this.gp.map.h){
-                    entity.collision = true;
-                }
-                break;
-            case "up":
-                if (entityBottomMapY - entity.getSpeed() <= 0){
-                    entity.collision = true;
-                }
-                break;
-            case "left":
-                if (entityLeftMapX - entity.getSpeed() <= 0) {
-                    entity.collision = true;
-                }
-                break;
-            case "right":
-                if (entityRightMapX + entity.getSpeed() >= this.gp.map.w){
-                    entity.collision = true;
-                }
-                break;
-        }       
+        entity.collision = false;
+
+            const topDecelerationZone = this.gp.map.h - this.gp.map.h/4; 
+
+            if (entityTopMapY >= (topDecelerationZone)) {
+                /* let t = (this.gp.map.h - entity.worldY)/entity.speedY;
+                let a = entity.speedY/(t**2);
+                console.log("Time to max H: "+t );
+                console.log("Deceleration: "+a);
+
+                entity.speedY-= a; */
+            } 
+            if (entityTopMapY >= this.gp.map.h){
+                entity.screenY = this.gp.map.h-entity.h;
+                entity.speedY = this.gp.physics.gravity;
+                entity.lift = entity.lift/2;
+            } 
+
+
+            if (entityBottomMapY  <= 0){
+                entity.screenY = 0;
+            } 
+
+        
+
+            if (entityLeftMapX <= 0) {
+                entity.collision = true;
+            }
+        
+                
+
+            if (entityRightMapX >= this.gp.map.w){
+                entity.collision = true;
+            }
+        
     }
 }

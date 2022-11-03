@@ -1,29 +1,44 @@
-import input from "./keyHandler.js";
+
 
 
 export default class Plane {
-    constructor(gp, mapX, mapY) {
+    constructor(gp, inicialX, inicialY) {
         this.gp = gp;
         this.id = "plane";
     //----POSITIONS----
-        this.mapX = mapX;
-        this.mapY = mapY;
-        this.worldX = this.gp.map.x +this.mapX;
-        this.worldY = this.gp.map.y +this.mapY;
+        // screen
+        this.screenX = inicialX;
+        this.screenY = inicialY;
+        // world
+        this.worldX = this.gp.map.x +this.screenX;
+        this.worldY = this.screenY;
+
     //----ATRIBUTES----
         this.w = 50;
         this.h = 50;
 
-        this.direction = "right";
         this.collision = false;
 
         this.speed = 0;
-        this.maxSpeed = 5;
+        this.speedX = 0;
+        this.speedY = 0;
+        this.maxSpeed = 700;
+
+        this.state = "";
+
         this.pitch = 0;
         this.maxPitch = 45;
-        this.power = 0;
-        this.power
-        this.torque = 10;
+
+        this.lift = 0;
+
+        this.drag = .2;
+
+        this.mass = 10;
+        this.weight = this.gp.physics.calcWeight(this);
+
+        this.acceleration = 2;
+
+        this.thrust = 0;
 
         this.addPlane();
     }
@@ -37,167 +52,150 @@ export default class Plane {
         this.element.style.height = this.h+"px";
     }
 
-    mapBounderiesCheck() {
-        let canMove = true;
+    accelerate() {        
+        this.speed += this.acceleration;
+    }
 
-        let planeMapRight = this.mapX + this.w;
-        let planeMapLeft = this.mapX;
-        let planeMapTop = this.mapY + this.h;
-        let planeMapBottom = this.mapY;
+    decelerate() {
+        this.speed -= this.acceleration;
+    }
 
-        console.log("plane map top: "+planeMapTop);
-        
+    levelPitch() {}
 
-        if ((planeMapLeft <= 0 + this.speed && input["ArrowLeft"]) || 
-            (planeMapRight >= this.gp.map.width - this.speed && input["ArrowRight"]) ||
-            (planeMapTop >= this.gp.map.height - this.speed && input["ArrowUp"]) ||
-            (planeMapBottom <= 0 +this.speed&& input["ArrowDown"])){
-            canMove = false;
-        } else{
-            canMove = true;
-        }
-        return canMove;
+    pitchUp() {
+        this.pitch++;
+        this.rotate(this.pitch);
+    }
+
+    pitchDown() {
+        this.pitch--;
+        this.rotate(this.pitch);
+    }
+
+
+    checkState() {
+        //takeOff
     }
 
     rotate(deg){
-        this.element.style.transform = "rotateZ("+deg+"deg)";
+        this.element.style.transform = "rotateZ("+(-deg)+"deg)";
     }
 
-    levelPitch(){
-        if (this.pitch < 0) {
-            this.pitch ++;
-        }else if (this.pitch > 0){
-            this.pitch --;
-        } else if (this.pitch = 0){
-            this.pitch = 0;
+    
+
+
+    updatePositions() {
+        this.worldX += this.speedX/100;
+        this.screenY += this.speedY/100;
+        this.worldY = this.screenY;
+    }
+
+    updateSpeed() {
+        this.speedX = this.gp.physics.calcSpeedX(this);
+        this.speedY = this.gp.physics.calcSpeedY(this);
+
+        if (this.speed >= this.maxSpeed) {
+            this.speed = this.maxSpeed;
         }
-        /* this.rotate(this.pitch); */
-    }
-
-    pitchUp(){
-        if (this.pitch >= this.maxPitch){
-            this.pitch = this.maxPitch;
+        if (this.speedX <= 0) {
+            this.speedX = 0;
         }
-        this.pitch++;
-
-        /* this.rotate(this.pitch); */
-
-        this.mapY -= this.speed;
     }
 
-    pitchDown(){
+    updatePitch() {
         if (this.pitch <= -this.maxPitch){
             this.pitch = -this.maxPitch;
+        } else if (this.pitch >= this.maxPitch) {
+            this.pitch = this.maxPitch;
         }
-        this.pitch--;
-
-        /* this.rotate(this.pitch); */
-        this.mapY += this.speed;
-    }
-
-    accelerate(){
-        this.worldX += this.speed;
-        this.speed+=0.1;
-    }
-
-    decelerate(){
-        this.levelPitch();
-        this.speed-= 0.05;
     }
 
     move(){
-        if (input["ArrowUp"] || input["ArrowDown"] || input["ArrowRight"] || input["ArrowLeft"]){
-
-
-            if ( input["ArrowUp"] ) { this.setDirection("up"); }
-            if ( input["ArrowDown"] ) { this.setDirection("down"); }
-            if ( input["ArrowRight"] ) {this.setDirection("right"); }
-            if ( input["ArrowLeft"] ) { this.setDirection("left"); }
-
-
-            this.collision = false;
-            this.gp.collisionDetection.mapBounderiesCheck(this);
+        if (this.gp.input["ArrowUp"] || this.gp.input["ArrowDown"] || this.gp.input["ArrowRight"] || this.gp.input["ArrowLeft"]){
 
             if (!this.collision) {
-                if(input["ArrowUp"]){
-                    this.pitchUp();
-                }
-                if(input["ArrowDown"]){
+                if(this.gp.input["ArrowUp"]){
                     this.pitchDown();
                 }
-                if(input["ArrowRight"]){
-                   this.accelerate();
-                }else{
-                    this.speed-= .01;
+                if(this.gp.input["ArrowDown"]){
+                    this.pitchUp();
                 }
-                if (input["ArrowLeft"]) {
+                if(this.gp.input["ArrowRight"]){
+                   this.accelerate();
+                } 
+                if (this.gp.input["ArrowLeft"]) {
                     this.decelerate();
                     this.levelPitch();
                 }
             }
-        }
             
-        if (this.speed <= 0) { this.speed = 0; }
-        if (this.speed >= this.maxSpeed) { this.speed = this.maxSpeed; } 
-
+        } else {
+            this.levelPitch();
+        }
     }
 
-    fly(){
-        /* this.getSpeed(); */
+    fly() {
         this.move();
+        this.updatePositions();
+        this.updatePitch();
+        this.updateSpeed();
     }
+
 
     //---- GETTERS ----
-
-    getWorldY() {
-        return this.mapY;
-    }
-
+        // world position
     getWorldX() {
         return this.worldX;
     }
-
-    getMapX() {
-        return this.mapX;
+    getWorldY() {
+        return this.worldY;
     }
 
-    getMapY() {
-        return this.mapY;
+        // screen position
+    getScreenX() {
+        return this.screenX;
+    }
+    getScreenY() {
+        return this.screenY;
     }
 
-    getSpeed() {
-        return this.speed;
+        // speed
+    getSpeedX() {
+        return this.speedX;
     }
-
-    getDirection() {
-        return this.direction;
-    } 
+    getSpeedY() {
+        return this.speedY;
+    }
 
 
     //---- SETTERS ----
 
-    setDirection(direction){
-        this.direction = direction;
-    }
+
     update() {
         this.fly();
+        this.gp.physics.update(this);
+        this.gp.collisionDetection.mapBounderiesCheck(this);
         
-        this.gp.physics.apply(this);
-
-
     /*  ------------ DEBUG ----------  */
-        /* console.log("P: "+this.power); */
-        console.log("S: "+this.speed);
-        console.log("World X: "+ this.getWorldX());
+        console.log("-------SPEED-----");
+        console.log("SPEED: "+ Math.round(this.speed));
+        console.log("SpeedX: "+ Math.round(this.speedX));
+        console.log("SpeedY: "+ Math.round(this.speedY));
+/*         console.log("Lift: "+this.lift);
+        console.log("Weight: "+this.weight); */
+/*         console.log("Pitch: " +this.pitch);
+        console.log("pitch to rad: " +this.toRadiants(this.pitch)); */
+        /* console.log("-------POSITION-----");
+        console.log("World X: "+ this.worldY);
+        console.log("World Y: "+this.worldY)
         console.log ("Map X: "+ this.mapY);
-        /* console.log("Plane map Y: "+this.mapY); */
-        console.log("Collison = " + this.collision);
+        console.log("Mapp Y: "+this.mapY); */
+        /* console.log("Collison = " + this.collision); */
     }
 
 
     draw() {
-        this.element.style.bottom = this.mapY + "px";
-        this.gp.map.x = -this.getWorldX() + "px";
-        this.element.style.left = this.mapX + "px";
+        this.element.style.bottom = this.screenY +"px";
+        this.element.style.left = this.screenX + "px";
     }
 }

@@ -26,6 +26,6 @@ export default class Map {
 
 
     draw(){
-        this.element.style.backgroundPositionX = this.x;
+        this.element.style.backgroundPositionX = -(this.gp.plane.worldX) +"px";
     }
 }
