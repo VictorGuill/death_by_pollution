@@ -37,7 +37,14 @@ body {
     height: 70vh;
     background-position-y: bottom;
     background-size: cover;
-  
+}
+
+#planeScreenZone {
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    border: 4px solid #cc9900;
+    z-index: 1;
 }
 
 #plane {

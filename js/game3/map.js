@@ -7,12 +7,19 @@ export default class Map {
         this.addElement();
         this.setBg();
         this.getSize();
+        this.addScreenZone();
     }
 
     addElement() {
         this.element = document.createElement("div");
         this.element.setAttribute("id", this.id);
         this.gp.element.appendChild(this.element);
+    }
+
+    addScreenZone() {
+        const screenPlaneZone = document.createElement("div");
+        screenPlaneZone.setAttribute("id", "planeScreenZone");
+        this.element.appendChild(screenPlaneZone);
     }
 
     setBg() {
