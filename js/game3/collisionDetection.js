@@ -24,7 +24,6 @@ export default class CollisionDetection{
             if (entityTopMapY >= this.gp.map.h){
                 entity.screenY = this.gp.map.h-entity.h;
                 entity.speedY = this.gp.physics.gravity;
-                entity.lift = entity.lift/2;
             } 
 
 

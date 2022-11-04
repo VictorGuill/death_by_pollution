@@ -30,10 +30,12 @@ export default class Plane {
         this.maxPitch = 45;
 
         this.lift = 0;
+        this.cL = 1; //Lift coeficient
 
-        this.drag = .2;
+        this.drag = 0;
+        this.cD = 0.7; //Drag coeficient
 
-        this.mass = 10;
+        this.mass = 80;
         this.weight = this.gp.physics.calcWeight(this);
 
         this.acceleration = 2;
@@ -97,6 +99,11 @@ export default class Plane {
         if (this.speed >= this.maxSpeed) {
             this.speed = this.maxSpeed;
         }
+
+        if (this.speed < 0 ){
+            this.speed = 0;
+        } 
+
         if (this.speedX <= 0) {
             this.speedX = 0;
         }
@@ -181,8 +188,9 @@ export default class Plane {
         console.log("SPEED: "+ Math.round(this.speed));
         console.log("SpeedX: "+ Math.round(this.speedX));
         console.log("SpeedY: "+ Math.round(this.speedY));
-/*         console.log("Lift: "+this.lift);
-        console.log("Weight: "+this.weight); */
+        console.log("Lift: "+ this.lift);
+        console.log("Drag: " + this.drag);
+        console.log("Weight: "+this.weight);
 /*         console.log("Pitch: " +this.pitch);
         console.log("pitch to rad: " +this.toRadiants(this.pitch)); */
         /* console.log("-------POSITION-----");
