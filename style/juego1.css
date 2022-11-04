@@ -23,7 +23,7 @@ html::before {
   width: 100%;
   height: 100%;
   opacity: 0.15;
-  background-image: url("../games/game1_assets/background.gif");
+  /* background-image: url("../games/game1_assets/background.gif"); */
   background-repeat: no-repeat;
   background-size: cover;
   filter: blur(10px);
