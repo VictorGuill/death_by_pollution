@@ -13,8 +13,8 @@ a:active { text-decoration: none; }
 .background-landing-intro {
     position: absolute;
     z-index: -2;
-    width: 1440px;
-    height: 1077px;
+    width: 100vw;
+    height: 100vh;
     left: 0px;
     top: 0px;
     background-color: #000000;
@@ -22,18 +22,18 @@ a:active { text-decoration: none; }
 .linear-background-landing-intro {
     position: absolute;
     z-index: -2;
-    width: 846px;
-    height: 1077px;
+    width: 60vw;
+    height: 100vh;
     left: 0px;
     top: 0px;
     background: linear-gradient(90deg, rgba(81, 0, 135, 0.85) 6.77%, rgba(81, 0, 135, 0) 100%);
 }
 #img-landing-intro img {
     position: absolute;
-    width: 558px;
-    height: 722px;
-    left: 822px;
-    top: 170px;
+    width: 30%;
+    height: 70%;
+    right: 10%;
+    top: 20%;
 
 }
 
