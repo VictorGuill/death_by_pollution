@@ -102,9 +102,9 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: 300;
-  opacity: 0.6;
+  opacity: 0.2;
   will-change: opacity;
-  animation: opacity 3s linear infinite;
+  animation: opacity 0.2s linear infinite;
 }
 
 .scanline::before {
@@ -118,11 +118,11 @@ body {
   background: linear-gradient(
     to bottom,
     transparent 50%,
-    rgba(0, 0, 0, 0.5) 51%
+    rgba(0, 0, 0, 0.3) 51%
   );
   background-size: 100% 4px;
   will-change: background, background-size;
-  animation: scanlines 0.2s linear infinite;
+  animation: scanlines 0.5s linear infinite;
 }
 
 /* Animations */
