@@ -1,18 +1,13 @@
-////////////////////////////////
-// TRASH PARAMETERS
-
-let trash_scale_x = 30;
-let trash_scale_y = 30;
-
 export default class Trash {
   constructor(id, map) {
     this.id = id;
     this.map = document.getElementById(map.id);
 
-    this.trash_type;
-
     this.width = 0;
     this.height = 0;
+
+    this.scale_x;
+    this.scale_y;
 
     this.x = 0;
     this.y = 0;
@@ -20,7 +15,11 @@ export default class Trash {
     this.limit_x = 0;
     this.limit_y = 0;
 
+    this.height_range;
+    this.width_marings;
+
     this.trashDOM = document.createElement("div");
+    this.imgID;
 
     this.add();
   }
@@ -30,38 +29,104 @@ export default class Trash {
     let map_width = this.map.getBoundingClientRect().width;
     let map_height = this.map.getBoundingClientRect().height;
 
+    const num = randomIntFromInterval(0, 11);
+    const img = "../../games/game1_assets/trash/" + num + ".png";
+
+    switch (num) {
+      case 0:
+        this.scale_x = 65;
+        this.scale_y = 25;
+        this.height_range = [0.16, 0.65];
+        this.width_margin = map_width * 0.03;
+        break;
+      case 1:
+        this.scale_x = 80;
+        this.scale_y = 30;
+        this.height_range = [0.26, 0.985];
+        this.width_margin = map_width * 0.03;
+        break;
+      case 2:
+        this.scale_x = 30;
+        this.scale_y = 22;
+        this.height_range = [0.35, 0.85];
+        this.width_margin = map_width * 0.05;
+        break;
+      case 3:
+        this.scale_x = 35;
+        this.scale_y = 30;
+        this.height_range = [0.28, 0.8];
+        this.width_margin = map_width * 0.07;
+        break;
+      case 4:
+        this.scale_x = 30;
+        this.scale_y = 45;
+        this.height_range = [0.3, 0.99];
+        this.width_margin = map_width * 0.07;
+        break;
+      case 5:
+        this.scale_x = 60;
+        this.scale_y = 50;
+        this.height_range = [0.63, 0.9];
+        this.width_margin = map_width * 0.023;
+        break;
+      case 6:
+        this.scale_x = 43;
+        this.scale_y = 45;
+        this.height_range = [0.63, 0.9];
+        this.width_margin = map_width * 0.07;
+        break;
+      case 7:
+        this.scale_x = 60;
+        this.scale_y = 35;
+        this.height_range = [0.63, 0.9];
+        this.width_margin = map_width * 0.023;
+        break;
+      case 8:
+        this.scale_x = 18;
+        this.scale_y = 13.8;
+        this.height_range = [0.76, 0.98];
+        this.width_margin = map_width * 0.07;
+        break;
+      case 9:
+        this.scale_x = 70;
+        this.scale_y = 35;
+        this.height_range = [0.16, 0.4];
+        this.width_margin = map_width * 0.023;
+        break;
+      case 10:
+        this.scale_x = 50;
+        this.scale_y = 55;
+        this.height_range = [0.85, 0.99];
+        this.width_margin = map_width * 0.023;
+        break;
+      case 11:
+        this.scale_x = 58;
+        this.scale_y = 40;
+        this.height_range = [0.15, 0.7];
+        this.width_margin = map_width * 0.023;
+        break;
+    }
+
+    this.width = map_width / this.scale_x;
+    this.height = map_height / this.scale_y;
+
+    this.x = randomIntFromInterval(
+      this.width_margin - this.width,
+      map_width - this.width_margin
+    );
+    this.y = randomIntFromInterval(
+      map_height * this.height_range[0],
+      map_height * this.height_range[1] - this.height
+    );
+
+    this.trashDOM.style.backgroundImage = "url(" + img + ")";
+
     this.trashDOM.setAttribute("id", this.id);
     this.trashDOM.setAttribute("class", "trash");
     this.map.appendChild(this.trashDOM);
 
-    this.width = map_width / trash_scale_x;
-    this.height = map_height / trash_scale_y;
-
-    this.x = randomIntFromInterval(0, map_width - this.width);
-    this.y = randomIntFromInterval(
-      map_height * 0.225,
-      map_height - this.height
-    );
-
     this.limit_x = map_width;
     this.limit_y = map_height;
-
-    this.trash_type = randomIntFromInterval(1, 4);
-
-    switch (this.trash_type) {
-      case 1:
-        this.trashDOM.style.backgroundColor = "red";
-        break;
-      case 2:
-        this.trashDOM.style.backgroundColor = "yellow";
-        break;
-      case 3:
-        this.trashDOM.style.backgroundColor = "green";
-        break;
-      case 4:
-        this.trashDOM.style.backgroundColor = "purple";
-        break;
-    }
 
     this.draw();
   }
@@ -70,7 +135,6 @@ export default class Trash {
   draw() {
     this.trashDOM.style.top = this.y + "px";
     this.trashDOM.style.left = this.x + "px";
-
     this.trashDOM.style.width = this.width + "px";
     this.trashDOM.style.height = this.height + "px";
   }
@@ -86,8 +150,8 @@ export default class Trash {
     this.limit_x = map_width;
     this.limit_y = map_height;
 
-    this.width = map_width / trash_scale_x;
-    this.height = map_height / trash_scale_y;
+    this.width = map_width / this.scale_x;
+    this.height = map_height / this.scale_y;
 
     this.draw();
   }

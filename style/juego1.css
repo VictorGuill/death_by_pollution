@@ -78,6 +78,11 @@ body {
 
 .trash {
   position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
 }
 
 #statsContainer {
@@ -104,7 +109,8 @@ body {
   z-index: 300;
   opacity: 0.2;
   will-change: opacity;
-  animation: opacity 0.2s linear infinite;
+  /* flickering intensity */
+  animation: opacity 0s linear infinite;
 }
 
 .scanline::before {
