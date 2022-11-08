@@ -2,25 +2,36 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <style>
-  #map{
-    background-color: blue;
-    height: 70vh;
-    width: 80vw;
-  }
-  </style>
+    <meta charset="UTF-8">
+<link rel='stylesheet' href='../style/prova.css'>
 </head>
 
-<body>
-    <div id='map' id="gate" class="droppable">
-        <img src="../media/br.jpg" id="piece" width="50" height="50">
-        <img src="../media/lb.jpg" id="piece2" width="50" height="50">
-        <img src="../media/lr.jpg" id="piece3" width="50" height="50">
-        <img src="../media/lt.jpg" id="piece4" width="50" height="50">
-        <img src="../media/tb.jpg" id="piece5" width="50" height="50">
+<body onload="randomPiece()">
+
+    <div id='map' class="droppable">
+        <div class='start'>START</div>
+        <div id='tree'>1</div>
+        <div id='tree2'>2</div>
+        <div id='tree3'>3</div>
+        <div id='tree4'>4</div>
+        <div id='mountain'></div>
+        <div id='mountain2'></div>
+        <div class='end'>END</div>
     </div>
 
+    <div id="pieces">
+        <div>
+            <img id="piece" width="50" height="50" />
+        </div>
+        <div>
+            <img id="piece2" width="50" height="50" />
+        </div>
+        <div>
+            <img id="piece3" width="50" height="50" />
+        </div>
+    </div>
     <script src="../js/game2.js"></script>
+
 </body>
+
 </html>

@@ -1,0 +1,71 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+}
+
+#map {
+    display: grid;
+    grid-template-columns: repeat(14, 60px);
+    grid-template-rows: repeat(14, 60px);
+    height: 95.5vmin;
+    width: 95.5vmin;
+    background-color: wheat;
+    border-radius: 10px;
+}
+
+#pieces {
+    width: 70px;
+    height: 200px;
+    background-color: brown;
+    border-radius: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-self: center;
+}
+
+img,
+.start,
+.end {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+}
+
+.start {
+    justify-content: space-around;
+    background-color: purple;
+    color: white;
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+.end {
+    text-align: center;
+    background-color: black;
+    color: white;
+    grid-column-start: 13;
+    grid-row-start: 13;
+}
+
+#tree,
+#tree2,
+#tree3,
+#tree4 {
+    text-align: center;
+    background-color: green;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    position: relative;
+}
+
+#mountain, #mountain2 {
+    background-color: brown;
+}
