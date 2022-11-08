@@ -18,10 +18,10 @@ export class GamePanel {
         this.addGPelement(); //gp div on document
         this.input = input_codes;
         this.map = new Map(this);
-        this.ui = new UI (this);
         this.collisionDetection = new CollisionDetection(this);
         this.physics = new Phisics(this);
         this.plane = new Plane(this, 20, 40);
+        this.ui = new UI (this);
         
     }
 

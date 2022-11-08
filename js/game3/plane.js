@@ -33,7 +33,7 @@ export default class Plane{
         this.mass = 100;
         this.weight = this.gp.physics.getWeight(this);
 
-        this.acceleration = 5;
+        this.acceleration = 3;
         this.deceleration = 3;
 
         this.canPSM = false;
@@ -54,7 +54,8 @@ export default class Plane{
         this.element.style.height = this.h+"px";
     }
 
-    accelerate() {        
+    accelerate() {
+        
         this.speed += this.acceleration;
     }
 
@@ -239,7 +240,18 @@ export default class Plane{
 
 
     //---- SETTERS ----
+    setLiftCoef(newCoef){
+        this.cL = newCoef;
+    }
 
+    setDragCoef(newCoef) {
+        this.cD = newCoef;
+    }
+
+    setMass(newMass) {
+        this.mass = newMass;
+        this.weight = this.gp.physics.getWeight(this);
+    }
 
     update() {
         this.fly();
@@ -248,20 +260,22 @@ export default class Plane{
         
     /*  ------------ DEBUG ----------  */
         console.log("-------SPEED-----");
-        //console.log("SPEED: "+ Math.round(this.speed));
+        console.log("SPEED: "+ Math.round(this.speed));
         console.log("Speed %: " + this.gp.physics.getPercentSpeed(this, this.speed));
-        /* console.log("SpeedX: "+ Math.round(this.speedX));
+        console.log("SpeedX: "+ Math.round(this.speedX));
         console.log("SpeedY: "+ Math.round(this.speedY));
+        console.log("LIFT COEF: " + this.cL);
+        console.log("DRAG COEF: " +this.cD);
         console.log("Lift: "+ Math.round(this.gp.physics.lift));
-        console.log("Drag: " + Math.round(this.gp.physics.drag)); */
-        //console.log("Weight: " + Math.round(this.weight));
+        console.log("Drag: " + Math.round(this.gp.physics.drag));
+        console.log("Weight: " + Math.round(this.weight));
         //console.log("Pitch: " +this.pitch);
         //console.log("pitch to rad: " +this.toRadiants(this.pitch));
-        console.log("-------POSITION-----");
+        /* console.log("-------POSITION-----");
         console.log("World X: "+ this.worldX);
         console.log("World Y: "+this.worldY)
         console.log ("Screen X: "+ this.screenX);
-        console.log("Screen Y: "+this.screenY);
+        console.log("Screen Y: "+this.screenY); */
         /* console.log("Collison = " + this.collision); */
     }
 
