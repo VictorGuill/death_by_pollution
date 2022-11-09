@@ -14,6 +14,7 @@ let cantidad_basura = 15;
 import userInput from "./inputs.js";
 import Stats from "./stats.js";
 import Player from "./player.js";
+import Ui from "./ui.js";
 import Map from "./map.js";
 import Trash from "./trash.js";
 
@@ -21,6 +22,8 @@ import Trash from "./trash.js";
 // START
 
 const map_0 = new Map("map");
+
+const ui = new Ui("ui");
 
 const player = new Player("player", map_0);
 
@@ -52,7 +55,7 @@ function gameLoop(runtime) {
   let dt = (runtime - oldTime) / 100;
   oldTime = runtime;
 
-  stats.updateValues(dt, runtime, userInput, player);
+  // stats.updateValues(dt, runtime, userInput, player);
   updateGame(dt);
 
   window.requestAnimationFrame(gameLoop);
@@ -75,7 +78,15 @@ function updateGame(dt) {
       const elementPos = trash_array.indexOf(element);
 
       const trash = document.getElementById(element.id);
-      trash.remove();
+
+      trash.style.zIndex = 11;
+      trash.style.animation = "pick-item 1s cubic-bezier(.2,1.1,.84,1.02)";
+
+      function delay(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+      }
+
+      delay(1000).then(() => console.log(trash.remove()));
 
       trash_array.splice(elementPos, 1);
     }
@@ -86,6 +97,8 @@ function updateGame(dt) {
       trash_id_counter++;
     }
   });
+
+  ui.updateValues(player);
 }
 
 ////////////////////////////////

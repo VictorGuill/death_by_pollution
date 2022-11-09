@@ -8,6 +8,7 @@ export default userInput;
 
 document.onkeydown = function (e) {
   userInput[e.key] = true;
+  // console.log(e.key);
 };
 
 document.onkeyup = function (e) {

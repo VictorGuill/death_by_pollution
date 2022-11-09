@@ -88,8 +88,8 @@ export default class Trash {
         this.width_margin = map_width * 0.023;
         break;
       case 8:
-        this.scale_x = 18;
-        this.scale_y = 13.8;
+        this.scale_x = 22;
+        this.scale_y = 16.3;
         this.height_range = [0.76, 0.98];
         this.width_margin = map_width * 0.07;
         break;
