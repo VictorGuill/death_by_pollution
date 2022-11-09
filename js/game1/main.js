@@ -2,11 +2,11 @@
 // GAME PARAMETERS
 
 // player movement
-let accel = 10;
-let top_speed = 50;
-let friction = 7;
+let accel = 9;
+let top_speed = 45;
+let friction = 6;
 
-let cantidad_basura = 8;
+let cantidad_basura = 15;
 
 ////////////////////////////////
 // IMPORTS

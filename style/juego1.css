@@ -38,6 +38,7 @@ body {
   align-items: center;
   flex-direction: column;
   position: relative;
+  filter: contrast(1.07) saturate(1.06);
 }
 
 .map-style {

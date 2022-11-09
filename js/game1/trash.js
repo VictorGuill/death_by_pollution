@@ -1,3 +1,8 @@
+////////////////////////////////
+// TRASH PARAMETERS
+
+const trash_scale = 1.4;
+
 export default class Trash {
   constructor(id, map) {
     this.id = id;
@@ -30,6 +35,7 @@ export default class Trash {
     let map_height = this.map.getBoundingClientRect().height;
 
     const num = randomIntFromInterval(0, 11);
+    const rotation = randomIntFromInterval(-50, 50);
     const img = "../../games/game1_assets/trash/" + num + ".png";
 
     switch (num) {
@@ -46,8 +52,8 @@ export default class Trash {
         this.width_margin = map_width * 0.03;
         break;
       case 2:
-        this.scale_x = 30;
-        this.scale_y = 22;
+        this.scale_x = 40;
+        this.scale_y = 30;
         this.height_range = [0.35, 0.85];
         this.width_margin = map_width * 0.05;
         break;
@@ -107,8 +113,8 @@ export default class Trash {
         break;
     }
 
-    this.width = map_width / this.scale_x;
-    this.height = map_height / this.scale_y;
+    this.width = (map_width / this.scale_x) * trash_scale;
+    this.height = (map_height / this.scale_y) * trash_scale;
 
     this.x = randomIntFromInterval(
       this.width_margin - this.width,
@@ -120,8 +126,10 @@ export default class Trash {
     );
 
     this.trashDOM.style.backgroundImage = "url(" + img + ")";
+    this.trashDOM.style.transform = "rotate(" + rotation + "deg)";
 
     this.trashDOM.setAttribute("id", this.id);
+    this.trashDOM.setAttribute("class", "trash");
     this.trashDOM.setAttribute("class", "trash");
     this.map.appendChild(this.trashDOM);
 

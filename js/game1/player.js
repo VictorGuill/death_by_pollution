@@ -4,7 +4,7 @@ import userInput from "./inputs.js";
 // PLAYER PARAMETERS
 
 let player_scale_x = 12;
-let player_scale_y = 14;
+let player_scale_y = 14.6;
 
 ////////////////////////////////
 
