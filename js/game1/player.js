@@ -112,17 +112,17 @@ export default class Player {
     if (userInput["ArrowRight"]) {
       this.vel_x = this.calcVel(this.vel_x + accel, top_speed);
 
-      // this.playerDOM.style.transform = "scaleX(1)";
-      this.playerDOM.style.animation =
-        "turn-right .5s cubic-bezier(0,1,.25,1) forwards";
+      this.playerDOM.style.transform = "scaleX(1)";
+      // this.playerDOM.style.animation =
+      //   "turn-right .5s cubic-bezier(0,1,.25,1) forwards";
     }
 
     if (userInput["ArrowLeft"]) {
       this.vel_x = this.calcVel(this.vel_x + -accel, top_speed);
 
-      // this.playerDOM.style.transform = "scaleX(-1)";
-      this.playerDOM.style.animation =
-        "turn-left .5s cubic-bezier(0,1,.25,1) forwards";
+      this.playerDOM.style.transform = "scaleX(-1)";
+      // this.playerDOM.style.animation =
+      //   "turn-left .5s cubic-bezier(0,1,.25,1) forwards";
     }
 
     if (userInput["ArrowDown"]) {

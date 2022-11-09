@@ -110,7 +110,7 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   z-index: 5;
-  animation: turn-left 0s ease-in-out forwards;
+  /* animation: turn-left 0s ease-in-out forwards; */
 }
 
 .trash {
