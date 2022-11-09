@@ -95,26 +95,6 @@ export default class Player {
       top_speed /= diagonal_speed_limit;
     }
 
-    if (userInput["ArrowRight"]) {
-      this.vel_x = this.calcVel(this.vel_x + accel, top_speed);
-
-      this.playerDOM.style.transform = "scaleX(1)";
-    }
-
-    if (userInput["ArrowLeft"]) {
-      this.vel_x = this.calcVel(this.vel_x + -accel, top_speed);
-
-      this.playerDOM.style.transform = "scaleX(-1)";
-    }
-
-    if (userInput["ArrowDown"]) {
-      this.vel_y = this.calcVel(this.vel_y + accel, top_speed);
-    }
-
-    if (userInput["ArrowUp"]) {
-      this.vel_y = this.calcVel(this.vel_y + -accel, top_speed);
-    }
-
     if (
       (!userInput["ArrowRight"] && !userInput["ArrowLeft"]) ||
       (userInput["ArrowRight"] && userInput["ArrowLeft"])
@@ -127,6 +107,30 @@ export default class Player {
       (userInput["ArrowDown"] && userInput["ArrowUp"])
     ) {
       this.vel_y = this.calcFriction(this.vel_y, friction);
+    }
+
+    if (userInput["ArrowRight"]) {
+      this.vel_x = this.calcVel(this.vel_x + accel, top_speed);
+
+      // this.playerDOM.style.transform = "scaleX(1)";
+      this.playerDOM.style.animation =
+        "turn-right .5s cubic-bezier(0,1,.25,1) forwards";
+    }
+
+    if (userInput["ArrowLeft"]) {
+      this.vel_x = this.calcVel(this.vel_x + -accel, top_speed);
+
+      // this.playerDOM.style.transform = "scaleX(-1)";
+      this.playerDOM.style.animation =
+        "turn-left .5s cubic-bezier(0,1,.25,1) forwards";
+    }
+
+    if (userInput["ArrowDown"]) {
+      this.vel_y = this.calcVel(this.vel_y + accel, top_speed);
+    }
+
+    if (userInput["ArrowUp"]) {
+      this.vel_y = this.calcVel(this.vel_y + -accel, top_speed);
     }
 
     // apply new position

@@ -22,7 +22,13 @@ export default class Ui {
     const game_text = document.createElement("p");
     game_text.setAttribute("id", "game_text");
     game_text.innerHTML = "scuba-test";
+    game_text.style.color = "#ea5000";
     this.ui.appendChild(game_text);
+
+    // add timer
+    const timer_text = document.createElement("p");
+    timer_text.setAttribute("id", "timer_text");
+    this.ui.appendChild(timer_text);
   }
 
   // sets new map height and width
@@ -33,8 +39,23 @@ export default class Ui {
     this.height = properties.height;
   }
 
-  updateValues(player) {
+  updateValues(player, runtime) {
     const trash_text = document.getElementById("trashText");
     trash_text.innerHTML = "trash: " + player.trash_collected;
+
+    timer_text.innerHTML = secondsToTime(runtime / 1000) + "s";
+    +"s";
   }
+}
+
+function secondsToTime(e) {
+  const m = Math.floor((e % 3600) / 60)
+      .toString()
+      .padStart(2, "0"),
+    s = Math.floor(e % 60)
+      .toString()
+      .padStart(2, "0");
+
+  return m + ":" + s;
+  //return `${h}:${m}:${s}`;
 }

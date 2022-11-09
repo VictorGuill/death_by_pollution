@@ -158,8 +158,8 @@ export default class Trash {
     this.limit_x = map_width;
     this.limit_y = map_height;
 
-    this.width = map_width / this.scale_x;
-    this.height = map_height / this.scale_y;
+    this.width = (map_width / this.scale_x) * trash_scale;
+    this.height = (map_height / this.scale_y) * trash_scale;
 
     this.draw();
   }

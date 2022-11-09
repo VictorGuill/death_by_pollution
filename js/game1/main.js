@@ -56,7 +56,7 @@ function gameLoop(runtime) {
   oldTime = runtime;
 
   // stats.updateValues(dt, runtime, userInput, player);
-  updateGame(dt);
+  updateGame(dt, runtime);
 
   window.requestAnimationFrame(gameLoop);
 }
@@ -66,7 +66,7 @@ window.requestAnimationFrame(gameLoop);
 ////////////////////////////////
 // GAME UPDATE
 
-function updateGame(dt) {
+function updateGame(dt, runtime) {
   player.move(dt, accel * dt, top_speed, friction * dt, map_0);
 
   trash_array.forEach((element) => {
@@ -80,13 +80,13 @@ function updateGame(dt) {
       const trash = document.getElementById(element.id);
 
       trash.style.zIndex = 11;
-      trash.style.animation = "pick-item 1s cubic-bezier(.2,1.1,.84,1.02)";
+      trash.style.animation = "pick-item 1.2s cubic-bezier(.2,1.1,.84,1.02)";
 
       function delay(time) {
         return new Promise((resolve) => setTimeout(resolve, time));
       }
 
-      delay(1000).then(() => console.log(trash.remove()));
+      delay(1200).then(() => console.log(trash.remove()));
 
       trash_array.splice(elementPos, 1);
     }
@@ -98,7 +98,7 @@ function updateGame(dt) {
     }
   });
 
-  ui.updateValues(player);
+  ui.updateValues(player, runtime);
 }
 
 ////////////////////////////////

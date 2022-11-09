@@ -40,7 +40,7 @@ body {
   align-items: center;
   flex-direction: column;
   position: relative;
-  filter: contrast(1.07) saturate(1.06);
+  filter: contrast(1.1) saturate(1.1) brightness(1.1);
 }
 
 .map-style {
@@ -78,6 +78,7 @@ body {
   font-family: "Press Start 2P", cursive;
   text-transform: uppercase;
   font-size: 2.3vmin;
+  overflow: visible;
 }
 
 #trashText {
@@ -91,6 +92,14 @@ body {
   grid-row: 1/2;
 }
 
+#timer_text {
+  margin-left: 1vmin;
+  margin-right: auto;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  text-transform: lowercase;
+}
+
 #map {
   position: relative;
 }
@@ -100,8 +109,8 @@ body {
   background-image: url("../games/game1_assets/player.gif");
   background-repeat: no-repeat;
   background-size: contain;
-  transform: scaleX(-1);
   z-index: 5;
+  animation: turn-left 0s ease-in-out forwards;
 }
 
 .trash {
@@ -174,12 +183,35 @@ body {
 
 @keyframes pick-item {
   0% {
+    transform-origin: center;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.6;
   }
   100% {
-    transform: translateY(-2vmin) scale(50%) rotate(360deg);
-    opacity: 0.75;
+    transform: scale(50%) rotate(260deg);
+    opacity: 0;
     top: 10.4vmin;
     left: 8vmin;
+  }
+}
+
+@keyframes turn-right {
+  0% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes turn-left {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
   }
 }
 
