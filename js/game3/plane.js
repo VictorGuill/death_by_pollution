@@ -9,8 +9,8 @@ export default class Plane{
         this.screenX = inicialX;
         this.screenY = inicialY;
         // world
-        this.worldX = this.gp.map.x + inicialX;
-        this.worldY = this.screenY;
+        this.worldX = 0;
+        this.worldY = 0;
 
     //----ATRIBUTES----
         this.w = 50;
@@ -26,16 +26,16 @@ export default class Plane{
         this.state = "";
 
         this.pitch = 0;
-        this.pitchRate = 1;
+        this.pitchRate = 0.8;
         this.maxPitch = 45;
         
         this.cL = 1; //Lift coeficient
         this.cD = 0.2; //Drag coeficient
 
-        this.acceleration = 10;
-        this.deceleration = 8;
+        this.acceleration = 3;
+        this.deceleration = 2;
 
-        this.canPSM = false;
+        this.canPSM = true;
         this.cobraRange = false;
         this.cobraPitch = 0;
         this.inPSM = false;
@@ -81,11 +81,12 @@ export default class Plane{
     cobraManeuver() {
         if (this.gp.physics.getPercentSpeed(this, this.speed) >= 30){
             this.inPSM = true;
+            this.vfx.thrust.style.opacity = "0";
             this.cobraPitch += 5;
             if (this.cobraPitch >= 60){
                 this.cobraPitch = 60;
             }
-            this.speed -= this.deceleration*6;
+            this.speed -= this.deceleration*3;
             this.worldY += this.deceleration/4;
         } else {
             this.recoverCobra();
@@ -99,6 +100,7 @@ export default class Plane{
             if (this.cobraPitch <= 0){
                 this.cobraPitch = 0;
                 this.inPSM = false;
+                this.vfx.thrust.style.opacity = "1";
             }
         }  
     }
@@ -137,22 +139,22 @@ export default class Plane{
 
     updatePositions() {
         this.worldX += this.speedX/100;
-        this.worldY += this.speedY/100;
+        this.worldY += this.speedY/400;
         if (this.gp.physics.lift >= this.weight) {
             
         }
-        //this.screenX = ((7 * this.gp.map.w * (this.gp.physics.getPercentSpeed(this, this.speed))) * .001);
-        
-        // X = ( (7 * mapWidth * Vpercent) / 1000 )[when 100% speed --> maxScreenX = 70% of mapWidth]
+        this.screenX = ((5 * this.gp.map.w * (this.gp.physics.getPercentSpeed(this, this.speed))) * .001);
         this.screenY = this.worldY;
+        // X = ( (7 * mapWidth * Vpercent) / 1000 )[when 100% speed --> maxScreenX = 70% of mapWidth]
+        //this.screenY = this.worldY;
         
         if (this.worldX < 0) {
             this.worldX = 0;
         }
 
-        if (this.worldY < 0) {
+        /* if (this.worldY < 0) {
             this.worldY = 0;
-        }
+        } */
     }
 
     updateSpeed() {
@@ -278,14 +280,14 @@ export default class Plane{
     update() {
         this.fly();
         this.gp.physics.update(this);
-        this.gp.collisionDetection.mapBounderiesCheck(this);
+        //this.gp.collisionDetection.mapBounderiesCheck(this);
         
     /*  ------------ DEBUG ----------  */
-        console.log("-------SPEED-----");
+        /* console.log("-------SPEED-----");
         console.log("SPEED: "+ Math.round(this.speed));
-        console.log("Speed %: " + Math.round(this.gp.physics.getPercentSpeed(this, this.speed)));
-        console.log("In PSM: "+ this.inPSM);
-        console.log("Cobra range: "+this.cobraRange);
+        console.log("Speed %: " + Math.round(this.gp.physics.getPercentSpeed(this, this.speed))); */
+        //console.log("In PSM: "+ this.inPSM);
+        //console.log("Cobra range: "+this.cobraRange);
         //console.log("SpeedX: "+ Math.round(this.speedX));
         //console.log("SpeedY: "+ Math.round(this.speedY));
         //console.log("LIFT COEF: " + this.cL);
@@ -295,11 +297,11 @@ export default class Plane{
         //console.log("Weight: " + Math.round(this.weight));
         //console.log("Pitch: " +this.pitch);
         //console.log("pitch to rad: " +this.toRadiants(this.pitch));
-        /* console.log("-------POSITION-----");
-        console.log("World X: "+ this.worldX);
-        console.log("World Y: "+this.worldY)
-        console.log ("Screen X: "+ this.screenX);
-        console.log("Screen Y: "+this.screenY); */
+        console.log("-------POSITION-----");
+        console.log("World X: "+ Math.round(this.worldX));
+        console.log("World Y: " + Math.round(this.worldY))
+        console.log ("Screen X: "+ Math.round(this.screenX));
+        console.log("Screen Y: "+ Math.round(this.screenY));
         /* console.log("Collison = " + this.collision); */
     }
 
