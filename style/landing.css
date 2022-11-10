@@ -12,7 +12,7 @@ a:active { text-decoration: none; }
 }
 .background-landing-intro {
     position: absolute;
-    z-index: -2;
+    z-index: 0;
     width: 100vw;
     height: 100vh;
     left: 0px;
@@ -21,7 +21,7 @@ a:active { text-decoration: none; }
 }
 .linear-background-landing-intro {
     position: absolute;
-    z-index: -2;
+    z-index: 0;
     width: 60vw;
     height: 100vh;
     left: 0px;

@@ -52,8 +52,8 @@ export default class UI {
         this.liftCoef.setAttribute("id", "debug-lift");
         this.liftCoef.setAttribute("type", "range");
         this.liftCoef.setAttribute("step", "0.01");
-        this.liftCoef.setAttribute("min", "-1");
-        this.liftCoef.setAttribute("max", "1");
+        this.liftCoef.setAttribute("min", "0");
+        this.liftCoef.setAttribute("max", "1.5");
         liftLabel.setAttribute("for", "debug-lift");
         liftLabel.innerHTML = "LIFT";
        
@@ -67,8 +67,8 @@ export default class UI {
         this.dragCoef.setAttribute("id", "debug-drag");
         this.dragCoef.setAttribute("type", "range");
         this.dragCoef.setAttribute("step", "0.01");
-        this.dragCoef.setAttribute("min", "-1");
-        this.dragCoef.setAttribute("max", "1");
+        this.dragCoef.setAttribute("min", "0");
+        this.dragCoef.setAttribute("max", "1.5");
         dragLabel.setAttribute("for", "debug-drag");
         dragLabel.innerHTML = "DRAG";
         
@@ -92,7 +92,7 @@ export default class UI {
     }
 
     progress () {
-        this.progressBar.bar.style.width = this.gp.plane.worldX/30 +"px";
+        this.progressBar.bar.style.width = this.gp.plane.worldX/100 +"px";
     }
 
     draw() {

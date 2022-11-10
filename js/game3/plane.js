@@ -1,3 +1,5 @@
+import planeVfx from "./planeVFX.js";
+
 export default class Plane{
     constructor(gp, inicialX, inicialY) {
         this.gp = gp;
@@ -24,34 +26,40 @@ export default class Plane{
         this.state = "";
 
         this.pitch = 0;
-        this.pitchRate = 1.3;
+        this.pitchRate = 1;
         this.maxPitch = 45;
         
         this.cL = 1; //Lift coeficient
-        this.cD = 1; //Drag coeficient
+        this.cD = 0.2; //Drag coeficient
+
+        this.acceleration = 10;
+        this.deceleration = 8;
+
+        this.canPSM = false;
+        this.cobraRange = false;
+        this.cobraPitch = 0;
+        this.inPSM = false;
 
         this.mass = 100;
         this.weight = this.gp.physics.getWeight(this);
 
-        this.acceleration = 3;
-        this.deceleration = 3;
-
-        this.canPSM = false;
-        this.cobraPitch = 0;
-        this.inPSM = false;
-
         this.thrust = 0;
 
         this.addPlane();
+        this.vfx = new planeVfx(this);
     }
 
     addPlane() {
-        this.element = document.createElement("img");
+        this.element = document.createElement("div");
         this.element.setAttribute("id", this.id);
-        this.element.setAttribute("src", "/media/game3/f22.png");
+        const planeImg = document.createElement("img");
+        planeImg.setAttribute("src", "/media/game3/f22.png");
+        planeImg.style.width = "50px";
+        this.element.appendChild(planeImg);
         this.gp.map.element.appendChild(this.element);
         this.element.style.width = this.w+"px";
         this.element.style.height = this.h+"px";
+        this.element.style.zIndex = "1000";
     }
 
     accelerate() {
@@ -60,21 +68,25 @@ export default class Plane{
     }
 
     decelerate() {
-        if (this.canPSM && this.inPSM) {
-            this.cobraManeuver();
+        if (this.canPSM) {
+            if (this.inPSM || this.cobraRange){
+                this.cobraManeuver();
+            }
+            
         } else {
             this.speed -= this.deceleration;
         }
     }
 
     cobraManeuver() {
-        if (this.gp.physics.getPercentSpeed(this, this.speed) >= 45){
+        if (this.gp.physics.getPercentSpeed(this, this.speed) >= 30){
             this.inPSM = true;
             this.cobraPitch += 5;
             if (this.cobraPitch >= 60){
                 this.cobraPitch = 60;
             }
-            this.speed -= this.deceleration*8;
+            this.speed -= this.deceleration*6;
+            this.worldY += this.deceleration/4;
         } else {
             this.recoverCobra();
         }
@@ -108,10 +120,8 @@ export default class Plane{
     }
 
     pitchDown() {
-        if ( this.screenY > this.w/2){
-            if (!this.inPSM) {
-                this.pitch -= this.pitchRate;
-            }
+        if (!this.inPSM) {
+            this.pitch -= this.pitchRate;
         }
     }
 
@@ -126,9 +136,13 @@ export default class Plane{
 
 
     updatePositions() {
-        this.worldX += this.speed/100;
+        this.worldX += this.speedX/100;
         this.worldY += this.speedY/100;
-        this.screenX = ((7 * this.gp.map.w * (this.gp.physics.getPercentSpeed(this, this.speed))) * .001);
+        if (this.gp.physics.lift >= this.weight) {
+            
+        }
+        //this.screenX = ((7 * this.gp.map.w * (this.gp.physics.getPercentSpeed(this, this.speed))) * .001);
+        
         // X = ( (7 * mapWidth * Vpercent) / 1000 )[when 100% speed --> maxScreenX = 70% of mapWidth]
         this.screenY = this.worldY;
         
@@ -158,8 +172,10 @@ export default class Plane{
             this.speedX = 0;
         }
 
-        if(this.canPSM && this.gp.physics.getPercentSpeed(this, this.speed) >= 80) {
-            this.inPSM = true;
+        if(this.canPSM && this.gp.physics.getPercentSpeed(this, this.speed) >= 70) {
+            this.cobraRange = true;
+        } else {
+            this.cobraRange = false;
         }
     }
 
@@ -169,6 +185,10 @@ export default class Plane{
         } else if (this.pitch >= this.maxPitch) {
             this.pitch = this.maxPitch;
         }
+
+        /* if ( this.screenY < this.w/2){
+            this.levelPitch();
+        } */
 
         if (this.inPSM) {
             this.rotate(this.cobraPitch);
@@ -209,6 +229,8 @@ export default class Plane{
         this.updatePositions();
         this.updatePitch();
         this.updateSpeed();
+        this.vfx.update();
+        //toggle level pitch for ez mode
         this.levelPitch();
     }
 
@@ -261,14 +283,16 @@ export default class Plane{
     /*  ------------ DEBUG ----------  */
         console.log("-------SPEED-----");
         console.log("SPEED: "+ Math.round(this.speed));
-        console.log("Speed %: " + this.gp.physics.getPercentSpeed(this, this.speed));
-        console.log("SpeedX: "+ Math.round(this.speedX));
-        console.log("SpeedY: "+ Math.round(this.speedY));
-        console.log("LIFT COEF: " + this.cL);
-        console.log("DRAG COEF: " +this.cD);
-        console.log("Lift: "+ Math.round(this.gp.physics.lift));
-        console.log("Drag: " + Math.round(this.gp.physics.drag));
-        console.log("Weight: " + Math.round(this.weight));
+        console.log("Speed %: " + Math.round(this.gp.physics.getPercentSpeed(this, this.speed)));
+        console.log("In PSM: "+ this.inPSM);
+        console.log("Cobra range: "+this.cobraRange);
+        //console.log("SpeedX: "+ Math.round(this.speedX));
+        //console.log("SpeedY: "+ Math.round(this.speedY));
+        //console.log("LIFT COEF: " + this.cL);
+        //console.log("DRAG COEF: " +this.cD);
+        //console.log("Lift: "+ Math.round(this.gp.physics.lift));
+        //console.log("Drag: " + Math.round(this.gp.physics.drag));
+        //console.log("Weight: " + Math.round(this.weight));
         //console.log("Pitch: " +this.pitch);
         //console.log("pitch to rad: " +this.toRadiants(this.pitch));
         /* console.log("-------POSITION-----");

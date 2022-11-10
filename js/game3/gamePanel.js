@@ -20,8 +20,9 @@ export class GamePanel {
         this.map = new Map(this);
         this.collisionDetection = new CollisionDetection(this);
         this.physics = new Phisics(this);
-        this.plane = new Plane(this, 20, 40);
+        this.plane = new Plane(this, 300, 40);
         this.ui = new UI (this);
+        
         
     }
 

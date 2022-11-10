@@ -2,9 +2,11 @@ export default class Phisics {
     constructor(gamePanel){
         this.gp = gamePanel;
 
-        this.gravity = -9.8;
+        this.gravity = -5;
 
         this.drag = 0;
+
+        this.staticDrag = 0;
 
         this.lift = 0;
 
@@ -13,8 +15,11 @@ export default class Phisics {
 
     // ------ UTILITY ------
     getWeight(entity){
+        this.staticDrag = entity.acceleration/6;
         return Math.abs(entity.mass * this.gravity);
     }
+
+
 
     toRadiants (angle) {
         return angle * (Math.PI / 180);
@@ -25,43 +30,43 @@ export default class Phisics {
         return speedPerCent;
     }
 
-    getAngleCoefficient(entity) {
-        return 2 * Math.PI * this.toRadiants(entity.pitch);
+    getAngleCoefficient() {
+        return Math.PI * this.toRadiants(this.gp.plane.pitch);
     }
 
 
     // ------ LIFT ------
     applyLift(entity) {
-  
+        this.lift = ((entity.speed**2)/entity.weight) * entity.cL;
+        if (this.lift >= entity.weight) {
+            this.lift = entity.weight;
+        }
     }
 
     // ------ DRAG ------
-    calcDrag(entity) {
-        this.drag = 0;
-
-        if (this.drag <= 0) {
-            this.drag = 0;
-        }
+    applyDrag(entity) {
+        this.drag = (.3 * entity.speedX) * this.getAngleCoefficient() * entity.cD;
+        entity.speedX -= this.drag;
     }
 
 
     
     // ------ SPEEDS ------
     calcSpeed(entity) {
-        return entity.speed - this.drag;
+        return entity.speed - this.staticDrag;
     }
 
     calcSpeedY(entity) {
-        return entity.speed * Math.sin(this.toRadiants(entity.pitch));
+        return entity.speed * Math.sin(this.toRadiants(entity.pitch)) - entity.weight + this.lift;
     }
 
     calcSpeedX(entity) {
-        return entity.speed * Math.cos(this.toRadiants(entity.pitch));
+        return (entity.speed * Math.cos(this.toRadiants(entity.pitch)));
     }
 
 
     update(entity){
         this.applyLift(entity);
-        this.calcDrag(entity);
+        this.applyDrag(entity);
     }
 }

@@ -29,28 +29,35 @@ body {
     height: 80%;
     width: 100%;
     border: 4px solid magenta;
+    z-index: 900;
 }
 
 #map {
     position: relative;
     width: 100vw;
     height: 70vh;
+}
+.layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     background-position-y: bottom;
-    background-size: cover;
+    background-size: auto;
+    
 }
 
 #planeScreenZone {
     position: absolute;
     width: 70%;
     height: 100%;
+    top: 0;
     border: 4px solid #cc9900;
-    z-index: 1;
+    /* z-index: 200; */
 }
 
 #plane {
     position: absolute;
     width: 50px;
-    border: 2px solid red;
 }
 
 #progress-bar {
