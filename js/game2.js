@@ -1,47 +1,76 @@
-function rand(n) {
-    // creamos un numero al azar entre la cantidad de imágenes
-    return (Math.floor(Math.random() * n + 1));
+const numMount = 4;
+const numTrees = 7;
+
+const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+//Trees
+var tree = [];
+for (let i=0; i < numTrees; i++) {
+  tree.push("");
 }
-//guardas las imagenes en el array
-var rand_img = new Array();
-rand_img[0] = "../media/br.jpg";
-rand_img[1] = "../media/lb.jpg";
-rand_img[2] = "../media/lr.jpg";
-rand_img[3] = "../media/lt.jpg";
-rand_img[4] = "../media/tb.jpg";
-rand_img[5] = "../media/tr.jpg";
+tree.forEach(
+    function (el) {
+        var div = document.createElement("div");
+        div.className = "tree";
+        div.innerHTML = el;
+        document.querySelector('#map').appendChild(div);
+        div.style.background = 'green';
+        div.style.color = 'white';
+        div.style.width = '60px';
+        div.style.height = '60px';
+        div.style.borderRadius = '30px';
+        div.style.position = 'relative';
+        randomObjects(div);
+    }
+);
 
-function randomPiece() {
-    document.getElementById("piece").src = rand_img[rand(rand_img.length) - 1];
-    document.getElementById("piece2").src = rand_img[rand(rand_img.length) - 1];
-    document.getElementById("piece3").src = rand_img[rand(rand_img.length) - 1];
+//Mountains
+var mount = [];
+for (let i=0; i < numMount; i++) {
+  mount.push("");
 }
+mount.forEach(
+    function (el) {
+        var div = document.createElement("div");
+        div.className = "tree";
+        div.innerHTML = el;
+        document.querySelector('#map').appendChild(div);
+        div.style.width = '60px';
+        div.style.height = '0px';
+        div.style.borderRight = '30px solid transparent';
+        div.style.borderLeft = '30px solid transparent';
+        div.style.borderBottom = '60px solid brown';
+        randomObjects(div);
+    }
+);
 
-const getRandom = (min, max) => Math.floor(Math.random()*(max-min+1)+min);
+//Function for the random position of the objects.
+function randomObjects(obj) {
 
-const square = document.getElementById("tree")
-square.style.gridColumnStart = getRandom(0, 14); // 👈🏼 Horizontally
-square.style.gridRowStart    = getRandom(0, 14); // 👈🏼 Vertically
+    if (obj == document.getElementById("mountain") || obj == document.getElementById("mountain2")) {
+        obj.style.gridColumnStart = getRandom(2, 13); //Column position
+        obj.style.gridRowStart = getRandom(2, 10);
+    } else {
+        obj.style.gridColumnStart = getRandom(2, 13); //Column position
+        obj.style.gridRowStart = getRandom(2, 13); //Row position
+    }
 
-const square2 = document.getElementById("tree2")
-square2.style.gridColumnStart = getRandom(0, 14); // 👈🏼 Horizontally
-square2.style.gridRowStart    = getRandom(0, 14); // 👈🏼 Vertically
+    var i = 0;
+    while (obj.style.gridColumnStart == 2
+        || obj.style.gridRowStart == 2
+        || obj.style.gridColumnStart == 13
+        || obj.style.gridRowStart == 13) {
+        if (obj == document.getElementById("mountain") || obj == document.getElementById("mountain2")) {
+            obj.style.gridColumnStart = getRandom(1, 13); //Column position
+            obj.style.gridRowStart = getRandom(1, 10);
+        } else {
+            obj.style.gridColumnStart = getRandom(2, 13); //Column position
+            obj.style.gridRowStart = getRandom(2, 13); //Row position
+        }
 
-const square3 = document.getElementById("tree3")
-square3.style.gridColumnStart = getRandom(0, 14); // 👈🏼 Horizontally
-square3.style.gridRowStart    = getRandom(0, 14); // 👈🏼 Vertically
-
-const square4 = document.getElementById("tree4")
-square4.style.gridColumnStart = getRandom(0, 14); // 👈🏼 Horizontally
-square4.style.gridRowStart    = getRandom(0, 14); // 👈🏼 Vertically
-
-const mount = document.getElementById("mountain")
-mount.style.gridColumnStart = getRandom(0, 14); // 👈🏼 Horizontally
-mount.style.gridRowStart    = getRandom(0, 14); // 👈🏼 Vertically
-
-const mount2 = document.getElementById("mountain2")
-mount2.style.gridColumnStart = getRandom(0, 14); // 👈🏼 Horizontally
-mount2.style.gridRowStart    = getRandom(0, 14); // 👈🏼 Vertically
+        i++;
+    }
+}
 
 let currentDroppable = null;
 
@@ -92,9 +121,6 @@ piece.onmousedown = function (event) {
 
 };
 
-function enterDroppable(elem) {
-    elem.style.background = 'pink';
-}
 
 function leaveDroppable(elem) {
     elem.style.background = '';

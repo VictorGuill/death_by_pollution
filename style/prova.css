@@ -10,8 +10,8 @@ body {
     display: grid;
     grid-template-columns: repeat(14, 60px);
     grid-template-rows: repeat(14, 60px);
-    height: 95.5vmin;
-    width: 95.5vmin;
+    height: 840px;
+    width: 840px;
     background-color: wheat;
     border-radius: 10px;
 }
@@ -29,15 +29,14 @@ body {
     align-self: center;
 }
 
-img,
-.start,
-.end {
+#start,
+#end {
     width: 60px;
     height: 60px;
     border-radius: 5px;
 }
 
-.start {
+#start {
     text-align: center;
     background-color: purple;
     color: white;
@@ -45,35 +44,10 @@ img,
     grid-row-start: 2;
 }
 
-.end {
+#end {
     text-align: center;
     background-color: black;
     color: white;
     grid-column-start: 13;
     grid-row-start: 13;
-}
-
-#tree,
-#tree2,
-#tree3,
-#tree4,
-#tree5,
-#tree6,
-#tree7 {
-    text-align: center;
-    background-color: green;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
-    position: relative;
-}
-
-#mountain, #mountain2 {
-    width: 60px;
-    height: 0px;
-    border-right: 30px solid transparent;
-    border-left: 30px solid transparent;
-    border-bottom: 60px solid brown;
-
 }
