@@ -1,5 +1,6 @@
 const numMount = 4;
-const numTrees = 7;
+const numTrees = 10;
+const size = 14;
 
 const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -20,19 +21,19 @@ tree.forEach(
         div.style.height = '60px';
         div.style.borderRadius = '30px';
         div.style.position = 'relative';
-        randomObjects(div);
+        randomObjects(div, false);
     }
 );
 
 //Mountains
-var mount = [];
+var mounts = [];
 for (let i=0; i < numMount; i++) {
-  mount.push("");
+  mounts.push("");
 }
-mount.forEach(
+mounts.forEach(
     function (el) {
         var div = document.createElement("div");
-        div.className = "tree";
+        div.className = "mount";
         div.innerHTML = el;
         document.querySelector('#map').appendChild(div);
         div.style.width = '60px';
@@ -40,36 +41,34 @@ mount.forEach(
         div.style.borderRight = '30px solid transparent';
         div.style.borderLeft = '30px solid transparent';
         div.style.borderBottom = '60px solid brown';
-        randomObjects(div);
+        randomObjects(div, true);
     }
 );
 
-//Function for the random position of the objects.
-function randomObjects(obj) {
 
-    if (obj == document.getElementById("mountain") || obj == document.getElementById("mountain2")) {
-        obj.style.gridColumnStart = getRandom(2, 13); //Column position
-        obj.style.gridRowStart = getRandom(2, 10);
-    } else {
-        obj.style.gridColumnStart = getRandom(2, 13); //Column position
-        obj.style.gridRowStart = getRandom(2, 13); //Row position
-    }
+
+
+//Function for the random position of the objects.
+function randomObjects(obj, isMount) {
+    let startEl = document.querySelector('#start');
+    let startPosition = getComputedStyle(startEl);
+    let endEl = document.querySelector('#end');
+    let endPosition = getComputedStyle(endEl);
 
     var i = 0;
-    while (obj.style.gridColumnStart == 2
-        || obj.style.gridRowStart == 2
-        || obj.style.gridColumnStart == 13
-        || obj.style.gridRowStart == 13) {
-        if (obj == document.getElementById("mountain") || obj == document.getElementById("mountain2")) {
-            obj.style.gridColumnStart = getRandom(1, 13); //Column position
-            obj.style.gridRowStart = getRandom(1, 10);
+    do {
+        if (isMount) {
+            obj.style.gridColumnStart = getRandom(1, size-1); //Column position
+            obj.style.gridRowStart = getRandom(2, size);
         } else {
-            obj.style.gridColumnStart = getRandom(2, 13); //Column position
-            obj.style.gridRowStart = getRandom(2, 13); //Row position
+            obj.style.gridColumnStart = getRandom(1, size); //Column position
+            obj.style.gridRowStart = getRandom(1, size); //Row position
         }
-
         i++;
-    }
+    } while (obj.style.gridColumnStart == startPosition.gridColumnStart
+        || obj.style.gridRowStart == startPosition.gridRowStart
+        || obj.style.gridColumnStart == endPosition.gridColumnStart
+        || obj.style.gridRowStart == endPosition.gridRowStart);
 }
 
 let currentDroppable = null;
