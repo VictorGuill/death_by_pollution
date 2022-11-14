@@ -11,19 +11,11 @@ export default class UI {
         this.gp.element.appendChild(this.element);
     }
 
-    createElement(uiElement, id, x, y, w, h) {
-        this[uiElement] = document.createElement("div");
-        this[uiElement].setAttribute("id", id);
-        this[uiElement].style.left = x;
-        this[uiElement].style.top = y;
-        this[uiElement].style.width = w;
-        this[uiElement].style.height = h;
-        this.element.appendChild(this[uiElement]);
-    }
-
     addElements(){
         this.addProgressBar();
-        this.addDebugControls();
+        this.addTimeScore();
+        this.addHud();
+       // this.addDebugControls();
     }
 
     addDebugControls(){
@@ -83,15 +75,67 @@ export default class UI {
 
     }
 
+    addHud(){
+        this.hud = document.createElement("div");
+        this.hud.setAttribute("id", "hud");
+        //speedometer
+        this.hud.speedometer = document.createElement("div");
+        this.hud.speedometer.setAttribute("id", "speedometer");
+            //label
+        this.hud.speedometer.label = document.createElement("p");
+        this.hud.speedometer.label.setAttribute("id", "speedometer-label");
+        this.hud.speedometer.label.innerHTML = "SPEED";
+        this.hud.speedometer.appendChild(this.hud.speedometer.label);
+            //metric
+        this.hud.speedometer.metric = document.createElement("div");
+        this.hud.speedometer.metric.setAttribute("id", "speedometer-metric");
+        this.hud.speedometer.appendChild(this.hud.speedometer.metric);
+
+        //altimeter
+        this.hud.altimeter = document.createElement("div");
+        this.hud.altimeter.setAttribute("id", "altimeter");
+            //label
+        this.hud.altimeter.label = document.createElement("p");
+        this.hud.altimeter.label.setAttribute("id", "altimeter-label");
+        this.hud.altimeter.label.innerHTML = "ALT";
+        this.hud.altimeter.appendChild(this.hud.altimeter.label);
+            //metric
+        this.hud.altimeter.metric = document.createElement("div");
+        this.hud.altimeter.metric.setAttribute("id", "altimeter-metric");
+        this.hud.altimeter.appendChild(this.hud.altimeter.metric);
+
+        this.hud.appendChild(this.hud.speedometer);
+        this.hud.appendChild(this.hud.altimeter);
+        this.element.appendChild(this.hud);
+    }
+
+    addTimeScore(){
+        this.timeScore = document.createElement("div");
+        this.timeScore.setAttribute("id", "time-score");
+        const timeLabel = document.createElement("p");
+        timeLabel.innerHTML = "TIME 23:40:11";
+
+        const scoreLabel = document.createElement("p");
+        scoreLabel.innerHTML = "SCORE 000000";
+
+        this.timeScore.appendChild(timeLabel);
+        this.timeScore.appendChild(scoreLabel);
+
+        this.element.appendChild(this.timeScore);
+
+    }
+
     addProgressBar(){
-        this.createElement("progressBar", "progress-bar", "50%", "40", "300px", "50px");
+        this.progressBar = document.createElement("div");
+        this.progressBar.setAttribute("id", "progress-bar");
         this.progressBar.bar = document.createElement("div");
         this.progressBar.bar.setAttribute("id", "bar");
         this.progressBar.bar.style.width = "1px";
         this.progressBar.appendChild(this.progressBar.bar);
+        this.element.appendChild(this.progressBar);
     }
 
-    progress () {
+    progress() {
         this.progressBar.bar.style.width = this.gp.plane.worldX/100 +"px";
     }
 

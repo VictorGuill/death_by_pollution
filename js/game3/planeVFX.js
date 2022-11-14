@@ -16,7 +16,7 @@ export default class planeVfx {
         this.thrust.style.top = "14px";
         this.thrust.style.left = "-14px";
         this.thrust.style.transformOrigin = "right";
-        this.thrust.src = "/media/game3/thurst/fire.gif";
+        this.thrust.src = "/media/game3/thurst/blue.gif";
         this.plane.element.appendChild(this.thrust);
     }
 

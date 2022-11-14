@@ -26,14 +26,14 @@ export default class Plane{
         this.state = "";
 
         this.pitch = 0;
-        this.pitchRate = 0.8;
+        this.pitchRate = 2;
         this.maxPitch = 45;
         
         this.cL = 1; //Lift coeficient
         this.cD = 0.2; //Drag coeficient
 
         this.acceleration = 3;
-        this.deceleration = 2;
+        this.deceleration = 3;
 
         this.canPSM = true;
         this.cobraRange = false;
