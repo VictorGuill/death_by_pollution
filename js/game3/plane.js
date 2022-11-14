@@ -21,19 +21,19 @@ export default class Plane{
         this.speed = 0;
         this.speedX = 0;
         this.speedY = 0;
-        this.maxSpeed = 1500;
+        this.maxSpeed = 800;
 
         this.state = "";
 
         this.pitch = 0;
-        this.pitchRate = 2;
+        this.pitchRate = 5;
         this.maxPitch = 45;
         
         this.cL = 1; //Lift coeficient
         this.cD = 0.2; //Drag coeficient
 
-        this.acceleration = 3;
-        this.deceleration = 3;
+        this.acceleration = 5;
+        this.deceleration = 4;
 
         this.canPSM = true;
         this.cobraRange = false;
@@ -64,31 +64,28 @@ export default class Plane{
         this.element.style.zIndex = "1000";
     }
 
-    accelerate(progress) {
-        this.speed += this.acceleration * progress;
+    accelerate(dt) {
+        this.speed += this.acceleration * dt;
     }
 
-    decelerate(progress) {
-        if (this.canPSM) {
-            if (this.inPSM || this.cobraRange){
-                this.cobraManeuver();
-            }
-            
+    decelerate(dt) {
+        if (this.inPSM || this.cobraRange){
+            this.cobraManeuver(dt);
         } else {
-            this.speed -= this.deceleration * progress;
+        this.speed -= this.deceleration * dt;
         }
     }
 
-    cobraManeuver() {
-        if (this.gp.physics.getPercentSpeed(this, this.speed) >= 30){
+    cobraManeuver(dt) {
+        if (this.speed >= 300){
             this.inPSM = true;
             this.vfx.thrust.style.opacity = "0";
-            this.cobraPitch += 5;
+            this.cobraPitch += 3;
             if (this.cobraPitch >= 60){
                 this.cobraPitch = 60;
             }
-            this.speed -= this.deceleration*3;
-            this.worldY += this.deceleration/4;
+            this.speed -= this.deceleration*10 * dt;
+            this.worldY += this.deceleration * dt;
         } else {
             this.recoverCobra();
         }
@@ -106,25 +103,25 @@ export default class Plane{
         }  
     }
 
-    levelPitch() {
+    levelPitch(dt) {
         if (this.pitch == 0) {
             this.pitch = 0;
         } else if (this.pitch < 0) {
-            this.pitch+= this.pitchRate/4;
+            this.pitch+= this.pitchRate/4 * dt;
         } else if (this.pitch > 0) {
-            this.pitch-= this.pitchRate/4;
+            this.pitch-= this.pitchRate/4 * dt;
         }
     }
 
-    pitchUp() {
+    pitchUp(dt) {
         if (!this.inPSM) {
-            this.pitch += this.pitchRate;
+            this.pitch += this.pitchRate * dt;
         }
     }
 
-    pitchDown() {
+    pitchDown(dt) {
         if (!this.inPSM) {
-            this.pitch -= this.pitchRate;
+            this.pitch -= this.pitchRate * dt;
         }
     }
 
@@ -138,9 +135,9 @@ export default class Plane{
     }
 
 
-    updatePositions() {
-        this.worldX += this.speedX/10;
-        this.worldY += this.speedY/10;
+    updatePositions(dt) {
+        this.worldX += this.speedX * dt/10;
+        this.worldY += this.speedY * dt/40;
         if (this.gp.physics.lift >= this.weight) {
             
         }
@@ -175,7 +172,7 @@ export default class Plane{
             this.speedX = 0;
         }
 
-        if(this.canPSM && this.gp.physics.getPercentSpeed(this, this.speed) >= 70) {
+        if(this.canPSM && this.speed >= 1300) {
             this.cobraRange = true;
         } else {
             this.cobraRange = false;
@@ -201,7 +198,7 @@ export default class Plane{
         }
     }
 
-    move(progress){
+    move(dt){
         if (this.gp.input["ArrowUp"] || this.gp.input["ArrowDown"] ||
             this.gp.input["ArrowRight"] || this.gp.input["ArrowLeft"] ||
             this.gp.input[" "]){
@@ -215,37 +212,37 @@ export default class Plane{
                     }
                 }
                 if(this.gp.input["ArrowUp"]){
-                    this.pitchDown();
+                    this.pitchDown(dt);
                 }
                 if(this.gp.input["ArrowDown"]){
-                    this.pitchUp();
+                    this.pitchUp(dt);
                 }
                 if(this.gp.input["ArrowRight"]){
-                   this.accelerate(progress);
+                   this.accelerate(dt);
                 } 
                 if (this.gp.input["ArrowLeft"]) {
-                    this.decelerate(progress);
+                    this.decelerate(dt);
                 }
             }
             
         }
     }
 
-    fly(progress) {
-        this.move(progress);
+    fly(dt) {
+        this.move(dt);
         this.updateSpeed();
-        this.updatePitch();
-        this.updatePositions();
+        this.updatePitch(dt);
+        this.updatePositions(dt);
         this.vfx.update();
         //toggle level pitch for ez mode
         if(this.ezModePitch){
-            this.levelPitch();
+            this.levelPitch(dt);
         }
         
     }
 
-    update(progress) {
-        this.fly(progress);
+    update(dt) {
+        this.fly(dt);
         //this.gp.physics.update(this);
         //this.gp.collisionDetection.mapBounderiesCheck(this);
         

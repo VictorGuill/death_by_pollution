@@ -82,9 +82,12 @@ export default class UI {
         this.hud.speedometer = document.createElement("div");
         this.hud.speedometer.setAttribute("id", "speedometer");
             //img
+        const speedometerImgContainer = document.createElement("div");
+        speedometerImgContainer.setAttribute("id", "speedometerImgContainer");
         const speedometerImg = document.createElement("img");
         speedometerImg.src = "/media/game3/hud/speedometer_hud.png";
-        this.hud.speedometer.appendChild(speedometerImg);
+        speedometerImgContainer.appendChild(speedometerImg);
+        this.hud.speedometer.appendChild(speedometerImgContainer);
             //RES
         const speedometerElements = document.createElement("div");
         speedometerElements.setAttribute("id", "speedometer-elements");
@@ -126,6 +129,8 @@ export default class UI {
         this.hud.appendChild(this.hud.speedometer);
         this.hud.appendChild(this.hud.altimeter);
         this.element.appendChild(this.hud);
+
+        this.power = document.querySelector("#speedometerImgContainer",":after");
     }
 
     addTimeScore(){
@@ -157,6 +162,7 @@ export default class UI {
     progress() {
         this.progressBar.bar.style.width = this.gp.plane.worldX/100 +"px";
     }
+    
 
     draw() {
         this.progress();

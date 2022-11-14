@@ -6,12 +6,12 @@ const dragCoef = document.getElementById("debug-drag");
 const mass = document.getElementById("debug-mass");
 
 function loop(timestamp) {
-    var progress = (timestamp - lastRender)/1000;
-    console.log("progresstime: "+progress);
+    var dt = (timestamp - lastRender)/100;
+    console.log("progresstime: "+dt);
     //liftCoef.addEventListener('input', gp.plane.setLiftCoef(liftCoef.valueAsNumber));
     //dragCoef.addEventListener('input', gp.plane.setDragCoef(dragCoef.valueAsNumber));
     //mass.addEventListener('input', gp.plane.setMass(mass.valueAsNumber));
-    gp.update(progress);
+    gp.update(dt);
     gp.draw();
 /*     console.log("TS: "+timestamp);
     console.log("LR: "+lastRender); */
