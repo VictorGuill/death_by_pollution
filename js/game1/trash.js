@@ -21,7 +21,7 @@ export default class Trash {
     this.limit_y = 0;
 
     this.height_range;
-    this.width_marings;
+    this.width_margins;
 
     this.trashDOM = document.createElement("div");
     this.imgID;
@@ -43,73 +43,73 @@ export default class Trash {
         this.scale_x = 65;
         this.scale_y = 25;
         this.height_range = [0.16, 0.65];
-        this.width_margin = map_width * 0.03;
+        this.width_margins = map_width * 0.03;
         break;
       case 1:
         this.scale_x = 80;
         this.scale_y = 30;
         this.height_range = [0.26, 0.985];
-        this.width_margin = map_width * 0.03;
+        this.width_margins = map_width * 0.03;
         break;
       case 2:
         this.scale_x = 40;
         this.scale_y = 30;
         this.height_range = [0.35, 0.85];
-        this.width_margin = map_width * 0.05;
+        this.width_margins = map_width * 0.05;
         break;
       case 3:
         this.scale_x = 35;
         this.scale_y = 30;
         this.height_range = [0.28, 0.8];
-        this.width_margin = map_width * 0.07;
+        this.width_margins = map_width * 0.07;
         break;
       case 4:
         this.scale_x = 30;
         this.scale_y = 45;
         this.height_range = [0.3, 0.99];
-        this.width_margin = map_width * 0.07;
+        this.width_margins = map_width * 0.07;
         break;
       case 5:
         this.scale_x = 60;
         this.scale_y = 50;
         this.height_range = [0.63, 0.9];
-        this.width_margin = map_width * 0.023;
+        this.width_margins = map_width * 0.023;
         break;
       case 6:
         this.scale_x = 43;
         this.scale_y = 45;
         this.height_range = [0.63, 0.9];
-        this.width_margin = map_width * 0.07;
+        this.width_margins = map_width * 0.07;
         break;
       case 7:
         this.scale_x = 60;
         this.scale_y = 35;
         this.height_range = [0.63, 0.9];
-        this.width_margin = map_width * 0.023;
+        this.width_margins = map_width * 0.023;
         break;
       case 8:
         this.scale_x = 22;
         this.scale_y = 16.3;
         this.height_range = [0.76, 0.98];
-        this.width_margin = map_width * 0.07;
+        this.width_margins = map_width * 0.07;
         break;
       case 9:
         this.scale_x = 70;
         this.scale_y = 35;
         this.height_range = [0.16, 0.4];
-        this.width_margin = map_width * 0.023;
+        this.width_margins = map_width * 0.023;
         break;
       case 10:
         this.scale_x = 50;
         this.scale_y = 55;
         this.height_range = [0.85, 0.99];
-        this.width_margin = map_width * 0.023;
+        this.width_margins = map_width * 0.023;
         break;
       case 11:
         this.scale_x = 58;
         this.scale_y = 40;
         this.height_range = [0.15, 0.7];
-        this.width_margin = map_width * 0.023;
+        this.width_margins = map_width * 0.023;
         break;
     }
 
@@ -117,8 +117,8 @@ export default class Trash {
     this.height = (map_height / this.scale_y) * trash_scale;
 
     this.x = randomIntFromInterval(
-      this.width_margin - this.width,
-      map_width - this.width_margin
+      this.width_margins,
+      map_width - this.width_margins - this.width
     );
     this.y = randomIntFromInterval(
       map_height * this.height_range[0],

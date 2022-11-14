@@ -186,4 +186,8 @@ export default class Player {
     }
     return false;
   }
+
+  perkCollected(perk) {
+    console.log(perk);
+  }
 }

@@ -108,8 +108,15 @@ body {
 .trash {
   position: absolute;
 
-  width: 100%;
-  height: 100%;
+  background-size: cover;
+  background-position: center;
+
+  animation: item-spawn 0.75s, item-idle 7s linear infinite;
+  animation-direction: alternate;
+}
+
+.perk {
+  position: absolute;
 
   background-size: cover;
   background-position: center;
