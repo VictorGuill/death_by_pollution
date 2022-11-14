@@ -79,6 +79,7 @@ body {
   text-transform: uppercase;
   font-size: 2.3vmin;
   overflow: visible;
+  filter: url(#chromaticAberration2);
 }
 
 #trashText {
@@ -102,6 +103,7 @@ body {
 
 #map {
   position: relative;
+  filter: url(#chromaticAberration);
 }
 
 #player {
@@ -120,7 +122,7 @@ body {
   background-position: center;
   width: 100%;
   height: 100%;
-  animation: item-idle 10s linear infinite;
+  animation: item-idle 7s linear infinite;
   transform-origin: center;
   animation-direction: alternate;
 }
@@ -177,7 +179,7 @@ body {
   0% {
   }
   100% {
-    transform: translate(20%, 5%);
+    transform: translate(30%, 20%);
   }
 }
 
@@ -194,6 +196,22 @@ body {
     opacity: 0;
     top: 10.4vmin;
     left: 8vmin;
+  }
+}
+
+@keyframes pick-powerup {
+  0% {
+    transform-origin: center;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(50%) rotate(260deg);
+    opacity: 0;
+    top: 45vmin;
+    left: 45vmin;
   }
 }
 

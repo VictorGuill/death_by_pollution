@@ -86,7 +86,7 @@ function updateGame(dt, runtime) {
         return new Promise((resolve) => setTimeout(resolve, time));
       }
 
-      delay(1200).then(() => console.log(trash.remove()));
+      delay(1200).then(() => trash.remove());
 
       trash_array.splice(elementPos, 1);
     }

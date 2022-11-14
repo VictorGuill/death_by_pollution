@@ -8,6 +8,55 @@
     <link rel="stylesheet" href="../style/juego1.css" />
   </head>
   <body>
+    <svg width="0" height="0">
+      <filter id="chromaticAberration">
+        <feColorMatrix
+          type="matrix"
+          result="red_"
+          values="1 0 0 0 0
+              0 0 0 0 0 
+              0 0 0 0 0 
+              0 0 0 1 0"
+        />
+        <feOffset in="red_" dx=".5" dy="0" result="red" />
+        <feColorMatrix
+          type="matrix"
+          in="SourceGraphic"
+          result="blue_"
+          values="0 0 0 0 0
+              0 1 0 0 0 
+              0 0 1 0 0 
+              0 0 0 1 0"
+        />
+        <feOffset in="blue_" dx="-.5" dy="0" result="blue" />
+        <feBlend mode="screen" in="red" in2="blue" />
+      </filter>
+    </svg>
+    <svg width="0" height="0">
+      <filter id="chromaticAberration2">
+        <feColorMatrix
+          type="matrix"
+          result="red_"
+          values="1 0 0 0 0
+              0 0 0 0 0 
+              0 0 0 0 0 
+              0 0 0 1 0"
+        />
+        <feOffset in="red_" dx="1" dy="0" result="red" />
+        <feColorMatrix
+          type="matrix"
+          in="SourceGraphic"
+          result="blue_"
+          values="0 0 0 0 0
+              0 1 0 0 0 
+              0 0 1 0 0 
+              0 0 0 1 0"
+        />
+        <feOffset in="blue_" dx="-1" dy="0" result="blue" />
+        <feBlend mode="screen" in="red" in2="blue" />
+      </filter>
+    </svg>
+
     <div class="scanline"></div>
     <script src="../js/game1/main.js" type="module"></script>
   </body>
