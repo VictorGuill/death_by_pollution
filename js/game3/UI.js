@@ -81,6 +81,9 @@ export default class UI {
         //speedometer
         this.hud.speedometer = document.createElement("div");
         this.hud.speedometer.setAttribute("id", "speedometer");
+            //img
+        const speedometerImg = document.createElement("img");
+
             //label
         this.hud.speedometer.label = document.createElement("p");
         this.hud.speedometer.label.setAttribute("id", "speedometer-label");
