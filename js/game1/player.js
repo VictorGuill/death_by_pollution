@@ -32,7 +32,7 @@ export default class Player {
     this.add();
   }
 
-  // create div with object id and appends to DOM
+  // set player div attributes and append to DOM
   add() {
     let map_width = this.map.getBoundingClientRect().width;
     let map_height = this.map.getBoundingClientRect().height;
@@ -111,18 +111,12 @@ export default class Player {
 
     if (userInput["ArrowRight"]) {
       this.vel_x = this.calcVel(this.vel_x + accel, top_speed);
-
       this.playerDOM.style.transform = "scaleX(1)";
-      // this.playerDOM.style.animation =
-      //   "turn-right .5s cubic-bezier(0,1,.25,1) forwards";
     }
 
     if (userInput["ArrowLeft"]) {
       this.vel_x = this.calcVel(this.vel_x + -accel, top_speed);
-
       this.playerDOM.style.transform = "scaleX(-1)";
-      // this.playerDOM.style.animation =
-      //   "turn-left .5s cubic-bezier(0,1,.25,1) forwards";
     }
 
     if (userInput["ArrowDown"]) {
@@ -138,21 +132,20 @@ export default class Player {
     this.y += this.vel_y * dt;
 
     // limit new position if not inside map
-    let wallBounceForce = 0;
     if (this.x < 0) {
       this.x = 0;
-      this.vel_x = wallBounceForce;
+      this.vel_x = 0;
     } else if (this.x + this.width > this.limit_x) {
       this.x = this.limit_x - this.width;
-      this.vel_x = -wallBounceForce;
+      this.vel_x = -0;
     }
 
     if (this.y < this.limit_y * 0.14) {
       this.y = this.limit_y * 0.14;
-      this.vel_y = wallBounceForce;
+      this.vel_y = 0;
     } else if (this.y + this.height > this.limit_y) {
       this.y = this.limit_y - this.height;
-      this.vel_y = -wallBounceForce;
+      this.vel_y = -0;
     }
 
     this.draw();
@@ -181,7 +174,7 @@ export default class Player {
     }
   }
 
-  detectCollision(entity) {
+  checkCollision(entity) {
     if (
       entity.x + entity.width >= this.x && // r1 right edge past r2 left
       entity.x <= this.x + this.width && // r1 left edge past r2 right

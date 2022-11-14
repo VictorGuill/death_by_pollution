@@ -1,0 +1,62 @@
+/* Animations */
+
+@keyframes item-idle {
+  0% {
+  }
+  100% {
+    transform: translate(30%, 20%);
+  }
+}
+
+@keyframes pick-item {
+  0% {
+    transform-origin: center;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(50%) rotate(260deg);
+    opacity: 0;
+    top: 10.4vmin;
+    left: 8vmin;
+  }
+}
+
+@keyframes turn-right {
+  0% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes turn-left {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes scanlines {
+  from {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, var(--scanLinesOpacity)) 51%
+    );
+    background-size: 100vmax var(--scanLinesSize);
+  }
+  to {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, var(--scanLinesOpacity)) 50%,
+      transparent 51%
+    );
+    background-size: 100vmax var(--scanLinesSize);
+  }
+}

@@ -12,7 +12,7 @@ export default class Map {
     this.add();
   }
 
-  // create div with object id and appends to DOM
+  // set map div attributes and append to DOM
   add() {
     this.map.setAttribute("id", this.id);
     this.map.setAttribute("class", "map-style");
@@ -28,7 +28,7 @@ export default class Map {
     this.height = properties.height;
   }
 
-  // sets new map height and width
+  // recalculates new map height and width
   Resize() {
     let properties = this.map.getBoundingClientRect();
 

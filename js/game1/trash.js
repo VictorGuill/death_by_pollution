@@ -29,13 +29,13 @@ export default class Trash {
     this.add();
   }
 
-  // create div with object id and appends to DOM
+  // set trash div attributes and append to DOM
   add() {
     let map_width = this.map.getBoundingClientRect().width;
     let map_height = this.map.getBoundingClientRect().height;
 
-    const num = randomIntFromInterval(0, 11);
     const rotation = randomIntFromInterval(-50, 50);
+    const num = randomIntFromInterval(0, 11);
     const img = "../../games/game1_assets/trash/" + num + ".png";
 
     switch (num) {
@@ -129,7 +129,6 @@ export default class Trash {
     this.trashDOM.style.transform = "rotate(" + rotation + "deg)";
 
     this.trashDOM.setAttribute("id", this.id);
-    this.trashDOM.setAttribute("class", "trash");
     this.trashDOM.setAttribute("class", "trash");
     this.map.appendChild(this.trashDOM);
 

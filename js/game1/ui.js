@@ -6,7 +6,7 @@ export default class Ui {
     this.add();
   }
 
-  // create div with object id and appends to DOM
+  // set iu div attributes and append to DOM
   add() {
     // add ui container
     this.ui.setAttribute("id", this.id);
@@ -29,14 +29,6 @@ export default class Ui {
     const timer_text = document.createElement("p");
     timer_text.setAttribute("id", "timer_text");
     this.ui.appendChild(timer_text);
-  }
-
-  // sets new map height and width
-  Resize() {
-    let properties = this.ui.getBoundingClientRect();
-
-    this.width = properties.width;
-    this.height = properties.height;
   }
 
   updateValues(player, runtime) {
