@@ -32,9 +32,9 @@ export class GamePanel {
         document.body.appendChild(this.element);
     }
 
-    update() {
+    update(progress) {
         if (this.gameState == this.playState){
-            this.plane.update();
+            this.plane.update(progress);
         } else if (this.gameState == this.pauseState){}
     }
 

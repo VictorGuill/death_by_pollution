@@ -45,6 +45,8 @@ export default class Plane{
 
         this.thrust = 0;
 
+        this.ezModePitch = true;
+
         this.addPlane();
         this.vfx = new planeVfx(this);
     }
@@ -62,19 +64,18 @@ export default class Plane{
         this.element.style.zIndex = "1000";
     }
 
-    accelerate() {
-        
-        this.speed += this.acceleration;
+    accelerate(progress) {
+        this.speed += this.acceleration * progress;
     }
 
-    decelerate() {
+    decelerate(progress) {
         if (this.canPSM) {
             if (this.inPSM || this.cobraRange){
                 this.cobraManeuver();
             }
             
         } else {
-            this.speed -= this.deceleration;
+            this.speed -= this.deceleration * progress;
         }
     }
 
@@ -138,8 +139,8 @@ export default class Plane{
 
 
     updatePositions() {
-        this.worldX += this.speedX/100;
-        this.worldY += this.speedY/400;
+        this.worldX += this.speedX/10;
+        this.worldY += this.speedY/10;
         if (this.gp.physics.lift >= this.weight) {
             
         }
@@ -158,7 +159,7 @@ export default class Plane{
     }
 
     updateSpeed() {
-        this.speed = this.gp.physics.calcSpeed(this);
+        //this.speed = this.gp.physics.calcSpeed(this);
         this.speedX = this.gp.physics.calcSpeedX(this);
         this.speedY = this.gp.physics.calcSpeedY(this);
 
@@ -200,14 +201,18 @@ export default class Plane{
         }
     }
 
-    move(){
+    move(progress){
         if (this.gp.input["ArrowUp"] || this.gp.input["ArrowDown"] ||
             this.gp.input["ArrowRight"] || this.gp.input["ArrowLeft"] ||
             this.gp.input[" "]){
 
             if (!this.collision) {
                 if (this.gp.input[" "]) {
-                    
+                    if (this.ezModePitch){
+                        this.ezModePitch = false;
+                    } else {
+                        this.ezModePitch = true;
+                    }
                 }
                 if(this.gp.input["ArrowUp"]){
                     this.pitchDown();
@@ -216,80 +221,42 @@ export default class Plane{
                     this.pitchUp();
                 }
                 if(this.gp.input["ArrowRight"]){
-                   this.accelerate();
+                   this.accelerate(progress);
                 } 
                 if (this.gp.input["ArrowLeft"]) {
-                    this.decelerate();
+                    this.decelerate(progress);
                 }
             }
             
         }
     }
 
-    fly() {
-        this.move();
-        this.updatePositions();
-        this.updatePitch();
+    fly(progress) {
+        this.move(progress);
         this.updateSpeed();
+        this.updatePitch();
+        this.updatePositions();
         this.vfx.update();
         //toggle level pitch for ez mode
-        this.levelPitch();
+        if(this.ezModePitch){
+            this.levelPitch();
+        }
+        
     }
 
-
-    //---- GETTERS ----
-        // world position
-    getWorldX() {
-        return this.worldX;
-    }
-    getWorldY() {
-        return this.worldY;
-    }
-
-        // screen position
-    getScreenX() {
-        return this.screenX;
-    }
-    getScreenY() {
-        return this.screenY;
-    }
-
-        // speed
-    getSpeedX() {
-        return this.speedX;
-    }
-    getSpeedY() {
-        return this.speedY;
-    }
-
-
-    //---- SETTERS ----
-    setLiftCoef(newCoef){
-        this.cL = newCoef;
-    }
-
-    setDragCoef(newCoef) {
-        this.cD = newCoef;
-    }
-
-    setMass(newMass) {
-        this.mass = newMass;
-        this.weight = this.gp.physics.getWeight(this);
-    }
-
-    update() {
-        this.fly();
-        this.gp.physics.update(this);
+    update(progress) {
+        this.fly(progress);
+        //this.gp.physics.update(this);
         //this.gp.collisionDetection.mapBounderiesCheck(this);
         
     /*  ------------ DEBUG ----------  */
-        /* console.log("-------SPEED-----");
+        console.log("-------SPEED-----");
         console.log("SPEED: "+ Math.round(this.speed));
-        console.log("Speed %: " + Math.round(this.gp.physics.getPercentSpeed(this, this.speed))); */
+        console.log("Speed %: " + Math.round(this.gp.physics.getPercentSpeed(this, this.speed)));
         //console.log("In PSM: "+ this.inPSM);
         //console.log("Cobra range: "+this.cobraRange);
-        //console.log("SpeedX: "+ Math.round(this.speedX));
-        //console.log("SpeedY: "+ Math.round(this.speedY));
+        console.log("SpeedX: "+ Math.round(this.speedX));
+        console.log("SpeedY: "+ Math.round(this.speedY));
         //console.log("LIFT COEF: " + this.cL);
         //console.log("DRAG COEF: " +this.cD);
         //console.log("Lift: "+ Math.round(this.gp.physics.lift));
@@ -297,11 +264,11 @@ export default class Plane{
         //console.log("Weight: " + Math.round(this.weight));
         //console.log("Pitch: " +this.pitch);
         //console.log("pitch to rad: " +this.toRadiants(this.pitch));
-        console.log("-------POSITION-----");
+        /* console.log("-------POSITION-----");
         console.log("World X: "+ Math.round(this.worldX));
         console.log("World Y: " + Math.round(this.worldY))
         console.log ("Screen X: "+ Math.round(this.screenX));
-        console.log("Screen Y: "+ Math.round(this.screenY));
+        console.log("Screen Y: "+ Math.round(this.screenY)); */
         /* console.log("Collison = " + this.collision); */
     }
 
@@ -310,4 +277,44 @@ export default class Plane{
         this.element.style.bottom = this.screenY +"px";
         this.element.style.left = this.screenX + "px";
     }
+
+        //---- GETTERS ----
+        // world position
+        getWorldX() {
+            return this.worldX;
+        }
+        getWorldY() {
+            return this.worldY;
+        }
+    
+            // screen position
+        getScreenX() {
+            return this.screenX;
+        }
+        getScreenY() {
+            return this.screenY;
+        }
+    
+            // speed
+        getSpeedX() {
+            return this.speedX;
+        }
+        getSpeedY() {
+            return this.speedY;
+        }
+    
+    
+        //---- SETTERS ----
+        setLiftCoef(newCoef){
+            this.cL = newCoef;
+        }
+    
+        setDragCoef(newCoef) {
+            this.cD = newCoef;
+        }
+    
+        setMass(newMass) {
+            this.mass = newMass;
+            this.weight = this.gp.physics.getWeight(this);
+        }
 }
