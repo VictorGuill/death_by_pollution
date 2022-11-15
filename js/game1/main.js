@@ -11,7 +11,7 @@ import Perk from "./perk.js";
 import * as cfg from "./config.js";
 
 ////////////////////////////////
-// SETUP
+// GAME SETUP
 
 // create game elements
 const stats = new Stats("statsContainer");
@@ -38,12 +38,13 @@ let perks_id_counter = 0;
 // GAME LOOP
 
 export let runtime = 0;
-function gameLoop(elapsedTime) {
-  let dt = (elapsedTime - runtime) / 100;
-  console.log(runtime);
 
-  stats.updateValues(dt, elapsedTime, userInput, player);
-  updateGame(dt, elapsedTime);
+function gameLoop(diffTime) {
+  let dt = (diffTime - runtime) / 100;
+  runtime = diffTime;
+
+  stats.updateValues(dt, runtime, userInput, player);
+  updateGame(dt, runtime);
 
   // built in function to request a new frame when browser is ready
   window.requestAnimationFrame(gameLoop);
@@ -59,7 +60,9 @@ function updateGame(dt, runtime) {
   player.move(dt, cfg.diagonal_speed_limit);
 
   checkTrashCollition(trash_array);
-  checkPerksCollition(perks_array);
+  checkPerksCollition(perks_array, runtime);
+
+  player.applyPerk(runtime);
 
   if (acc > cfg.perks_step) {
     let num = randomIntFromInterval(1, 100);
@@ -156,12 +159,12 @@ function perkSpawn(perks_array) {
 }
 
 // if player collides with perk: delete and apply upgrade
-function checkPerksCollition(perk_array) {
+function checkPerksCollition(perk_array, runtime) {
   perk_array.forEach((element) => {
     let collision = player.checkCollision(element);
 
     if (collision) {
-      player.perkCollected(element.perk_type, global_time);
+      player.perkCollected(element.perk_type, runtime);
 
       // apply pick up animation
       const animation_duration = 1.2;

@@ -1,5 +1,6 @@
 import userInput from "./inputs.js";
-import { runtime } from "main.js";
+import { runtime } from "./main.js";
+import * as cfg from "./config.js";
 
 ////////////////////////////////
 // PLAYER PARAMETERS
@@ -19,7 +20,7 @@ export default class Player {
     this.friction = friction;
 
     this.trash_collected = 0;
-    this.perks = [];
+    this.perks = {};
 
     this.x = 0;
     this.y = 0;
@@ -197,10 +198,39 @@ export default class Player {
     return false;
   }
 
-  perkCollected(perk) {
-    if (!this.perks.includes(perk)) {
-      this.perks.push(perk);
-      console.log(this.perks);
+  perkCollected(perk, pickup_time) {
+    if (typeof this.perks["speed_boost"] === "undefined") {
+      this.perks[perk] = pickup_time + cfg.speed_boost_duration;
+    } else {
+      if (
+        this.perks[perk] + cfg.speed_boost_duration - runtime >
+        cfg.speed_boost_max
+      ) {
+        this.perks[perk] = pickup_time + cfg.speed_boost_max;
+      } else {
+        this.perks[perk] += cfg.speed_boost_duration;
+      }
+    }
+  }
+
+  applyPerk(runtime) {
+    if (typeof this.perks["speed_boost"] !== "undefined") {
+      if (this.perks["speed_boost"] > runtime) {
+        console.log(
+          "fast_speed_begin",
+          Number(this.perks["speed_boost"] - runtime).toFixed(0)
+        );
+        this.accel = cfg.accel_boost;
+        this.top_speed = cfg.top_speed_boost;
+        this.friction = cfg.friction_boost;
+      } else {
+        this.accel = cfg.accel;
+        this.top_speed = cfg.top_speed;
+        this.friction = cfg.friction;
+
+        delete this.perks["speed_boost"];
+        console.log("normal_speed");
+      }
     }
   }
 }
