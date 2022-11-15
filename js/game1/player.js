@@ -9,11 +9,16 @@ let player_scale_y = 14.6;
 ////////////////////////////////
 
 export default class Player {
-  constructor(id, map) {
+  constructor(id, map, accel, top_speed, friction) {
     this.id = id;
     this.map = document.getElementById(map.id);
 
+    this.accel = accel;
+    this.top_speed = top_speed;
+    this.friction = friction;
+
     this.trash_collected = 0;
+    this.perks = [];
 
     this.x = 0;
     this.y = 0;
@@ -78,21 +83,25 @@ export default class Player {
     this.draw();
   }
 
-  move(dt, accel, top_speed, friction) {
+  move(dt, diagonal_speed_limit) {
+    // frame independency to acceletarion and friction
+    let accel = this.accel * dt;
+    let top_speed = this.top_speed;
+    let friction = this.friction * dt;
+
+    // values depend on map size, so it's resizable
     accel *= this.limit_x / 1000;
     top_speed *= this.limit_x / 1000;
     friction *= this.limit_x / 1000;
 
-    let diagonal_speed_limit = 1.25;
-
     if (userInput["ArrowUp"] && userInput["ArrowRight"]) {
-      top_speed /= diagonal_speed_limit;
+      top_speed *= diagonal_speed_limit;
     } else if (userInput["ArrowRight"] && userInput["ArrowDown"]) {
-      top_speed /= diagonal_speed_limit;
+      top_speed *= diagonal_speed_limit;
     } else if (userInput["ArrowDown"] && userInput["ArrowLeft"]) {
-      top_speed /= diagonal_speed_limit;
+      top_speed *= diagonal_speed_limit;
     } else if (userInput["ArrowLeft"] && userInput["ArrowUp"]) {
-      top_speed /= diagonal_speed_limit;
+      top_speed *= diagonal_speed_limit;
     }
 
     if (
@@ -188,6 +197,9 @@ export default class Player {
   }
 
   perkCollected(perk) {
-    console.log(perk);
+    if (!this.perks.includes(perk)) {
+      this.perks.push(perk);
+      console.log(this.perks);
+    }
   }
 }

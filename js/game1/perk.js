@@ -23,6 +23,7 @@ export default class Perk {
     this.height_range;
     this.width_margins;
 
+    this.perk_type;
     this.perkDOM = document.createElement("div");
     this.imgID;
 
@@ -35,30 +36,22 @@ export default class Perk {
     let map_height = this.map.getBoundingClientRect().height;
 
     const rotation = randomIntFromInterval(-50, 50);
-    const num = randomIntFromInterval(0, 2);
+    const num = randomIntFromInterval(0, 0);
     // const img = "../../games/game1_assets/perks/" + num + ".png";
+
+    this.scale_x = 10;
+    this.scale_y = 10;
+    this.height_range = [0.16, 1];
+    this.width_margins = map_width * 0.03;
 
     switch (num) {
       case 0:
-        this.scale_x = 10;
-        this.scale_y = 10;
-        this.height_range = [0.16, 0.65];
-        this.width_margins = map_width * 0.03;
+        this.perk_type = "speed_boost";
         this.perkDOM.style.backgroundColor = "red";
         break;
       case 1:
-        this.scale_x = 10;
-        this.scale_y = 10;
-        this.height_range = [0.26, 0.985];
-        this.width_margins = map_width * 0.03;
+        this.perk_type = "magnet";
         this.perkDOM.style.backgroundColor = "green";
-        break;
-      case 2:
-        this.scale_x = 10;
-        this.scale_y = 10;
-        this.height_range = [0.35, 0.85];
-        this.width_margins = map_width * 0.05;
-        this.perkDOM.style.backgroundColor = "purple";
         break;
     }
 
