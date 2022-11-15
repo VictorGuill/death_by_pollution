@@ -8,35 +8,22 @@ import Ui from "./ui.js";
 import Map from "./map.js";
 import Trash from "./trash.js";
 import Perk from "./perk.js";
-
-////////////////////////////////
-// GAME PARAMETERS
-
-// player movement
-const accel = 9;
-const top_speed = 45;
-const friction = 6;
-const diagonal_speed_limit = 0.8;
-
-// speed upgrade
-
-// items
-const cantidad_basura = 15;
-
-const cantidad_perks = 10;
-const perks_step = 100;
-const perk_probability = 33;
+import * as cfg from "./config.js";
 
 ////////////////////////////////
 // SETUP
 
 // create game elements
-let global_time = 0;
-
 const stats = new Stats("statsContainer");
 const map_0 = new Map("map");
 const ui = new Ui("ui");
-const player = new Player("player", map_0, accel, top_speed, friction);
+const player = new Player(
+  "player",
+  map_0,
+  cfg.accel,
+  cfg.top_speed,
+  cfg.friction
+);
 
 // create trashes
 let trash_array = [];
@@ -50,15 +37,13 @@ let perks_id_counter = 0;
 ////////////////////////////////
 // GAME LOOP
 
-let oldTime = 0;
+export let runtime = 0;
+function gameLoop(elapsedTime) {
+  let dt = (elapsedTime - runtime) / 100;
+  console.log(runtime);
 
-function gameLoop(runtime) {
-  let dt = (runtime - oldTime) / 100;
-  oldTime = runtime;
-  global_time = runtime;
-
-  stats.updateValues(dt, runtime, userInput, player);
-  updateGame(dt, runtime);
+  stats.updateValues(dt, elapsedTime, userInput, player);
+  updateGame(dt, elapsedTime);
 
   // built in function to request a new frame when browser is ready
   window.requestAnimationFrame(gameLoop);
@@ -71,14 +56,14 @@ window.requestAnimationFrame(gameLoop);
 let acc = 0;
 
 function updateGame(dt, runtime) {
-  player.move(dt, diagonal_speed_limit);
+  player.move(dt, cfg.diagonal_speed_limit);
 
   checkTrashCollition(trash_array);
   checkPerksCollition(perks_array);
 
-  if (acc > perks_step) {
-    let num = randomInt();
-    if (num < perk_probability) {
+  if (acc > cfg.perks_step) {
+    let num = randomIntFromInterval(1, 100);
+    if (num <= cfg.perk_probability) {
       perkSpawn(perks_array);
     }
     acc = 0;
@@ -115,7 +100,7 @@ addEventListener("resize", (e) => {
 
 // create initial trashes before game starts
 function initialTrashSpawn() {
-  for (let i = 1; i <= cantidad_basura; i++) {
+  for (let i = 1; i <= cfg.cantidad_basura; i++) {
     const new_trash = new Trash("trash_" + trash_id_counter, map_0);
 
     if (player.checkCollision(new_trash)) {
@@ -162,7 +147,7 @@ function checkTrashCollition(trash_array) {
 
 // create initial trashes before game starts
 function perkSpawn(perks_array) {
-  if (perks_array.length < cantidad_perks) {
+  if (perks_array.length < cfg.cantidad_perks) {
     // add new perk and increase id counter
     const new_perk = new Perk("perk_" + perks_id_counter, map_0);
     perks_array.push(new_perk);
@@ -199,7 +184,7 @@ function delay(time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-// returns random from 1 to 100 included
-function randomInt() {
-  return Math.floor(Math.random() * 100) + 1;
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }

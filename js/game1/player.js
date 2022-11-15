@@ -1,4 +1,5 @@
 import userInput from "./inputs.js";
+import { runtime } from "main.js";
 
 ////////////////////////////////
 // PLAYER PARAMETERS
