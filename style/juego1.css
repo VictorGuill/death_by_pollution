@@ -12,10 +12,12 @@
 * {
   margin: 0;
   box-sizing: border-box;
+
   image-rendering: pixelated;
   overflow: hidden;
-  /* border: 1px solid white; */
+
   user-select: none;
+  /* border: 1px solid white; */
 }
 
 body {
@@ -30,110 +32,10 @@ body {
   flex-direction: column;
 
   background-color: #000;
-  filter: contrast(1.16) saturate(1.1) brightness(1.1);
+  filter: contrast(1.16) saturate(1.05) brightness(1.1);
 }
 
-.map-style {
-  height: var(--mapSize);
-  width: var(--mapSize);
-
-  background-image: url("../games/game1_assets/background.gif");
-  background-size: cover;
-}
-
-.map-style::after {
-  content: "";
-  position: absolute;
-
-  width: 100.25%;
-  height: 100.25%;
-
-  background-image: url("../games/game1_assets/crt.png");
-  background-size: contain;
-  z-index: 10;
-}
-
-#ui {
-  /* background-color: rgba(255, 0, 0, 0.208); */
-  height: 3vmin;
-  width: 90vmin;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  place-items: flex-end center;
-
-  color: white;
-  font-family: "Press Start 2P", cursive;
-  text-transform: uppercase;
-  font-size: 2.3vmin;
-
-  filter: url(#chromaticAberration);
-}
-
-#trashText {
-  margin-left: auto;
-
-  grid-column: 3/4;
-  grid-row: 1/2;
-}
-
-#game_text {
-  grid-column: 2/3;
-  grid-row: 1/2;
-}
-
-#timer_text {
-  margin-left: 1vmin;
-  margin-right: auto;
-
-  grid-column: 1/2;
-  grid-row: 1/2;
-
-  text-transform: lowercase;
-}
-
-#map {
-  position: relative;
-}
-
-#player {
-  position: absolute;
-
-  background-image: url("../games/game1_assets/player.gif");
-  background-size: cover;
-
-  z-index: 5;
-}
-
-.trash {
-  position: absolute;
-
-  background-size: cover;
-  background-position: center;
-
-  animation: item-spawn 0.75s, item-idle 7s linear infinite;
-  animation-direction: alternate;
-}
-
-.perk {
-  position: absolute;
-
-  background-size: cover;
-  background-position: center;
-
-  animation: item-idle 7s linear infinite;
-  animation-direction: alternate;
-}
-
-.scanline {
-  position: fixed;
-
-  width: 100vw;
-  height: 100vh;
-
-  z-index: 9;
-}
-
+/* #region CRT FX */
 .scanline::before {
   content: "";
   position: absolute;
@@ -142,17 +44,61 @@ body {
 
   will-change: background, background-size;
   animation: scanlines var(--scanLinesSpeed) linear infinite;
+  z-index: 9;
 }
 
-#statsContainer {
-  position: fixed;
+.screen::after {
+  content: "";
+  position: absolute;
 
-  width: 150px;
+  width: 100.25%;
+  height: 100.25%;
 
-  bottom: 10px;
-  right: 10px;
-
-  font-family: "JetBrains Mono", monospace;
-  color: rgba(255, 255, 255, 0.75);
-  border-radius: 5px;
+  background-image: url("../games/game1_assets/crt.png");
+  background-size: cover;
+  z-index: 10;
 }
+/* #endregion */
+
+/* #region MENU */
+#menu_start {
+  height: var(--mapSize);
+  width: var(--mapSize);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  /* text properties */
+  color: white;
+  font-family: "Press Start 2P", cursive;
+  text-transform: uppercase;
+  font-size: 3.5vmin;
+
+  background-color: rgb(35, 9, 97);
+  filter: url(#chromaticAberration);
+}
+
+#menu_start p {
+  margin: 0.7vmin;
+}
+
+#menu_start .selected {
+  color: rgb(255, 51, 51);
+  transform: scale(1.1);
+  margin: 1vmin;
+}
+/* #endregion */
+
+/* #region MAP */
+#map {
+  position: relative;
+
+  height: var(--mapSize);
+  width: var(--mapSize);
+
+  background-image: url("../games/game1_assets/background.gif");
+  background-size: cover;
+}
+/* #endregion */

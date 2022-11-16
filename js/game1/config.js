@@ -1,6 +1,3 @@
-////////////////////////////////
-// GAME PARAMETERS
-
 // player movement
 export const accel = 9;
 export const top_speed = 45;

@@ -1,16 +1,14 @@
 // create empty object
-let userInput = {};
-
-export default userInput;
+export let input = {};
 
 ////////////////////////////////
 /// KEYBOARD
 
 document.onkeydown = function (e) {
-  userInput[e.key] = true;
-  // console.log(e.key);
+  input[e.key] = true;
+  // console.log("Key " + e.key + " presed.");
 };
 
 document.onkeyup = function (e) {
-  userInput[e.key] = false;
+  input[e.key] = false;
 };
