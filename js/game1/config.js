@@ -1,4 +1,7 @@
-//#region player movement
+//#region player settings
+export const player_scale = 1;
+
+// movement
 export const accel = 9;
 export const top_speed = 45;
 export const friction = 6;

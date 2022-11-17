@@ -1,7 +1,3 @@
-// import { rotation_min_max } from "../config.js";
-// import { randomIntFromInterval } from "../functions.js";
-import * as cfg from "../config.js";
-
 export default class Item {
   constructor(id, map) {
     this.id = id;
@@ -21,8 +17,13 @@ export default class Item {
     this.item_scale = 1;
 
     // map info
-    this.map = document.getElementById(map.id);
+    this.map;
+    this.map_width;
+    this.map_height;
+  }
 
+  add() {
+    this.dom = document.getElementById(map.id);
     this.map_width = this.map.getBoundingClientRect().width;
     this.map_height = this.map.getBoundingClientRect().height;
   }

@@ -62,8 +62,8 @@ body {
 
 /* #region MENU */
 #menu_start {
-  height: var(--mapSize);
-  width: var(--mapSize);
+  /* height: var(--mapSize);
+  width: var(--mapSize); */
 
   display: flex;
   justify-content: center;

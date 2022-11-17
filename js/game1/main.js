@@ -15,17 +15,19 @@ import Player from "./items/player.js";
 
 export let elapsedTime = 0;
 
-let screen_state = "game";
+let screen_state = "menu";
 
 // create game elements
 const menu_start = new Menu("menu_start");
-// menu_start.add();
+menu_start.add();
 
-const map = new Map("map");
+// const map = new Map("map");
+
+// const player = new Player("player", map);
 
 let trash_items = [];
 
-gameSetup();
+// gameSetup();
 
 ////////////////////////////////
 // GAME LOOP
@@ -71,12 +73,17 @@ function gameLoop(millis) {
 // RESIZE EVENT
 
 addEventListener("resize", (e) => {
-  let menu_exist = document.getElementById(menu_start.id);
-  if (menu_exist !== null) {
+  if (exists(menu_start)) {
     menu_start.updateValues();
   }
 
-  map.updateValues();
+  if (exists(map)) {
+    map.updateValues();
+  }
+
+  if (exists(player)) {
+    player.resize();
+  }
 
   trash_items.forEach((trash) => {
     trash.resize();
@@ -94,14 +101,18 @@ addEventListener("resize", (e) => {
 
 function gameSetup() {
   map.add();
+  // player.add();
 
-  for (let i = 0; i < cfg.trash_quantity; i++) {
-    const element = new Trash("trash_" + i, map);
-    trash_items.push(element);
-    // console.log(element.trash_type);
-  }
-
-  const player = new Player("player", map);
+  // for (let i = 0; i < cfg.trash_quantity; i++) {
+  //   const element = new Trash("trash_" + i, map);
+  //   element.add();
+  //   trash_items.push(element);
+  // }
 }
 
 function updateGame(dt, elapsedTime) {}
+
+function exists(entity) {
+  let element = document.getElementById(entity.id);
+  return element !== null;
+}

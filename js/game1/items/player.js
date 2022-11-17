@@ -1,8 +1,7 @@
 import Item from "./item.js";
-import { randomIntFromInterval } from "../functions.js";
-import * as cfg from "../config.js";
+import { item_margin_x, player_scale } from "../config.js";
 
-export default class Trash extends Item {
+export default class Player extends Item {
   constructor(id, map) {
     super(id, map);
 
@@ -11,17 +10,16 @@ export default class Trash extends Item {
     this.size_y = this.map_height / 14.6;
 
     // spawn X,Y limits
-    this.margin_x = cfg.item_margin_x;
+    this.margin_x = item_margin_x;
     this.min_y;
     this.max_y;
 
-    this.item_scale = cfg.trash_scale;
+    this.item_scale = player_scale;
     this.trash_type;
-
-    this.add();
   }
 
   add() {
+    super.add();
     // set id
     this.dom.setAttribute("id", this.id);
 

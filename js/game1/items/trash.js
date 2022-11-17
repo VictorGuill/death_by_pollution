@@ -1,23 +1,27 @@
 import Item from "./item.js";
 import { randomIntFromInterval } from "../functions.js";
-import * as cfg from "../config.js";
+import {
+  item_margin_x,
+  trash_scale,
+  rotation_min,
+  rotation_max,
+} from "../config.js";
 
 export default class Trash extends Item {
   constructor(id, map) {
     super(id, map);
 
     // spawn X,Y limits
-    this.margin_x = cfg.item_margin_x;
+    this.margin_x = item_margin_x;
     this.min_y;
     this.max_y;
 
-    this.item_scale = cfg.trash_scale;
+    this.item_scale = trash_scale;
     this.trash_type;
-
-    this.add();
   }
 
   add() {
+    super.add();
     const trash_type = randomIntFromInterval(0, 11);
     switch (trash_type) {
       case 0:
@@ -81,7 +85,7 @@ export default class Trash extends Item {
     this.y = randomIntFromInterval(min_y, max_y);
 
     // generate item rotation
-    const rotation = randomIntFromInterval(cfg.rotation_min, cfg.rotation_max);
+    const rotation = randomIntFromInterval(rotation_min, rotation_max);
     this.dom.style.transform = "rotate(" + rotation + "deg)";
 
     this.map.appendChild(this.dom);
