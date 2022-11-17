@@ -1,41 +1,51 @@
+import { screen_size } from "../config.js";
+
 export default class Screen {
   constructor(id) {
     this.id = id;
-    this.screen; // DOM reference
+    this.dom = document.createElement("div");
 
-    this.width;
-    this.height;
+    // screen width height
+    const size = this.calcSize();
+    this.width = size;
+    this.height = size;
   }
 
   // set div attributes and append to DOM
   add() {
-    this.screen = document.createElement("div");
+    this.dom.setAttribute("id", this.id);
+    this.dom.setAttribute("class", "crt_borders"); //add old monitor borders
+    document.body.appendChild(this.dom);
 
-    this.screen.setAttribute("id", this.id);
-    this.screen.setAttribute("class", "screen");
-    document.body.appendChild(this.screen);
+    this.resize();
+  }
 
-    this.updateValues();
+  // change css visual values
+  draw() {
+    this.dom.style.width = this.width + "px";
+    this.dom.style.height = this.height + "px";
+  }
+
+  // sets new height and width
+  resize() {
+    const new_size = this.calcSize();
+    this.width = new_size;
+    this.height = new_size;
+
+    this.draw();
   }
 
   // removes div from DOM
   remove() {
-    this.screen.remove();
+    this.dom.remove();
   }
 
-  // updates new div height and width
-  updateValues() {
-    this.width = this.getDomWidth();
-    this.height = this.getDomHeight();
-  }
+  // returns user viewport width
+  calcSize() {
+    const v_width = document.documentElement.clientWidth;
+    const v_height = document.documentElement.clientHeight;
+    const v_min = Math.min(v_width, v_height);
 
-  // returns div width
-  getDomWidth() {
-    return this.screen.getBoundingClientRect().width;
-  }
-
-  // returns div height
-  getDomHeight() {
-    return this.screen.getBoundingClientRect().height;
+    return v_min * screen_size;
   }
 }

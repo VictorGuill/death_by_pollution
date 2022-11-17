@@ -18,3 +18,27 @@
     background-size: 100vmax var(--scanLinesSize);
   }
 }
+
+@keyframes pick-item {
+  0% {
+    transform-origin: center;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(50%) rotate(260deg);
+    opacity: 0;
+    top: 10.4vmin;
+    left: 8vmin;
+  }
+}
+
+@keyframes item-idle {
+  0% {
+  }
+  100% {
+    transform: translate(30%, 20%);
+  }
+}

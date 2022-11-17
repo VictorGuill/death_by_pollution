@@ -10,9 +10,9 @@ export default class Menu extends Screen {
   add() {
     super.add();
 
-    this.screen.appendChild(menuItem("play"));
-    this.screen.appendChild(menuItem("options"));
-    this.screen.appendChild(menuItem("exit"));
+    this.dom.appendChild(menuItem("play"));
+    this.dom.appendChild(menuItem("options"));
+    this.dom.appendChild(menuItem("exit"));
   }
 
   actions(input) {

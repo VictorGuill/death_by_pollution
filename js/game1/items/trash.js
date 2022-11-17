@@ -22,6 +22,7 @@ export default class Trash extends Item {
 
   add() {
     super.add();
+
     const trash_type = randomIntFromInterval(0, 11);
     switch (trash_type) {
       case 0:
@@ -71,17 +72,17 @@ export default class Trash extends Item {
     this.dom.style.backgroundImage = "url(" + img + ")";
 
     // set item size
-    this.width = (this.map_width / this.size_x) * this.item_scale;
-    this.height = (this.map_height / this.size_y) * this.item_scale;
+    this.width = (this.map_w / this.size_x) * this.item_scale;
+    this.height = (this.map_h / this.size_y) * this.item_scale;
 
     // generate horizontal pos
-    const min_x = this.map_width * this.margin_x;
-    const max_x = this.map_width - this.map_width * this.margin_x - this.width;
+    const min_x = this.map_w * this.margin_x;
+    const max_x = this.map_w - this.map_w * this.margin_x - this.width;
     this.x = randomIntFromInterval(min_x, max_x);
 
     // generate vetical pos
-    const min_y = this.map_height * this.min_y;
-    const max_y = this.map_height * this.max_y - this.height;
+    const min_y = this.map_h * this.min_y;
+    const max_y = this.map_h * this.max_y - this.height;
     this.y = randomIntFromInterval(min_y, max_y);
 
     // generate item rotation

@@ -18,14 +18,12 @@ export default class Item {
 
     // map info
     this.map;
-    this.map_width;
-    this.map_height;
+    this.map_w = map.width;
+    this.map_h = map.height;
   }
 
   add() {
-    this.dom = document.getElementById(map.id);
-    this.map_width = this.map.getBoundingClientRect().width;
-    this.map_height = this.map.getBoundingClientRect().height;
+    this.map = document.getElementById(map.id);
   }
 
   // change css visual values
@@ -42,15 +40,20 @@ export default class Item {
     let new_map_width = this.map.getBoundingClientRect().width;
     let new_map_height = this.map.getBoundingClientRect().height;
 
-    this.x = (this.x / this.map_width) * new_map_width;
-    this.y = (this.y / this.map_height) * new_map_height;
+    this.x = (this.x / this.map_w) * new_map_width;
+    this.y = (this.y / this.map_h) * new_map_height;
 
-    this.map_width = new_map_width;
-    this.map_height = new_map_height;
+    this.map_w = new_map_width;
+    this.map_h = new_map_height;
 
-    this.width = (this.map_width / this.size_x) * this.item_scale;
-    this.height = (this.map_height / this.size_y) * this.item_scale;
+    this.width = (this.map_w / this.size_x) * this.item_scale;
+    this.height = (this.map_h / this.size_y) * this.item_scale;
 
     this.draw();
+  }
+
+  // removes div from DOM
+  remove() {
+    this.dom.remove();
   }
 }
