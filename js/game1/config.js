@@ -7,13 +7,16 @@ export const diagonal_speed_limit = 0.8;
 
 //#region map items
 // general
-export const rotation_min_max = 50;
+export const rotation_min = -50;
+export const rotation_max = 50;
+export const item_margin_x = 0.02;
 
 // trash
-export const cantidad_basura = 15;
+export const trash_quantity = 15;
+export const trash_scale = 1.5;
 
 // perks
-export const cantidad_perks = 3;
+export const perks_quantity = 3;
 export const perks_step = 5000;
 export const perk_probability = 35;
 //#endregion

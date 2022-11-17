@@ -5,8 +5,6 @@ export default class Menu extends Screen {
     super(id);
 
     this.selection = 1;
-
-    this.add();
   }
 
   add() {

@@ -1,63 +1,43 @@
-import { rotation_min_max } from "../config.js";
+// import { rotation_min_max } from "../config.js";
+// import { randomIntFromInterval } from "../functions.js";
+import * as cfg from "../config.js";
 
 export default class Item {
   constructor(id, map) {
     this.id = id;
-    this.map = document.getElementById(map.id);
+    this.dom = document.createElement("div");
 
-    this.dom;
-    this.img_path;
-
-    this.width;
-    this.height;
-
+    // top left coords
     this.x;
     this.y;
 
-    this.scale_x;
-    this.scale_y;
-    this.global_scale;
+    // item width height
+    this.width;
+    this.height;
 
-    this.map_width;
-    this.map_height;
+    // sizes and scale
+    this.size_x;
+    this.size_y;
+    this.item_scale = 1;
 
-    this.min_y = 0.16;
-    this.max_y = 1;
-    this.x_margins = 0.03;
+    // map info
+    this.map = document.getElementById(map.id);
 
-    this.add();
-  }
-
-  // set div attributes and append to DOM
-  add() {
     this.map_width = this.map.getBoundingClientRect().width;
     this.map_height = this.map.getBoundingClientRect().height;
-
-    this.dom = document.createElement("div");
-
-    this.width = (this.map_width / this.scale_x) * global_scale;
-    this.height = (this.map_height / this.scale_y) * global_scale;
-
-    const rotation = randomIntFromInterval(-rotation_min_max, rotation_min_max);
-    this.perkDOM.style.transform = "rotate(" + rotation + "deg)";
-
-    this.perkDOM.setAttribute("id", this.id);
-    this.perkDOM.setAttribute("class", "perk");
-    this.map.appendChild(this.dom);
-
-    this.draw();
   }
 
   // change css visual values
   draw() {
-    this.perkDOM.style.top = this.y + "px";
-    this.perkDOM.style.left = this.x + "px";
-    this.perkDOM.style.width = this.width + "px";
-    this.perkDOM.style.height = this.height + "px";
+    this.dom.style.top = this.y + "px";
+    this.dom.style.left = this.x + "px";
+
+    this.dom.style.width = this.width + "px";
+    this.dom.style.height = this.height + "px";
   }
 
   // sets new height and width
-  Resize() {
+  resize() {
     let new_map_width = this.map.getBoundingClientRect().width;
     let new_map_height = this.map.getBoundingClientRect().height;
 
@@ -67,8 +47,8 @@ export default class Item {
     this.map_width = new_map_width;
     this.map_height = new_map_height;
 
-    this.width = (new_map_width / this.scale_x) * global_scale;
-    this.height = (new_map_height / this.scale_y) * global_scale;
+    this.width = (this.map_width / this.size_x) * this.item_scale;
+    this.height = (this.map_height / this.size_y) * this.item_scale;
 
     this.draw();
   }

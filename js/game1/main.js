@@ -2,19 +2,30 @@
 // IMPORTS
 
 import { input } from "./input.js";
+import * as cfg from "./config.js";
+import * as func from "./functions.js";
+
 import Menu from "./screens/menu.js";
 import Map from "./screens/map.js";
+import Trash from "./items/trash.js";
+import Player from "./items/player.js";
 
 ////////////////////////////////
 // GAME SETUP
 
 export let elapsedTime = 0;
 
-let screen_state = "menu";
+let screen_state = "game";
 
 // create game elements
 const menu_start = new Menu("menu_start");
+// menu_start.add();
+
 const map = new Map("map");
+
+let trash_items = [];
+
+gameSetup();
 
 ////////////////////////////////
 // GAME LOOP
@@ -34,7 +45,7 @@ function gameLoop(millis) {
         switch (option) {
           case "game":
             menu_start.remove();
-            map.add();
+            gameSetup();
             break;
           case "options":
             break;
@@ -60,8 +71,16 @@ function gameLoop(millis) {
 // RESIZE EVENT
 
 addEventListener("resize", (e) => {
-  menu_start.updateValues();
+  let menu_exist = document.getElementById(menu_start.id);
+  if (menu_exist !== null) {
+    menu_start.updateValues();
+  }
+
   map.updateValues();
+
+  trash_items.forEach((trash) => {
+    trash.resize();
+  });
 
   // prevent bug: input sometime remain true when resizing
   input["ArrowUp"] = false;
@@ -72,5 +91,17 @@ addEventListener("resize", (e) => {
 
 ////////////////////////////////
 // FUNCTIONS
+
+function gameSetup() {
+  map.add();
+
+  for (let i = 0; i < cfg.trash_quantity; i++) {
+    const element = new Trash("trash_" + i, map);
+    trash_items.push(element);
+    // console.log(element.trash_type);
+  }
+
+  const player = new Player("player", map);
+}
 
 function updateGame(dt, elapsedTime) {}

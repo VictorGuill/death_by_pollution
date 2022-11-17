@@ -17,7 +17,7 @@
   overflow: hidden;
 
   user-select: none;
-  /* border: 1px solid white; */
+  border: 1px solid white;
 }
 
 body {
@@ -54,7 +54,7 @@ body {
   width: 100.25%;
   height: 100.25%;
 
-  background-image: url("../games/game1_assets/crt.png");
+  background-image: url("../media/game1_assets/crt.png");
   background-size: cover;
   z-index: 10;
 }
@@ -91,14 +91,33 @@ body {
 }
 /* #endregion */
 
-/* #region MAP */
+/* #region GAME */
 #map {
   position: relative;
 
   height: var(--mapSize);
   width: var(--mapSize);
 
-  background-image: url("../games/game1_assets/background.gif");
+  background-image: url("../media/game1_assets/background.gif");
   background-size: cover;
+}
+
+#player {
+  position: absolute;
+
+  background-image: url("../games/game1_assets/player.gif");
+  background-size: cover;
+
+  z-index: 5;
+}
+
+.trash {
+  position: absolute;
+
+  background-size: cover;
+  background-position: center;
+
+  animation: item-spawn 0.75s, item-idle 7s linear infinite;
+  animation-direction: alternate;
 }
 /* #endregion */
