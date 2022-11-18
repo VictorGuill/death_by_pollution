@@ -9,25 +9,113 @@ body {
     background-color: #121212;
     display: flex;
     justify-content: center;
+    font-family: "Press Start 2P";
 }
 
-#map,
-#div1 {
-    height: 95vmin;
-    width: 95vmin;
+#map {
+    display: grid;
+    grid-template-columns: repeat(14, 60px);
+    grid-template-rows: repeat(14, 60px);
+    height: 840px;
+    width: 840px;
     background-color: wheat;
     border-radius: 10px;
 }
 
+#lateral {
+    height: 840px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 #pieces {
-    height: 95vmin;
+    width: 80px;
+    height: 250px;
     background-color: brown;
     border-radius: 10px;
     margin-left: 10px;
+    align-self: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-row-gap: 10px;
 }
 
-img {
+img { border-radius: 10px;}
+
+#pieces>div {
+    justify-content: center;
+    align-items: center;
+}
+
+#pieces #piece {
+    grid-column: 1;
+    grid-row: 1; 
+}
+
+#piece2 {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#piece3 {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+#piece:hover,
+#piece2:hover,
+#piece3:hover {
+    transform: scale(1.03);
+}
+
+#button {
+    margin-top: 10px;
+    width: 80px;
+    margin-left: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+button {
+    display: inline-block;
+    border: none;
+    margin: 0;
+    text-decoration: none;
+    background-color: brown;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    transition: background-color .5s;
+    cursor: pointer;
+    position: relative;
+}
+
+button:hover {
+    background-color: rgb(165, 101, 42);
+}
+
+#start,
+#end {
     width: 60px;
     height: 60px;
-    border-radius: 10px;
+    border-radius: 5px;
+}
+
+#start {
+    /* text-align: center;
+    background-color: purple;
+    color: white; */
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+#end {
+    text-align: center;
+    background-color: black;
+    color: white;
+    grid-column-start: 13;
+    grid-row-start: 13;
 }

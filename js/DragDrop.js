@@ -1,76 +1,3 @@
-const numMount = 4;
-const numTrees = 10;
-const size = 14;
-
-const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
-
-//Trees
-var tree = [];
-for (let i=0; i < numTrees; i++) {
-  tree.push("");
-}
-tree.forEach(
-    function (el) {
-        var div = document.createElement("div");
-        div.className = "tree";
-        div.innerHTML = el;
-        document.querySelector('#map').appendChild(div);
-        div.style.background = 'green';
-        div.style.color = 'white';
-        div.style.width = '60px';
-        div.style.height = '60px';
-        div.style.borderRadius = '30px';
-        div.style.position = 'relative';
-        randomObjects(div, false);
-    }
-);
-
-//Mountains
-var mounts = [];
-for (let i=0; i < numMount; i++) {
-  mounts.push("");
-}
-mounts.forEach(
-    function (el) {
-        var div = document.createElement("div");
-        div.className = "mount";
-        div.innerHTML = el;
-        document.querySelector('#map').appendChild(div);
-        div.style.width = '60px';
-        div.style.height = '0px';
-        div.style.borderRight = '30px solid transparent';
-        div.style.borderLeft = '30px solid transparent';
-        div.style.borderBottom = '60px solid brown';
-        randomObjects(div, true);
-    }
-);
-
-
-
-
-//Function for the random position of the objects.
-function randomObjects(obj, isMount) {
-    let startEl = document.querySelector('#start');
-    let startPosition = getComputedStyle(startEl);
-    let endEl = document.querySelector('#end');
-    let endPosition = getComputedStyle(endEl);
-
-    var i = 0;
-    do {
-        if (isMount) {
-            obj.style.gridColumnStart = getRandom(1, size-1); //Column position
-            obj.style.gridRowStart = getRandom(2, size);
-        } else {
-            obj.style.gridColumnStart = getRandom(1, size); //Column position
-            obj.style.gridRowStart = getRandom(1, size); //Row position
-        }
-        i++;
-    } while (obj.style.gridColumnStart == startPosition.gridColumnStart
-        || obj.style.gridRowStart == startPosition.gridRowStart
-        || obj.style.gridColumnStart == endPosition.gridColumnStart
-        || obj.style.gridRowStart == endPosition.gridRowStart);
-}
-
 let currentDroppable = null;
 
 piece.onmousedown = function (event) {
@@ -119,7 +46,6 @@ piece.onmousedown = function (event) {
     };
 
 };
-
 
 function leaveDroppable(elem) {
     elem.style.background = '';

@@ -1,38 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAME 2</title>
-    <link rel='stylesheet' href='../style/game2.css'>
-    <script src='../js/game2.js'></script>
-</head>
-<body>
-    <div id='map' class="droppable">
-        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        
-    </div>
-    <img id="br" src="../media/br.jpg" width="336" height="69">
+<html lang='en'>
 
-    <div id='pieces'>
-        <div>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>GAME</title>
+    <link rel='stylesheet' href='../style/game2.css'>
+</head>
+
+<body onload="randomPiece()">
+
+    <div id='map' class="droppable">
+        <div id='start'><img src='../media/game2/house_nobg_notrack.gif' alt='gif' width="80px" height="80px"></div>
+        <div id='end'>END</div>
+    </div>
+
+    <div id="lateral">
+        <div id="pieces">
+            <div>
+                <img id="piece" width="60px" height="60px" />
+            </div>
+            <div>
+                <img id="piece2" width="60px" height="60px" />
+            </div>
+            <div>
+                <img id="piece3" width="60px" height="60px" />
+            </div>
         </div>
-        <div>
-            <img id="drag2" src="../media/lb.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69">
-        </div>
-        <div>
-            <img id="drag3" src="../media/lr.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69">
-        </div>
-        <div>
-            <img id="drag4" src="../media/lt.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69">
-        </div>
-        <div>
-            <img id="drag5" src="../media/tb.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69">
-        </div>
-        <div>
-            <img id="drag6" src="../media/tr.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69">
+        <div id="button">
+            <button onclick="randomPiece()">
+                <img src="../media/game2/reload_white.png" width="60px" height="60px">
+            </button>
         </div>
     </div>
+
+    <script src='../js/objects.js'></script>
+    <script src="../js/pieces.js"></script>
+    <script src="../js/DragDrop.js"></script>
+
 </body>
+
 </html>
