@@ -1,5 +1,10 @@
 //#region SCREENS
-export const screen_size = 0.94;
+setCssVar("--contrast", "1.1");
+setCssVar("--saturation", "1.25");
+setCssVar("--brightness", "1.15");
+
+export const screen_size = 0.95;
+
 setCssVar("--scanLinesSpeed", "0.5s");
 setCssVar("--scanLinesOpacity", "0.25");
 setCssVar("--scanLinesSize", "4px");
@@ -30,8 +35,10 @@ export const trash_scale = 1.5;
 
 // perks
 export const perks_quantity = 3;
-export const perks_step = 5000;
-export const perk_probability = 35;
+export const perk_scale = 1;
+
+export const perk_spawn_time = 500;
+export const perk_probability = 100;
 //#endregion
 
 //#region SPEED BOOST PERK SETTINGS

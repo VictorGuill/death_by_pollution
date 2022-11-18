@@ -1,15 +1,19 @@
 import Item from "./item.js";
+import * as cfg from "../config.js";
+
 import {
-  item_margin_x,
   player_scale,
   diagonal_speed_limit,
   player_min_y,
   player_max_y,
   player_margin_x,
+  accel,
+  top_speed,
+  friction,
 } from "../config.js";
 
 export default class Player extends Item {
-  constructor(id, map, accel, top_speed, friction) {
+  constructor(id, map) {
     super(id, map);
     this.trash_type;
 
@@ -29,27 +33,23 @@ export default class Player extends Item {
 
     // player stats
     this.trash_collected = 0;
+    this.perks = [];
   }
 
   add() {
     super.add();
 
-    // set id
-    this.dom.setAttribute("id", this.id);
+    // overwrite super set rotation
+    this.dom.style.transform = "rotate(0deg)";
 
-    // set item image
-    const img = "../../../media/game1_assets/player.gif";
-    this.dom.style.backgroundImage = "url(" + img + ")";
-
-    // set item size
-    this.width = (this.map_w / this.size_x) * this.item_scale;
-    this.height = (this.map_h / this.size_y) * this.item_scale;
+    // set item image/
+    const img_path = "../../../media/game1_assets/player.gif";
+    this.dom.style.backgroundImage = "url(" + img_path + ")";
 
     // Set player in center
     this.x = this.map_w / 2 - this.width / 2;
     this.y = this.map_h / 2 - this.height / 2;
 
-    this.map.appendChild(this.dom);
     super.draw();
   }
 
@@ -166,5 +166,41 @@ export default class Player extends Item {
       return true;
     }
     return false;
+  }
+
+  perkCollected(perk, pickup_time) {
+    if (typeof this.perks[perk.name] === "undefined") {
+      this.perks[perk.name] = pickup_time + cfg.speed_boost_duration;
+    } else {
+      if (
+        this.perks[perk.name] + cfg.speed_boost_duration - pickup_time >
+        cfg.speed_boost_max
+      ) {
+        this.perks[perk.name] = pickup_time + cfg.speed_boost_max;
+      } else {
+        this.perks[perk.name] += cfg.speed_boost_duration;
+      }
+    }
+  }
+
+  applyPerk(runtime) {
+    if (typeof this.perks["speed_boost"] !== "undefined") {
+      if (this.perks["speed_boost"] > runtime) {
+        console.log(
+          "fast_speed_begin",
+          Number(this.perks["speed_boost"] - runtime).toFixed(0)
+        );
+        this.accel = cfg.accel_boost;
+        this.top_speed = cfg.top_speed_boost;
+        this.friction = cfg.friction_boost;
+      } else {
+        this.accel = cfg.accel;
+        this.top_speed = cfg.top_speed;
+        this.friction = cfg.friction;
+
+        delete this.perks["speed_boost"];
+        console.log("normal_speed");
+      }
+    }
   }
 }

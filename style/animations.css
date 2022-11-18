@@ -1,21 +1,20 @@
 /* Animations */
 
-@keyframes scanlines {
-  from {
-    background: linear-gradient(
-      to bottom,
-      transparent 50%,
-      rgba(0, 0, 0, var(--scanLinesOpacity)) 51%
-    );
-    background-size: 100vmax var(--scanLinesSize);
+/* #region ITEMS */
+@keyframes item-spawn {
+  0% {
+    opacity: 0;
   }
-  to {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, var(--scanLinesOpacity)) 50%,
-      transparent 51%
-    );
-    background-size: 100vmax var(--scanLinesSize);
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes item-idle {
+  0% {
+  }
+  100% {
+    transform: translate(30%, 20%);
   }
 }
 
@@ -35,10 +34,45 @@
   }
 }
 
-@keyframes item-idle {
+@keyframes pick-perk {
   0% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(50%) rotate(260deg);
+    opacity: 0;
+  }
+}
+/* #endregion */
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
   }
   100% {
-    transform: translate(30%, 20%);
+    background-position: 0% 82%;
+  }
+}
+
+@keyframes scanlines {
+  from {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, var(--scanLinesOpacity)) 51%
+    );
+    background-size: 100vmax var(--scanLinesSize);
+  }
+  to {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, var(--scanLinesOpacity)) 50%,
+      transparent 51%
+    );
+    background-size: 100vmax var(--scanLinesSize);
   }
 }
