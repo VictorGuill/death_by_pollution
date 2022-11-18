@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #181818;
+}
+
+#map {
+  width: var(--mapSize);
+  height: var(--mapSize);
+
+  display: grid;
+  grid-template-columns: repeat(var(--gridSize), 1fr);
+  grid-template-rows: repeat(var(--gridSize), 1fr);
+
+  border-radius: 0.5vmin;
+  background-color: #dadada;
+}
+
+#items_picker {
+  width: 12vmin;
+  height: 30vmin;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+
+  margin-left: 1vmin;
+
+  border-radius: 0.5vmin;
+  background-color: maroon;
+}
+
+.start,
+.end,
+.tree,
+.mountain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.4vmin;
+  font-weight: bold;
+  border-radius: 0.5vmin;
+}
+
+.start {
+  background-color: maroon;
+}
+.end {
+  background-color: darkorange;
+}
+.tree {
+  background-color: darkslategrey;
+  opacity: 0.6;
+}
+.mountain {
+  background-color: cornflowerblue;
+  opacity: 0.6;
+}
