@@ -47,14 +47,11 @@
 /* #endregion */
 
 @keyframes rainbow {
-  0% {
-    background-position: 0% 82%;
+  from {
+    filter: hue-rotate(0deg) saturate(2.5);
   }
-  50% {
-    background-position: 100% 19%;
-  }
-  100% {
-    background-position: 0% 82%;
+  to {
+    filter: hue-rotate(-360deg) saturate(2.5);
   }
 }
 

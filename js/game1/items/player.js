@@ -193,6 +193,7 @@ export default class Player extends Item {
         this.accel = cfg.accel_boost;
         this.top_speed = cfg.top_speed_boost;
         this.friction = cfg.friction_boost;
+        this.dom.style.animation = "rainbow 1s infinite linear";
       } else {
         this.accel = cfg.accel;
         this.top_speed = cfg.top_speed;
@@ -200,6 +201,8 @@ export default class Player extends Item {
 
         delete this.perks["speed_boost"];
         console.log("normal_speed");
+
+        this.dom.style.animation = "item-spawn 0s";
       }
     }
   }

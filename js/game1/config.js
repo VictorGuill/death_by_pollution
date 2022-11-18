@@ -1,7 +1,7 @@
 //#region SCREENS
-setCssVar("--contrast", "1.1");
-setCssVar("--saturation", "1.25");
-setCssVar("--brightness", "1.15");
+setCssVar("--contrast", "1.05");
+setCssVar("--saturation", "1.1");
+setCssVar("--brightness", "1.1");
 
 export const screen_size = 0.95;
 
@@ -37,8 +37,8 @@ export const trash_scale = 1.5;
 export const perks_quantity = 3;
 export const perk_scale = 1;
 
-export const perk_spawn_time = 500;
-export const perk_probability = 100;
+export const perk_spawn_time = 5000;
+export const perk_probability = 33;
 //#endregion
 
 //#region SPEED BOOST PERK SETTINGS
