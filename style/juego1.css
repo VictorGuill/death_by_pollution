@@ -4,6 +4,10 @@
   src: url(../media/game1_assets/PressStart2P-Regular.ttf);
 }
 
+:root {
+  --opacityMagnetFX: 0;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -114,26 +118,49 @@ body {
   content: "";
   position: absolute;
 
-  width: 25vmin;
+  width: 30vmin;
   aspect-ratio: 1/1;
-
-  border-radius: 50%;
 
   top: 50%;
   left: 50%;
-  transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-38%) translateX(-43%);
 
-  border: solid 0.2vmin rgba(255, 0, 0, 0);
+  background-image: url("../media/game1_assets/magnet_effect.gif");
+  background-size: 85%;
+  background-repeat: no-repeat;
+
+  filter: drop-shadow(5px 5px 5px #222);
+  opacity: var(--opacityMagnetFX);
 }
 
-.trash,
-.perk {
+.trash {
   position: absolute;
 
   background-size: cover;
   background-position: center;
 
   animation: item-spawn 0.75s, item-idle 10s linear infinite;
+  animation-direction: alternate;
+}
+
+.perk {
+  position: absolute;
+
+  background-size: cover;
+  background-position: center;
+
+  animation: item-spawn 0.75s, perk-idle 0.5s ease-in-out infinite,
+    perk-idle 0.5s ease-in-out infinite;
+  animation-direction: alternate;
+}
+
+.ship {
+  position: absolute;
+
+  background-size: cover;
+  background-position: center;
+
+  animation: item-spawn 0.75s, ship-idle 5s linear infinite;
   animation-direction: alternate;
 }
 

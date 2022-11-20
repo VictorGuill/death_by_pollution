@@ -15,15 +15,17 @@ export default class Perk extends Item {
   }
 
   add() {
-    this.num = randomIntFromInterval(0, 1);
+    this.num = randomIntFromInterval(1, 100);
 
-    switch (this.num) {
-      case 0:
-        this.setSizePosName(30, 22, 0.16, 1, "speed_boost");
-        break;
-      case 1:
-        this.setSizePosName(30, 28, 0.25, 1, "magnet");
-        break;
+    if (this.num <= 40) {
+      this.num = 0;
+      this.setSizePosName(30, 22, 0.16, 1, "speed_boost");
+    } else if (this.num <= 80) {
+      this.num = 1;
+      this.setSizePosName(30, 28, 0.25, 1, "magnet");
+    } else if (this.num <= 100) {
+      this.num = 2;
+      this.setSizePosName(30, 28, 0.25, 1, "gold_magnet");
     }
 
     super.add();

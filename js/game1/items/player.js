@@ -198,16 +198,26 @@ export default class Player extends Item {
           }
         }
         break;
+      case "gold_magnet":
+        if (typeof this.perks["gold_magnet"] === "undefined") {
+          this.perks["gold_magnet"] = pickup_time + cfg.gold_magnet_duration;
+        } else {
+          if (
+            this.perks["gold_magnet"] + cfg.gold_magnet_duration - pickup_time >
+            cfg.gold_magnet_max
+          ) {
+            this.perks["gold_magnet"] = pickup_time + cfg.gold_magnet_max;
+          } else {
+            this.perks["gold_magnet"] += cfg.gold_magnet_duration;
+          }
+        }
+        break;
     }
   }
 
   applyPerk(runtime, trash_items) {
     if (typeof this.perks["speed_boost"] !== "undefined") {
       if (this.perks["speed_boost"] > runtime) {
-        console.log(
-          "fast_speed_begin",
-          Number(this.perks["speed_boost"] - runtime).toFixed(0)
-        );
         this.accel = cfg.accel_boost;
         this.top_speed = cfg.top_speed_boost;
         this.friction = cfg.friction_boost;
@@ -218,7 +228,6 @@ export default class Player extends Item {
         this.friction = cfg.friction;
 
         delete this.perks["speed_boost"];
-        console.log("normal_speed");
 
         this.dom.style.animation = "item-spawn 0s";
       }
@@ -230,6 +239,7 @@ export default class Player extends Item {
         //   "magnet_begin",
         //   Number(this.perks["magnet"] - runtime).toFixed(0)
         // );
+        this.dom.style.setProperty("--opacityMagnetFX", "1");
 
         trash_items.forEach((trash) => {
           let testX;
@@ -251,7 +261,7 @@ export default class Player extends Item {
           let distance = Math.sqrt(distX * distX + distY * distY);
 
           let range = this.width * 2;
-          let speed = 10;
+          let speed = this.width / 10;
 
           if (distance < range || trash.go_to_player) {
             trash.go_to_player = true;
@@ -276,7 +286,57 @@ export default class Player extends Item {
         });
       } else {
         delete this.perks["magnet"];
-        // console.log("normal_range");
+        this.dom.style.setProperty("--opacityMagnetFX", "0");
+      }
+    }
+
+    if (typeof this.perks["gold_magnet"] !== "undefined") {
+      if (this.perks["gold_magnet"] > runtime) {
+        trash_items.forEach((trash) => {
+          let testX;
+          let testY;
+          if (this.x < trash.x) {
+            testX = trash.x;
+          } else if (this.x > trash.x + trash.width) {
+            testX = trash.x + trash.width;
+          }
+
+          if (this.y < trash.y) {
+            testY = trash.y;
+          } else if (this.y > trash.y + trash.height) {
+            testY = trash.y + trash.height;
+          }
+
+          let distX = this.x - testX;
+          let distY = this.y - testY;
+          let distance = Math.sqrt(distX * distX + distY * distY);
+
+          let range = this.width * 2000;
+          let speed = this.width / 10;
+
+          if (distance < range || trash.go_to_player) {
+            trash.go_to_player = true;
+
+            // console.log("collision con " + trash.id);
+            if (trash.x < this.x + this.width / 2) {
+              trash.x += speed;
+            }
+            if (trash.x > this.x + this.width / 2) {
+              trash.x -= speed;
+            }
+
+            if (trash.y < this.y + this.height / 2) {
+              trash.y += speed;
+            }
+            if (trash.y > this.y + this.height / 2) {
+              trash.y -= speed;
+            }
+
+            trash.draw();
+          }
+        });
+      } else {
+        delete this.perks["gold_magnet"];
       }
     }
   }

@@ -9,6 +9,7 @@ import Trash from "./items/trash.js";
 import Perk from "./items/perk.js";
 import Player from "./items/player.js";
 import Ui from "./ui.js";
+import Ship from "./items/ship.js";
 //#endregion
 
 //#region GAME SETUP
@@ -29,6 +30,7 @@ menu_start.add();
 const map = new Map("map");
 const ui = new Ui("ui");
 const player = new Player("player", map);
+const ship = new Ship("ship", map);
 //#endregion
 
 //#region GAME LOOP
@@ -80,6 +82,7 @@ addEventListener("resize", (e) => {
   if (screen_state === "game") {
     map.resize();
     player.resize();
+    ship.resize();
 
     trashes.forEach((trash) => {
       trash.resize();
@@ -101,8 +104,12 @@ addEventListener("resize", (e) => {
 //#region FUNCTIONS
 function gameSetup() {
   map.add();
+  map.resize();
   ui.add();
   player.add();
+  player.resize();
+  ship.add();
+  ship.resize();
 
   initialTrashSpawn();
 }

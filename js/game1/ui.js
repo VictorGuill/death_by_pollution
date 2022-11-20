@@ -2,6 +2,8 @@ export default class Ui {
   constructor(id) {
     this.id = id;
     this.ui = document.createElement("div");
+
+    this.max_time = 61;
   }
 
   // set iu div attributes and append to DOM
@@ -31,9 +33,11 @@ export default class Ui {
 
   updateValues(player, runtime) {
     const trash_text = document.getElementById("trashText");
-    trash_text.innerHTML = "trash: " + player.trash_collected;
+    trash_text.innerHTML = "score: " + player.trash_collected;
 
-    timer_text.innerHTML = secondsToTime(runtime / 1000) + "s";
+    let time_left = this.max_time - runtime / 1000;
+
+    timer_text.innerHTML = secondsToTime(time_left) + "s";
     +"s";
   }
 }

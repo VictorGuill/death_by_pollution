@@ -37,22 +37,24 @@ export const trash_scale = 1.5;
 export const perks_quantity = 3;
 export const perk_scale = 1;
 
-export const perk_spawn_time = 5000;
-export const perk_probability = 33;
+export const perk_spawn_time = 4500;
+export const perk_probability = 75;
 //#endregion
 
 //#region PERK SETTINGS
 // speed boost
 export const speed_boost_duration = 5000;
-export const speed_boost_max = 10000;
+export const speed_boost_max = speed_boost_duration * 2;
 
 export const accel_boost = 35;
 export const top_speed_boost = 70;
 export const friction_boost = 30;
 
-// speed boost
-export const magnet_duration = 5000;
-export const magnet_max = 10000;
+// magnets
+export const magnet_duration = 4000;
+export const magnet_max = magnet_duration * 2;
+export const gold_magnet_duration = 1500;
+export const gold_magnet_max = magnet_duration * 2;
 
 export const magnet_range = 10;
 export const magnet_range_max = 20;

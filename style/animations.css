@@ -18,6 +18,16 @@
   }
 }
 
+@keyframes perk-idle {
+  0% {
+    transform: scale(80%);
+  }
+  100% {
+    transform: scale(95%);
+    filter: drop-shadow(0 0 0.5vmin rgb(255, 255, 255));
+  }
+}
+
 @keyframes pick-item {
   0% {
     transform-origin: center;
@@ -27,10 +37,10 @@
     opacity: 0.6;
   }
   100% {
-    transform: scale(50%) rotate(260deg);
+    transform: scale(20%) rotate(260deg);
     opacity: 0;
-    top: 10.4vmin;
-    left: 8vmin;
+    top: 11.4vmin;
+    left: 15vmin;
   }
 }
 
@@ -45,6 +55,16 @@
   }
 }
 /* #endregion */
+
+@keyframes ship-idle {
+  0% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    transform: translate(10%) scaleX(-1);
+  }
+}
 
 @keyframes rainbow {
   from {
