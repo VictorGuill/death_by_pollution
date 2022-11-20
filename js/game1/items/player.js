@@ -15,7 +15,7 @@ import {
 export default class Player extends Item {
   constructor(id, map) {
     super(id, map);
-    this.trash_type;
+    this.map = map;
 
     // player size and scale
     this.size_x = 12;
@@ -169,21 +169,39 @@ export default class Player extends Item {
   }
 
   perkCollected(perk, pickup_time) {
-    if (typeof this.perks[perk.name] === "undefined") {
-      this.perks[perk.name] = pickup_time + cfg.speed_boost_duration;
-    } else {
-      if (
-        this.perks[perk.name] + cfg.speed_boost_duration - pickup_time >
-        cfg.speed_boost_max
-      ) {
-        this.perks[perk.name] = pickup_time + cfg.speed_boost_max;
-      } else {
-        this.perks[perk.name] += cfg.speed_boost_duration;
-      }
+    switch (perk.name) {
+      case "speed_boost":
+        if (typeof this.perks["speed_boost"] === "undefined") {
+          this.perks["speed_boost"] = pickup_time + cfg.speed_boost_duration;
+        } else {
+          if (
+            this.perks["speed_boost"] + cfg.speed_boost_duration - pickup_time >
+            cfg.speed_boost_max
+          ) {
+            this.perks["speed_boost"] = pickup_time + cfg.speed_boost_max;
+          } else {
+            this.perks["speed_boost"] += cfg.speed_boost_duration;
+          }
+        }
+        break;
+      case "magnet":
+        if (typeof this.perks["magnet"] === "undefined") {
+          this.perks["magnet"] = pickup_time + cfg.magnet_duration;
+        } else {
+          if (
+            this.perks["magnet"] + cfg.magnet_duration - pickup_time >
+            cfg.magnet_max
+          ) {
+            this.perks["magnet"] = pickup_time + cfg.magnet_max;
+          } else {
+            this.perks["magnet"] += cfg.magnet_duration;
+          }
+        }
+        break;
     }
   }
 
-  applyPerk(runtime) {
+  applyPerk(runtime, trash_items) {
     if (typeof this.perks["speed_boost"] !== "undefined") {
       if (this.perks["speed_boost"] > runtime) {
         console.log(
@@ -203,6 +221,62 @@ export default class Player extends Item {
         console.log("normal_speed");
 
         this.dom.style.animation = "item-spawn 0s";
+      }
+    }
+
+    if (typeof this.perks["magnet"] !== "undefined") {
+      if (this.perks["magnet"] > runtime) {
+        // console.log(
+        //   "magnet_begin",
+        //   Number(this.perks["magnet"] - runtime).toFixed(0)
+        // );
+
+        trash_items.forEach((trash) => {
+          let testX;
+          let testY;
+          if (this.x < trash.x) {
+            testX = trash.x;
+          } else if (this.x > trash.x + trash.width) {
+            testX = trash.x + trash.width;
+          }
+
+          if (this.y < trash.y) {
+            testY = trash.y;
+          } else if (this.y > trash.y + trash.height) {
+            testY = trash.y + trash.height;
+          }
+
+          let distX = this.x - testX;
+          let distY = this.y - testY;
+          let distance = Math.sqrt(distX * distX + distY * distY);
+
+          let range = this.width * 2;
+          let speed = 10;
+
+          if (distance < range || trash.go_to_player) {
+            trash.go_to_player = true;
+
+            // console.log("collision con " + trash.id);
+            if (trash.x < this.x + this.width / 2) {
+              trash.x += speed;
+            }
+            if (trash.x > this.x + this.width / 2) {
+              trash.x -= speed;
+            }
+
+            if (trash.y < this.y + this.height / 2) {
+              trash.y += speed;
+            }
+            if (trash.y > this.y + this.height / 2) {
+              trash.y -= speed;
+            }
+
+            trash.draw();
+          }
+        });
+      } else {
+        delete this.perks["magnet"];
+        // console.log("normal_range");
       }
     }
   }

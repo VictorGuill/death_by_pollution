@@ -11,6 +11,8 @@ export default class Trash extends Item {
     this.min_y;
     this.max_y;
 
+    this.go_to_player = false;
+
     this.scale = trash_scale;
   }
 

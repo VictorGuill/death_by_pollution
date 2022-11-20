@@ -106,6 +106,24 @@ body {
   z-index: 5;
 
   animation: item-spawn 0.75s;
+
+  overflow: visible;
+}
+
+#player::after {
+  content: "";
+  position: absolute;
+
+  width: 25vmin;
+  aspect-ratio: 1/1;
+
+  border-radius: 50%;
+
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+
+  border: solid 0.2vmin rgba(255, 0, 0, 0);
 }
 
 .trash,

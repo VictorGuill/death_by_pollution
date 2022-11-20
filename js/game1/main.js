@@ -113,7 +113,7 @@ function updateGame(dt, elapsedTime) {
   checkTrashCollition(trashes);
   checkPerksCollition(elapsedTime);
 
-  player.applyPerk(elapsedTime);
+  player.applyPerk(elapsedTime, trashes);
 
   perk_acc = perkSpawn(dt, perk_acc, perks);
   ui.updateValues(player, elapsedTime);

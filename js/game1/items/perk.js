@@ -15,11 +15,14 @@ export default class Perk extends Item {
   }
 
   add() {
-    this.num = randomIntFromInterval(0, 0);
+    this.num = randomIntFromInterval(0, 1);
 
     switch (this.num) {
       case 0:
         this.setSizePosName(30, 22, 0.16, 1, "speed_boost");
+        break;
+      case 1:
+        this.setSizePosName(30, 28, 0.25, 1, "magnet");
         break;
     }
 

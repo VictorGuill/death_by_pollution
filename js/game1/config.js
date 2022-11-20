@@ -41,13 +41,21 @@ export const perk_spawn_time = 5000;
 export const perk_probability = 33;
 //#endregion
 
-//#region SPEED BOOST PERK SETTINGS
+//#region PERK SETTINGS
+// speed boost
 export const speed_boost_duration = 5000;
 export const speed_boost_max = 10000;
 
 export const accel_boost = 35;
 export const top_speed_boost = 70;
 export const friction_boost = 30;
+
+// speed boost
+export const magnet_duration = 5000;
+export const magnet_max = 10000;
+
+export const magnet_range = 10;
+export const magnet_range_max = 20;
 //#endregion
 
 //#region FUNCTIONS
