@@ -137,14 +137,13 @@ export default class Plane{
 
     updatePositions(dt) {
         this.worldX += this.speedX * dt/10;
-        this.worldY += this.speedY * dt/40;
+        this.worldY += this.speedY * dt/10;
         if (this.gp.physics.lift >= this.weight) {
             
         }
         this.screenX = ((5 * this.gp.map.w * (this.gp.physics.getPercentSpeed(this, this.speed))) * .001);
         this.screenY = this.worldY;
         // X = ( (7 * mapWidth * Vpercent) / 1000 )[when 100% speed --> maxScreenX = 70% of mapWidth]
-        //this.screenY = this.worldY;
         
         if (this.worldX < 0) {
             this.worldX = 0;
@@ -156,7 +155,7 @@ export default class Plane{
     }
 
     updateSpeed() {
-        //this.speed = this.gp.physics.calcSpeed(this);
+        this.speed = this.gp.physics.calcSpeed(this);
         this.speedX = this.gp.physics.calcSpeedX(this);
         this.speedY = this.gp.physics.calcSpeedY(this);
 
@@ -243,17 +242,17 @@ export default class Plane{
 
     update(dt) {
         this.fly(dt);
-        //this.gp.physics.update(this);
-        //this.gp.collisionDetection.mapBounderiesCheck(this);
+        this.gp.physics.update(this);
+        this.gp.collisionDetection.mapBounderiesCheck(this);
         
     /*  ------------ DEBUG ----------  */
-        console.log("-------SPEED-----");
+        /* console.log("-------SPEED-----");
         console.log("SPEED: "+ Math.round(this.speed));
-        console.log("Speed %: " + Math.round(this.gp.physics.getPercentSpeed(this, this.speed)));
+        console.log("Speed %: " + Math.round(this.gp.physics.getPercentSpeed(this, this.speed))); */
         //console.log("In PSM: "+ this.inPSM);
         //console.log("Cobra range: "+this.cobraRange);
-        console.log("SpeedX: "+ Math.round(this.speedX));
-        console.log("SpeedY: "+ Math.round(this.speedY));
+        // console.log("SpeedX: "+ Math.round(this.speedX));
+        // console.log("SpeedY: "+ Math.round(this.speedY));
         //console.log("LIFT COEF: " + this.cL);
         //console.log("DRAG COEF: " +this.cD);
         //console.log("Lift: "+ Math.round(this.gp.physics.lift));
@@ -261,11 +260,11 @@ export default class Plane{
         //console.log("Weight: " + Math.round(this.weight));
         //console.log("Pitch: " +this.pitch);
         //console.log("pitch to rad: " +this.toRadiants(this.pitch));
-        /* console.log("-------POSITION-----");
+        console.log("-------POSITION-----");
         console.log("World X: "+ Math.round(this.worldX));
         console.log("World Y: " + Math.round(this.worldY))
         console.log ("Screen X: "+ Math.round(this.screenX));
-        console.log("Screen Y: "+ Math.round(this.screenY)); */
+        console.log("Screen Y: "+ Math.round(this.screenY));
         /* console.log("Collison = " + this.collision); */
     }
 

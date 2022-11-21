@@ -11,24 +11,16 @@ export default class CollisionDetection{
 
         entity.collision = false;
 
-            const topDecelerationZone = this.gp.map.h - this.gp.map.h/4; 
 
-            if (entityTopMapY >= (topDecelerationZone)) {
-                /* let t = (this.gp.map.h - entity.worldY)/entity.speedY;
-                let a = entity.speedY/(t**2);
-                console.log("Time to max H: "+t );
-                console.log("Deceleration: "+a);
 
-                entity.speedY-= a; */
-            } 
             if (entityTopMapY > this.gp.map.h){
-                entity.screenY = this.gp.map.h-entity.h;
+                entity.worldY = this.gp.map.h-entity.h;
                 entity.speedY = this.gp.physics.gravity;
             } 
 
 
             if (entityBottomMapY  < 0){
-                entity.screenY = 0;
+                entity.worldY = 0;
             } 
 
         

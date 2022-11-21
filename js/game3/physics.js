@@ -4,7 +4,7 @@ export default class Phisics {
 
         this.gravity = -5;
 
-        this.drag = 0;
+        this.drag = 1;
 
         this.staticDrag = 0;
 
@@ -15,7 +15,6 @@ export default class Phisics {
 
     // ------ UTILITY ------
     getWeight(entity){
-        this.staticDrag = entity.acceleration/6;
         return Math.abs(entity.mass * this.gravity);
     }
 
@@ -57,7 +56,7 @@ export default class Phisics {
     }
 
     calcSpeedY(entity) {
-        return entity.speed * Math.sin(this.toRadiants(entity.pitch)) /* - entity.weight + this.lift */;
+        return entity.speed * Math.sin(this.toRadiants(entity.pitch)) - entity.weight + this.lift;
     }
 
     calcSpeedX(entity) {

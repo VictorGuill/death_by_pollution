@@ -189,9 +189,9 @@ export default class Map {
         this.rocks_2.style.backgroundPositionX = -(this.gp.plane.worldX / 16) + "px";
         this.clouds_1.style.backgroundPositionX = -(this.gp.plane.worldX / 18) + "px";
 
-        this.layers.forEach(layer => {
+        /* this.layers.forEach(layer => {
             layer.style.backgroundPositionY = this.initialWorldY +(this.gp.plane.worldY) +"px";
-        })
+        }) */
 
         /* this.rocks_5.style.backgroundPositionY = +(this.gp.plane.worldY) +"px";
         //this.rocks_4.style.backgroundPositionX = -(this.gp.plane.worldX/4) +"px";
