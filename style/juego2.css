@@ -15,7 +15,7 @@ body {
 }
 
 #map {
-  width: var(--mapSize);
+  /* width: var(--mapSize); */
   height: var(--mapSize);
 
   display: grid;
@@ -27,25 +27,26 @@ body {
 }
 
 #items_picker {
-  width: 12vmin;
-  height: 30vmin;
+  width: 10vmin;
+  height: 55vmin;
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 
   margin-left: 1vmin;
 
-  border-radius: 0.5vmin;
+  border-radius: 1vmin;
   background-color: maroon;
 }
 
 .start,
 .end,
 .tree,
-.mountain {
+.mountain,
+.dropSpace {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,17 +56,13 @@ body {
   border-radius: 0.5vmin;
 }
 
-.start {
-  background-color: maroon;
+#piece {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }
-.end {
-  background-color: darkorange;
-}
-.tree {
-  background-color: darkslategrey;
-  opacity: 0.6;
-}
-.mountain {
-  background-color: cornflowerblue;
-  opacity: 0.6;
+
+#piece:hover{
+  cursor: pointer;
 }

@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Juego 2</title>
-    <link rel="stylesheet" href="../style/juego2.css" />
-  </head>
-  <body>
-    <!-- <p>Juego Maria</p> -->
-    <div id="map"></div>
-    <div id="items_picker"></div>
 
-    <script src="../js/main.js" type="module"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego 2</title>
+  <link rel="stylesheet" href="../style/juego2.css" />
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="items_picker">
+    <div id="piece" draggable="true">
+      <img src="../media/game2/tracks/br.png" width="60px" height="60px" draggable="false"/>
+    </div>
+    <div id="piece" draggable="true">
+      <img src="../media/game2/tracks/lb.png" width="60px" height="60px" draggable="false"/>
+    </div>
+    <div id="piece" draggable="true">
+      <img src="../media/game2/tracks/lr.png" width="60px" height="60px" draggable="false"/>
+    </div>
+    <div id="piece" draggable="true">
+      <img src="../media/game2/tracks/lt.png" width="60px" height="60px" draggable="false"/>
+    </div>
+    <div id="piece" draggable="true">
+      <img src="../media/game2/tracks/tb.png" width="60px" height="60px" draggable="false"/>
+    </div>
+    <div id="piece" draggable="true">
+      <img src="../media/game2/tracks/tr.png" width="60px" height="60px" draggable="false"/>
+    </div>
+  </div>
+
+  <script src="../js/game2/main.js" type="module"></script>
+</body>
+
 </html>
