@@ -15,12 +15,9 @@ body {
 }
 
 #map {
-  /* width: var(--mapSize); */
-  height: var(--mapSize);
-
   display: grid;
-  grid-template-columns: repeat(var(--gridSize), 1fr);
-  grid-template-rows: repeat(var(--gridSize), 1fr);
+  grid-template-columns: repeat(var(--gridSize), var(--gridPx));
+  grid-template-rows: repeat(var(--gridSize), var(--gridPx));
 
   border-radius: 0.5vmin;
   background-color: #dadada;
@@ -31,8 +28,8 @@ body {
   height: 55vmin;
 
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: 1;
+  grid-template-rows: repeat(6, 80px);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 
@@ -51,8 +48,6 @@ body {
   justify-content: center;
   align-items: center;
 
-  font-size: 1.4vmin;
-  font-weight: bold;
   border-radius: 0.5vmin;
 }
 

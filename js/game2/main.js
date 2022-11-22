@@ -3,10 +3,11 @@ import Entity from "./Entity.js";
 // #region SETTINGS
 const trees_amount = 20;
 const mountains_amount = 10;
-document.documentElement.style.setProperty("--mapSize", "85vmin");
 
 const gridSize = 14;
 document.documentElement.style.setProperty("--gridSize", gridSize);
+const gridPx = "60px";
+document.documentElement.style.setProperty("--gridPx", gridPx);
 // #endregion
 
 let obstacles_id_counter = 0;
@@ -25,18 +26,21 @@ obstacles_array.push(end);
 addItems(mountains_amount, "mountain", 1, 0);
 addItems(trees_amount, "tree", 0, 0);
 
+//calculate the number of free spaces left
+const freeSpaces = gridSize * gridSize - (obstacles_id_counter + mountains_amount);
+//array of free spaces
 let blankSpaces = [];
-addBlankItems(gridSize*gridSize - obstacles_id_counter, "dropSpace", 0, 0);
+addBlankItems(freeSpaces, "dropSpace", 0, 0);
 
-// functions
+// function 
 function addItems(amount, type, columnOffset, rowOffset) {
   for (let i = 0; i < amount; i++) {
     // determines if we add div to map or not
     let add_to_map = true;
 
     // generate positions
-    const colum_start = randomIntFromInterval(1, gridSize - columnOffset);
-    const row_start = randomIntFromInterval(1, gridSize - rowOffset);
+    const colum_start = randomInt(1, gridSize - columnOffset);
+    const row_start = randomInt(1, gridSize - rowOffset);
 
     // create new object
     const new_obstacle = new Entity(
@@ -74,17 +78,18 @@ function checkCollision(new_elem, elem) {
   return false;
 }
 
-function randomIntFromInterval(min, max) {
+function randomInt(min, max) {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+//functions to add de drop spaces around the map
 function addBlankItems(size, type, col, row) {
   for (let i = 0; i < size; i++) {
     let add_to_map = true;
 
     const dropSpace = new Entity(
-      obstacles_id_counter,
+      "drop" + i,
       type,
       col,
       row
@@ -99,15 +104,13 @@ function addBlankItems(size, type, col, row) {
 
     if (add_to_map) {
       dropSpace.add();
-      obstacles_array.push(dropSpace);
     }
   }
 }
 
-
+//DRAG AND DROP
 const piecesElem = document.querySelectorAll('#piece');
 const dropSpaces = document.querySelectorAll('.dropSpace');
-console.log(piecesElem);
 
 piecesElem.forEach(el => {
   el.addEventListener('dragstart', dragStartHandler);
@@ -115,17 +118,22 @@ piecesElem.forEach(el => {
 })
 
 dropSpaces.forEach(el => {
+  el.addEventListener('dragenter', dragEnterHandler);
   el.addEventListener('dragover', dragOverHandler);
   el.addEventListener('drop', dropHandler);
 })
 
 function dragStartHandler(e) {
-  let img = e.target.querySelector('img'); 
+  let img = e.target.querySelector('img');
   e.dataTransfer.setData('text', img.src);
-  e.target.style = 'width: "30px"; height: "30px";';
+  e.target.style = 'opacity: 0.3';
 }
 function dragEndHandler(e) {
-  e.target.style = '';
+  e.target.style = 'opacity: none;';
+}
+
+function dragEnterHandler(e) {
+  e.target.style = 'border: 2px dashed gray; background: whitesmoke';
 }
 
 function dragOverHandler(e) {
@@ -139,5 +147,11 @@ function dropHandler(e) {
   const indexOf = sourceElemData.indexOf("/media");
   let route = ".." + sourceElemData.substring(indexOf);
   console.log(route);
-  e.target.innerHTML = `<img src="`+ route +`" width="60px" height="60px"/>`;
+  e.target.innerHTML = `<img src="` + route + `" width="60px" height="60px"/>`;
+  e.target.style = "background-color: #dadada;";
+
+  // Object.assign(e.target, {
+  //   className: 'no-longer-draggable',
+  //   draggable: false,
+  // });
 }
