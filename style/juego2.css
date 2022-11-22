@@ -24,8 +24,8 @@ body {
 }
 
 #items_picker {
-  width: 10vmin;
-  height: 55vmin;
+  width: 8vmin;
+  height: 26.3vmin;
 
   display: grid;
   grid-template-columns: 1;
@@ -37,6 +37,29 @@ body {
 
   border-radius: 1vmin;
   background-color: maroon;
+}
+
+#button {
+  width: 8vmin;
+  height: 8vmin;
+
+  margin-top: 1vmin;
+  margin-left: 1vmin;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 1vmin;
+  background-color: maroon;
+}
+
+button {
+  all: unset;
+}
+
+#button:hover {
+  background-color: rgb(157, 44, 44);
 }
 
 .start,

@@ -1,4 +1,5 @@
 import Entity from "./Entity.js";
+import Piece from "./pieces.js";
 
 // #region SETTINGS
 const trees_amount = 20;
@@ -125,6 +126,7 @@ dropSpaces.forEach(el => {
 
 function dragStartHandler(e) {
   let img = e.target.querySelector('img');
+  console.log(img.src);
   e.dataTransfer.setData('text', img.src);
   e.target.style = 'opacity: 0.3';
 }
@@ -144,14 +146,37 @@ function dropHandler(e) {
   e.preventDefault();
 
   const sourceElemData = e.dataTransfer.getData('text');
+  console.log(sourceElemData);
   const indexOf = sourceElemData.indexOf("/media");
-  let route = ".." + sourceElemData.substring(indexOf);
-  console.log(route);
-  e.target.innerHTML = `<img src="` + route + `" width="60px" height="60px"/>`;
+  // let route = ".." + sourceElemData.substring(indexOf);
+  // console.log(route);
+  // e.target.innerHTML = `<img src="` + route + `" width="60px" height="60px"/>`;
   e.target.style = "background-color: #dadada;";
 
   // Object.assign(e.target, {
   //   className: 'no-longer-draggable',
   //   draggable: false,
   // });
+}
+
+//add pieces
+const piece = new Piece('piece');
+const piece2 = new Piece('piece');
+const piece3 = new Piece('piece');
+
+piece.addPiece();
+piece2.addPiece();
+piece3.addPiece();
+
+//button to change the 3 pieces
+document.getElementById("button").addEventListener("click", reloadPieces);
+function reloadPieces() {
+  let pieceData = document.querySelectorAll('#piece');
+  console.log (pieceData)
+
+  pieceData.forEach(el => {
+    el.remove();
+    el = new Piece('piece');
+    el.addPiece();
+  });
 }
