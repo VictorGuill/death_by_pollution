@@ -4,6 +4,10 @@
     font-style: normal;
     font-weight: 100;
 }
+:root{
+    --powerHeight: 0%;
+    --maxPowerHeight: 92%;
+}
 
 * {
     box-sizing: border-box;
@@ -131,9 +135,9 @@ body {
 #speedometerImgContainer::after{
     content: "";
     position: absolute;
-    bottom: 4%;
+    bottom: 4.5%;
     left: 80%;
-    height: 20%;
+    height: var(--powerHeight);
     width: 3px;
     background-color: #69f690;
     box-shadow: 

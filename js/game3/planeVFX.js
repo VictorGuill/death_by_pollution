@@ -6,7 +6,7 @@ export default class planeVfx {
 
     addEffects(){
         this.thrustVfx();
-        this.speedVfx();
+        this.windVfx();
     }
 
     thrustVfx(){
@@ -20,7 +20,7 @@ export default class planeVfx {
         this.plane.element.appendChild(this.thrust);
     }
 
-    speedVfx(){
+    windVfx(){
         this.speed = document.createElement("img");
         this.speed.style.position = "absolute";
         this.speed.style.opacity = "0";

@@ -162,6 +162,7 @@ export default class UI {
     progress() {
         this.progressBar.bar.style.width = this.gp.plane.worldX/100 +"px";
     }
+
     
 
     draw() {

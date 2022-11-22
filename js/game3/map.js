@@ -1,3 +1,4 @@
+//SET THIS VARIABLE TO MAX LAYER HEIGHT TO MATCH MAP SIZE
 const bgImgHeight = 1080;
 
 export default class Map {
@@ -170,12 +171,6 @@ export default class Map {
     getSize() {
         this.w = this.element.offsetWidth;
         this.h = this.element.offsetHeight;
-        /* let bgImgSize = new Image();
-        bgImgSize.src = "/media/game3/background_1/background_size.png";
-        bgImgSize.onload = (img => {
-            this.backgroundHeight = img.height;
-        });
-         */
     }
 
 
@@ -189,17 +184,11 @@ export default class Map {
         this.rocks_2.style.backgroundPositionX = -(this.gp.plane.worldX / 16) + "px";
         this.clouds_1.style.backgroundPositionX = -(this.gp.plane.worldX / 18) + "px";
 
-        /* this.layers.forEach(layer => {
+        this.layers.forEach(layer => {
             layer.style.backgroundPositionY = this.initialWorldY +(this.gp.plane.worldY) +"px";
-        }) */
-
-        /* this.rocks_5.style.backgroundPositionY = +(this.gp.plane.worldY) +"px";
-        //this.rocks_4.style.backgroundPositionX = -(this.gp.plane.worldX/4) +"px";
-        this.clouds_4.style.backgroundPositionY = +(this.gp.plane.worldY) +"px";
-        this.rocks_1.style.backgroundPositionY = +(this.gp.plane.worldY) +"px";
-        this.clouds_2.style.backgroundPositionY = +(this.gp.plane.worldY) +"px";
-        this.clouds_3.style.backgroundPositionY = +(this.gp.plane.worldY) +"px";
-        this.rocks_2.style.backgroundPositionY = +(this.gp.plane.worldY) +"px";
-        this.clouds_1.style.backgroundPositionY = +(this.gp.plane.worldY) +"px"; */
+            if (parseInt(layer.style.backgroundPositionY) >= 0){
+                layer.style.backgroundPositionY = "0px";
+            }
+        })
     }
 }
