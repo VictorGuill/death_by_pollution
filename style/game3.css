@@ -22,9 +22,6 @@ body {
     width: 100vw;
 }
 
-#game-wrapper {
-
-}
 
 #gp {
     position: relative;
@@ -98,7 +95,7 @@ body {
     background-color: rgba(100, 100, 100, 0.3);
 }
 
-#time-score p, #speedometer-label, #altimeter-label{
+#time-score p, #speedometer-label, #altimeter-label, #speedometer-value, #altimeter-value{
     font-family: aceCombat;
     font-size: 1.6vmin;
     color: #85f76eb3;
@@ -163,11 +160,25 @@ body {
     left: 10%;
 }
 
+#speedometer-value{
+    position: absolute;
+    font-weight: bold;
+    top: 43%;
+    left: 10%;
+}
+
 #altimeter-label{
     position: absolute;
     font-weight: bold;
     top: 38%;
     left: 48%;
+}
+
+#altimeter-value{
+    position: absolute;
+    font-weight: bold;
+    top: 43%;
+    left: 50%;
 }
 
 #speedometer-metric{

@@ -82,48 +82,58 @@ export default class UI {
         this.hud.speedometer = document.createElement("div");
         this.hud.speedometer.setAttribute("id", "speedometer");
             //img
-        const speedometerImgContainer = document.createElement("div");
-        speedometerImgContainer.setAttribute("id", "speedometerImgContainer");
-        const speedometerImg = document.createElement("img");
-        speedometerImg.src = "/media/game3/hud/speedometer_hud.png";
-        speedometerImgContainer.appendChild(speedometerImg);
-        this.hud.speedometer.appendChild(speedometerImgContainer);
-            //RES
-        const speedometerElements = document.createElement("div");
-        speedometerElements.setAttribute("id", "speedometer-elements");
+            const speedometerImgContainer = document.createElement("div");
+            speedometerImgContainer.setAttribute("id", "speedometerImgContainer");
+            const speedometerImg = document.createElement("img");
+            speedometerImg.src = "/media/game3/hud/speedometer_hud.png";
+            speedometerImgContainer.appendChild(speedometerImg);
+            this.hud.speedometer.appendChild(speedometerImgContainer);
+            //res
+            const speedometerElements = document.createElement("div");
+            speedometerElements.setAttribute("id", "speedometer-elements");
                 //label
-        const speedometerLabel = document.createElement("p");
-        speedometerLabel.setAttribute("id", "speedometer-label");
-        speedometerLabel.innerHTML = "SPEED";
-        speedometerElements.appendChild(speedometerLabel);
-            //metric
-        this.hud.speedometer.metric = document.createElement("div");
-        this.hud.speedometer.metric.setAttribute("id", "speedometer-metric");
-        speedometerElements.appendChild(this.hud.speedometer.metric);
+                const speedometerLabel = document.createElement("p");
+                speedometerLabel.setAttribute("id", "speedometer-label");
+                speedometerLabel.innerHTML = "SPEED";
+                speedometerElements.appendChild(speedometerLabel);
+                //value
+                this.hud.speedometer.value = document.createElement("p");
+                this.hud.speedometer.value.setAttribute("id", "speedometer-value");
+                this.hud.speedometer.value.innerHTML = "1200";
+                speedometerElements.appendChild(this.hud.speedometer.value);
+                //metric
+                this.hud.speedometer.metric = document.createElement("div");
+                this.hud.speedometer.metric.setAttribute("id", "speedometer-metric");
+                speedometerElements.appendChild(this.hud.speedometer.metric);
 
-        this.hud.speedometer.appendChild(speedometerElements);
+                this.hud.speedometer.appendChild(speedometerElements);
 
         //ALTIMETER
         this.hud.altimeter = document.createElement("div");
         this.hud.altimeter.setAttribute("id", "altimeter");
             //img
-        const altimeterImg = document.createElement("img");
-        altimeterImg.src = "/media/game3/hud/altimeter_hud.png";
-        this.hud.altimeter.appendChild(altimeterImg);
-            //RES
-        const altimeterElements = document.createElement("div");
-        altimeterElements.setAttribute("id", "altimeter-elements");
+            const altimeterImg = document.createElement("img");
+            altimeterImg.src = "/media/game3/hud/altimeter_hud.png";
+            this.hud.altimeter.appendChild(altimeterImg);
+            //res
+            const altimeterElements = document.createElement("div");
+            altimeterElements.setAttribute("id", "altimeter-elements");
                 //label
-        this.hud.altimeter.label = document.createElement("p");
-        this.hud.altimeter.label.setAttribute("id", "altimeter-label");
-        this.hud.altimeter.label.innerHTML = "ALT";
-        altimeterElements.appendChild(this.hud.altimeter.label);
+                this.hud.altimeter.label = document.createElement("p");
+                this.hud.altimeter.label.setAttribute("id", "altimeter-label");
+                this.hud.altimeter.label.innerHTML = "ALT";
+                altimeterElements.appendChild(this.hud.altimeter.label);
+                //value
+                this.hud.altimeter.value = document.createElement("p");
+                this.hud.altimeter.value.setAttribute("id", "altimeter-value");
+                this.hud.altimeter.value.innerHTML = "250";
+                altimeterElements.appendChild(this.hud.altimeter.value);
                 //metric
-        this.hud.altimeter.metric = document.createElement("div");
-        this.hud.altimeter.metric.setAttribute("id", "altimeter-metric");
-        altimeterElements.appendChild(this.hud.altimeter.metric);
+                this.hud.altimeter.metric = document.createElement("div");
+                this.hud.altimeter.metric.setAttribute("id", "altimeter-metric");
+                altimeterElements.appendChild(this.hud.altimeter.metric);
 
-        this.hud.altimeter.appendChild(altimeterElements);
+                this.hud.altimeter.appendChild(altimeterElements);
 
 
         this.hud.appendChild(this.hud.speedometer);
@@ -163,7 +173,7 @@ export default class UI {
         this.progressBar.bar.style.width = this.gp.plane.worldX/100 +"px";
     }
 
-    
+
 
     draw() {
         this.progress();
