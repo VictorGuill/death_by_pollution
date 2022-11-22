@@ -30,7 +30,7 @@ export default class Plane{
         this.maxPitch = 45;
         
         this.cL = 1; //Lift coeficient
-        this.cD = 0.2; //Drag coeficient
+        this.cD = 1; //Drag coeficient
 
         this.acceleration = 15;
         this.deceleration = 4;
@@ -242,7 +242,7 @@ export default class Plane{
 
     update(dt) {
         this.fly(dt);
-        this.gp.physics.update(this);
+        this.gp.physics.update(this, dt);
         this.gp.collisionDetection.mapBounderiesCheck(this);
         
     /*  ------------ DEBUG ----------  */

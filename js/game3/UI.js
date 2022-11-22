@@ -99,7 +99,6 @@ export default class UI {
                 //value
                 this.hud.speedometer.value = document.createElement("p");
                 this.hud.speedometer.value.setAttribute("id", "speedometer-value");
-                this.hud.speedometer.value.innerHTML = "1200";
                 speedometerElements.appendChild(this.hud.speedometer.value);
                 //metric
                 this.hud.speedometer.metric = document.createElement("div");
@@ -173,9 +172,12 @@ export default class UI {
         this.progressBar.bar.style.width = this.gp.plane.worldX/100 +"px";
     }
 
-
+    hudMetricsUpdate(){
+        this.hud.speedometer.value.innerHTML = Math.round(this.gp.plane.speed);
+    }
 
     draw() {
         this.progress();
+        this.hudMetricsUpdate();
     }
 }

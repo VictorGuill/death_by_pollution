@@ -43,9 +43,8 @@ export default class Phisics {
     }
 
     // ------ DRAG ------
-    applyDrag(entity) {
-        this.drag = (.3 * entity.speedX) * this.getAngleCoefficient() * entity.cD;
-        entity.speedX -= this.drag;
+    applyDrag(entity, dt) {
+        this.staticDrag = (.01 * entity.speedX) * this.getAngleCoefficient() * entity.cD * dt;
     }
 
 
@@ -64,8 +63,8 @@ export default class Phisics {
     }
 
 
-    update(entity){
+    update(entity, dt){
         this.applyLift(entity);
-        this.applyDrag(entity);
+        this.applyDrag(entity, dt);
     }
 }
