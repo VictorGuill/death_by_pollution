@@ -3,21 +3,21 @@ export default class Piece {
         this.id = id;
 
         this.doc = document.createElement("div");
+        this.doc.setAttribute("draggable", true);
         this.id = "piece";
     }
 
 
     addPiece() {
         const imgPiece = this.randomPiece();
-        // set text, id class
         this.doc.innerHTML = `<img src="` + imgPiece + `" width="60px" height="60px"/>`;
         this.doc.id = this.id;
 
-        // get items picker
+        //items picker as the father of the pieces
         const pieces = document.querySelector("#items_picker");
         pieces.appendChild(this.doc);
     }
-    
+
     randomPiece() {
         var rand_img = new Array();
         rand_img[0] = "../media/game2/tracks/br.jpg";

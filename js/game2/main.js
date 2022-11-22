@@ -102,11 +102,38 @@ function addBlankItems(size, type, col, row) {
         i--;
       }
     });
-
+    
     if (add_to_map) {
       dropSpace.add();
     }
   }
+}
+
+//add pieces
+const piece = new Piece('piece');
+const piece2 = new Piece('piece');
+const piece3 = new Piece('piece');
+
+piece.addPiece();
+piece2.addPiece();
+piece3.addPiece();
+
+//button to change the 3 pieces
+document.getElementById("button").addEventListener("click", reloadPieces);
+
+function reloadPieces() {
+  let pieceData = document.querySelectorAll('#piece');
+  console.log(pieceData); 
+  pieceData.forEach(el => {
+    el.remove();
+    el = new Piece('piece');
+    el.addPiece();
+  });
+  let new_pieces = document.querySelectorAll('#piece');
+  new_pieces.forEach(el => {
+    el.addEventListener('dragstart', dragStartHandler);
+    el.addEventListener('dragend', dragEndHandler);
+  })
 }
 
 //DRAG AND DROP
@@ -125,17 +152,17 @@ dropSpaces.forEach(el => {
 })
 
 function dragStartHandler(e) {
-  let img = e.target.querySelector('img');
-  console.log(img.src);
-  e.dataTransfer.setData('text', img.src);
-  e.target.style = 'opacity: 0.3';
+  let img_src = e.target.src;
+  e.dataTransfer.setData('text', img_src);
+  console.log("IMG SRC: " + img_src);
+  e.target.style = 'opacity: 0.3;';
 }
 function dragEndHandler(e) {
   e.target.style = 'opacity: none;';
 }
 
 function dragEnterHandler(e) {
-  e.target.style = 'border: 2px dashed gray; background: whitesmoke';
+  // e.target.style = 'border: 2px dashed gray; background: whitesmoke';
 }
 
 function dragOverHandler(e) {
@@ -146,37 +173,9 @@ function dropHandler(e) {
   e.preventDefault();
 
   const sourceElemData = e.dataTransfer.getData('text');
-  console.log(sourceElemData);
   const indexOf = sourceElemData.indexOf("/media");
-  // let route = ".." + sourceElemData.substring(indexOf);
-  // console.log(route);
-  // e.target.innerHTML = `<img src="` + route + `" width="60px" height="60px"/>`;
+  let route = ".." + sourceElemData.substring(indexOf);
+  console.log(route);
+  e.target.innerHTML = `<img src="` + route + `" width="60px" height="60px"/>`;
   e.target.style = "background-color: #dadada;";
-
-  // Object.assign(e.target, {
-  //   className: 'no-longer-draggable',
-  //   draggable: false,
-  // });
-}
-
-//add pieces
-const piece = new Piece('piece');
-const piece2 = new Piece('piece');
-const piece3 = new Piece('piece');
-
-piece.addPiece();
-piece2.addPiece();
-piece3.addPiece();
-
-//button to change the 3 pieces
-document.getElementById("button").addEventListener("click", reloadPieces);
-function reloadPieces() {
-  let pieceData = document.querySelectorAll('#piece');
-  console.log (pieceData)
-
-  pieceData.forEach(el => {
-    el.remove();
-    el = new Piece('piece');
-    el.addPiece();
-  });
 }
