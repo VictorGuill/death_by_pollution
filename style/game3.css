@@ -224,6 +224,18 @@ input{ margin-right: 100px;}
   
     will-change: background, background-size;
     animation: scanlines var(--scanLinesSpeed) linear infinite;
+    z-index: 998;
+}
+
+.crt_borders::after {
+    content: "";
+    position: absolute;
+  
+    width: 100.25%;
+    height: 100.25%;
+  
+    background-image: url("../media/game1_assets/crt.png");
+    background-size: cover;
     z-index: 999;
 }
 

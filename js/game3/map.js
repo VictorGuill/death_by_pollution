@@ -15,6 +15,7 @@ export default class Map {
     addElement() {
         this.element = document.createElement("div");
         this.element.setAttribute("id", this.id);
+        this.element.classList.add("crt_borders");
         this.gp.element.appendChild(this.element);
         this.getSize();
     }
