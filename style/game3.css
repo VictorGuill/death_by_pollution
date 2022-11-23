@@ -7,6 +7,9 @@
 :root{
     --powerHeight: 0%;
     --maxPowerHeight: 92%;
+    --scanLinesSpeed: 0.8s;
+    --scanLinesOpacity: 0.25;
+    --scanLinesSize: 3px;
 }
 
 * {
@@ -210,3 +213,35 @@ body {
 /*DEBUG CONTROLS*/
 label {color: white;}
 input{ margin-right: 100px;}
+
+
+/* #region CRT FX */
+.scanline::before {
+    content: "";
+    position: absolute;
+  
+    inset: 0;
+  
+    will-change: background, background-size;
+    animation: scanlines var(--scanLinesSpeed) linear infinite;
+    z-index: 999;
+}
+
+@keyframes scanlines {
+    from {
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 0, 0, var(--scanLinesOpacity)) 51%
+      );
+      background-size: 100vmax var(--scanLinesSize);
+    }
+    to {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, var(--scanLinesOpacity)) 50%,
+        transparent 51%
+      );
+      background-size: 100vmax var(--scanLinesSize);
+    }
+  }
