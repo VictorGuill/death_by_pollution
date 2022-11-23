@@ -9,7 +9,6 @@ export default class Map {
         this.y = 0;
         this.addElement();
         this.addLayers();
-        this.addScreenZone();
     }
 
     addElement() {
@@ -17,13 +16,14 @@ export default class Map {
         this.element.setAttribute("id", this.id);
         this.element.classList.add("crt_borders");
         this.gp.element.appendChild(this.element);
+        this.addScreenZone()
         this.getSize();
     }
 
     addScreenZone() {
-        const screenPlaneZone = document.createElement("div");
-        screenPlaneZone.setAttribute("id", "planeScreenZone");
-        this.element.appendChild(screenPlaneZone);
+        this.screenPlaneZone = document.createElement("div");
+        this.screenPlaneZone.setAttribute("id", "planeScreenZone");
+        this.element.appendChild(this.screenPlaneZone);
     }
 
 
@@ -147,6 +147,7 @@ export default class Map {
     addLayers() {
         this.layersGroup = document.createElement("div");
         this.layersGroup.setAttribute("id", "layers");
+
         this.addRocks_5();
         //this.addRocks_4();
         this.addClouds_4();
@@ -156,6 +157,7 @@ export default class Map {
         this.addRocks_2();
         this.addClouds_1();
         this.addSky();
+
         this.element.appendChild(this.layersGroup);
         this.getBgHeight();
     }
@@ -172,6 +174,8 @@ export default class Map {
     getSize() {
         this.w = this.element.offsetWidth;
         this.h = this.element.offsetHeight;
+        this.screenPlaneZoneHeight = this.screenPlaneZone.offsetHeight;
+        this.screenPlaneZoneWidth = this.screenPlaneZone.offsetWidth;
     }
 
 

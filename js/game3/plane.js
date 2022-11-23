@@ -58,7 +58,7 @@ export default class Plane{
         planeImg.setAttribute("src", "/media/game3/f22.png");
         planeImg.style.width = "50px";
         this.element.appendChild(planeImg);
-        this.gp.map.element.appendChild(this.element);
+        this.gp.map.screenPlaneZone.appendChild(this.element);
         this.element.style.width = this.w+"px";
         this.element.style.height = this.h+"px";
     }
@@ -140,7 +140,7 @@ export default class Plane{
         if (this.gp.physics.lift >= this.weight) {
             
         }
-        this.screenX = ((5 * this.gp.map.w * (this.gp.physics.getPercentSpeed(this, this.speed))) * .001);
+        this.screenX = ((this.gp.map.screenPlaneZoneWidth-this.w) * (this.gp.physics.getPercentSpeed(this, this.speed)) * .01);
         this.screenY = this.worldY;
         // X = ( (7 * mapWidth * Vpercent) / 1000 )[when 100% speed --> maxScreenX = 70% of mapWidth]
         
@@ -250,8 +250,8 @@ export default class Plane{
         console.log("Speed %: " + Math.round(this.gp.physics.getPercentSpeed(this, this.speed))); */
         //console.log("In PSM: "+ this.inPSM);
         //console.log("Cobra range: "+this.cobraRange);
-        // console.log("SpeedX: "+ Math.round(this.speedX));
-        // console.log("SpeedY: "+ Math.round(this.speedY));
+        console.log("SpeedX: "+ Math.round(this.speedX));
+        console.log("SpeedY: "+ Math.round(this.speedY));
         //console.log("LIFT COEF: " + this.cL);
         //console.log("DRAG COEF: " +this.cD);
         //console.log("Lift: "+ Math.round(this.gp.physics.lift));
@@ -259,17 +259,17 @@ export default class Plane{
         //console.log("Weight: " + Math.round(this.weight));
         //console.log("Pitch: " +this.pitch);
         //console.log("pitch to rad: " +this.toRadiants(this.pitch));
-        console.log("-------POSITION-----");
-        console.log("World X: "+ Math.round(this.worldX));
-        console.log("World Y: " + Math.round(this.worldY))
-        console.log ("Screen X: "+ Math.round(this.screenX));
-        console.log("Screen Y: "+ Math.round(this.screenY));
+        // console.log("-------POSITION-----");
+        // console.log("World X: "+ Math.round(this.worldX));
+        // console.log("World Y: " + Math.round(this.worldY))
+        // console.log ("Screen X: "+ Math.round(this.screenX));
+        // console.log("Screen Y: "+ Math.round(this.screenY));
         /* console.log("Collison = " + this.collision); */
     }
 
 
     draw() {
-        this.element.style.bottom = this.screenY +"px";
+        this.element.style.bottom = this.worldY +"px";
         this.element.style.left = this.screenX + "px";
     }
 

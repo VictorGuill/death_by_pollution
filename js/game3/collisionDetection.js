@@ -13,8 +13,8 @@ export default class CollisionDetection{
 
 
 
-            if (entityTopMapY > this.gp.map.h){
-                entity.worldY = this.gp.map.h-entity.h;
+            if (entityTopMapY > this.gp.map.screenPlaneZoneHeight){
+                entity.worldY = this.gp.map.screenPlaneZoneHeight - entity.h;
                 entity.speedY = this.gp.physics.gravity;
             } 
 
@@ -31,7 +31,7 @@ export default class CollisionDetection{
         
                 
 
-            if (entityRightMapX > this.gp.map.w){
+            if (entityRightMapX > this.gp.map.planeZoneHeight){
                 entity.collision = true;
             }
         
