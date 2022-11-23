@@ -21,7 +21,7 @@ export default class Plane{
         this.speed = 0;
         this.speedX = 0;
         this.speedY = 0;
-        this.maxSpeed = 800;
+        this.maxSpeed = 1200;
 
         this.state = "";
 
@@ -30,9 +30,9 @@ export default class Plane{
         this.maxPitch = 45;
         
         this.cL = 1; //Lift coeficient
-        this.cD = 1; //Drag coeficient
+        this.cD = 0.5; //Drag coeficient
 
-        this.acceleration = 15;
+        this.acceleration = 30;
         this.deceleration = 4;
 
         this.canPSM = true;
@@ -80,7 +80,7 @@ export default class Plane{
         if (this.speed >= 300){
             this.inPSM = true;
             this.vfx.thrust.style.opacity = "0";
-            this.cobraPitch += 3;
+            this.cobraPitch += 8;
             if (this.cobraPitch >= 60){
                 this.cobraPitch = 60;
             }
@@ -94,7 +94,7 @@ export default class Plane{
 
     recoverCobra() {
         if (this.cobraPitch > 0) {
-            this.cobraPitch -= 2;
+            this.cobraPitch -= 2.5;
             if (this.cobraPitch <= 0){
                 this.cobraPitch = 0;
                 this.inPSM = false;
@@ -171,7 +171,7 @@ export default class Plane{
             this.speedX = 0;
         }
 
-        if(this.canPSM && this.speed >= 1300) {
+        if(this.canPSM && this.speed >= 800) {
             this.cobraRange = true;
         } else {
             this.cobraRange = false;

@@ -6,15 +6,14 @@ export default class Phisics {
 
         this.drag = 1;
 
-        this.staticDrag = 0;
+        this.staticDrag = .5;
 
         this.lift = 0;
-
-
     }
 
     // ------ UTILITY ------
     getWeight(entity){
+        this.staticDrag *= entity.cD;
         return Math.abs(entity.mass * this.gravity);
     }
 
@@ -36,22 +35,22 @@ export default class Phisics {
 
     // ------ LIFT ------
     applyLift(entity) {
-        this.lift = ((entity.speed**2)/entity.weight) * entity.cL;
+        this.lift = ((entity.speed**2)/entity.weight*2) * entity.cL;
         if (this.lift >= entity.weight) {
             this.lift = entity.weight;
         }
     }
 
     // ------ DRAG ------
-    applyDrag(entity, dt) {
-        this.staticDrag = (.01 * entity.speedX) * this.getAngleCoefficient() * entity.cD * dt;
+    applyDrag(entity) {
+        this.drag = (.01 * entity.speedX) * this.getAngleCoefficient() * entity.cD;
     }
 
 
     
     // ------ SPEEDS ------
     calcSpeed(entity) {
-        return entity.speed - this.staticDrag;
+        return entity.speed - this.drag - this.staticDrag;
     }
 
     calcSpeedY(entity) {
@@ -64,7 +63,7 @@ export default class Phisics {
 
 
     update(entity, dt){
-        this.applyLift(entity);
+        this.applyLift(entity, dt);
         this.applyDrag(entity, dt);
     }
 }
