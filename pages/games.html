@@ -7,8 +7,30 @@
     <title>Games menu</title>
     <link rel="stylesheet" href="../style/colores.css" />
     <link rel="stylesheet" href="../style/gamesMenu.css" />
+    <link rel="stylesheet" href="../style/landing.css" />
   </head>
   <body>
+    <div id="header">
+      <div id="navbar" class="navbar-bg">
+        <!-- cambiar clase "header-no-bg" a "header-bg" per cambiar de navbar -->
+        <div class="nav-center">
+          <ul class="nav-links">
+            <li class="nav-item" id="nav-about">
+              <a href="/pages/about.html">ABOUT US</a>
+            </li>
+            <li class="nav-item" id="nav-logo">
+              <a href="/index.html"
+                ><img src="/media/icons/logo.svg" alt=""
+              /></a>
+            </li>
+            <li class="nav-item" id="nav-games">
+              <a href="">GAMES</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <div id="infoContainer">
       <div id="infoPanel">
         <div id="infoTitle">
@@ -23,6 +45,7 @@
         <div id="okBtn" onclick="hideInfo()">ACEPTAR</div>
       </div>
     </div>
+    <div id="gamesContainerWallpaper"></div>
     <div id="gamesContainer">
       <div id="headerContainer">
         <p id="title">| GAMES</p>

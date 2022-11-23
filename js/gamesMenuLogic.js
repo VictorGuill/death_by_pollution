@@ -1,6 +1,8 @@
 // background change
 
-const gamesContainer = document.getElementById("gamesContainer");
+const gamesContainerWallpaper = document.getElementById(
+  "gamesContainerWallpaper"
+);
 
 const game1 = document.getElementById("game1");
 const game2 = document.getElementById("game2");
@@ -13,24 +15,24 @@ onmouseover = (e) => {
 };
 
 function changeBackground(id) {
-  let color;
+  let img_path = "../media/games_img/";
 
   switch (id) {
     case "game1":
-      color = "red";
+      img_path = img_path + "game1.jpg";
       break;
     case "game2":
-      color = "green";
+      img_path = img_path + "game2.jpg";
       break;
     case "game3":
-      color = "blue";
+      img_path = img_path + "game3.jpg";
       break;
     default:
-      color = "#222222";
+      img_path = img_path + "wallpaper_BW.jpg";
       break;
   }
 
-  gamesContainer.style.backgroundColor = color;
+  gamesContainerWallpaper.style.backgroundImage = "url(" + img_path + ")";
 }
 
 // info button panel
