@@ -35,7 +35,7 @@ export default class Plane{
         this.acceleration = 30;
         this.deceleration = 4;
 
-        this.canPSM = true;
+        this.canPSM = false;
         this.cobraRange = false;
         this.cobraPitch = 0;
         this.inPSM = false;
@@ -61,7 +61,6 @@ export default class Plane{
         this.gp.map.element.appendChild(this.element);
         this.element.style.width = this.w+"px";
         this.element.style.height = this.h+"px";
-        this.element.style.zIndex = "1000";
     }
 
     accelerate(dt) {

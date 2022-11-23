@@ -8,8 +8,8 @@
     --powerHeight: 0%;
     --maxPowerHeight: 92%;
     --scanLinesSpeed: 0.8s;
-    --scanLinesOpacity: 0.25;
-    --scanLinesSize: 3px;
+    --scanLinesOpacity: 0.12;
+    --scanLinesSize: 4px;
 }
 
 * {
@@ -68,7 +68,7 @@ body {
 
 #plane {
     position: absolute;
-    width: 50px;
+    z-index: 900;
 }
 
 #progress-bar {
@@ -91,8 +91,8 @@ body {
 
 #time-score{
     position: absolute;
-    left: 20px;
-    top: 10px;
+    left: 50px;
+    top: 20px;
     height: fit-content;
     width: fit-content;
     background-color: rgba(100, 100, 100, 0.3);
@@ -100,7 +100,7 @@ body {
 
 #time-score p, #speedometer-label, #altimeter-label, #speedometer-value, #altimeter-value{
     font-family: aceCombat;
-    font-size: 2.3vmin;
+    font-size: 2.5vmin;
     color: #85f76eb3;
     text-shadow: 
             0px 0px 1px #80ff9f,
@@ -216,7 +216,7 @@ input{ margin-right: 100px;}
 
 
 /* #region CRT FX */
-.scanline::before {
+.scanline::after {
     content: "";
     position: absolute;
   
@@ -234,8 +234,8 @@ input{ margin-right: 100px;}
     width: 100.25%;
     height: 100.25%;
   
-    background-image: url("../media/game1_assets/crt.png");
-    background-size: cover;
+    background-image: url("../media/game3/crt.png");
+    background-size: 100% 100%;
     z-index: 999;
 }
 
