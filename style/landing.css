@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Roboto&display=swap");
+
+:root {
+  --navbarHeight: 78px;
+}
+
+/* Disable scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  scroll-snap-type: y mandatory;
+  font-family: "Outfit", sans-serif;
+}
+
+#landing_nav {
+  text-transform: uppercase;
+  position: fixed;
+  top: 0;
+
+  height: var(--navbarHeight);
+  width: 100vw;
+
+  background-color: rgba(0, 0, 0, 0);
+
+  transition: background 0.3s ease-in-out;
+}
+
+/* Login & language nav items */
+#navRightItems {
+  position: fixed;
+  right: 0;
+  color: var(--LIGHT);
+}
+
+#navRightItems li a {
+  color: var(--LIGHT);
+}
+
+#navRightItems:last-child {
+  margin-right: 15px;
+}
+
+#landing_nav li a {
+  color: var(--LIGHT);
+}
+
+#scroll-container,
+.scroll-area {
+  height: calc(100vh - var(--navbarHeight));
+  width: 100vw;
+  font-size: 60px;
+}
+
+#scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.scroll-area {
+  scroll-snap-align: end;
+}
+
+.scroll-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* #region START PAGE */
+#start {
+  height: calc(100vh);
+
+  background: rgb(61, 0, 102);
+  background: linear-gradient(
+    90deg,
+    rgba(61, 0, 102, 1) 5%,
+    rgba(0, 0, 0, 1) 65%
+  );
+}
+
+#claim {
+  margin-top: 250px;
+
+  font-size: 4.5vw;
+  font-weight: 500;
+
+  line-height: 1em;
+}
+
+#claim span {
+  color: var(--ACCENT);
+  font-weight: 700;
+}
+
+#start img {
+  width: 30vw;
+  max-width: 600px;
+  min-width: 200px;
+}
+
+/* #endregion */
+
+#about {
+  background: #c94e4b;
+}
+
+#services {
+  background: #4cc1be;
+}
+
+#footer {
+  height: 600px;
+  background: #8360a6;
+}
+
+#goStartBtn div {
+  position: fixed;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 50px;
+  width: 50px;
+
+  bottom: 15px;
+  right: 15px;
+
+  border-radius: 50%;
+
+  background-color: var(--ACCENT);
+  cursor: pointer;
+  color: var(--DARK);
+  font-size: 1.3em;
+}
+
+#goStartBtn {
+  opacity: 0;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+
+#goStartBtn div:hover {
+  transform: scale(1.15);
+}
