@@ -1,6 +1,5 @@
 
 .vscode/launch.json
-<<<<<<< HEAD
-=======
+.vscode/settings.json
 .DS_Store
->>>>>>> b0b33dc (wip landing navbar)
+
