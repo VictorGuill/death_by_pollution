@@ -4,6 +4,7 @@ import UI from './UI.js';
 import CollisionDetection from './collisionDetection.js'
 import Phisics from './physics.js';
 import input_codes from './keyHandler.js';
+import EventHandler from './eventHandler.js';
 
 const gameWrapper = document.getElementById("game-wrapper");
 
@@ -22,7 +23,7 @@ export class GamePanel {
         this.physics = new Phisics(this);
         this.plane = new Plane(this, 40, 0);
         this.ui = new UI (this);
-        
+        this.eH = new EventHandler(this);
         
     }
 
@@ -36,11 +37,13 @@ export class GamePanel {
         if (this.gameState == this.playState){
             this.plane.update(dt);
         } else if (this.gameState == this.pauseState){}
+        this.eH.update();
     }
 
     draw() {
         this.plane.draw();
         this.map.draw();
         this.ui.draw();
+        this.eH.draw();
     }
 }

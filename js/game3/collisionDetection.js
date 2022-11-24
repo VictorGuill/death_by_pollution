@@ -36,4 +36,8 @@ export default class CollisionDetection{
             }
         
     }
+
+    objectsCheck(entity, object){
+        
+    }
 }

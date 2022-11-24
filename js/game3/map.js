@@ -143,6 +143,12 @@ export default class Map {
         this.layersGroup.appendChild(this.sky);
     }
 
+    addObjectsLayer(){
+        this.objects = document.createElement("div");
+        this.objects.classList.add("objects");
+        this.element.appendChild(this.objects);
+    }
+
 
     addLayers() {
         this.layersGroup = document.createElement("div");
@@ -157,6 +163,7 @@ export default class Map {
         this.addRocks_2();
         this.addClouds_1();
         this.addSky();
+        this.addObjectsLayer();
 
         this.element.appendChild(this.layersGroup);
         this.getBgHeight();

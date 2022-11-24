@@ -34,7 +34,7 @@ export default class Phisics {
 
 
     // ------ LIFT ------
-    applyLift(entity) {
+    applyLift(entity, dt) {
         this.lift = ((entity.speed**2)/entity.weight*2) * entity.cL;
         if (this.lift >= entity.weight) {
             this.lift = entity.weight;
@@ -42,8 +42,8 @@ export default class Phisics {
     }
 
     // ------ DRAG ------
-    applyDrag(entity) {
-        this.drag = (.01 * entity.speedX) * this.getAngleCoefficient() * entity.cD;
+    applyDrag(entity, dt) {
+        this.drag = (.01 * entity.speedX) * this.getAngleCoefficient() * entity.cD * dt;
     }
 
 
