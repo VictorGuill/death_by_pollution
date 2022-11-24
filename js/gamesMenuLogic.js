@@ -11,8 +11,32 @@ const game3 = document.getElementById("game3");
 let elementsHover = {};
 
 onmouseover = (e) => {
+  const id = e.target.id;
+
   changeBackground(e.target.id);
+
+  // switch (id) {
+  //   case "game1":
+  //     window.location.href = "http://www.w3schools.com";
+  //     break;
+  //   case "game2":
+  //     window.location.href = "http://www.w3schools.com";
+  //     break;
+  //   case "game3":
+  //     window.location.href = "http://www.w3schools.com";
+  //     break;
+  // }
 };
+
+game1.addEventListener("click", (e) => {
+  window.location.href = "http://www.w3schools.com";
+});
+game2.addEventListener("click", (e) => {
+  window.location.href = "http://www.w3schools.com";
+});
+game3.addEventListener("click", (e) => {
+  window.location.href = "http://www.w3schools.com";
+});
 
 function changeBackground(id) {
   let img_path = "../media/games_img/";

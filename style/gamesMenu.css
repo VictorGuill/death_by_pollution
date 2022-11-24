@@ -29,8 +29,12 @@
   z-index: -9;
 }
 
+#yellowTittle {
+  color: var(--ACCENT);
+}
+
 #gamesContainer {
-  height: 100vh;
+  height: calc(100vh - 50px);
   width: 100vw;
 
   display: flex;
@@ -39,6 +43,8 @@
   flex-direction: column;
 
   color: var(--LIGHT);
+
+  margin-top: 50px;
 }
 
 #games {
@@ -60,13 +66,29 @@
   max-width: var(--gamesMaxWith);
   aspect-ratio: 1 / 1.45;
 
-  background-color: var(--LIGHT);
+  background-color: blue;
   transition: transform 0.1s cubic-bezier(0.14, 1.17, 0.46, 0.98);
+
+  border-bottom: 3px solid;
+  transition: all 0.3s ease-in-out;
+
+  position: relative;
 }
 
 .game:hover {
   cursor: pointer;
   transform: scale(1.075);
+
+  border: 6px var(--ACCENT) solid;
+
+  border-width: 3px;
+  border-style: solid;
+}
+
+.title_game {
+  position: absolute;
+
+  bottom: -34px;
 }
 
 #scoresBtn {
