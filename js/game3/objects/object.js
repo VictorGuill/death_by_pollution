@@ -1,8 +1,8 @@
 export default class Object{
     constructor(gp){
         this.gp = gp;
-        this.initialX = this.gp.plane.worldX - this.gp.plane.w;
-        this.initialY = -10;
+        this.initialX = this.gp.plane.worldX;
+        this.initialY
         this.createObject();
     }
     createObject(){
@@ -12,7 +12,8 @@ export default class Object{
     }
 
     update(){
-        this.element.style.right = (this.initialX + this.gp.plane.worldX) + "px";
-        this.element.style.bottom = (this.initialY - this.gp.plane.worldY) + "px";
+        this.element.style.right =  (this.gp.plane.worldX - this.initialX) + "px";
+
+        this.element.style.bottom = (this.initialY - this.gp.plane.worldY) +"px";
     }
 }

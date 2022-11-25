@@ -145,7 +145,7 @@ export default class Map {
 
     addObjectsLayer(){
         this.objects = document.createElement("div");
-        this.objects.classList.add("objects");
+        this.objects.classList.add("objects-layer");
         this.element.appendChild(this.objects);
     }
 
