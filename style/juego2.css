@@ -25,11 +25,11 @@ body {
 
 #items_picker {
   width: 8vmin;
-  height: 28vmin;
+  height: 26.3vmin;
 
   display: grid;
   grid-template-columns: 1;
-  grid-template-rows: repeat(3, 80px);
+  grid-template-rows: repeat(6, 80px);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 
