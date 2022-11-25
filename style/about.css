@@ -70,11 +70,11 @@ h1 {
 .info {
   font-size: 1.2em;
   margin: 0 5%;
-  max-width: 500px;
 }
 
 .info p {
   font-size: 1.15em;
+  text-align: justify;
 }
 
 .info-indiv img {
@@ -90,8 +90,6 @@ h1 {
   align-items: center;
   justify-content: space-evenly;
   min-height: 0vmin;
-  width: 100%;
-  max-width: 1150px;
 }
 
 .rrss img {
