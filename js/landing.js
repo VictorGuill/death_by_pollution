@@ -73,6 +73,7 @@ function showRegisterPanel() {
   }, 990);
 
   register_panel.style.display = "inherit";
+  register_panel.style.zIndex = "10";
 }
 
 function showLoginPanel() {
@@ -86,4 +87,5 @@ function showLoginPanel() {
   }, 990);
 
   login_panel.style.display = "inherit";
+  login_panel.style.zIndex = "11";
 }
