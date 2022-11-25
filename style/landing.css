@@ -3,7 +3,10 @@
 :root {
   --navbarHeight: 78px;
 }
-a, a:link, a:hover{
+
+a,
+a:link,
+a:hover {
   color: unset;
 }
 
@@ -19,6 +22,7 @@ body {
   font-family: "Outfit", sans-serif;
 }
 
+/* #region NAVBAR*/
 #landing_nav {
   text-transform: uppercase;
   position: fixed;
@@ -51,6 +55,48 @@ body {
   color: var(--LIGHT);
 }
 
+/* links animation */
+/* scale */
+.nav-link {
+  transform: scale(1);
+  transition: transform 0.2s linear;
+}
+
+.nav-link:hover {
+  transform: scale(1.04);
+  transition: transform 0.4s linear;
+}
+
+/* underline */
+
+.nav-link:after {
+  content: "";
+  background-color: var(--ACCENT);
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-link:hover:after {
+  transition-duration: 0.4s;
+  transform: scaleX(0.85);
+  transform-origin: center center;
+}
+
+#logo:after {
+  bottom: 0px;
+}
+
+.link-active:after{
+ transform: scaleX(0.85);
+}
+
+/* #endregion*/
+
 #scroll-container,
 .scroll-area {
   height: calc(100vh - var(--navbarHeight));
@@ -81,11 +127,9 @@ body {
   height: calc(100vh);
 
   background: rgb(61, 0, 102);
-  background: linear-gradient(
-    90deg,
-    rgba(61, 0, 102, 1) 5%,
-    rgba(0, 0, 0, 1) 65%
-  );
+  background: linear-gradient(90deg,
+      rgba(61, 0, 102, 1) 5%,
+      rgba(0, 0, 0, 1) 65%);
 }
 
 #claim {
@@ -181,11 +225,9 @@ body {
 #loginPanel button,
 #registerPanel button {
   background: rgb(61, 0, 102);
-  background: linear-gradient(
-    90deg,
-    rgba(61, 0, 102, 1) 0%,
-    rgba(171, 9, 174, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(61, 0, 102, 1) 0%,
+      rgba(171, 9, 174, 1) 100%);
 
   padding: 2% 10%;
   border: none;
@@ -251,64 +293,11 @@ input:focus {
 input:focus::placeholder {
   color: transparent;
 }
+
 /* #endregion */
 
-/* NAVBAR links select animation */
-/* scale */
-.nav-link {
-  transform: scale(1);
-  transition: transform 0.2s linear;
-}
-
-.nav-link:hover {
-  transform: scale(1.04);
-  transition: transform 0.4s linear;
-}
-
-/* underline */
-.nav-link:hover:after {
-  transition-duration: 0.4s;
-  transform: scaleX(0.85);
-  transform-origin: center center;
-}
-
-#logo:after {
-  bottom: 0px;
-}
-
-.nav-link:after {
-  content: "";
-  background-color: var(--ACCENT);
-  position: absolute;
-  bottom: 6px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  transform: scaleX(0);
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-
-/* #region footer */
-#footer{
+/* #region FOOTER */
+#footer {
   flex-direction: column;
   align-items: flex-start;
 
@@ -320,24 +309,47 @@ input:focus::placeholder {
   background-color: var(--LIGHT);
 }
 
-.footer-legal{
+.footer-legal {
   font-size: 15;
   /* border-bottom: 1px black solid; */
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
 }
 
-.footer-socials img{
+.footer-socials img {
   width: 34px;
   margin: 0 30px;
 }
 
-#footer-logo{
+#footer-logo {
   width: 50px;
 }
 
-#copy{
+#copy {
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.2)
+}
+
+/* #endregion*/
+
+/* #region KEYFRAME ANIMATIONS */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 /* #endregion*/
