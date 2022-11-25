@@ -3,6 +3,9 @@
 :root {
   --navbarHeight: 78px;
 }
+a, a:link, a:hover{
+  color: unset;
+}
 
 /* Disable scrollbar */
 ::-webkit-scrollbar {
@@ -52,7 +55,6 @@ body {
 .scroll-area {
   height: calc(100vh - var(--navbarHeight));
   width: 100vw;
-  font-size: 60px;
 }
 
 #scroll-container {
@@ -121,10 +123,6 @@ body {
   background: #4cc1be;
 }
 
-#footer {
-  height: 300px;
-  background: #8360a6;
-}
 
 #goStartBtn div {
   position: fixed;
@@ -307,3 +305,39 @@ input:focus::placeholder {
     opacity: 0;
   }
 }
+
+
+/* #region footer */
+#footer{
+  flex-direction: column;
+  align-items: flex-start;
+
+  height: fit-content;
+
+  color: var(--DARKTEXT);
+  font-weight: lighter;
+
+  background-color: var(--LIGHT);
+}
+
+.footer-legal{
+  font-size: 15;
+  /* border-bottom: 1px black solid; */
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+}
+
+.footer-socials img{
+  width: 34px;
+  margin: 0 30px;
+}
+
+#footer-logo{
+  width: 50px;
+}
+
+#copy{
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.2)
+}
+/* #endregion*/
