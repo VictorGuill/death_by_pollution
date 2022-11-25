@@ -8,9 +8,9 @@ export default class CurrencyGenerator{
 
         this.currencyOnScreen = new Array();
 
-        this.fCoins = this.gp.map.w/4;
-        this.fNotes = this.gp.map.w/4;
-        this.fDiamonds = this.gp.map.w/8;
+        this.fCoins = this.gp.map.w;
+        this.fNotes = this.gp.map.w * 2;
+        this.fDiamonds = this.gp.map.w * 4;
 
         
         this.spawnCoin = this.fCoins;

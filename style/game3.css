@@ -227,11 +227,11 @@ body {
 .object{
     position: absolute;
     z-index: 200;
-    animation: object-idle 4s linear infinite;
-    animation-direction: alternate;
+    /* border: 4px solid magenta; */
 }
-.coin{ 
-    border: 4px solid magenta;
+
+.coin{
+    animation: coin-animation 5s linear infinite;
 }
 
 
@@ -292,10 +292,11 @@ input{ margin-right: 100px;}
     }
   }
 
-  @keyframes object-idle {
+  @keyframes coin-animation {
     0% {
     }
-    100% {
-      transform: translate(60%, 40%);
+    100%{
+        transform: rotate(180deg);
     }
+
   }

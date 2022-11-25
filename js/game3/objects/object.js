@@ -13,7 +13,9 @@ export default class Object{
 
     update(){
         this.element.style.right =  (this.gp.plane.worldX - this.initialX) + "px";
+        console.log("right: " +this.element.style.right);
 
         this.element.style.bottom = (this.initialY - this.gp.plane.worldY) +"px";
+        console.log("bottom: " +this.element.style.bottom);
     }
 }

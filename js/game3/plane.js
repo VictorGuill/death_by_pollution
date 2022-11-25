@@ -259,11 +259,11 @@ export default class Plane{
         //console.log("Weight: " + Math.round(this.weight));
         //console.log("Pitch: " +this.pitch);
         //console.log("pitch to rad: " +this.toRadiants(this.pitch));
-        console.log("-------POSITION-----");
-        console.log("World X: "+ Math.round(this.worldX));
-        console.log("World Y: " + Math.round(this.worldY))
-        console.log ("Screen X: "+ Math.round(this.screenX));
-        console.log("Screen Y: "+ Math.round(this.screenY));
+        // console.log("-------POSITION-----");
+        // console.log("World X: "+ Math.round(this.worldX));
+        // console.log("World Y: " + Math.round(this.worldY))
+        // console.log ("Screen X: "+ Math.round(this.screenX));
+        // console.log("Screen Y: "+ Math.round(this.screenY));
         /* console.log("Collison = " + this.collision); */
     }
 
