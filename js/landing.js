@@ -33,3 +33,57 @@ window.addEventListener("resize", function (e) {
     window.innerHeight || 0
   );
 });
+
+function loginPanel() {
+  const login_panel = document.getElementById("loginPanel");
+
+  login_panel.style.display = "inherit";
+}
+
+function closeLoginPanel() {
+  const login_panel = document.getElementById("loginPanel");
+
+  login_panel.style.animation = "fade-out 1s ease";
+  setTimeout(() => {
+    login_panel.style.display = "none";
+
+    login_panel.style.animation = "fade-in 1s ease";
+  }, 990);
+}
+
+function closeRegisterPanel() {
+  const register_panel = document.getElementById("registerPanel");
+
+  register_panel.style.animation = "fade-out 1s ease";
+  setTimeout(() => {
+    register_panel.style.display = "none";
+
+    register_panel.style.animation = "fade-in 1s ease";
+  }, 990);
+}
+
+function showRegisterPanel() {
+  const login_panel = document.getElementById("loginPanel");
+  const register_panel = document.getElementById("registerPanel");
+
+  setTimeout(() => {
+    login_panel.style.display = "none";
+
+    login_panel.style.animation = "fade-in 1s ease";
+  }, 990);
+
+  register_panel.style.display = "inherit";
+}
+
+function showLoginPanel() {
+  const login_panel = document.getElementById("loginPanel");
+  const register_panel = document.getElementById("registerPanel");
+
+  setTimeout(() => {
+    register_panel.style.display = "none";
+
+    register_panel.style.animation = "fade-in 1s ease";
+  }, 990);
+
+  login_panel.style.display = "inherit";
+}

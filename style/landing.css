@@ -158,16 +158,30 @@ body {
 }
 
 /* #region LOGIN */
-#loginBox {
+#loginPanel,
+#registerPanel {
+  display: none;
   position: fixed;
 
   height: 100vh;
   width: 100vw;
 
   backdrop-filter: blur(15px);
+  animation: fade-in 1s ease;
 }
 
-#loginBox button {
+#loginIcon,
+#languageIcon {
+  cursor: pointer;
+}
+
+#loginIcon::after,
+#languageIcon::after {
+  transform: scale(0);
+}
+
+#loginPanel button,
+#registerPanel button {
   background: rgb(61, 0, 102);
   background: linear-gradient(
     90deg,
@@ -178,12 +192,23 @@ body {
   padding: 2% 10%;
   border: none;
 
-  margin-top: 20px;
   margin-bottom: 40px;
 }
 
 #loginCard {
   border-bottom: 5px solid var(--ACCENT);
+  position: relative;
+}
+
+#closePanel {
+  position: absolute;
+
+  right: 0;
+  top: -30px;
+
+  cursor: pointer;
+
+  filter: brightness(10);
 }
 
 #loginCard h3 {
@@ -192,10 +217,21 @@ body {
   margin: 10px 0px;
 }
 
+#loginCard h5 {
+  color: var(--DARK-ACCENT);
+  font-weight: 300;
+  cursor: pointer;
+}
+
+#loginCard h5:hover {
+  font-weight: 500;
+}
+
 input {
   text-align: center;
   text-transform: lowercase;
   letter-spacing: 0.2em;
+  font-size: 1.25em;
 
   width: 100%;
   border-radius: 10px;
@@ -252,4 +288,22 @@ input:focus::placeholder {
   height: 2px;
   transform: scaleX(0);
   transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
