@@ -58,7 +58,11 @@
                 </a>
               </li>
               <li class="mx-2">
-                <a id="loginIcon" class="nav-link h5" onclick="loginPanel()">
+                <a
+                  id="loginIcon"
+                  class="nav-link h5"
+                  onclick="showLoginPanel()"
+                >
                   <img src="/media/icons/login.svg" height="23"
                 /></a>
               </li>
@@ -79,60 +83,28 @@
               style="border-radius: 1rem"
             >
               <div id="closePanel" onclick="closeLoginPanel()">❌</div>
-              <div class="card-body p-5 pb-4 text-center">
-                <h3 class="mb-5">Log in</h3>
+              <div id="elementsPanel" class="card-body p-5 pb-4 text-center">
+                <h3 id="loginTitle" class="mb-5">Log in</h3>
 
                 <div class="mb-4">
                   <input type="text" placeholder="Nombre" />
                 </div>
 
-                <div class="mb-5">
+                <div class="mb-4">
                   <input type="password" placeholder="contraseña" />
                 </div>
 
-                <button class="btn btn-primary btn-lg btn-block" type="submit">
+                <button
+                  id="loginButton"
+                  class="btn btn-primary btn-lg btn-block mt-4"
+                  type="submit"
+                >
                   ACEPTAR
                 </button>
 
-                <h5 class="mt-5 mb-0" onclick="showRegisterPanel()">
-                  create account
+                <h5 id="switchPanel" class="mt-5 mb-0" onclick="switchPanel()">
+                  crear cuenta
                 </h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="registerPanel">
-      <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div
-              id="loginCard"
-              class="card shadow-2-strong"
-              style="border-radius: 1rem"
-            >
-              <div id="closePanel" onclick="closeRegisterPanel()">❌</div>
-              <div class="card-body p-5 pb-4 text-center">
-                <h3 class="mb-5">Create your account</h3>
-
-                <div class="mb-4">
-                  <input type="text" placeholder="Nombre" />
-                </div>
-
-                <div class="mb-4">
-                  <input type="password" placeholder="contraseña" />
-                </div>
-
-                <div class="mb-5">
-                  <input type="password" placeholder="repite contraseña" />
-                </div>
-
-                <button class="btn btn-primary btn-lg btn-block" type="submit">
-                  ACEPTAR
-                </button>
-
-                <h5 class="mt-5 mb-0" onclick="showLoginPanel()">login</h5>
               </div>
             </div>
           </div>
@@ -240,5 +212,6 @@
     </a>
 
     <script src="./js/landing.js"></script>
+    <script src="./js/loginPanelLogic.js"></script>
   </body>
 </html>
