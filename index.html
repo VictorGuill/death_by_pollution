@@ -12,6 +12,7 @@
   </head>
 
   <body>
+    <!-- NAVBAR -->
     <nav
       id="landing_nav"
       class="navbar navbar-expand-lg navbar-dark p-3"
@@ -67,6 +68,7 @@
       </div>
     </nav>
 
+    <!-- LOG IN -->
     <div id="loginPanel">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -78,7 +80,7 @@
             >
               <div id="closePanel" onclick="closeLoginPanel()">❌</div>
               <div class="card-body p-5 pb-4 text-center">
-                <h3 class="mb-5">login</h3>
+                <h3 class="mb-5">Log in</h3>
 
                 <div class="mb-4">
                   <input type="text" placeholder="Nombre" />
@@ -101,7 +103,6 @@
         </div>
       </div>
     </div>
-
     <div id="registerPanel">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -113,7 +114,7 @@
             >
               <div id="closePanel" onclick="closeRegisterPanel()">❌</div>
               <div class="card-body p-5 pb-4 text-center">
-                <h3 class="mb-5">login</h3>
+                <h3 class="mb-5">Create your account</h3>
 
                 <div class="mb-4">
                   <input type="text" placeholder="Nombre" />
@@ -139,7 +140,9 @@
       </div>
     </div>
 
+    <!-- CONTENT -->
     <div id="scroll-container">
+      <!-- PRESENTATION -->
       <div id="start" class="scroll-area">
         <div class="container">
           <div class="row align-items-center">
@@ -157,10 +160,13 @@
           </div>
         </div>
       </div>
-      <div id="about" class="scroll-area">2</div>
+      <!-- INTRODUCTION -->
+      <div id="about" class="scroll-area">
+        <h3>The problem</h3>
+      </div>
+      <!-- SERVICES -->
       <div id="services" class="scroll-area">3</div>
-
-      <!--    FOOTER   -->
+      <!-- FOOTER -->
       <div id="footer" class="scroll-area text-center text-md-start">
         <div class="container px-4 pt-5 pb-0">
           <section>
@@ -228,6 +234,7 @@
       </div>
     </div>
 
+    <!-- UTILITIES -->
     <a id="goStartBtn" href="#start">
       <div>⬆</div>
     </a>

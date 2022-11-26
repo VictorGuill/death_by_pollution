@@ -68,7 +68,6 @@ body {
 }
 
 /* underline */
-
 .nav-link:after {
   content: "";
   background-color: var(--ACCENT);
@@ -94,127 +93,6 @@ body {
 .link-active:after {
   transform: scaleX(0.85);
 }
-
-/* #endregion*/
-
-#scroll-container,
-.scroll-area {
-  height: calc(100vh - var(--navbarHeight));
-  width: 100vw;
-}
-
-#scroll-container {
-  height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-}
-
-.scroll-area {
-  scroll-snap-align: end;
-}
-
-.scroll-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-/* #region START PAGE */
-#start {
-  height: calc(100vh);
-
-  background: rgb(61, 0, 102);
-  background: linear-gradient(
-    90deg,
-    rgba(61, 0, 102, 1) 5%,
-    rgba(0, 0, 0, 1) 65%
-  );
-}
-
-#claim {
-  margin-top: 250px;
-  margin-bottom: 60px;
-
-  font-size: 3.5vw;
-  font-weight: 500;
-
-  line-height: 1em;
-}
-
-#claim span {
-  color: var(--ACCENT);
-  font-weight: 700;
-}
-
-#start img {
-  width: 30vw;
-  max-width: 600px;
-  min-width: 200px;
-}
-
-#aboutBtn {
-  text-decoration: none;
-  font-size: 1.25em;
-  font-weight: 600;
-
-  color: var(--SECONDARY-DARK);
-  background-color: var(--ACCENT);
-
-  padding: 8px 20px;
-  border-bottom: 5px solid var(--DARK-ACCENT);
-  border-left: 5px solid var(--DARK-ACCENT);
-
-  transition: box-shadow 0.05s ease-in-out;
-}
-
-#aboutBtn:hover {
-  box-shadow: 0px 0px 20px 0px var(--DARK-ACCENT);
-}
-
-/* #endregion */
-
-#about {
-  background: #c94e4b;
-}
-
-#services {
-  background: #4cc1be;
-}
-
-#goStartBtn div {
-  position: fixed;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 50px;
-  width: 50px;
-
-  bottom: 15px;
-  right: 15px;
-
-  border-radius: 50%;
-
-  background-color: var(--ACCENT);
-  cursor: pointer;
-  color: var(--DARK);
-  font-size: 1.3em;
-}
-
-#goStartBtn {
-  opacity: 0;
-  text-decoration: none;
-  transition: all 0.5s ease-in-out;
-}
-
-#goStartBtn div:hover {
-  transform: scale(1.15);
-}
-
 /* #region LOGIN */
 #loginPanel,
 #registerPanel {
@@ -311,7 +189,99 @@ input:focus {
 input:focus::placeholder {
   color: transparent;
 }
+/* #endregion */
+/* #endregion*/
 
+/* #region CONTENT */
+#scroll-container,
+.scroll-area {
+  height: calc(100vh - var(--navbarHeight));
+  width: 100vw;
+}
+
+
+#scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.scroll-area {
+  scroll-snap-align: end;
+}
+
+.scroll-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* #region PRESENTATION */
+#start {
+  height: calc(100vh);
+
+  background: rgb(61, 0, 102);
+  background: linear-gradient(
+    90deg,
+    rgba(61, 0, 102, 1) 5%,
+    rgba(0, 0, 0, 1) 65%
+  );
+}
+
+#claim {
+  margin-top: 250px;
+  margin-bottom: 60px;
+
+  font-size: 3.5vw;
+  font-weight: 500;
+
+  line-height: 1em;
+}
+
+#claim span {
+  color: var(--ACCENT);
+  font-weight: 700;
+}
+
+#start img {
+  width: 30vw;
+  max-width: 600px;
+  min-width: 200px;
+}
+
+#aboutBtn {
+  text-decoration: none;
+  font-size: 1.25em;
+  font-weight: 600;
+
+  color: var(--SECONDARY-DARK);
+  background-color: var(--ACCENT);
+
+  padding: 8px 20px;
+  border-bottom: 5px solid var(--DARK-ACCENT);
+  border-left: 5px solid var(--DARK-ACCENT);
+
+  transition: box-shadow 0.05s ease-in-out;
+}
+
+#aboutBtn:hover {
+  box-shadow: 0px 0px 20px 0px var(--DARK-ACCENT);
+}
+/* #endregion */
+
+/* #region PROBLEM */
+#about {
+  background: #c94e4b;
+}
+/* #endregion */
+
+/* #region SERVICES */
+#services {
+  background: #4cc1be;
+}
 /* #endregion */
 
 /* #region footer */
@@ -367,6 +337,40 @@ input:focus::placeholder {
 }
 
 /* #endregion*/
+/* #endregion */
+
+/* #region UTILITIES */
+#goStartBtn div {
+  position: fixed;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 50px;
+  width: 50px;
+
+  bottom: 15px;
+  right: 15px;
+
+  border-radius: 50%;
+
+  background-color: var(--ACCENT);
+  cursor: pointer;
+  color: var(--DARK);
+  font-size: 1.3em;
+}
+
+#goStartBtn {
+  opacity: 0;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+
+#goStartBtn div:hover {
+  transform: scale(1.15);
+}
+/* #endregion */
 
 /* #region KEYFRAME ANIMATIONS */
 @keyframes fade-in {
