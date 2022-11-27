@@ -102,7 +102,7 @@ function addBlankItems(size, type, col, row) {
         i--;
       }
     });
-    
+
     if (add_to_map) {
       dropSpace.add();
     }
@@ -114,20 +114,22 @@ const piece = new Piece('piece');
 const piece2 = new Piece('piece');
 const piece3 = new Piece('piece');
 
-piece.addPiece();
-piece2.addPiece();
-piece3.addPiece();
+piece.addPiece(0);
+piece2.addPiece(1);
+piece3.addPiece(2);
+let i = 3; //counter for the id of the pieces
 
 //button to change the 3 pieces
 document.getElementById("button").addEventListener("click", reloadPieces);
 
+//function to reload the 3 pieces
 function reloadPieces() {
-  let pieceData = document.querySelectorAll('#piece');
-  console.log(pieceData); 
+  let pieceData = document.querySelectorAll('#piece');;
   pieceData.forEach(el => {
     el.remove();
     el = new Piece('piece');
-    el.addPiece();
+    el.addPiece(i);
+    i++;
   });
   let new_pieces = document.querySelectorAll('#piece');
   new_pieces.forEach(el => {
@@ -146,36 +148,58 @@ piecesElem.forEach(el => {
 })
 
 dropSpaces.forEach(el => {
-  el.addEventListener('dragenter', dragEnterHandler);
+  // el.addEventListener('dragenter', dragEnterHandler);
   el.addEventListener('dragover', dragOverHandler);
+  el.addEventListener('dragleave', dragLeaveHandler);
   el.addEventListener('drop', dropHandler);
 })
 
 function dragStartHandler(e) {
-  let img_src = e.target.src;
-  e.dataTransfer.setData('text', img_src);
-  console.log("IMG SRC: " + img_src);
+  e.dataTransfer.setData('data', e.target.id);
   e.target.style = 'opacity: 0.3;';
 }
 function dragEndHandler(e) {
   e.target.style = 'opacity: none;';
+  e.target.style = 'border: none';
 }
 
-function dragEnterHandler(e) {
-  // e.target.style = 'border: 2px dashed gray; background: whitesmoke';
+// function dragEnterHandler(e) {
+// }
+
+function dragLeaveHandler(e) {
+  e.target.style = 'border: none; background: rgb(228, 227, 227)';
 }
 
 function dragOverHandler(e) {
   e.preventDefault();
+  e.target.style = 'border: 2px dashed gray; background: whitesmoke';
 }
 
 function dropHandler(e) {
   e.preventDefault();
+  dragLeaveHandler(e);
+  e.preventDefault();
 
-  const sourceElemData = e.dataTransfer.getData('text');
-  const indexOf = sourceElemData.indexOf("/media");
-  let route = ".." + sourceElemData.substring(indexOf);
-  console.log(route);
-  e.target.innerHTML = `<img src="` + route + `" width="60px" height="60px"/>`;
-  e.target.style = "background-color: #dadada;";
+  let sourceElemData = e.dataTransfer.getData('data');
+  let sourceElemId = document.getElementById(sourceElemData);
+  this.appendChild(sourceElemId);
+  sourceElemId.style = 'opacity: none;';
+  sourceElemId.style = 'background-color: #dadada;';
+
+  reloadPieces();
 }
+
+// function loadPiece() {
+//   let pieceData = document.querySelectorAll('#piece');
+//   console.log(pieceData);
+//   pieceData.forEach(el => {
+//     if (el.innerHTML == "") {
+//       el = new Piece('piece');
+//       el.addPiece(i);
+//       i++;
+//     }
+//     let pieceData = document.querySelectorAll('#piece');
+//     // el.addEventListener('dragstart', dragStartHandler);
+//     // el.addEventListener('dragend', dragEndHandler);
+//   });
+// }
