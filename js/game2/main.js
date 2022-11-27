@@ -2,7 +2,7 @@ import Entity from "./Entity.js";
 import Piece from "./pieces.js";
 
 // #region SETTINGS
-const trees_amount = 20;
+const trees_amount = 30;
 const mountains_amount = 10;
 
 const gridSize = 14;
@@ -13,6 +13,12 @@ document.documentElement.style.setProperty("--gridPx", gridPx);
 
 let obstacles_id_counter = 0;
 let obstacles_array = [];
+
+let arrTrack = new Array(gridSize);
+for (let i = 0; i < gridSize; i++) {
+  arrTrack[i] = new Array(gridSize);
+  arrTrack[i].fill(0);
+}
 
 const start = new Entity('start', "start", 2, 2);
 start.add();
@@ -61,6 +67,12 @@ function addItems(amount, type, columnOffset, rowOffset) {
     // if new object didn't collide with any existing element, we add it
     if (add_to_map) {
       new_obstacle.add();
+      if (type == 'mountain') {
+        arrTrack[row_start - 1][colum_start - 1] = type;
+        arrTrack[row_start-1][colum_start] = type;
+      } else {
+        arrTrack[row_start - 1][colum_start - 1] = type;
+      }
       obstacles_array.push(new_obstacle);
       obstacles_id_counter++;
     }
@@ -138,6 +150,24 @@ function reloadPieces() {
   })
 }
 
+function loadPiece() {
+  let pieceData = document.querySelectorAll('#piece');
+
+  pieceData.forEach(el => {
+    if (el.firstChild == null) {
+      el.remove();
+      let new_piece = new Piece('piece');
+      new_piece.addPiece(i);
+      i++;
+    }
+  });
+  let new_pieces = document.querySelectorAll('#piece');
+  new_pieces.forEach(el => {
+    el.addEventListener('dragstart', dragStartHandler);
+    el.addEventListener('dragend', dragEndHandler);
+  })
+}
+
 //DRAG AND DROP
 const piecesElem = document.querySelectorAll('#piece');
 const dropSpaces = document.querySelectorAll('.dropSpace');
@@ -158,6 +188,7 @@ function dragStartHandler(e) {
   e.dataTransfer.setData('data', e.target.id);
   e.target.style = 'opacity: 0.3;';
 }
+
 function dragEndHandler(e) {
   e.target.style = 'opacity: none;';
   e.target.style = 'border: none';
@@ -166,13 +197,13 @@ function dragEndHandler(e) {
 // function dragEnterHandler(e) {
 // }
 
-function dragLeaveHandler(e) {
-  e.target.style = 'border: none; background: rgb(228, 227, 227)';
-}
-
 function dragOverHandler(e) {
   e.preventDefault();
   e.target.style = 'border: 2px dashed gray; background: whitesmoke';
+}
+
+function dragLeaveHandler(e) {
+  e.target.style = 'border: none; background: rgb(228, 227, 227)';
 }
 
 function dropHandler(e) {
@@ -186,20 +217,39 @@ function dropHandler(e) {
   sourceElemId.style = 'opacity: none;';
   sourceElemId.style = 'background-color: #dadada;';
 
-  reloadPieces();
+  loadPiece();
 }
 
-// function loadPiece() {
-//   let pieceData = document.querySelectorAll('#piece');
-//   console.log(pieceData);
-//   pieceData.forEach(el => {
-//     if (el.innerHTML == "") {
-//       el = new Piece('piece');
-//       el.addPiece(i);
-//       i++;
-//     }
-//     let pieceData = document.querySelectorAll('#piece');
-//     // el.addEventListener('dragstart', dragStartHandler);
-//     // el.addEventListener('dragend', dragEndHandler);
-//   });
-// }
+//check train track
+document.getElementById("button2").addEventListener("click", finish);
+
+function finish() {
+  let track = [];
+  let arrTrack = new Array(2);
+  arrTrack[0] = new Array(gridSize);
+  arrTrack[1] = new Array(gridSize);
+  let numPieces = 0;
+  let trackPieces = document.querySelectorAll(".dropSpace");
+  for (let i = 0; i < freeSpaces; i++) {
+    // if (trackPieces[i].childElementCount !== 0) {
+    //   trackPieces[i].setProperty('set position:',i);
+    //   track.push(trackPieces[i]);
+    //   console.log("TRACK piece:" + trackPieces[i]);
+    //   numPieces++;
+    // }
+  }
+  console.log("num pieces: " + numPieces);
+  for (let row = 0; row < gridSize; row++) {
+    for (let col = 0; col < gridSize; col++) {
+      // if () {
+      //   console.log(row + " - - - - - " + col)
+      //   arrTrack[row][col] = true;
+      //   console.log(arrTrack[0][col])
+      // }
+      // else {
+      //   arrTrack[row][col] = false;
+      // }
+    }
+  }
+
+}

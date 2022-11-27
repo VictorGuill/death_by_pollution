@@ -39,7 +39,7 @@ body {
   background-color: maroon;
 }
 
-#button {
+#button, #button2 {
   width: 8vmin;
   height: 8vmin;
 
@@ -49,6 +49,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  color: white;
 
   border-radius: 1vmin;
   background-color: maroon;
@@ -58,7 +62,7 @@ button {
   all: unset;
 }
 
-#button:hover {
+#button:hover, #button2:hover {
   background-color: rgb(157, 44, 44);
 }
 
