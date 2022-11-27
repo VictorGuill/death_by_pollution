@@ -199,7 +199,6 @@ input:focus::placeholder {
   width: 100vw;
 }
 
-
 #scroll-container {
   height: 100vh;
   overflow-y: scroll;
@@ -217,8 +216,26 @@ input:focus::placeholder {
   justify-content: center;
   color: white;
 }
+.slide-title{
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+.slide-content{
+  margin-top: 4rem;
+}
+
+.slide-text{
+  width: fit-content;
+}
+
+.contain-left {
+  margin-right: auto;
+}
+.contain-right{
+  margin-left: auto;
+}
 .contain-center {
-  max-width: 700px;
   margin: auto;
 }
 
@@ -233,10 +250,12 @@ input:focus::placeholder {
     rgba(0, 0, 0, 1) 65%
   );
 }
-
 #claim {
-  margin-top: 250px;
-  margin-bottom: 60px;
+  margin-left: 8rem;
+}
+
+#claim-text {
+  margin: auto 0;
 
   font-size: 3.5vw;
   font-weight: 500;
@@ -244,9 +263,13 @@ input:focus::placeholder {
   line-height: 1em;
 }
 
-#claim span {
+#claim-text span {
   color: var(--ACCENT);
   font-weight: 700;
+}
+
+#claim-btn{
+  margin-top: 3rem;
 }
 
 #start img {
@@ -277,19 +300,47 @@ input:focus::placeholder {
 
 /* #region ABOUT */
 #about {
-  background: #4fc94b;
+  /* background-color: #199b0c; */
+  background-color: #1b9e0e;
+}
+.img-about {
+  
 }
 /* #endregion */
 
 /* #region THE PROBLEM */
 #problem {
-  background: #c94b4b;
+  background: var(--BACKGROUND);
+}
+.stat {
+  background-color: var(--SECONDARY-DARK);
+  border-radius: 50%;
+  padding: 5rem;
+  width: 25rem;
+  height: 25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.stat h1{
+  color: var(--LIGHT);
+  font-weight: 400;
+}
+.stat img{
+  width: 50px;
+  margin-left: 15px;
 }
 /* #endregion */
 
 /* #region SERVICES */
 #services {
-  background: #4c60c1;
+  background-color: #5f0ebb;
+  /* background-color: #0A4DFA; */
+}
+.services-img{
+  width: 400px;
 }
 /* #endregion */
 
@@ -310,11 +361,11 @@ input:focus::placeholder {
   font-size: 15;
   /* border-bottom: 1px black solid; */
   text-decoration: none;
-  text-decoration-thickness: 1px;
 }
 
 .footer-legal:hover {
   text-decoration: underline;
+  text-decoration-thickness: 1px;
 }
 
 .footer-socials img {
