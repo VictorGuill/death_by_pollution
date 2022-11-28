@@ -14,7 +14,7 @@ export default class Plane{
 
     //----ATRIBUTES----
         this.w = 50;
-        this.h = 50;
+        this.h = 30;
 
         this.collision = false;
 

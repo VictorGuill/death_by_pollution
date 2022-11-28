@@ -23,8 +23,6 @@ body {
     padding: 0;
     margin: 0;
     background-color: black;
-    height: 100vh;
-    width: 100vw;
     overflow-x: hidden;
 }
 
@@ -34,15 +32,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
 #ui {
     position: absolute;
     height: 80%;
     width: 100%;
-    border: 4px solid magenta;
     z-index: 900;
 }
 
@@ -50,10 +47,9 @@ body {
     position: relative;
     width: 100vw;
     height: 80vh;
-    
 }
 
-.layer {
+.layer-bg {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -62,11 +58,19 @@ body {
     
 }
 
+#airport{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    z-index: 200;
+}
+
 #planeScreenZone {
     position: absolute;
     width: 70%;
-    height: 98%;
-    bottom: 10px;
+    height: 94%;
+    bottom: 6%;
     left: 30px;
     border: 4px solid #cc9900;
     z-index: 200;
@@ -131,6 +135,7 @@ body {
 #speedometer, #altimeter{
     position: relative;
     align-self: center;
+    margin: 0 2rem;
     top: 0;
     width: min-content;
 }

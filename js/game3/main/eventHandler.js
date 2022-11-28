@@ -1,4 +1,4 @@
-import CurrencyGenerator from "./ev/currencyGenerator.js";
+import CurrencyGenerator from "../events/currencyGenerator.js";
 
 export default class EventHandler{
     constructor(gp){

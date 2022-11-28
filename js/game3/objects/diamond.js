@@ -3,8 +3,8 @@ import Object from "./object.js";
 export default class Diamond extends Object{
     constructor(gp, y){
         super(gp);
-        this.w = 40;
-        this.h = 40;
+        this.w = 50;
+        this.h = 50;
         this.index;
         this.createDiamond(y);
     }

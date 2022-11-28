@@ -8,9 +8,9 @@ export default class CurrencyGenerator{
 
         this.currencyOnScreen = new Array();
 
-        this.fCoins = this.gp.map.w;
-        this.fNotes = this.gp.map.w * 2;
-        this.fDiamonds = this.gp.map.w * 4;
+        this.fCoins = this.gp.map.w*2;
+        this.fNotes = this.gp.map.w*4;
+        this.fDiamonds = this.gp.map.w*6;
 
         
         this.spawnCoin = this.fCoins;
@@ -19,22 +19,23 @@ export default class CurrencyGenerator{
         
     }
 
-    randomY(max, min){
+    random(max, min){
         return Math.floor(Math.random() * (max - min)) + min;
     }
+    
 
     generateCoin(){
-        const coin = new Coin(this.gp, this.randomY(this.gp.map.h * 2, 50));
+        const coin = new Coin(this.gp, this.random(this.gp.map.h, 50));
         this.currencyOnScreen.push(coin);
     }
 
     generateNote(){
-        const note = new Note(this.gp, this.randomY(this.gp.map.h * 2, 50));
+        const note = new Note(this.gp, this.random(this.gp.map.h * 2, this.gp.map.h/2));
         this.currencyOnScreen.push(note);
     }
 
     generateDiamond(){
-        const diamond = new Diamond(this.gp, this.randomY(this.gp.map.h * 2, 50));
+        const diamond = new Diamond(this.gp, this.random((this.gp.map.h * 2) - 20, this.gp.map.h));
         this.currencyOnScreen.push(diamond);
     }
 
@@ -44,15 +45,15 @@ export default class CurrencyGenerator{
 
         if (planeX >= this.spawnCoin){
             this.generateCoin();
-            this.spawnCoin = planeX + this.fCoins;
+            this.spawnCoin = planeX + this.random(this.fCoins, this.fCoins/5);
         }
         if (planeX >= this.spawnNote){
             this.generateNote();
-            this.spawnNote = planeX + this.fNotes;
+            this.spawnNote = planeX + this.random(this.fNotes, this.fNotes/3);
         }
         if (planeX >= this.spawnDiamond){
             this.generateDiamond();
-            this.spawnDiamond = planeX + this.fDiamonds;
+            this.spawnDiamond = planeX + this.random(this.fDiamonds, this.fDiamonds/2);
         }
     }
 
