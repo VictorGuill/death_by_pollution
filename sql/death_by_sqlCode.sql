@@ -103,6 +103,8 @@ START TRANSACTION;
 USE `death_by_p`;
 INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('victor','12345','3','2');
 
+INSERT INTO users (name,password,phase,user_type_id) VALUES ('test','323','2','1');
+
 COMMIT;
 
 
@@ -111,6 +113,8 @@ COMMIT;
 SELECT * FROM user_type;
 
 SELECT * FROM users;
+
+DELETE FROM users WHERE users.id=3;
 
 
 SELECT  user_type.name FROM users

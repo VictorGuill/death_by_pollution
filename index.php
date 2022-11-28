@@ -1,3 +1,10 @@
+<?php
+require_once("./php_libraries/bd.php");
+
+
+insertUser("robot", "321", 2, 0);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

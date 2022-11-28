@@ -39,7 +39,7 @@
       <div class="col-1"></div>
     </div>
 
-    <div class="container">
+    <div id="top3Container" class="container">
       <div id="top3" class="row align-items-end">
         <div id="rank3" class="col">
           <p>PLAYER 3</p>
@@ -71,7 +71,7 @@
                 <div class="col-12">
                   <div class="card">
                     <div class="card-body p-0">
-                      <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="height: 400px">
+                      <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="height: 350px">
                         <table class="table mb-0 text-center">
                           <thead>
                             <tr>

@@ -40,6 +40,8 @@ body {
   font-weight: 600;
   text-transform: uppercase;
 
+  color: var(--SECONDARY-DARK);
+
   border-radius: 0;
 }
 
@@ -52,8 +54,15 @@ body {
 /* #endregion */
 
 /* #region TOP 3 DISPLAY */
+#top3Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #top3 {
-  height: 350px;
+  height: 280px;
+  width: 75%;
 }
 
 #rank1,
@@ -70,16 +79,16 @@ body {
 }
 
 #rank1 {
-  height: 50%;
+  height: 55%;
 }
 
 #rank2 {
-  height: 40%;
+  height: 45%;
   border-left: 0;
 }
 
 #rank3 {
-  height: 30%;
+  height: 35%;
   border-right: 0;
 }
 
@@ -87,6 +96,7 @@ body {
 #rank2 p,
 #rank3 p {
   position: absolute;
+  width: 100%;
 
   top: -75px;
 
@@ -94,6 +104,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
 
+  text-align: center;
   font-size: 2.5em;
 }
 
@@ -133,9 +144,10 @@ body {
 
 /* #region SCORES TABLE */
 #scoresTable {
-  margin-top: 80px;
+  margin-top: 60px;
 
   width: 100%;
+  height: 40%;
 }
 
 .intro {
