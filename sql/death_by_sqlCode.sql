@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `death_by_p`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NULL,
   `password` VARCHAR(20) NULL,
-  `pahse` TINYINT NULL,
+  `phase` TINYINT NULL,
   `user_type_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_users_user_type_idx` (`user_type_id` ASC) VISIBLE,
@@ -83,3 +83,37 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- -----------------------------------------------------
+-- Data for table `death_by_p`.`user_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `death_by_p`;
+INSERT INTO `death_by_p`.`user_type` (`id`, `name`) VALUES (0, 'user');
+INSERT INTO `death_by_p`.`user_type` (`id`, `name`) VALUES (1, 'admin');
+INSERT INTO `death_by_p`.`user_type` (`id`, `name`) VALUES (2, 'superadmin');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `death_by_p`.`user_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `death_by_p`;
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('victor','12345','3','2');
+
+COMMIT;
+
+
+
+
+SELECT * FROM user_type;
+
+SELECT * FROM users;
+
+
+SELECT  user_type.name FROM users
+INNER JOIN user_type
+ON users.user_type_id = user_type.id
+WHERE users.name = "victor";

@@ -65,7 +65,12 @@ function gameLoop(millis) {
       console.log("in options");
       break;
     case "exit":
-      window.location.href = "../../pages/games.html";
+      // const redirectingTitle = document.createElement("p");
+      // redirectingTitle.setAttribute("id", "redirecting");
+      // redirectingTitle.innerHTML = "Redirecting";
+      // document.body.appendChild(redirectingTitle);
+
+      window.location.href = "../../pages/gamesMenu.html";
       break;
   }
 

@@ -14,7 +14,7 @@ export default class Ship extends Item {
     this.dom.style.transform = "rotate(0deg)";
 
     // set item image/
-    const img_path = "../../../media/game1_assets/ship.png";
+    const img_path = "/death_by_pollution/media/game1_assets/ship.png";
     this.dom.style.backgroundImage = "url(" + img_path + ")";
 
     // postion

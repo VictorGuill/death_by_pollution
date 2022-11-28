@@ -43,7 +43,7 @@ export default class Player extends Item {
     this.dom.style.transform = "rotate(0deg)";
 
     // set item image/
-    const img_path = "../../../media/game1_assets/player.gif";
+    const img_path = "/death_by_pollution/media/game1_assets/player.gif";
     this.dom.style.backgroundImage = "url(" + img_path + ")";
 
     // Set player in center

@@ -6,53 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ABOUT US</title>
-  <link rel="stylesheet" href="/tercers/boostrap5/bootstrap.min.css" />
-  <script src="/tercers/boostrap5/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="/death_by_pollution/tercers/boostrap5/bootstrap.min.css" />
+  <script src="/death_by_pollution/tercers/boostrap5/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="../style/colores.css" />
   <link rel="stylesheet" href="../style/landing.css" />
   <link rel="stylesheet" href="../style/about.css" />
+  <link rel="stylesheet" href="../style/login.css" />
 </head>
 
 <body>
-  <nav id="landing_nav" class="navbar navbar-expand-lg navbar-dark p-3" id="headerNav">
-    <div class="container-fluid">
-      <a class="navbar-brand d-block d-lg-none" href="#">
-        <img src="/media/icons/logo.svg" height="30" />
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link mx-2 fs-5 link-active" href="/pages/about.html">About us</a>
-          </li>
-          <li class="nav-item d-none d-lg-block">
-            <a id="logo" class="nav-link mx-2" href="/index.html">
-              <img src="/media/icons/logo.svg" height="30" />
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2 fs-5" href="/pages/gamesMenu.html">Games</a>
-          </li>
-          <ul id="navRightItems" class="navbar-nav">
-            <li class="nav-item mx-2">
-              <a id="languageIcon" class="nav-link h5">
-                <img src="/media/icons/globe.svg" height="23" />
-              </a>
-            </li>
-            <li class="mx-2">
-              <a id="loginIcon" class="nav-link h5" onclick="loginPanel()">
-                <img src="/media/icons/login.svg" height="23"
-              /></a>
-            </li>
-          </ul>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <!-- NAVBAR -->
+  <?php require_once("../php_partials/navbar.php"); ?>
 
   <div class="aboutus">
     <div class="aboutus-header">
@@ -89,8 +53,7 @@
     <div class="info-indiv">
       <div class="person1">
         <div class="img">
-          <img src="https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg"
-            alt="" />
+          <img src="https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="" />
         </div>
         <div class="name">Guillem Turró</div>
         <div class="info">Junior Programmer</div>
@@ -105,8 +68,7 @@
       </div>
       <div class="person2">
         <div class="img">
-          <img src="https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg"
-            alt="" />
+          <img src="https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="" />
         </div>
         <div class="name">Maria Garriga</div>
         <div class="info">Junior Programmer</div>
@@ -136,6 +98,9 @@
       </div>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <!-- <?php require_once("../php_partials/footer.php"); ?> -->
 </body>
 
 </html>

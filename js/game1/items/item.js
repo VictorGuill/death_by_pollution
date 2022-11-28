@@ -39,7 +39,11 @@ export default class Item {
 
     // set item image/
     const img_path =
-      "../../../media/game1_assets/" + type + "/" + this.num + ".png";
+      "/death_by_pollution/media/game1_assets/" +
+      type +
+      "/" +
+      this.num +
+      ".png";
     this.dom.style.backgroundImage = "url(" + img_path + ")";
 
     // set item size

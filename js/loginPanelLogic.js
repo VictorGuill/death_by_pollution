@@ -28,7 +28,7 @@ function switchPanel() {
   // create new register input
   const registerInput = document.createElement("input");
   registerInput.setAttribute("id", "newRegisterInput");
-  registerInput.setAttribute("type", "text");
+  registerInput.setAttribute("type", "password");
   registerInput.setAttribute("placeholder", "contraseña");
   registerInputDiv.appendChild(registerInput);
 

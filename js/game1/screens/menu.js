@@ -10,6 +10,11 @@ export default class Menu extends Screen {
   add() {
     super.add();
 
+    const gameTitle = document.createElement("p");
+    gameTitle.setAttribute("id", "gameTitle");
+    gameTitle.innerHTML = "SUPER<br><span>SCUBA</span>";
+    this.dom.appendChild(gameTitle);
+
     this.dom.appendChild(menuItem("play"));
     this.dom.appendChild(menuItem("options"));
     this.dom.appendChild(menuItem("exit"));
