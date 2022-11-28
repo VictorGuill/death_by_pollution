@@ -301,8 +301,22 @@ input:focus::placeholder {
 /* #region ABOUT */
 #about {
   /* background-color: #199b0c; */
-  background-color: #1b9e0e;
+  /* background-color: #1b9e0e; */
+  /* --transition: 0%;
+  --opacity: .9;
+  background-image: 
+  linear-gradient(90deg, rgba(61, 0, 102, var(--opacity)) 5%, rgba(0, 0, 0, var(--opacity)) 65%),
+  linear-gradient(rgba(61, 0, 102, 1) 0%, var(--LIGHT), black var(--transition)); */
+  background:
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+  background-color:#282828;
+  background-size:16px 16px;
 }
+
+
 .img-about {
   
 }
@@ -395,8 +409,7 @@ input:focus::placeholder {
 #copy a:hover {
   text-decoration-line: underline;
 }
-
-/* #endregion*/
+/* #endregion */
 /* #endregion */
 
 /* #region UTILITIES */

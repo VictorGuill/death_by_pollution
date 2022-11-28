@@ -9,6 +9,23 @@ const container = document.getElementById("scroll-container");
 const nabvar = document.getElementById("landing_nav");
 const goStartBtn = document.getElementById("goStartBtn");
 
+/* const startSlide = document.getElementById("start");
+const aboutSlide = document.getElementById("about");
+
+
+function gradientAbout(){
+  let t = 0;
+  aboutSlide.style.setProperty("--transition", t+"%");
+  let s = setInterval(function(){
+        t += 10;
+        aboutSlide.style.setProperty("--transition", t+"%");
+        if (t >= 200){
+          clearInterval(s);
+        }
+      }, 50)
+}
+container.addEventListener("scroll", gradientAbout); */
+
 // set navbar background color
 container.addEventListener("scroll", (e) => {
   if (container.scrollTop >= viewportHeight - viewportHeight / 3) {
