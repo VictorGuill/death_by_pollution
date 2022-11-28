@@ -42,9 +42,9 @@ function insertUser($name, $password, $phase, $userID)
     $conexion = closeDB();
 }
 
-function selectUsers()
+function selectUser($name, $password)
 {
-    return selectQuery("select * from users");
+    return selectQuery("SELECT * FROM users WHERE users.name = '" . $name . "' AND users.password = '" . $password . "';");
 }
 #endregion
 

@@ -101,7 +101,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `death_by_p`;
-INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('victor','12345','3','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('victor','123','3','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('guillem','123','3','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('maria','123','3','2');
 
 INSERT INTO users (name,password,phase,user_type_id) VALUES ('test','323','2','1');
 
@@ -121,3 +123,11 @@ SELECT  user_type.name FROM users
 INNER JOIN user_type
 ON users.user_type_id = user_type.id
 WHERE users.name = "victor";
+
+
+
+-- query search user
+
+SELECT * FROM users
+WHERE users.name = "victor"
+AND users.password = "12345";

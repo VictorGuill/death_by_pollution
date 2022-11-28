@@ -50,6 +50,7 @@ function switchPanel() {
     loginButton.remove();
     switchPanelTxt.remove();
     elementsPanel.appendChild(registerInputDiv);
+    acceptBtn.name = "register";
     elementsPanel.appendChild(acceptBtn);
     elementsPanel.appendChild(newSwitchPanelTxt);
   } else {
@@ -59,6 +60,7 @@ function switchPanel() {
     loginButton.remove();
     switchPanelTxt.remove();
     newRegisterInput.remove();
+    acceptBtn.name = "login";
     elementsPanel.appendChild(acceptBtn);
     elementsPanel.appendChild(newSwitchPanelTxt);
   }

@@ -1,10 +1,3 @@
-<?php
-require_once("./php_libraries/bd.php");
-
-
-insertUser("robot", "321", 2, 0);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +6,7 @@ insertUser("robot", "321", 2, 0);
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Landing</title>
+  <link rel="icon" type="image/x-icon" href="/death_by_pollution/media/icons/favicon32.png">
   <link rel="stylesheet" href="./tercers/boostrap5/bootstrap.min.css" />
   <script src="./tercers/boostrap5/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="./style/colores.css" />

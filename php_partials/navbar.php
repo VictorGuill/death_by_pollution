@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
+
 <nav id="landing_nav" class="navbar navbar-expand-lg navbar-dark p-3" id="headerNav">
     <div class="container-fluid">
         <a class="navbar-brand d-block d-lg-none" href="/death_by_pollution/pages/index.php">
@@ -43,29 +49,33 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div id="loginCard" class="card shadow-2-strong" style="border-radius: 1rem">
                     <div id="closePanel" onclick="closeLoginPanel()">❌</div>
-                    <div id="elementsPanel" class="card-body p-5 pb-4 text-center">
-                        <h3 id="loginTitle" class="mb-5">Log in</h3>
 
-                        <div class="mb-4">
-                            <input type="text" placeholder="Nombre" />
-                        </div>
+                    <form action="/death_by_pollution/php_controllers/controller.php" method="post">
+                        <div id="elementsPanel" class="card-body p-5 pb-4 text-center">
+                            <h3 id="loginTitle" class="mb-5">Log in</h3>
 
-                        <div class="mb-4">
-                            <input type="password" placeholder="contraseña" />
-                        </div>
+                            <div class="mb-4">
+                                <input type="text" name="name" placeholder="Nombre" />
+                            </div>
 
-                        <button id="loginButton" class="btn btn-primary btn-lg btn-block mt-4" type="submit">
-                            ACEPTAR
-                        </button>
+                            <div class="mb-4">
+                                <input type="password" name="password" placeholder="contraseña" />
+                            </div>
 
-                        <h5 id="switchPanel" class="mt-5 mb-0" onclick="switchPanel()">
-                            crear cuenta
-                        </h5>
-                    </div>
+                            <button id="loginButton" class="btn btn-primary btn-lg btn-block mt-4" type="submit" name="login">
+                                ACEPTAR
+                            </button>
+
+                            <h5 id="switchPanel" class="mt-5 mb-0" onclick="switchPanel()">
+                                crear cuenta
+                            </h5>
+
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script src="/death_by_pollution/js/loginPanelLogic.js"></script>
