@@ -1,6 +1,9 @@
 export default class UI {
     constructor(gp){
         this.gp = gp;
+        this.time = 0;
+        this.score = 0;
+        this.timeElapsed = 0;
         this.addUI();
         this.addElements();
     }
@@ -143,19 +146,16 @@ export default class UI {
     }
 
     addTimeScore(){
-        this.timeScore = document.createElement("div");
-        this.timeScore.setAttribute("id", "time-score");
-        const timeLabel = document.createElement("p");
-        timeLabel.innerHTML = "TIME 23:40:11";
+        const timeScore = document.createElement("div");
+        timeScore.setAttribute("id", "time-score");
 
-        const scoreLabel = document.createElement("p");
-        scoreLabel.innerHTML = "SCORE 000000";
+        this.timeLabel = document.createElement("p");
+        this.scoreLabel = document.createElement("p");
+        
+        timeScore.appendChild(this.timeLabel);
+        timeScore.appendChild(this.scoreLabel);
 
-        this.timeScore.appendChild(timeLabel);
-        this.timeScore.appendChild(scoreLabel);
-
-        this.element.appendChild(this.timeScore);
-
+        this.element.appendChild(timeScore);
     }
 
     addProgressBar(){
@@ -168,8 +168,25 @@ export default class UI {
         this.element.appendChild(this.progressBar);
     }
 
-    progress() {
+    updateProgress() {
         this.progressBar.bar.style.width = this.gp.plane.worldX/100 +"px";
+    }
+
+    updateScoreTime(t){
+        this.time = this.secondsToTime(t/1000);
+        this.timeLabel.innerHTML = "TIME " + this.time;
+        this.scoreLabel.innerHTML = "SCORE " + this.score;
+    }
+
+    secondsToTime(e) {
+        const m = Math.floor((e % 3600) / 60)
+            .toString()
+            .padStart(2, "0"),
+          s = Math.floor(e % 60)
+            .toString()
+            .padStart(2, "0");
+      
+        return m + ":" + s;
     }
 
     hudMetricsUpdate(){
@@ -181,8 +198,10 @@ export default class UI {
         this.hud.speedometer.imgContainer.style.setProperty("--powerHeight", this.gp.plane.speed + "px")
     }
 
-    draw() {
-        this.progress();
+
+    draw(timeElapsed) {
+        this.updateProgress();
+        this.updateScoreTime(timeElapsed);
         this.hudMetricsUpdate();
     }
 }

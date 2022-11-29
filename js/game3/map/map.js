@@ -1,5 +1,6 @@
 //SET THIS VARIABLE TO MAX LAYER HEIGHT TO MATCH MAP SIZE
 const bgImgHeight = 1100;
+const airportWidth = 3000;
 
 export default class Map {
     constructor(gp) {
@@ -175,6 +176,7 @@ export default class Map {
         this.layersGroup.setAttribute("id", "layers");
 
         this.addRocks_5();
+        this.addAirport();
         //this.addRocks_4();
         this.addClouds_4();
         this.addRocks_1();
@@ -184,7 +186,7 @@ export default class Map {
         this.addClouds_1();
         this.addSky();
 
-        this.addAirport();
+        
 
         this.addObjectsLayer();
 
@@ -195,8 +197,6 @@ export default class Map {
     getBgHeight(){
         this.layers = document.querySelectorAll(".layer");
         this.initialWorldY = this.h-bgImgHeight;
-        this.layers_bg = document.querySelectorAll(".layer-bg");
-
     }
 
 
@@ -207,18 +207,25 @@ export default class Map {
         this.screenPlaneZoneWidth = this.screenPlaneZone.offsetWidth;
     }
 
-
-    draw() {
-        this.airport.style.backgroundPositionX = -(this.gp.plane.worldX/2) + "px";
+    drawLayersX(){
+        if (this.gp.plane.worldX >= airportWidth){
+            this.airport.style.backgroundPositionX = -30000 +(this.gp.plane.worldX) + "px";
+            this.airport.style.transform = "scaleX(-1)";
+        } else {
+            this.airport.style.backgroundPositionX = -(this.gp.plane.worldX) + "px";
+        }
+        
         this.rocks_5.style.backgroundPositionX = -(this.gp.plane.worldX / 2) + "px";
         //this.rocks_4.style.backgroundPositionX = -(this.gp.plane.worldX/4) +"px";
-        this.clouds_4.style.backgroundPositionX = -(this.gp.plane.worldX / 6) + "px";
+        this.clouds_4.style.backgroundPositionX = (this.gp.plane.worldX / 6) + "px";
         this.rocks_1.style.backgroundPositionX = -(this.gp.plane.worldX / 10) + "px";
         this.clouds_2.style.backgroundPositionX = -(this.gp.plane.worldX / 12) + "px";
         this.clouds_3.style.backgroundPositionX = -(this.gp.plane.worldX / 14) + "px";
         this.rocks_2.style.backgroundPositionX = -(this.gp.plane.worldX / 16) + "px";
         this.clouds_1.style.backgroundPositionX = -(this.gp.plane.worldX / 18) + "px";
+    }
 
+    drawLayersY(){
         this.layers.forEach(layer => {
             layer.style.backgroundPositionY = this.initialWorldY +(this.gp.plane.worldY) +"px";
             if (parseInt(layer.style.backgroundPositionY) >= 0){
@@ -227,5 +234,11 @@ export default class Map {
         })
 
         this.airport.style.backgroundPositionY = (this.gp.plane.worldY + 280) +"px";
+    }
+
+    draw() {
+        this.drawLayersX();
+
+        this.drawLayersY();
     }
 }

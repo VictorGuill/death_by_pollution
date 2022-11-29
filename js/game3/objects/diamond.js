@@ -3,6 +3,7 @@ import Object from "./object.js";
 export default class Diamond extends Object{
     constructor(gp, y){
         super(gp);
+        this.name = "diamond";
         this.w = 50;
         this.h = 50;
         this.index;

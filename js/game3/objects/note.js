@@ -3,6 +3,7 @@ import Object from "./object.js";
 export default class Note extends Object{
     constructor(gp, y){
         super(gp);
+        this.name = "note";
         this.w = 50;
         this.h = 50;
         this.index;

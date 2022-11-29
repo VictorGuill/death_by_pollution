@@ -14,7 +14,7 @@ export default class Plane{
 
     //----ATRIBUTES----
         this.w = 50;
-        this.h = 30;
+        this.h = 50;
 
         this.collision = false;
 
@@ -26,14 +26,14 @@ export default class Plane{
         this.state = "";
 
         this.pitch = 0;
-        this.pitchRate = 5;
+        this.pitchRate = 2;
         this.maxPitch = 45;
         
-        this.cL = 2; //Lift coeficient
-        this.cD = 1; //Drag coeficient
+        this.cL = .5; //Lift coeficient
+        this.cD = 1.5; //Drag coeficient
 
         this.acceleration = 50;
-        this.deceleration = 100;
+        this.deceleration = 10;
 
         this.canPSM = true;
         this.cobraRange = false;
@@ -127,6 +127,9 @@ export default class Plane{
 
     checkState() {
         //takeOff
+        if(this.screenY <= 0 && this.speedY <= -100){
+            console.log("CRASH!!!!!");
+        }
     }
 
     rotate(deg){
@@ -231,6 +234,7 @@ export default class Plane{
         this.updateSpeed(dt);
         this.updatePitch(dt);
         this.updatePositions(dt);
+        this.checkState();
         this.vfx.update();
         //toggle level pitch for ez mode
         if(this.ezModePitch){
@@ -254,9 +258,9 @@ export default class Plane{
         // console.log("SpeedY: "+ Math.round(this.speedY));
         //console.log("LIFT COEF: " + this.cL);
         //console.log("DRAG COEF: " +this.cD);
-        //console.log("Lift: "+ Math.round(this.gp.physics.lift));
-        //console.log("Drag: " + Math.round(this.gp.physics.drag));
-        //console.log("Weight: " + Math.round(this.weight));
+        // console.log("Lift: "+ Math.round(this.gp.physics.lift));
+        // console.log("Drag: " + Math.round(this.gp.physics.drag));
+        // console.log("Weight: " + Math.round(this.weight));
         //console.log("Pitch: " +this.pitch);
         //console.log("pitch to rad: " +this.toRadiants(this.pitch));
         // console.log("-------POSITION-----");

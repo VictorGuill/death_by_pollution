@@ -17,6 +17,7 @@ export class GamePanel {
         this.gameState = this.playState;
 
         this.addGPelement(); //gp div on document
+        this.objects = new Array();
         this.input = input_codes;
         this.map = new Map(this);
         this.collisionDetection = new CollisionDetection(this);
@@ -40,10 +41,10 @@ export class GamePanel {
         this.eH.update();
     }
 
-    draw() {
+    draw(timeElapsed) {
         this.plane.draw();
         this.map.draw();
-        this.ui.draw();
+        this.ui.draw(timeElapsed);
         this.eH.draw();
     }
 }

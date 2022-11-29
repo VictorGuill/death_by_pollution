@@ -1,15 +1,15 @@
-import CurrencyGenerator from "../events/currencyGenerator.js";
+import EventsGenerator from "../events/eventsGenerator.js";
 
 export default class EventHandler{
     constructor(gp){
         this.gp = gp;
-        this.currencyGenerator = new CurrencyGenerator(this.gp);
+        this.evG = new EventsGenerator(this.gp);
     }
 
 
 
     update(){
-        this.currencyGenerator.update();  
+        this.evG.update();  
     }
 
     draw(){
