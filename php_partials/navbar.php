@@ -33,8 +33,22 @@ if (!isset($_SESSION)) {
                         </a>
                     </li>
                     <li class="mx-2">
-                        <a id="loginIcon" class="nav-link h5" onclick="showLoginPanel()">
-                            <img src="/death_by_pollution/media/icons/login.svg" height="23" /></a>
+                        <?php
+                        if (isset($_SESSION["name"])) {
+                            echo "<li id='userName' class='nav-item dropdown'>
+                                    <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    " . $_SESSION["name"] . "
+                                    </a>
+                                    <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                    <li><a class='dropdown-item' href='#'>Cerrar sesión</a></li>
+                                    </ul>
+                                </li>";
+                        } else {
+                            echo "<a id='loginIcon' class='nav-link h5' onclick='showLoginPanel()'>
+                            <img src='/death_by_pollution/media/icons/login.svg' height='23' />
+                            </a>";
+                        }
+                        ?>
                     </li>
                 </ul>
             </ul>
@@ -55,7 +69,7 @@ if (!isset($_SESSION)) {
                             <h3 id="loginTitle" class="mb-5">Log in</h3>
 
                             <div class="mb-4">
-                                <input type="text" name="name" placeholder="Nombre" />
+                                <input id="nameInput" type="text" name="name" placeholder="Nombre" autofocus />
                             </div>
 
                             <div class="mb-4">
@@ -79,3 +93,17 @@ if (!isset($_SESSION)) {
 </div>
 
 <script src="/death_by_pollution/js/loginPanelLogic.js"></script>
+
+<?php
+
+if (isset($_SESSION["error"])) {
+    if ($_SESSION["error"] === "login") {
+        echo '<script type="text/javascript">',
+        'showLoginPanelError();',
+        '</script>';
+        unset($_SESSION["error"]);
+    }
+}
+
+
+?>

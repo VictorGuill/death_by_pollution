@@ -40,7 +40,7 @@
     </div>
     <div id="games">
       <div id="game1" class="game">
-        <p class="title_game">JUEGO 1</p>
+        <p class="title_game">SUPER SCUBA</p>
       </div>
       <div id="game2" class="game">
         <p class="title_game">JUEGO 2</p>

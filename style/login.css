@@ -9,7 +9,6 @@
   width: 100vw;
 
   backdrop-filter: blur(15px);
-  animation: fade-in 1s ease;
 
   z-index: 99;
 }
@@ -97,5 +96,28 @@ input:focus {
 input:focus::placeholder {
   color: transparent;
 }
+
+#userName {
+}
+
+#userName ul {
+  left: unset;
+  right: 0;
+  background-color: var(--LIGHT);
+}
+
+#userName ul li a {
+  color: var(--DARK);
+  font-weight: 500;
+}
+
+#userName a::after {
+  content: none;
+}
+
+#userName ul li a:active {
+  background-color: var(--DARK);
+  color: var(--LIGHT);
+}
+
 /* #endregion */
-/* #endregion*/

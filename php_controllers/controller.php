@@ -10,18 +10,23 @@ if (isset($_POST["login"])) {
     $user = selectUser($_POST["name"], $_POST["password"]);
 
     if (empty($user)) {
-        echo "Este usuario no existe";
+        $_SESSION["error"] = "login";
+        header('Location: ' . $_SERVER["HTTP_REFERER"]);
     } else {
-        foreach ($user as $key) {
-            foreach ($key as $key => $value) {
-                echo $key . ": " . $value;
-                echo "<br>";
-            }
-        }
+        // foreach ($user as $key) {
+        //     echo print_r($key);
+        //     foreach ($key[0] as $key => $value) {
+        //         echo $key . ": " . $value;
+        //         echo "<br>";
+        //     }
+        // }
+        $_SESSION["name"] = $user[0]["name"];
     }
+    header('Location: ' . $_SERVER["HTTP_REFERER"]);
+    die();
 }
 
 if (isset($_POST["register"])) {
     insertUser($_POST["name"], $_POST["password"], 0, 0);
-    echo "Usuario " . $_POST["name"] . " añadido.";
+    header('Location: ' . $_SERVER["HTTP_REFERER"]);
 }

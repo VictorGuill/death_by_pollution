@@ -5,7 +5,7 @@ function openDB()
     $servername = "localhost";
     $username = "root";
     #region PASSWORD
-    $password = "123";
+    $password = "koritosano";
     #endregion
 
     $conexion = new PDO("mysql:host=$servername;dbname=death_by_p", $username, $password);
@@ -27,7 +27,6 @@ function insertUser($name, $password, $phase, $userID)
 {
     $conexion = openDB();
 
-
     $queryText = "INSERT INTO users (name,password,phase,user_type_id) VALUES (:name,:password,:phase,:userID);";
 
     $query = $conexion->prepare($queryText);
@@ -37,7 +36,6 @@ function insertUser($name, $password, $phase, $userID)
     $query->bindParam(':userID', $userID);
 
     $query->execute();
-
 
     $conexion = closeDB();
 }

@@ -54,6 +54,7 @@ function gameLoop(millis) {
           case "options":
             break;
           case "exit":
+            window.location.href = "../pages/gamesMenu.php";
             break;
         }
       }
@@ -70,7 +71,6 @@ function gameLoop(millis) {
       // redirectingTitle.innerHTML = "Redirecting";
       // document.body.appendChild(redirectingTitle);
 
-      window.location.href = "../../pages/gamesMenu.html";
       break;
   }
 

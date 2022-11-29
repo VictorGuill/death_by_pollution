@@ -9,9 +9,16 @@ window.addEventListener("resize", function (e) {
 // #region panel elenents
 
 // #endregion
-
 function showLoginPanel() {
   const login_panel = document.getElementById("loginPanel");
+  login_panel.style.animation = "fade-in .5s ease";
+
+  login_panel.style.display = "inherit";
+}
+
+function showLoginPanelError() {
+  const login_panel = document.getElementById("loginPanel");
+  login_panel.style.animation = "";
 
   login_panel.style.display = "inherit";
 }
@@ -29,6 +36,7 @@ function switchPanel() {
   const registerInput = document.createElement("input");
   registerInput.setAttribute("id", "newRegisterInput");
   registerInput.setAttribute("type", "password");
+  registerInput.name = "password2";
   registerInput.setAttribute("placeholder", "contraseña");
   registerInputDiv.appendChild(registerInput);
 
@@ -69,12 +77,12 @@ function switchPanel() {
 function closeLoginPanel() {
   const login_panel = document.getElementById("loginPanel");
 
-  login_panel.style.animation = "fade-out 1s ease";
+  login_panel.style.animation = "fade-out .5s ease";
   setTimeout(() => {
     login_panel.style.display = "none";
 
-    login_panel.style.animation = "fade-in 1s ease";
-  }, 990);
+    login_panel.style.animation = "fade-in .5s ease";
+  }, 490);
 }
 
 // function closeRegisterPanel() {
