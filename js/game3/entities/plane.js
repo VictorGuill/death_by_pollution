@@ -23,9 +23,9 @@ export default class Plane{
         this.speedY = 0;
         this.maxSpeed = 1000;
 
-        this.hp = 100;
+        this.hp = 4;
 
-        this.state = "";
+        this.state = "neat";
 
         this.pitch = 0;
         this.pitchRate = 2;
@@ -56,11 +56,11 @@ export default class Plane{
     addPlane() {
         this.element = document.createElement("div");
         this.element.setAttribute("id", this.id);
-        const planeImg = document.createElement("img");
-        planeImg.setAttribute("src", "/media/game3/croped_plane.png");
-        planeImg.style.width = "50px";
-        planeImg.style.display = "block";
-        this.element.appendChild(planeImg);
+        this.planeImg = document.createElement("img");
+        this.planeImg.setAttribute("src", "/media/game3/croped_plane.png");
+        this.planeImg.style.width = "50px";
+        this.planeImg.style.display = "block";
+        this.element.appendChild(this.planeImg);
         this.gp.map.screenPlaneZone.appendChild(this.element);
     }
 

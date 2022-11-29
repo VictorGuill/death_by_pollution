@@ -80,6 +80,9 @@ img{
 
 #plane {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 900;
 }
 
@@ -279,6 +282,29 @@ input{ margin-right: 100px;}
     background-image: url("../media/game3/crt.png");
     background-size: 100% 100%;
     z-index: 999;
+}
+
+#smoke, #smoke_fire, #fire, #explosion{
+    animation: effect-in 2s linear forwards;
+}
+
+
+@keyframes effect-in {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes effect-out {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
 }
 
 @keyframes pick-up {
