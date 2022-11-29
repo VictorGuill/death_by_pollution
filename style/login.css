@@ -34,8 +34,6 @@
 
   padding: 2% 10%;
   border: none;
-
-  margin-bottom: 40px;
 }
 
 #loginCard {
@@ -83,7 +81,7 @@ input {
   border: none;
   border-bottom: 2px solid #767676;
 
-  transition: all 0.25s ease-in-out;
+  transition: all 0.15s ease-in-out;
 
   margin: 5px;
 }
@@ -95,9 +93,6 @@ input:focus {
 
 input:focus::placeholder {
   color: transparent;
-}
-
-#userName {
 }
 
 #userName ul {
@@ -115,9 +110,19 @@ input:focus::placeholder {
   content: none;
 }
 
-#userName ul li a:active {
+#userName button {
+  color: var(--DARK);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+#userName button:active {
   background-color: var(--DARK);
   color: var(--LIGHT);
+}
+
+#errorInfoMsg {
+  color: red;
 }
 
 /* #endregion */

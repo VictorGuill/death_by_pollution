@@ -7,10 +7,12 @@ if (!isset($_SESSION)) {
 
 if (isset($_POST["login"])) {
 
-    $user = selectUser($_POST["name"], $_POST["password"]);
+    $hashedPassword = hash("sha512", $_POST["password"]);
+
+    $user = selectUser(strtolower($_POST["name"]), $hashedPassword);
 
     if (empty($user)) {
-        $_SESSION["error"] = "login";
+        $_SESSION["error"] = "El usuario " . $_POST["name"] . " no existe o la contraseña es errónea.";
         header('Location: ' . $_SERVER["HTTP_REFERER"]);
     } else {
         // foreach ($user as $key) {
@@ -27,6 +29,19 @@ if (isset($_POST["login"])) {
 }
 
 if (isset($_POST["register"])) {
-    insertUser($_POST["name"], $_POST["password"], 0, 0);
+
+    $hashedPassword = hash("sha512", $_POST["password"]);
+
+    insertUser(strtolower($_POST["name"]), $hashedPassword, 0, 0);
+
+    $user = selectUser(strtolower($_POST["name"]), $hashedPassword);
+    $_SESSION["name"] = $user[0]["name"];
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
+    die();
+}
+
+if (isset($_POST["logout"])) {
+    unset($_SESSION["name"]);
+    header('Location: ' . $_SERVER["HTTP_REFERER"]);
+    die();
 }

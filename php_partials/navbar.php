@@ -37,14 +37,17 @@ if (!isset($_SESSION)) {
                         if (isset($_SESSION["name"])) {
                             echo "<li id='userName' class='nav-item dropdown'>
                                     <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                    " . $_SESSION["name"] . "
-                                    </a>
+                                    " . $_SESSION["name"] . "</a>
                                     <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                                    <li><a class='dropdown-item' href='#'>Cerrar sesión</a></li>
+                                        <form action='/death_by_pollution/php_controllers/controller.php' method='post'>
+                                            <li>
+                                                <button class='dropdown-item' type='submit' name='logout'>Cerrar sesión</button>
+                                            </li>
+                                        </form>
                                     </ul>
                                 </li>";
                         } else {
-                            echo "<a id='loginIcon' class='nav-link h5' onclick='showLoginPanel()'>
+                            echo "<a id='loginIcon' class='nav-link h5' onclick='showLogin()'>
                             <img src='/death_by_pollution/media/icons/login.svg' height='23' />
                             </a>";
                         }
@@ -69,21 +72,32 @@ if (!isset($_SESSION)) {
                             <h3 id="loginTitle" class="mb-5">Log in</h3>
 
                             <div class="mb-4">
-                                <input id="nameInput" type="text" name="name" placeholder="Nombre" autofocus />
+                                <input id="nameInput" type="text" name="name" placeholder="Nombre" maxlength="30" autofocus />
                             </div>
 
                             <div class="mb-4">
-                                <input type="password" name="password" placeholder="contraseña" />
+                                <input id="passInput" type="password" name="password" placeholder="contraseña" maxlength="20" />
                             </div>
 
-                            <button id="loginButton" class="btn btn-primary btn-lg btn-block mt-4" type="submit" name="login">
+                            <div class="mb-4">
+                                <input id="pass2Input" type="password" name="password2" placeholder="contraseña" maxlength="20" hidden />
+                            </div>
+
+                            <button id="loginButton" class="btn btn-primary btn-lg btn-block mt-4" type="submit" name="login" disabled>
                                 ACEPTAR
                             </button>
+
+                            <p id="errorInfoMsg" class="mt-1">
+                                <?php
+                                if (isset($_SESSION["error"])) {
+                                    echo $_SESSION["error"];
+                                }
+                                ?>
+                            </p>
 
                             <h5 id="switchPanel" class="mt-5 mb-0" onclick="switchPanel()">
                                 crear cuenta
                             </h5>
-
                     </form>
                 </div>
             </div>
@@ -95,15 +109,10 @@ if (!isset($_SESSION)) {
 <script src="/death_by_pollution/js/loginPanelLogic.js"></script>
 
 <?php
-
 if (isset($_SESSION["error"])) {
-    if ($_SESSION["error"] === "login") {
-        echo '<script type="text/javascript">',
-        'showLoginPanelError();',
-        '</script>';
-        unset($_SESSION["error"]);
-    }
+    echo '<script type="text/javascript">',
+    'showLogin_noAnimation();',
+    '</script>';
+    unset($_SESSION["error"]);
 }
-
-
 ?>

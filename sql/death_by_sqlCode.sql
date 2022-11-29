@@ -31,7 +31,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `death_by_p`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NULL,
-  `password` VARCHAR(20) NULL,
+  `password` CHAR(255) NULL,
   `phase` TINYINT NULL,
   `user_type_id` INT NOT NULL,
   PRIMARY KEY (`id`),

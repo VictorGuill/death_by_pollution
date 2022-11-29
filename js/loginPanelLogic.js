@@ -1,125 +1,122 @@
-// set new browser window height value
-window.addEventListener("resize", function (e) {
-  viewportHeight = Math.max(
-    document.documentElement.clientHeight || 0,
-    window.innerHeight || 0
-  );
+// variable to know witch panel we are at
+let loginState = "login";
+
+// #region panel DOM elenents
+const login_panel = document.getElementById("loginPanel");
+const panel_title = document.getElementById("loginTitle");
+
+const name_input = document.getElementById("nameInput");
+const pass_input = document.getElementById("passInput");
+const pass2_input = document.getElementById("pass2Input");
+const submitBtn = document.getElementById("loginButton");
+const switch_panel_text = document.getElementById("switchPanel");
+
+const error_message_text = document.getElementById("errorInfoMsg");
+// #endregion
+
+// #region event listeners
+name_input.addEventListener("input", function (e) {
+  checkEmptyFields();
 });
 
-// #region panel elenents
+pass_input.addEventListener("input", function (e) {
+  checkEmptyFields();
+  checkPasswordsMatch();
+});
 
+pass2_input.addEventListener("input", function (e) {
+  checkEmptyFields();
+  checkPasswordsMatch();
+});
 // #endregion
-function showLoginPanel() {
-  const login_panel = document.getElementById("loginPanel");
-  login_panel.style.animation = "fade-in .5s ease";
 
-  login_panel.style.display = "inherit";
-}
-
-function showLoginPanelError() {
-  const login_panel = document.getElementById("loginPanel");
-  login_panel.style.animation = "";
-
-  login_panel.style.display = "inherit";
-}
-
+// #region show, hide, switch panel functions
 function switchPanel() {
-  const title = document.getElementById("loginTitle");
-  const loginButton = document.getElementById("loginButton");
-  const switchPanelTxt = document.getElementById("switchPanel");
+  switch (loginState) {
+    case "login":
+      // store current state and change panel title
+      loginState = "register";
+      panel_title.innerHTML = "Register";
 
-  const elementsPanel = document.getElementById("elementsPanel");
+      // empty and show second password field
+      pass2_input.value = "";
+      pass2_input.hidden = false;
 
-  const registerInputDiv = document.createElement("div");
+      // set help text
+      switch_panel_text.innerHTML = "¿Ya tienes cuenta?";
+      break;
+    case "register":
+      // store current state and change panel title
+      loginState = "login";
+      panel_title.innerHTML = "Log in";
 
-  // create new register input
-  const registerInput = document.createElement("input");
-  registerInput.setAttribute("id", "newRegisterInput");
-  registerInput.setAttribute("type", "password");
-  registerInput.name = "password2";
-  registerInput.setAttribute("placeholder", "contraseña");
-  registerInputDiv.appendChild(registerInput);
+      // hide second password field
+      pass2_input.value = "";
+      pass2_input.hidden = true;
 
-  // create accept button and switch panel text
-  const acceptBtn = document.createElement("button");
-  acceptBtn.setAttribute("id", "loginButton");
-  acceptBtn.setAttribute("class", "btn btn-primary btn-lg btn-block mt-4");
-  acceptBtn.setAttribute("type", "submit");
-  acceptBtn.innerHTML = "ACEPTAR";
-
-  const newSwitchPanelTxt = document.createElement("h5");
-  newSwitchPanelTxt.setAttribute("id", "switchPanel");
-  newSwitchPanelTxt.setAttribute("class", "mt-5 mb-0");
-  newSwitchPanelTxt.setAttribute("onclick", "switchPanel()");
-
-  if (title.innerHTML === "Log in") {
-    newSwitchPanelTxt.innerHTML = "¿Ya tienes cuenta?";
-    title.innerHTML = "Registrarse";
-    loginButton.remove();
-    switchPanelTxt.remove();
-    elementsPanel.appendChild(registerInputDiv);
-    acceptBtn.name = "register";
-    elementsPanel.appendChild(acceptBtn);
-    elementsPanel.appendChild(newSwitchPanelTxt);
-  } else {
-    const newRegisterInput = document.getElementById("newRegisterInput");
-    newSwitchPanelTxt.innerHTML = "crear cuenta";
-    title.innerHTML = "Log in";
-    loginButton.remove();
-    switchPanelTxt.remove();
-    newRegisterInput.remove();
-    acceptBtn.name = "login";
-    elementsPanel.appendChild(acceptBtn);
-    elementsPanel.appendChild(newSwitchPanelTxt);
+      // set help text
+      switch_panel_text.innerHTML = "crear cuenta";
+      break;
   }
+
+  // set button name atributte recived on PHP controller
+  submitBtn.name = loginState;
+
+  // check if button should be enabled/disabled
+  checkEmptyFields();
+}
+
+function showLogin() {
+  login_panel.style.animation = "fade-in .5s ease";
+  login_panel.style.display = "inherit";
+}
+
+function showLogin_noAnimation() {
+  showLogin();
+  login_panel.style.animation = "";
 }
 
 function closeLoginPanel() {
-  const login_panel = document.getElementById("loginPanel");
-
   login_panel.style.animation = "fade-out .5s ease";
+
   setTimeout(() => {
     login_panel.style.display = "none";
+  }, 485);
+}
+// #endregion
 
-    login_panel.style.animation = "fade-in .5s ease";
-  }, 490);
+function checkEmptyFields() {
+  // remove start/end extra spaces
+  name_input.value = String(name_input.value).trim();
+  pass_input.value = String(pass_input.value).trim();
+  pass2_input.value = String(pass2_input.value).trim();
+
+  switch (loginState) {
+    case "login":
+      if (name_input.value && pass_input.value) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+      break;
+    case "register":
+      if (name_input.value && pass_input.value && pass2_input.value) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+      break;
+  }
 }
 
-// function closeRegisterPanel() {
-//   const register_panel = document.getElementById("registerPanel");
-
-//   register_panel.style.animation = "fade-out 1s ease";
-//   setTimeout(() => {
-//     register_panel.style.display = "none";
-
-//     register_panel.style.animation = "fade-in 1s ease";
-//   }, 990);
-// }
-
-// function showRegisterPanel() {
-//   const login_panel = document.getElementById("loginPanel");
-//   const register_panel = document.getElementById("registerPanel");
-
-//   setTimeout(() => {
-//     login_panel.style.display = "none";
-
-//     login_panel.style.animation = "fade-in 1s ease";
-//   }, 990);
-
-//   register_panel.style.display = "inherit";
-//   register_panel.style.zIndex = "10";
-// }
-
-// function showLoginPanel() {
-//   const login_panel = document.getElementById("loginPanel");
-//   const register_panel = document.getElementById("registerPanel");
-
-//   setTimeout(() => {
-//     register_panel.style.display = "none";
-
-//     register_panel.style.animation = "fade-in 1s ease";
-//   }, 990);
-
-//   login_panel.style.display = "inherit";
-//   login_panel.style.zIndex = "11";
-// }
+function checkPasswordsMatch() {
+  if (loginState === "register") {
+    if (pass_input.value !== pass2_input.value) {
+      error_message_text.innerHTML = "Las contraseñas deben coincidir.";
+      submitBtn.disabled = true;
+    } else {
+      error_message_text.innerHTML = "";
+      submitBtn.disabled = false;
+    }
+  }
+}
