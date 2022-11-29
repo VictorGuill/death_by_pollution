@@ -22,9 +22,6 @@ export default class Diamond extends Object{
         diamondImg.src = "/media/game3/objects/diamond.gif";
         this.element.appendChild(diamondImg);
     }
-
-    update(){
-        return super.update();
-    }
+    
 
 }

@@ -24,9 +24,5 @@ export default class Coin extends Object{
         this.element.appendChild(coinImg);
     }
 
- 
-    update(){
-        return super.update();
-    }
 
 }

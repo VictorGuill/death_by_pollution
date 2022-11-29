@@ -13,6 +13,8 @@ export default class Object{
         this.initialX = this.gp.plane.worldX + this.gp.map.w;
         this.initialY;
 
+        this.vel = 0;
+
         this.collision = false;
         
         this.createObject();
@@ -36,10 +38,12 @@ export default class Object{
     }
     
     update(){
-        this.element.style.left =  (this.initialX - this.gp.plane.worldX) + "px";
-        this.x = parseInt(this.element.style.left);
-
-        this.element.style.bottom = (this.initialY - this.gp.plane.worldY) +"px";
-        this.y = parseInt(this.element.style.bottom);
+        this.x =  parseInt(this.initialX - this.gp.plane.worldX - this.vel);
+        this.y = parseInt(this.initialY - this.gp.plane.worldY);
+    }
+    
+    draw(){
+        this.element.style.left = this.x + "px";
+        this.element.style.bottom = this.y + "px";
     }
 }

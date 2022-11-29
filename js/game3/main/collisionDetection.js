@@ -51,8 +51,11 @@ export default class CollisionDetection{
            planeTop >= object.y &&
            planeBottom <= object.y + object.h) {
             object.collision = true;
-            object.element.style.animation = "pick-up 1s linear";
-            object.element.style.animationFillMode = "forwards";
+            if(object.name != "toxic"){
+                object.element.style.animation = "pick-up 1s linear";
+                object.element.style.animationFillMode = "forwards";
+            }
+            
             return true;
         }
     }

@@ -23,8 +23,4 @@ export default class Note extends Object{
         this.element.appendChild(noteImg);
     }
 
-    update(){
-        return super.update();
-    }
-
 }

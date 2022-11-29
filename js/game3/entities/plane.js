@@ -14,7 +14,7 @@ export default class Plane{
 
     //----ATRIBUTES----
         this.w = 50;
-        this.h = 50;
+        this.h = 30;
 
         this.collision = false;
 
@@ -22,6 +22,8 @@ export default class Plane{
         this.speedX = 0;
         this.speedY = 0;
         this.maxSpeed = 1000;
+
+        this.hp = 100;
 
         this.state = "";
 
@@ -55,12 +57,11 @@ export default class Plane{
         this.element = document.createElement("div");
         this.element.setAttribute("id", this.id);
         const planeImg = document.createElement("img");
-        planeImg.setAttribute("src", "/media/game3/f22.png");
+        planeImg.setAttribute("src", "/media/game3/croped_plane.png");
         planeImg.style.width = "50px";
+        planeImg.style.display = "block";
         this.element.appendChild(planeImg);
         this.gp.map.screenPlaneZone.appendChild(this.element);
-        this.element.style.width = this.w+"px";
-        this.element.style.height = this.h+"px";
     }
 
     accelerate(dt) {
@@ -78,7 +79,7 @@ export default class Plane{
     cobraManeuver(dt) {
         if (this.speed >= 300){
             this.inPSM = true;
-            this.vfx.thrust.style.opacity = "0";
+            this.vfx.thrustVFX.style.opacity = "0";
             this.cobraPitch += 8;
             if (this.cobraPitch >= 60){
                 this.cobraPitch = 60;
@@ -97,7 +98,7 @@ export default class Plane{
             if (this.cobraPitch <= 0){
                 this.cobraPitch = 0;
                 this.inPSM = false;
-                this.vfx.thrust.style.opacity = "1";
+                this.vfx.thrustVFX.style.opacity = "1";
             }
         }  
     }
@@ -248,6 +249,7 @@ export default class Plane{
         this.gp.physics.update(this, dt);
         this.gp.collisionDetection.mapBounderiesCheck(this);
         
+        
     /*  ------------ DEBUG ----------  */
         /* console.log("-------SPEED-----");
         console.log("SPEED: "+ Math.round(this.speed));
@@ -256,6 +258,7 @@ export default class Plane{
         //console.log("Cobra range: "+this.cobraRange);
         // console.log("SpeedX: "+ Math.round(this.speedX));
         // console.log("SpeedY: "+ Math.round(this.speedY));
+        console.log("This HP: " + this.hp);
         //console.log("LIFT COEF: " + this.cL);
         //console.log("DRAG COEF: " +this.cD);
         // console.log("Lift: "+ Math.round(this.gp.physics.lift));

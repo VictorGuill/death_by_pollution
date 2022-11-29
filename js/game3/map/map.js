@@ -160,7 +160,7 @@ export default class Map {
         this.airport = document.createElement("div");
         this.airport.setAttribute("id", "airport");
         this.airport.style.backgroundImage = "url('/media/game3/background_1/layers/airport.png')"
-        this.airport.style.backgroundPositionY = "280px";
+        this.airport.style.backgroundPositionY = "200px";
         this.layersGroup.appendChild(this.airport);
     }
 
@@ -233,12 +233,11 @@ export default class Map {
             }
         })
 
-        this.airport.style.backgroundPositionY = (this.gp.plane.worldY + 280) +"px";
+        this.airport.style.backgroundPositionY = (this.gp.plane.worldY + 290) +"px";
     }
 
     draw() {
         this.drawLayersX();
-
         this.drawLayersY();
     }
 }

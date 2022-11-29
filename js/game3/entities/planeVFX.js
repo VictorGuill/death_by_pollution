@@ -1,36 +1,48 @@
 export default class planeVfx {
     constructor(plane){
         this.plane = plane;
-        this.addEffects();
+        this.addVFX();
     }
 
-    addEffects(){
-        this.thrustVfx();
-        this.windVfx();
+    addVFX(){
+        this.thrustVFX();
+        this.windVFX();
     }
 
-    thrustVfx(){
+    thrustVFX(){
         this.thrust = document.createElement("img");
         this.thrust.style.position = "absolute";
         this.thrust.style.width = "20px";
-        this.thrust.style.top = "14px";
+        this.thrust.style.top = "0";
         this.thrust.style.left = "-14px";
         this.thrust.style.transformOrigin = "right";
         this.thrust.src = "/media/game3/thurst/blue.gif";
         this.plane.element.appendChild(this.thrust);
     }
 
-    windVfx(){
+    windVFX(){
         this.speed = document.createElement("img");
         this.speed.style.position = "absolute";
         this.speed.style.opacity = "0";
         this.speed.style.width = "100px";
         this.speed.style.height = "15px";
-        this.speed.style.top = "14px";
+        this.speed.style.top = "0";
         this.speed.style.left = "-60px";
         this.speed.style.transformOrigin = "right";
         this.speed.src= "/media/game3/speed/wind.gif";
         this.plane.element.appendChild(this.speed);
+    }
+
+    smokeVFX(){
+        this.smoke = document.createElement("img");
+        
+        this.plane.element.appendChild(this.smoke);
+    }
+
+    fireVFX(){
+        this.fire = document.createElement("img");
+        this.plane.element.appendChild(this.fire);
+
     }
 
     updateSpeed(){

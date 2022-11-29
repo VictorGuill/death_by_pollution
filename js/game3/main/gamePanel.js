@@ -45,6 +45,5 @@ export class GamePanel {
         this.plane.draw();
         this.map.draw();
         this.ui.draw(timeElapsed);
-        this.eH.draw();
     }
 }

@@ -1,16 +1,17 @@
 import Coin from "../objects/coin.js";
 import Diamond from "../objects/diamond.js";
 import Note from "../objects/note.js";
+import Toxic from "../objects/toxic.js";
 
 export default class EventsGenerator{
     constructor(gp){
         this.gp = gp;
 
-        this.fCoins = this.gp.map.w*1.5;
-        this.fNotes = this.gp.map.w*3;
-        this.fDiamonds = this.gp.map.w*4;
+        this.fCoins = this.gp.map.w * 1.5;
+        this.fNotes = this.gp.map.w * 4;
+        this.fDiamonds = this.gp.map.w * 5;
 
-        this.fToxic = this.gp.map.w;
+        this.fToxic = this.gp.map.w/4;
 
         
         this.spawnCoin = this.fCoins;
@@ -30,7 +31,7 @@ export default class EventsGenerator{
     }
 
     generateNote(){
-        const note = new Note(this.gp, this.random(this.gp.map.h * 2, this.gp.map.h/2-this.gp.plane.h));
+        const note = new Note(this.gp, this.random(this.gp.map.h * 2 -20, this.gp.map.h/2-this.gp.plane.h));
         this.gp.objects.push(note);
     }
 
@@ -39,13 +40,18 @@ export default class EventsGenerator{
         this.gp.objects.push(diamond);
     }
 
+    generateToxic(){
+        const toxic = new Toxic(this.gp, this.random(this.gp.map.h * 2 - 20, 50));
+        this.gp.objects.push(toxic);
+    }
+
 
     spawnCheck() {
         let planeX = this.gp.plane.worldX; 
 
         if (planeX >= this.spawnCoin){
             this.generateCoin();
-            this.spawnCoin = planeX + this.random(this.fCoins, this.fCoins/5);
+            this.spawnCoin = planeX + this.random(this.fCoins, this.fCoins/4);
         }
         if (planeX >= this.spawnNote){
             this.generateNote();
@@ -55,6 +61,10 @@ export default class EventsGenerator{
             this.generateDiamond();
             this.spawnDiamond = planeX + this.random(this.fDiamonds, this.fDiamonds/2);
         }
+        if(planeX >= this.spawnToxic){
+            this.generateToxic();
+            this.spawnToxic = planeX + this.random(this.fToxic, this.fToxic/2);
+        }
     }
 
 
@@ -63,6 +73,8 @@ export default class EventsGenerator{
 
         this.gp.objects.forEach((obj, ind) => {
             obj.update();
+            obj.draw();
+
             this.gp.collisionDetection.objectCheck(obj)
 
             if(obj.collision){
@@ -79,10 +91,16 @@ export default class EventsGenerator{
                         this.gp.ui.score += 500;
                         this.gp.objects.splice(ind, 1)
                         break;
-                    default:
+                    case "toxic":
+                        if (!obj.ticked){
+                            this.gp.plane.hp -= 33;
+                        }
+                        obj.ticked = true;
+                        break;
                 }
             }
-            if (parseInt(obj.getX()) <= -Math.abs(obj.getWidth())){
+
+            if (parseInt(obj.getX()) <= -Math.abs(obj.getWidth()+200)){
                 obj.element.remove();
                 this.gp.objects.shift();
             }

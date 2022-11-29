@@ -195,7 +195,7 @@ export default class UI {
         this.hud.altimeter.value.innerHTML = Math.round(this.gp.plane.worldY);
         this.hud.altimeter.metric.style.backgroundPositionY = this.gp.plane.worldY + "px";
 
-        this.hud.speedometer.imgContainer.style.setProperty("--powerHeight", this.gp.plane.speed + "px")
+        this.hud.speedometer.imgContainer.style.setProperty("--powerHeight", this.gp.physics.getPercentSpeed(this.gp.plane, this.gp.plane.speed)-8  + "%")
     }
 
 
