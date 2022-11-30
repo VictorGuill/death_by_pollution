@@ -104,6 +104,7 @@ input:focus::placeholder {
 #userName ul li a {
   color: var(--DARK);
   font-weight: 500;
+  text-decoration: none;
 }
 
 #userName a::after {
@@ -116,7 +117,8 @@ input:focus::placeholder {
   text-transform: uppercase;
 }
 
-#userName button:active {
+#userName button:active,
+#userName ul li a:active {
   background-color: var(--DARK);
   color: var(--LIGHT);
 }

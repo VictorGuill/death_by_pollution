@@ -35,7 +35,10 @@
             </div>
           </div>
           <div class="col-4">
-            <img src="./media/landing/fotoVentanaAvion.png" alt="Ventana avion" />
+            <video autoplay muted>
+              <source src="./media/landing/fotoVentanaAvion_editable.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>

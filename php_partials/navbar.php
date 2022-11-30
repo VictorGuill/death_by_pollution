@@ -39,11 +39,17 @@ if (!isset($_SESSION)) {
                                     <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                     " . $_SESSION["name"] . "</a>
                                     <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                                        <form action='/death_by_pollution/php_controllers/controller.php' method='post'>
-                                            <li>
-                                                <button class='dropdown-item' type='submit' name='logout'>Cerrar sesión</button>
-                                            </li>
-                                        </form>
+                                        <form action='/death_by_pollution/php_controllers/controller.php' method='post'>";
+                            if ($_SESSION["user_type"] === "admin" || $_SESSION["user_type"] === "superadmin") {
+                                echo "<li>
+                                        <a class='dropdown-item' href='/death_by_pollution/pages/adminPanel.php'>Admin panel</a>
+                                        <li><hr class='dropdown-divider'></li>
+                                    </li>";
+                            }
+                            echo "<li>
+                                        <button class='dropdown-item' type='submit' name='logout'>Cerrar sesión</button>
+                                    </li>
+                                    </form>
                                     </ul>
                                 </li>";
                         } else {

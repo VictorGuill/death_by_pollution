@@ -23,6 +23,7 @@ if (isset($_POST["login"])) {
         //     }
         // }
         $_SESSION["name"] = $user[0]["name"];
+        $_SESSION["user_type"] = setUserType($user[0]["user_type_id"]);
     }
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
@@ -36,6 +37,7 @@ if (isset($_POST["register"])) {
 
     $user = selectUser(strtolower($_POST["name"]), $hashedPassword);
     $_SESSION["name"] = $user[0]["name"];
+    $_SESSION["user_type"] = setUserType($user[0]["user_type_id"]);
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
 }
@@ -44,4 +46,20 @@ if (isset($_POST["logout"])) {
     unset($_SESSION["name"]);
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
+}
+
+function setUserType($type)
+{
+    switch ($type) {
+        case 0:
+            $type = "user";
+            break;
+        case 1:
+            $type =  "admin";
+            break;
+        case 2:
+            $type =  "superadmin";
+            break;
+    }
+    return $type;
 }

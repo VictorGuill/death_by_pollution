@@ -176,7 +176,8 @@ body {
   margin-top: 3rem;
 }
 
-#start img {
+#start img,
+#start video {
   width: 30vw;
   max-width: 600px;
   min-width: 200px;

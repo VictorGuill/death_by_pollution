@@ -5,7 +5,7 @@ function openDB()
     $servername = "localhost";
     $username = "root";
     #region PASSWORD
-    $password = "passwordddd";
+    $password = "123";
     #endregion
 
     $conexion = new PDO("mysql:host=$servername;dbname=death_by_p", $username, $password);
@@ -30,7 +30,7 @@ function insertUser($name, $password, $phase, $userID)
     $queryText = "INSERT INTO users (name,password,phase,user_type_id) VALUES (:name,:password,:phase,:userID);";
 
     $query = $conexion->prepare($queryText);
-    $query->bindParam(':name', $name);
+    $query->bindParam(':name', strtolower($name));
     $query->bindParam(':password', $password);
     $query->bindParam(':phase', $phase);
     $query->bindParam(':userID', $userID);
@@ -42,7 +42,15 @@ function insertUser($name, $password, $phase, $userID)
 
 function selectUser($name, $password)
 {
-    return selectQuery("SELECT * FROM users WHERE users.name = '" . $name . "' AND users.password = '" . $password . "';");
+    return selectQuery("SELECT * FROM users WHERE users.name = '" . strtolower($name) . "' AND users.password = '" . $password . "';");
+}
+
+function getUserType($name)
+{
+    return selectQuery("SELECT user_type.name FROM users
+    INNER JOIN user_type
+    ON users.user_type_id = user_type.id
+    WHERE users.name = " . strtolower($name) . "';");
 }
 #endregion
 
