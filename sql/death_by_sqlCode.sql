@@ -31,8 +31,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `death_by_p`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NULL,
-  `password` VARCHAR(20) NULL,
-  `pahse` TINYINT NULL,
+  `password` CHAR(255) NULL,
+  `phase` TINYINT NULL,
   `user_type_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_users_user_type_idx` (`user_type_id` ASC) VISIBLE,
@@ -83,3 +83,50 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- -----------------------------------------------------
+-- Data for table `death_by_p`.`user_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `death_by_p`;
+INSERT INTO `death_by_p`.`user_type` (`id`, `name`) VALUES (0, 'user');
+INSERT INTO `death_by_p`.`user_type` (`id`, `name`) VALUES (1, 'admin');
+INSERT INTO `death_by_p`.`user_type` (`id`, `name`) VALUES (2, 'superadmin');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `death_by_p`.`user_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `death_by_p`;
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('victor','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','3','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('guillem','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','3','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('maria','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','3','2');
+
+
+COMMIT;
+
+
+
+
+SELECT * FROM user_type;
+
+SELECT * FROM users;
+
+DELETE FROM users WHERE users.id=3;
+
+
+SELECT  user_type.name FROM users
+INNER JOIN user_type
+ON users.user_type_id = user_type.id
+WHERE users.name = "victor";
+
+
+
+-- query search user
+
+SELECT * FROM users
+WHERE users.name = "victor"
+AND users.password = "12345";
