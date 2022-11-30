@@ -21,10 +21,37 @@
     <div id='button2'>
       <button>CHECK TRACK</button>
     </div>
+    <div id='numPieces'></div>
+    <div id="timer"></div>
   </div>
 
   <script src="../js/game2/main.js" type="module"></script>
-  
+  <script type="text/javascript">
+    var timeoutHandle;
+    function countdown(minutes, seconds) {
+      function tick() {
+        seconds--;
+        var counter = document.getElementById("timer");
+        counter.innerHTML =
+          minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+        if (seconds >= 0) {
+          timeoutHandle = setTimeout(tick, 1000);
+        } else {
+          if (minutes >= 1) {
+            // countdown(mins-1);
+            setTimeout(function () {
+              countdown(minutes - 1, 59);
+            }, 1000);
+          }
+        }
+        if (minutes === 0 && seconds === 0) {
+          GameOver();
+        }
+      }
+      tick();
+    }
+    countdown(2, 00);
+  </script>
 </body>
 
 </html>

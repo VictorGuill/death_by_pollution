@@ -1,8 +1,10 @@
 import Entity from "./Entity.js";
 import Piece from "./pieces.js";
+import * as f from "./functions.js";
+import * as dragdrop from "./DragDropFunctions.js";
 
 // #region SETTINGS
-const trees_amount = 30;
+const trees_amount = 25;
 const mountains_amount = 10;
 
 const gridSize = 14;
@@ -19,13 +21,20 @@ for (let i = 0; i < gridSize; i++) {
   arrTrack[i] = new Array(gridSize);
   arrTrack[i].fill(0);
 }
+if (arrTrack[1][1] == 0) {
+  arrTrack[1][1] = 'start';
+} else if (arrTrack[endRow - 1][endColumn - 1] == 0) {
+  arrTrack[endRow - 1][endColumn - 1] = 'end';
+}
 
 const start = new Entity('start', "start", 2, 2);
 start.add();
 obstacles_id_counter++;
 obstacles_array.push(start);
 
-const end = new Entity('end', "end", 13, 13);
+let endRow = 13;
+let endColumn = 13;
+const end = new Entity('end', "end", endRow, endColumn);
 end.add();
 obstacles_id_counter++;
 obstacles_array.push(end);
@@ -33,11 +42,7 @@ obstacles_array.push(end);
 addItems(mountains_amount, "mountain", 1, 0);
 addItems(trees_amount, "tree", 0, 0);
 
-//calculate the number of free spaces left
-const freeSpaces = gridSize * gridSize - (obstacles_id_counter + mountains_amount);
-//array of free spaces
-let blankSpaces = [];
-addBlankItems(freeSpaces, "dropSpace", 0, 0);
+addBlankItems(gridSize, "dropSpace", 0, 0);
 
 // function 
 function addItems(amount, type, columnOffset, rowOffset) {
@@ -60,7 +65,6 @@ function addItems(amount, type, columnOffset, rowOffset) {
     obstacles_array.forEach((element) => {
       if (checkCollision(new_obstacle, element)) {
         add_to_map = false;
-        i--;
       }
     });
 
@@ -69,7 +73,7 @@ function addItems(amount, type, columnOffset, rowOffset) {
       new_obstacle.add();
       if (type == 'mountain') {
         arrTrack[row_start - 1][colum_start - 1] = type;
-        arrTrack[row_start-1][colum_start] = type;
+        arrTrack[row_start - 1][colum_start] = type;
       } else {
         arrTrack[row_start - 1][colum_start - 1] = type;
       }
@@ -99,24 +103,19 @@ function randomInt(min, max) {
 //functions to add de drop spaces around the map
 function addBlankItems(size, type, col, row) {
   for (let i = 0; i < size; i++) {
-    let add_to_map = true;
+    for (let j = 0; j < size; j++) {
+      if (arrTrack[i][j] == 'mountain') {
+        j++;
+      } else if (arrTrack[i][j] == 0) {
+        const dropSpace = new Entity(
+          i + "drop" + j,
+          type,
+          col,
+          row
+        );
 
-    const dropSpace = new Entity(
-      "drop" + i,
-      type,
-      col,
-      row
-    );
-
-    blankSpaces.forEach((element) => {
-      if (checkCollision(dropSpace, element)) {
-        add_to_map = false;
-        i--;
+        dropSpace.add();
       }
-    });
-
-    if (add_to_map) {
-      dropSpace.add();
     }
   }
 }
@@ -129,7 +128,9 @@ const piece3 = new Piece('piece');
 piece.addPiece(0);
 piece2.addPiece(1);
 piece3.addPiece(2);
-let i = 3; //counter for the id of the pieces
+let i = 3; //count pieces
+
+let numReload = 0;
 
 //button to change the 3 pieces
 document.getElementById("button").addEventListener("click", reloadPieces);
@@ -145,12 +146,13 @@ function reloadPieces() {
   });
   let new_pieces = document.querySelectorAll('#piece');
   new_pieces.forEach(el => {
-    el.addEventListener('dragstart', dragStartHandler);
-    el.addEventListener('dragend', dragEndHandler);
-  })
+    el.addEventListener('dragstart', dragdrop.dragStartHandler);
+    el.addEventListener('dragend', dragdrop.dragEndHandler);
+  });
+  numReload++;
 }
 
-function loadPiece() {
+export function loadPiece() {
   let pieceData = document.querySelectorAll('#piece');
 
   pieceData.forEach(el => {
@@ -163,8 +165,8 @@ function loadPiece() {
   });
   let new_pieces = document.querySelectorAll('#piece');
   new_pieces.forEach(el => {
-    el.addEventListener('dragstart', dragStartHandler);
-    el.addEventListener('dragend', dragEndHandler);
+    el.addEventListener('dragstart', dragdrop.dragStartHandler);
+    el.addEventListener('dragend', dragdrop.dragEndHandler);
   })
 }
 
@@ -173,83 +175,16 @@ const piecesElem = document.querySelectorAll('#piece');
 const dropSpaces = document.querySelectorAll('.dropSpace');
 
 piecesElem.forEach(el => {
-  el.addEventListener('dragstart', dragStartHandler);
-  el.addEventListener('dragend', dragEndHandler);
+  el.addEventListener('dragstart', dragdrop.dragStartHandler);
+  el.addEventListener('dragend', dragdrop.dragEndHandler);
 })
 
 dropSpaces.forEach(el => {
-  // el.addEventListener('dragenter', dragEnterHandler);
-  el.addEventListener('dragover', dragOverHandler);
-  el.addEventListener('dragleave', dragLeaveHandler);
-  el.addEventListener('drop', dropHandler);
+  // el.addEventListener('dragenter', dragdrop.dragEnterHandler);
+  el.addEventListener('dragover', dragdrop.dragOverHandler);
+  el.addEventListener('dragleave', dragdrop.dragLeaveHandler);
+  el.addEventListener('drop', dragdrop.dropHandler);
 })
 
-function dragStartHandler(e) {
-  e.dataTransfer.setData('data', e.target.id);
-  e.target.style = 'opacity: 0.3;';
-}
-
-function dragEndHandler(e) {
-  e.target.style = 'opacity: none;';
-  e.target.style = 'border: none';
-}
-
-// function dragEnterHandler(e) {
-// }
-
-function dragOverHandler(e) {
-  e.preventDefault();
-  e.target.style = 'border: 2px dashed gray; background: whitesmoke';
-}
-
-function dragLeaveHandler(e) {
-  e.target.style = 'border: none; background: rgb(228, 227, 227)';
-}
-
-function dropHandler(e) {
-  e.preventDefault();
-  dragLeaveHandler(e);
-  e.preventDefault();
-
-  let sourceElemData = e.dataTransfer.getData('data');
-  let sourceElemId = document.getElementById(sourceElemData);
-  this.appendChild(sourceElemId);
-  sourceElemId.style = 'opacity: none;';
-  sourceElemId.style = 'background-color: #dadada;';
-
-  loadPiece();
-}
-
 //check train track
-document.getElementById("button2").addEventListener("click", finish);
-
-function finish() {
-  let track = [];
-  let arrTrack = new Array(2);
-  arrTrack[0] = new Array(gridSize);
-  arrTrack[1] = new Array(gridSize);
-  let numPieces = 0;
-  let trackPieces = document.querySelectorAll(".dropSpace");
-  for (let i = 0; i < freeSpaces; i++) {
-    // if (trackPieces[i].childElementCount !== 0) {
-    //   trackPieces[i].setProperty('set position:',i);
-    //   track.push(trackPieces[i]);
-    //   console.log("TRACK piece:" + trackPieces[i]);
-    //   numPieces++;
-    // }
-  }
-  console.log("num pieces: " + numPieces);
-  for (let row = 0; row < gridSize; row++) {
-    for (let col = 0; col < gridSize; col++) {
-      // if () {
-      //   console.log(row + " - - - - - " + col)
-      //   arrTrack[row][col] = true;
-      //   console.log(arrTrack[0][col])
-      // }
-      // else {
-      //   arrTrack[row][col] = false;
-      // }
-    }
-  }
-
-}
+document.getElementById("button2").addEventListener("click", f.finish);

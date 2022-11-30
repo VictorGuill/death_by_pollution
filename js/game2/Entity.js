@@ -35,11 +35,11 @@ export default class Entity {
 
     // set text, id class
     if(this.type == 'start' || this.type == 'end'){
-      this.doc.innerHTML = '<img src="../media/game2/objects/house.gif" width="60px" height="60px"/>';
+      this.doc.innerHTML = '<img src="../media/game2/objects/house2.gif" width="60px" height="60px"/>';
     } else if (this.type == 'mountain') {
-      this.doc.innerHTML = '<img src="../media/game2/objects/mount2.png" width="120px" height="60px"/>';
+      this.doc.innerHTML = '<img src="../media/game2/objects/mount4.png" width="120px" height="60px"/>';
     } else if (this.type == 'tree') {
-      this.doc.innerHTML = '<img src="../media/game2/objects/tree.png" width="60px" height="60px"/>';
+      this.doc.innerHTML = '<img src="../media/game2/objects/tree3.png" width="60px" height="60px"/>';
     } else if (this.type == 'dropSpace') {
       this.doc.innerHTML = "";
     } else {
