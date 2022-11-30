@@ -76,7 +76,11 @@ export default class planeVfx {
         },1000)
     }
 
-    updateSpeed(){
+    updateThrust(){
+        this.thrust.style.transform = "scaleX(" + parseFloat((this.plane.speed) * .002) +") scaleY("+parseFloat((this.plane.speed) * .001)+")";
+    }
+
+    updateWind(){
         if (this.plane.gp.physics.getPercentSpeed(this.plane, this.plane.speed) < 40){
             this.speed.style.opacity = "0";
         }
@@ -86,7 +90,9 @@ export default class planeVfx {
         if (this.plane.gp.physics.getPercentSpeed(this.plane, this.plane.speed) >= 65){
             this.speed.style.opacity = "1";
         }
+    }
 
+    planeStateVFX(){
         const planeHp = this.plane.hp;
         if(planeHp == 3 && this.plane.state !== "smoke"){
             this.plane.state = "smoke";
@@ -105,10 +111,6 @@ export default class planeVfx {
             this.removeVFX(this.fire);
             this.plane.planeImg.style.opacity = 0;
         }
-    }
-
-    update(){
-        this.thrust.style.transform = "scaleX(" + parseFloat((this.plane.speed) * .002) +") scaleY("+parseFloat((this.plane.speed) * .001)+")";
         if (this.plane.state === "explosion"){
             if (this.plane.screenY <= 10){
                 this.plane.speed -= 4;
@@ -117,6 +119,11 @@ export default class planeVfx {
             }
             this.plane.pitch = -10;
         }
-        this.updateSpeed();
+    }
+
+    update(){
+        this.updateThrust();
+        this.updateWind();
+        this.planeStateVFX();
     }
 }

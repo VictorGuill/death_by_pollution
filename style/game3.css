@@ -41,6 +41,8 @@ img{
 
 #ui {
     position: absolute;
+    display: flex;
+    justify-content: center;
     height: 80%;
     width: 100%;
     z-index: 900;
@@ -50,6 +52,7 @@ img{
     position: relative;
     width: 100vw;
     height: 80vh;
+    overflow: hidden;
 }
 
 .layer-bg {
@@ -108,7 +111,8 @@ img{
     left: 50px;
     top: 20px;
     height: fit-content;
-    width: fit-content;
+    max-width: 200px;
+    min-width: 110px;
     background-color: rgba(100, 100, 100, 0.3);
 }
 
@@ -124,6 +128,30 @@ img{
             0px 0px 5px #509a7b,
             0px 0px 10px #236752;
 }
+
+.alertMessage{
+    font-family: aceCombat;
+    font-weight: 300;
+    padding: 5px;
+    font-size: 3vmin;
+    color: #e90000;
+    text-shadow: 
+            0px 0px 2px #c55f5f,
+            0px 0px 2px #cf4d4d, 
+            0px 0px 5px #e90000, 
+            0px 0px 5px #871e1e,
+            0px 0px 10px #780808;
+
+    border: #e90000 2px solid;
+    border-radius: 4px;
+    box-shadow: 
+            0px 0px 2px #c55f5f,
+            0px 0px 2px #cf4d4d, 
+            0px 0px 5px #b13131, 
+            0px 0px 5px #871e1e,
+            0px 0px 10px #780808;
+}
+
 
 #hud{
     position: absolute;
@@ -288,6 +316,29 @@ input{ margin-right: 100px;}
     animation: effect-in 2s linear forwards;
 }
 
+@keyframes fade-out {
+    100%{
+        opacity: 0;
+    }
+}
+
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.96);
+        opacity: .9;
+	}
+
+	50% {
+		transform: scale(1);
+        opacity: 1;
+	}
+
+	100% {
+		transform: scale(0.96);
+        opacity: .9;
+	}
+}
 
 @keyframes effect-in {
     0%{

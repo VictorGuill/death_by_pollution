@@ -6,6 +6,10 @@ export default class UI {
         this.timeElapsed = 0;
         this.addUI();
         this.addElements();
+        this.mssgOn = false;
+        // this.drawAlertMessage("CAUTION", this.gp.map.h/6);
+        // this.drawAlertMessage("AIRPORT NEAR", this.gp.map.h/3.6);
+        // this.drawAlertMessage("PULL UP", this.gp.map.h/1.5, true);
     }
 
     addUI(){
@@ -168,15 +172,53 @@ export default class UI {
         this.element.appendChild(this.progressBar);
     }
 
-    updateProgress() {
+    drawProgressBar() {
         this.progressBar.bar.style.width = this.gp.plane.worldX/100 +"px";
     }
 
-    updateScoreTime(t){
+    drawTimeScore(t){
         this.time = this.secondsToTime(t/1000);
         this.timeLabel.innerHTML = "TIME " + this.time;
         this.scoreLabel.innerHTML = "SCORE " + this.score;
     }
+
+    drawHudMetrics(){
+        //speedometer
+        this.hud.speedometer.value.innerHTML = Math.round(this.gp.plane.speed);
+        this.hud.speedometer.metric.style.backgroundPositionY = this.gp.plane.speed + "px";
+        this.hud.speedometer.imgContainer.style.setProperty("--powerHeight", this.gp.physics.getPercentSpeed(this.gp.plane, this.gp.plane.speed)-8  + "%")
+
+        //altimeter
+        this.hud.altimeter.value.innerHTML = Math.round(this.gp.plane.worldY);
+        this.hud.altimeter.metric.style.backgroundPositionY = this.gp.plane.worldY + "px";
+    }
+
+    drawAlertMessage(mssg, y, pulse){
+        if (!this.mssgOn){
+            const mDiv = document.createElement("div");
+            mDiv.setAttribute("id", "alertMssg")
+            mDiv.style.position = "absolute";
+            mDiv.style.top = y + "px";
+            if (pulse) {
+                mDiv.style.animation = "pulse 1s infinite";
+            }
+            const m = document.createElement("span");
+            m.innerHTML = mssg;
+            m.classList.add("alertMessage");
+            mDiv.appendChild(m);
+            this.element.appendChild(mDiv);
+            this.mssgOn = true;
+        }
+
+    }
+
+    alertMessageOff(){
+        const alert = document.querySelectorAll("#alertMssg");
+        alert.forEach(a => {
+            a.style.animation = "fade-out 1s forwards";
+        });
+    }
+
 
     secondsToTime(e) {
         const m = Math.floor((e % 3600) / 60)
@@ -189,19 +231,12 @@ export default class UI {
         return m + ":" + s;
     }
 
-    hudMetricsUpdate(){
-        this.hud.speedometer.value.innerHTML = Math.round(this.gp.plane.speed);
-        this.hud.speedometer.metric.style.backgroundPositionY = this.gp.plane.speed + "px";
-        this.hud.altimeter.value.innerHTML = Math.round(this.gp.plane.worldY);
-        this.hud.altimeter.metric.style.backgroundPositionY = this.gp.plane.worldY + "px";
-
-        this.hud.speedometer.imgContainer.style.setProperty("--powerHeight", this.gp.physics.getPercentSpeed(this.gp.plane, this.gp.plane.speed)-8  + "%")
-    }
-
-
     draw(timeElapsed) {
-        this.updateProgress();
-        this.updateScoreTime(timeElapsed);
-        this.hudMetricsUpdate();
+        if (this.displayMssg){
+            this.drawAlertMessage
+        }
+        this.drawProgressBar();
+        this.drawTimeScore(timeElapsed);
+        this.drawHudMetrics();
     }
 }

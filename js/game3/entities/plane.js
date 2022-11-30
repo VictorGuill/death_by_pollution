@@ -131,6 +131,12 @@ export default class Plane{
         if(this.screenY <= 0 && this.speedY <= -100){
             console.log("CRASH!!!!!");
         }
+        
+        if (this.gp.physics.lift >= this.weight && this.gp.physics.getPercentSpeed(this, this.speed) >= 30) {
+            
+        } else {
+        // this.gp.ui.alertMessageOff();
+        }
     }
 
     rotate(deg){
@@ -141,9 +147,6 @@ export default class Plane{
     updatePositions(dt) {
         this.worldX += this.speedX * dt/10;
         this.worldY += this.speedY * dt/10;
-        if (this.gp.physics.lift >= this.weight) {
-            
-        }
         this.screenX = ((this.gp.map.screenPlaneZoneWidth-this.w) * (this.gp.physics.getPercentSpeed(this, this.speed)) * .01);
         this.screenY = this.worldY;
         // X = ( (7 * mapWidth * Vpercent) / 1000 )[when 100% speed --> maxScreenX = 70% of mapWidth]
