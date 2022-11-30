@@ -32,7 +32,7 @@ game1.addEventListener("click", (e) => {
   window.location.href = "../games/game1.html";
 });
 game2.addEventListener("click", (e) => {
-  window.location.href = "http://www.w3schools.com";
+  window.location.href = "../games/game2.html";
 });
 game3.addEventListener("click", (e) => {
   window.location.href = "../games/game3.html";
