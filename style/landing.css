@@ -1,0 +1,157 @@
+/* standard-link-no_blue */
+a { color: var(--LIGHT); }
+a:link { text-decoration: none;}
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+
+/* intro-bg-colors */
+.first-slide-bg {
+    display: block;
+    height: 100%;
+}
+.background-landing-intro {
+    position: absolute;
+    z-index: -2;
+    width: 1440px;
+    height: 1077px;
+    left: 0px;
+    top: 0px;
+    background-color: #000000;
+}
+.linear-background-landing-intro {
+    position: absolute;
+    z-index: -2;
+    width: 846px;
+    height: 1077px;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(90deg, rgba(81, 0, 135, 0.85) 6.77%, rgba(81, 0, 135, 0) 100%);
+}
+#img-landing-intro img {
+    position: absolute;
+    width: 558px;
+    height: 722px;
+    left: 822px;
+    top: 170px;
+
+}
+
+
+/* ---------------- NAVBAR ---------------- */
+#header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 100;
+}
+/* nav with background */
+.navbar-bg { background-color: RGBA(61,0,102,0.9); }
+.navbar-bg a { color: var(--ACCENT); }
+.navbar-bg a:after{ background: var(--LIGHT);}
+
+/* nav without background */
+.navbar-no-bg a { color: var(--LIGHT); }
+.navbar-no-bg a:after{ background: var(--ACCENT);}
+
+/*smooth transition for all changes above*/
+.navbar-bg, .navbar-no-bg, 
+.navbar-bg a, .navbar-no-bg a{
+    transition: all .5s linear;
+}
+
+#navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    width: 100%;
+}
+
+.nav-center, .nav-right {
+    display: flex;
+    position: fixed;
+    height: 40px;
+}
+
+/*nav center*/
+.nav-links {
+    list-style-type: none;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.nav-item {
+    font-size: 24px;
+}
+
+#nav-about{
+    grid-area: 1 / 1 / 2 / 2; 
+    justify-self: end;
+}
+#nav-logo{
+    grid-area: 1 / 2 / 2 / 3;
+    justify-self: center;
+}
+#nav-logo a img {
+    width: 40px;
+}
+#nav-games{
+    grid-area: 1 / 3 / 2 / 4;
+    justify-self: start;
+}
+
+.nav-item a, .nav-item a > * {
+    display: block;
+}
+
+/*nav right*/
+.nav-right {
+    right: 40px;
+}
+.nav-right a {
+    display: flex;
+    padding: 0 10px;
+}
+.nav-right a img {
+    width: 30px;
+}
+
+/* NAVBAR links select animation */
+/* scale */
+.nav-center a, .nav-right  a{
+    transform: scale(1);
+    transition: transform .2s linear;
+}
+
+.nav-center a:hover, .nav-right  a:hover{
+    transform: scale(1.04);
+    transition: transform .4s linear;
+}
+
+/* underline */
+.nav-center .nav-links li a:hover:after {
+    transition-duration: .4s;
+    transform: scaleX(1);
+    transform-origin: center center;
+}
+
+.nav-center .nav-links li a:after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transition: transform .6s cubic-bezier(.19,1,.22,1);
+}
