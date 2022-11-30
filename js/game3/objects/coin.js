@@ -6,6 +6,13 @@ export default class Coin extends Object{
         this.name = "coin";
         this.w = 40;
         this.h = 40;
+
+        this.hitboxX = this.x;
+        this.hitboxY = this.y;
+        this.hitboxW = this.w;
+        this.hitboxH = this.h;
+
+
         this.index;
         this.createCoin(y);
     }
@@ -23,6 +30,5 @@ export default class Coin extends Object{
         coinImg.src = "/media/game3/objects/coin.gif";
         this.element.appendChild(coinImg);
     }
-
 
 }

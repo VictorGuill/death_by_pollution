@@ -10,6 +10,11 @@ export default class Object{
         this.w;
         this.h;
 
+        this.hitboxX;
+        this.hitboxY;
+        this.hitboxW;
+        this.hitboxH;
+
         this.initialX = this.gp.plane.worldX + this.gp.map.w;
         this.initialY;
 

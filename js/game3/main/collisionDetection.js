@@ -54,6 +54,9 @@ export default class CollisionDetection{
             if(object.name != "toxic"){
                 object.element.style.animation = "pick-up 1s linear";
                 object.element.style.animationFillMode = "forwards";
+                setTimeout(function(){
+                    object.element.remove()
+                }, 1000);
             }
             
             return true;

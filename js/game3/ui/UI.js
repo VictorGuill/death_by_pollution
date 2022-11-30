@@ -7,9 +7,13 @@ export default class UI {
         this.addUI();
         this.addElements();
         this.mssgOn = false;
-        // this.drawAlertMessage("CAUTION", this.gp.map.h/6);
-        // this.drawAlertMessage("AIRPORT NEAR", this.gp.map.h/3.6);
-        // this.drawAlertMessage("PULL UP", this.gp.map.h/1.5, true);
+
+        this.caution = false;
+        this.airportNear = false;
+        this.pullUp = false;
+        this.lowFuel = false;
+        this.deployChute = false;
+
     }
 
     addUI(){
@@ -193,30 +197,50 @@ export default class UI {
         this.hud.altimeter.metric.style.backgroundPositionY = this.gp.plane.worldY + "px";
     }
 
+
     drawAlertMessage(mssg, y, pulse){
-        if (!this.mssgOn){
             const mDiv = document.createElement("div");
-            mDiv.setAttribute("id", "alertMssg")
+            mDiv.setAttribute("id", "alert-"+mssg.replaceAll(" ", "").toLowerCase());
             mDiv.style.position = "absolute";
             mDiv.style.top = y + "px";
             if (pulse) {
                 mDiv.style.animation = "pulse 1s infinite";
             }
             const m = document.createElement("span");
-            m.innerHTML = mssg;
+            m.innerHTML = mssg.toUpperCase();
             m.classList.add("alertMessage");
             mDiv.appendChild(m);
             this.element.appendChild(mDiv);
-            this.mssgOn = true;
+    }
+
+    drawCaution(){
+        if (!this.caution){
+            this.drawAlertMessage("CAUTION", this.gp.map.h/6, false);
+            this.caution = true;
         }
+    }
+
+    drawPullUp(){
+        if (!this.pullUp){
+            this.drawAlertMessage("PULL UP", this.gp.map.h/1.5, true);
+        }
+    }
+    drawLowFuel(){
+        this.drawAlertMessage("LOW FUEL", this.gp.map.h/3.6, true);
+    }
+    drawNearAirport(){
+        this.drawAlertMessage("AIRPORT NEAR", this.gp.map.h/3.6, false);
+    }
+
+    drawDeployChute(){
+        this.drawAlertMessage("DEPLOY CHUTE", this.gp.map.h/3.6, true);
 
     }
 
-    alertMessageOff(){
-        const alert = document.querySelectorAll("#alertMssg");
-        alert.forEach(a => {
-            a.style.animation = "fade-out 1s forwards";
-        });
+    alertMessageOff(mssg){
+        const alert = document.querySelector("#alert-"+mssg);
+        alert.style.animation = "fade-out 1s forwards";
+        alert.remove();
     }
 
 
@@ -232,9 +256,7 @@ export default class UI {
     }
 
     draw(timeElapsed) {
-        if (this.displayMssg){
-            this.drawAlertMessage
-        }
+        // this.displayAlert();
         this.drawProgressBar();
         this.drawTimeScore(timeElapsed);
         this.drawHudMetrics();

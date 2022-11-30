@@ -265,21 +265,10 @@ img{
     width: fit-content;
     /* border: 4px solid magenta; */
 }
-.object img{
-    display: block;
-}
 
 .coin{
     /* animation: coin-animation 5s linear infinite; */
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -314,6 +303,22 @@ input{ margin-right: 100px;}
 
 #smoke, #smoke_fire, #fire, #explosion{
     animation: effect-in 2s linear forwards;
+}
+
+@keyframes deploy-chute {
+    0%{
+        transform-origin: right;
+        transform:  scaleY(0) scaleX(0);
+    }
+    20%{
+        transform: scaleX(1) scaleY(.2);;
+    }
+    50%{
+        transform: scaleY(.8);
+    }
+    100%{
+        transform: scaleY(1);
+    }
 }
 
 @keyframes fade-out {
@@ -360,8 +365,8 @@ input{ margin-right: 100px;}
 
 @keyframes pick-up {
     100%{
-        transform: translateY(-60px) scale(0) rotate(1080deg);
-        opacity: 0.8;
+        transform: scale(0) rotate(90deg);
+        opacity: 0;
     }
 }
 

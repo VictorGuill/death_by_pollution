@@ -8,6 +8,11 @@ export default class Toxic extends Object{
     this.w = 100;
     this.h = 100;
 
+    this.hitboxX = this.x;
+    this.hitboxY = this.y;
+    this.hitboxW = this.w;
+    this.hitboxH = this.h;
+
     // this.initialX = this.gp.plane.worldX*2 + this.gp.map.w;
     
     this.ticked = false;
@@ -17,7 +22,7 @@ export default class Toxic extends Object{
     }
 
     randomCloud(){
-        let size = Math.floor((Math.random()*(250 - 100)))+50;
+        let size = Math.floor((Math.random()*(200 - 50)))+50;
         this.w = size;
         this.h = size;
         const num = Math.floor((Math.random()*(4 - 1)))+1;

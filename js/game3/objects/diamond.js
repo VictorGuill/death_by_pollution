@@ -6,6 +6,12 @@ export default class Diamond extends Object{
         this.name = "diamond";
         this.w = 50;
         this.h = 50;
+
+        this.hitboxX = this.x;
+        this.hitboxY = this.y;
+        this.hitboxW = this.w;
+        this.hitboxH = this.h;
+        
         this.index;
         this.createDiamond(y);
     }
@@ -14,7 +20,7 @@ export default class Diamond extends Object{
         this.initialY = y;
         this.element.classList.add("diamond");
         this.element.style.bottom = y + "px";
-        this.element.style.right = -this.w + "px";
+        this.element.style.left = -this.w + "px";
 
         const diamondImg = document.createElement("img");
         diamondImg.width = this.w;

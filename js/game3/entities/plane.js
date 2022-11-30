@@ -28,7 +28,7 @@ export default class Plane{
         this.state = "neat";
 
         this.pitch = 0;
-        this.pitchRate = 2;
+        this.pitchRate = 5;
         this.maxPitch = 45;
         
         this.cL = .5; //Lift coeficient
@@ -45,7 +45,10 @@ export default class Plane{
         this.mass = 100;
         this.weight = this.gp.physics.getWeight(this);
 
-        this.thrust = 0;
+        this.fuel = 2000;
+
+        this.chute = false;
+        this.chuteDeployRange = true;
 
         this.ezModePitch = true;
 
@@ -66,6 +69,7 @@ export default class Plane{
 
     accelerate(dt) {
         this.speed += this.acceleration * dt;
+        this.fuel--;
     }
 
     decelerate(dt) {
@@ -129,14 +133,16 @@ export default class Plane{
     checkState() {
         //takeOff
         if(this.screenY <= 0 && this.speedY <= -100){
-            console.log("CRASH!!!!!");
-        }
+/*             console.log("CRASH!!!!!");
+ */        }
         
         if (this.gp.physics.lift >= this.weight && this.gp.physics.getPercentSpeed(this, this.speed) >= 30) {
             
         } else {
         // this.gp.ui.alertMessageOff();
         }
+
+
     }
 
     rotate(deg){
@@ -204,17 +210,21 @@ export default class Plane{
     }
 
     move(dt){
-        if (this.gp.input["ArrowUp"] || this.gp.input["ArrowDown"] ||
+        if (this.fuel > 0){
+            if (this.gp.input["ArrowUp"] || this.gp.input["ArrowDown"] ||
             this.gp.input["ArrowRight"] || this.gp.input["ArrowLeft"] ||
             this.gp.input[" "]){
 
             if (!this.collision) {
                 if (this.gp.input[" "]) {
-                    if (this.ezModePitch){
+                    if(this.chuteDeployRange){
+                        this.vfx.deployChuteVFX();
+                    }
+                    /* if (this.ezModePitch){
                         this.ezModePitch = false;
                     } else {
                         this.ezModePitch = true;
-                    }
+                    } */
                 }
                 if(this.gp.input["ArrowUp"]){
                     this.pitchDown(dt);
@@ -231,6 +241,8 @@ export default class Plane{
             }
             
         }
+        }
+        
     }
 
     fly(dt) {
@@ -261,7 +273,8 @@ export default class Plane{
         //console.log("Cobra range: "+this.cobraRange);
         // console.log("SpeedX: "+ Math.round(this.speedX));
         // console.log("SpeedY: "+ Math.round(this.speedY));
-        console.log("This HP: " + this.hp);
+        // console.log("This HP: " + this.hp);
+        console.log("fuel: "+this.fuel);
         //console.log("LIFT COEF: " + this.cL);
         //console.log("DRAG COEF: " +this.cD);
         // console.log("Lift: "+ Math.round(this.gp.physics.lift));

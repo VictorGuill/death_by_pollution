@@ -34,6 +34,19 @@ export default class planeVfx {
         this.plane.element.appendChild(this.speed);
     }
 
+    deployChuteVFX(){
+        if (!this.plane.chute){
+            this.chute = document.createElement("img");
+            this.chute.style.position = "absolute";
+            this.chute.style.opacity = "1";
+            this.chute.style.left = "-80px";
+            this.chute.src= "/media/game3/vfx/chute.gif";
+            this.chute.style.animation = "deploy-chute 1s linear forwards"
+            this.plane.element.appendChild(this.chute);
+            this.plane.chute = true;
+        }
+    }
+
     smokeVFX(){
         this.smoke = document.createElement("img");
         this.smoke.setAttribute("id", "smoke");
@@ -80,6 +93,8 @@ export default class planeVfx {
         this.thrust.style.transform = "scaleX(" + parseFloat((this.plane.speed) * .002) +") scaleY("+parseFloat((this.plane.speed) * .001)+")";
     }
 
+
+
     updateWind(){
         if (this.plane.gp.physics.getPercentSpeed(this.plane, this.plane.speed) < 40){
             this.speed.style.opacity = "0";
@@ -111,6 +126,7 @@ export default class planeVfx {
             this.removeVFX(this.fire);
             this.plane.planeImg.style.opacity = 0;
         }
+
         if (this.plane.state === "explosion"){
             if (this.plane.screenY <= 10){
                 this.plane.speed -= 4;
@@ -118,6 +134,12 @@ export default class planeVfx {
                 this.plane.speed -= .5;
             }
             this.plane.pitch = -10;
+        }
+
+        if (this.plane.fuel <= 0){
+            this.plane.chuteDeployRange = true;
+            this.plane.fuel = 0;
+            this.collision = true;
         }
     }
 
