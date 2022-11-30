@@ -44,6 +44,7 @@ function switchPanel() {
 
       // set help text
       switch_panel_text.innerHTML = "¿Ya tienes cuenta?";
+      checkPasswordsMatch();
       break;
     case "register":
       // store current state and change panel title
@@ -56,6 +57,7 @@ function switchPanel() {
 
       // set help text
       switch_panel_text.innerHTML = "crear cuenta";
+      checkPasswordsMatch();
       break;
   }
 
@@ -69,6 +71,7 @@ function switchPanel() {
 function showLogin() {
   login_panel.style.animation = "fade-in .5s ease";
   login_panel.style.display = "inherit";
+  error_message_text.innerHTML = "";
 }
 
 function showLogin_noAnimation() {
@@ -81,6 +84,15 @@ function closeLoginPanel() {
 
   setTimeout(() => {
     login_panel.style.display = "none";
+
+    // vaciamos el contenido de los inputs
+    name_input.value = "";
+    pass_input.value = "";
+    pass2_input.value = "";
+
+    // forzamos el state en register para que switchPanel() lo cambia a login si o si
+    loginState = "register";
+    switchPanel();
   }, 485);
 }
 // #endregion
@@ -118,5 +130,8 @@ function checkPasswordsMatch() {
       error_message_text.innerHTML = "";
       submitBtn.disabled = false;
     }
+  } else {
+    error_message_text.innerHTML = "";
+    submitBtn.disabled = false;
   }
 }

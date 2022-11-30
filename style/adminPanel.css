@@ -28,7 +28,7 @@ table th {
 }
 
 button i {
-  filter: brightness(10);
+  filter: grayscale(1) brightness(10);
   font-style: normal;
 }
 /* #endregion */

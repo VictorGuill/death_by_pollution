@@ -44,6 +44,7 @@ if (isset($_POST["register"])) {
 
 if (isset($_POST["logout"])) {
     unset($_SESSION["name"]);
+    unset($_SESSION["user_type"]);
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
 }
