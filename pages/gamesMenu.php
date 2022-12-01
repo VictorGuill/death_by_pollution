@@ -19,7 +19,7 @@
   <!-- NAVBAR -->
   <?php require_once("../php_partials/navbar.php"); ?>
 
-  <div id="infoContainer">
+  <!-- <div id="infoContainer">
     <div id="infoPanel">
       <div id="infoTitle">
         <p>INFORMACIÓN</p>
@@ -32,7 +32,8 @@
       </p>
       <div id="okBtn" onclick="hideInfo()">ACEPTAR</div>
     </div>
-  </div>
+  </div> -->
+
   <div id="gamesContainerWallpaper"></div>
   <div id="gamesContainer">
     <div id="headerContainer">
@@ -57,9 +58,9 @@
     </div>
   </div>
 
-  <div id="info" onclick="showInfo()">
+  <!-- <div id="info" onclick="showInfo()">
     <p>i</p>
-  </div>
+  </div> -->
 
   <script src="../js/gamesMenuLogic.js"></script>
   <script src="../js/loginPanelLogic.js"></script>

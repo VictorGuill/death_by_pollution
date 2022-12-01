@@ -31,13 +31,13 @@ function changeBackground(id) {
 
   switch (id) {
     case "game1":
-      img_path = img_path + "game1.jpg";
+      img_path = img_path + "game1_bg.jpg";
       break;
     case "game2":
-      img_path = img_path + "game2.jpg";
+      img_path = img_path + "game2_bg.jpg";
       break;
     case "game3":
-      img_path = img_path + "game3.jpg";
+      img_path = img_path + "game3_screenshot.png";
       break;
     default:
       img_path = img_path + "wallpaper_BW.jpg";

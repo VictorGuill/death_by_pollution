@@ -16,7 +16,7 @@ export default class Menu extends Screen {
     this.dom.appendChild(gameTitle);
 
     this.dom.appendChild(menuItem("play"));
-    this.dom.appendChild(menuItem("options"));
+    this.dom.appendChild(menuItem("tutorial"));
     this.dom.appendChild(menuItem("exit"));
   }
 
@@ -34,19 +34,19 @@ export default class Menu extends Screen {
     switch (this.selection) {
       case 1:
         setSelected("play");
-        removeSelected("options");
+        removeSelected("tutorial");
         removeSelected("exit");
         break;
 
       case 2:
         removeSelected("play");
-        setSelected("options");
+        setSelected("tutorial");
         removeSelected("exit");
         break;
 
       case 3:
         removeSelected("play");
-        removeSelected("options");
+        removeSelected("tutorial");
         setSelected("exit");
         break;
     }
@@ -56,7 +56,7 @@ export default class Menu extends Screen {
         case 1:
           return "game";
         case 2:
-          return "options";
+          return "tutorial";
         case 3:
           return "exit";
       }

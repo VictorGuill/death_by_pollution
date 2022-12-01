@@ -281,3 +281,14 @@ a {
   color: var(--DARK);
   font-weight: 700;
 }
+
+#game1 {
+  background-image: url("../media/games_img/game1_screenshot.png");
+  background-size: cover;
+}
+
+#game2 {
+}
+
+#game3 {
+}

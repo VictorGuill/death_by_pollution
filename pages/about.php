@@ -54,7 +54,7 @@
     <div class="info-indiv">
       <div class="person1">
         <div class="img">
-          <img src="https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="" />
+          <img src="../media/about/guillem.jpg" alt="" />
         </div>
         <div class="name">Guillem Turró</div>
         <div class="info">Junior Programmer</div>
@@ -69,7 +69,7 @@
       </div>
       <div class="person2">
         <div class="img">
-          <img src="https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="" />
+          <img src="../media/about/maria.jpg" alt="" />
         </div>
         <div class="name">Maria Garriga</div>
         <div class="info">Junior Programmer</div>
@@ -101,7 +101,8 @@
   </div>
 
   <!-- FOOTER -->
-  <!-- <?php require_once("../php_partials/footer.php"); ?> -->
+  <hr style="margin: 0; transform: translateY(31.5437356px);">
+  <?php require_once("../php_partials/footer.php"); ?>
 </body>
 
 </html>

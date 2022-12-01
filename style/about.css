@@ -90,6 +90,7 @@ h1 {
   align-items: center;
   justify-content: space-evenly;
   min-height: 0vmin;
+  margin-bottom: 20px;
 }
 
 .rrss img {
