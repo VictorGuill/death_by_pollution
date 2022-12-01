@@ -24,7 +24,11 @@
     <div id="start" class="scroll-area">
       <div id="text1">SAME GREEN VIEWS</div>
       <div id="planeWindow">
-        <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" />
+        <!-- <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" /> -->
+        <video autoplay muted>
+          <source src="./media/landing/fotoVentanaAvion_editable.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div id="text2">NEW TRAVELING MEANS</div>
       <div class="container my-auto">

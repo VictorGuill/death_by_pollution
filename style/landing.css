@@ -185,8 +185,10 @@ body {
   justify-self: center;
 }
 
-#planeWindow img {
+#planeWindow img,
+#planeWindow video {
   width: 100%;
+  transform: scale(1.2);
 }
 
 #start .container {
@@ -213,34 +215,6 @@ body {
   line-height: 1em;
 }
 
-#claim-text span {
-  color: var(--SECONDARY-DARK);
-  font-weight: 700;
-}
-
-#claim-btn {
-  margin-top: 3rem;
-}
-
-#startImg {
-  width: 38vw;
-  max-width: 600px;
-  min-width: 200px;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-  z-index: 0;
-}
-.slogan > p {
-  font-size: 24px;
-  font-weight: 280;
-  text-align: center;
-}
-.slogan {
-  z-index: 1;
-}
 #aboutBtnRow {
   width: 100%;
   grid-area: 3 / 2 / 4 / 3;
