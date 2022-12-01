@@ -20,7 +20,7 @@ body {
   grid-template-rows: repeat(var(--gridSize), var(--gridPx));
 
   border-radius: 0.5vmin;
-  background-image: url("../media/game2/objects/bg.png");
+  background-image: url("../media/game2/objects/grass.png");
   background-repeat: repeat;
   background-size: 300px;
   width: 840px;
