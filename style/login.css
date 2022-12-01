@@ -34,6 +34,8 @@
 
   padding: 2% 10%;
   border: none;
+
+  margin-bottom: 40px;
 }
 
 #loginCard {
@@ -49,7 +51,7 @@
 
   cursor: pointer;
 
-  filter: brightness(10);
+  filter: grayscale(1) brightness(10);
 }
 
 #loginCard h3 {
@@ -81,7 +83,7 @@ input {
   border: none;
   border-bottom: 2px solid #767676;
 
-  transition: all 0.15s ease-in-out;
+  transition: all 0.25s ease-in-out;
 
   margin: 5px;
 }
@@ -95,6 +97,9 @@ input:focus::placeholder {
   color: transparent;
 }
 
+#userName {
+}
+
 #userName ul {
   left: unset;
   right: 0;
@@ -104,27 +109,15 @@ input:focus::placeholder {
 #userName ul li a {
   color: var(--DARK);
   font-weight: 500;
-  text-decoration: none;
 }
 
 #userName a::after {
   content: none;
 }
 
-#userName button {
-  color: var(--DARK);
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-#userName button:active,
 #userName ul li a:active {
   background-color: var(--DARK);
   color: var(--LIGHT);
-}
-
-#errorInfoMsg {
-  color: red;
 }
 
 /* #endregion */

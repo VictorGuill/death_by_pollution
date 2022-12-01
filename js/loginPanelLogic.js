@@ -28,6 +28,12 @@ pass2_input.addEventListener("input", function (e) {
   checkEmptyFields();
   checkPasswordsMatch();
 });
+
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Escape") {
+    closeLoginPanel();
+  }
+});
 // #endregion
 
 // #region show, hide, switch panel functions

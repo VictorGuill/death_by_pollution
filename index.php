@@ -22,27 +22,23 @@
   <div id="scroll-container">
     <!-- PRESENTATION -->
     <div id="start" class="scroll-area">
-      <div class="container my-auto" >
-        <div class="row align-items-center">
-          <div class="col-8 text-start">
-            <div id="claim">
-              <p id="claim-text">
-                TEXTO SUPER <br />
-                <span> IMPACTANTE </span><br />MODERNO<br />
-                OU YEASSS...
-              </p>
-              <div id="claim-btn"><a id="aboutBtn" href="#about">SABER MÁS ⬇</a></div>
-            </div>
-          </div>
-          <div class="col-4">
-            <video autoplay muted>
-              <source src="./media/landing/fotoVentanaAvion_editable.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
+      <div id="text1">SAME GREEN VIEWS</div>
+      <div id="planeWindow">
+        <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" />
+      </div>
+      <div id="text2">NEW TRAVELING MEANS</div>
+      <div class="container my-auto">
+        <div id="aboutBtnRow">
+          <a id="aboutBtn" href="#about">
+            <p>Qué es Eco Travelling?</p>
+            <svg width="30px" height="20px">
+              <path stroke="#ffffff" stroke-width="2px" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
+
     <!-- ABOUT -->
     <div id="about" class="scroll-area">
       <div class="container mt-5">
@@ -59,7 +55,7 @@
     </div>
     <!-- THE PROBLEM -->
     <div id="problem" class="scroll-area">
-      <div class="container mt-6">
+      <div class="container mt-5">
         <h3 class="slide-title contain-left">El problema</h3>
         <div class="slide-content">
           <div class="row justify-content-between">

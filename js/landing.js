@@ -27,8 +27,7 @@ container.addEventListener("scroll", gradientAbout); */
 
 // set navbar background color
 container.addEventListener("scroll", (e) => {
-  console.log(container.scrollTop);
-  if (container.scrollTop >= viewportHeight - viewportHeight / 3) {
+  if (container.scrollTop >= viewportHeight - viewportHeight / 2.6) {
     nabvar.style.backgroundColor = " var(--DARK)";
   } else {
     nabvar.style.backgroundColor = "rgba(0, 0, 0, 0)";

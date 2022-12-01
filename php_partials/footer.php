@@ -22,16 +22,16 @@
             <div class="row mt-4">
                 <div class="col-3 d-flex align-items-center justify-content-between">
                     <img id="footer-logo" src="/death_by_pollution/media/icons/logo_dark.svg" alt="logo_dark" />
-                    <h4 class="px-4 mb-0">NAME COMPANY</h4>
+                    <h4 class="px-4 mb-0">GREEN VIEWS</h4>
                 </div>
                 <div class="col-9 text-end pt-3">
                     <p>
-                        Visit Name Company Corporation’s not-for-profit parent, the
-                        Name Company Foundation.
+                        Visit GREEN VIEWS Corporation’s not-for-profit parent, the
+                        GREEN VIEWS Foundation.
                     </p>
                     <p>
                         Portions of this content are ©1998–2022 by individual
-                        nameCompany.org contributors.
+                        <b>greenviews.org</b> contributors.
                     </p>
                     <p>Content available under a Creative Commons license.</p>
                 </div>
@@ -46,6 +46,6 @@
     </div>
     <div id="copy" class="text-center p-2 mt-3">
         © 2022 Copyright:
-        <a class="text-white" href="./index.html">NAME-COMPANY.com</a>
+        <a class="text-white" href="./index.html">GREEN-VIEWS.com</a>
     </div>
 </div>
