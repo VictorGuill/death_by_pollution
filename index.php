@@ -22,7 +22,7 @@
   <div id="scroll-container">
     <!-- PRESENTATION -->
     <div id="start" class="scroll-area">
-      <div class="container my-auto">
+      <div class="container my-auto" >
         <div class="row align-items-center">
           <div class="col-8 text-start">
             <div id="claim">
@@ -56,7 +56,7 @@
     </div>
     <!-- THE PROBLEM -->
     <div id="problem" class="scroll-area">
-      <div class="container mt-5">
+      <div class="container mt-6">
         <h3 class="slide-title contain-left">El problema</h3>
         <div class="slide-content">
           <div class="row justify-content-between">
