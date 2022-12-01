@@ -288,6 +288,8 @@ a {
 }
 
 #game2 {
+  background-image: url("../media/games_menu/game2_screenshot.png");
+  background-size: cover;
 }
 
 #game3 {
