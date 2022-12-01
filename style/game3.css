@@ -1,0 +1,302 @@
+@font-face {
+    font-family: aceCombat;
+    src: url('/media/game3/font/ACES07_Light.otf') format('opentype');
+    font-style: normal;
+    font-weight: 100;
+}
+:root{
+    --powerHeight: 0%;
+    --maxPowerHeight: 92%;
+    --scanLinesSpeed: 0.8s;
+    --scanLinesOpacity: 0.12;
+    --scanLinesSize: 4px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+
+#gp {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#ui {
+    position: absolute;
+    height: 80%;
+    width: 100%;
+    border: 4px solid magenta;
+    z-index: 900;
+}
+
+#map {
+    position: relative;
+    width: 100vw;
+    height: 80vh;
+    
+}
+
+.layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat-x;
+    background-size: 1920px 1080px;
+    
+}
+
+#planeScreenZone {
+    position: absolute;
+    width: 70%;
+    height: 98%;
+    bottom: 10px;
+    left: 30px;
+    border: 4px solid #cc9900;
+    z-index: 200;
+    
+}
+
+#plane {
+    position: absolute;
+    z-index: 900;
+    
+}
+
+#progress-bar {
+    position: absolute;
+    left: 50%;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid red;
+    transform: translateX(-50%);
+}
+
+#bar {
+    width: 100%;
+    height: 10px;
+    background-color: red;
+
+}
+
+#time-score{
+    position: absolute;
+    left: 50px;
+    top: 20px;
+    height: fit-content;
+    width: fit-content;
+    background-color: rgba(100, 100, 100, 0.3);
+}
+
+#time-score p, #speedometer-label, #altimeter-label, #speedometer-value, #altimeter-value{
+    font-family: aceCombat;
+    padding: 5px;
+    font-size: 2.5vmin;
+    color: #85f76eb3;
+    text-shadow: 
+            0px 0px 1px #80ff9f,
+            0px 0px 2px #62b189, 
+            0px 0px 5px #509a7b, 
+            0px 0px 5px #509a7b,
+            0px 0px 10px #236752;
+}
+
+#hud{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 70%;
+    top: 20%;
+}
+
+#speedometer, #altimeter{
+    position: relative;
+    align-self: center;
+    top: 0;
+    width: min-content;
+}
+#speedometer img, #altimeter img {
+    object-fit: contain;
+    width: 8vw;
+}
+
+
+
+#speedometerImgContainer::after{
+    content: "";
+    position: absolute;
+    bottom: 4.5%;
+    left: 80%;
+    height: var(--powerHeight);
+    width: 3px;
+    background-color: #69f690;
+    box-shadow: 
+            0px 0px 1px #80ff9f,
+            0px 0px 2px #62b189, 
+            0px 0px 5px #509a7b, 
+            0px 0px 5px #509a7b,
+            0px 0px 10px #236752;
+    z-index: -1;
+}
+
+#speedometer-elements, #altimeter-elements{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 6vw;
+}
+
+#speedometer-label{
+    position: absolute;
+    font-weight: bold;
+    top: 40%;
+    left: 4%;
+}
+
+#speedometer-value{
+    position: absolute;
+    font-weight: bold;
+    top: 46%;
+    left: 12%;
+}
+
+#speedometer-metric{
+    background-image: url("/media/game3/hud/speedometer_metric_hud.png");
+    background-size: 100% 60%;
+    background-repeat: repeat-y;
+    position: absolute;
+    width: 1vw;
+    height: 24vh;
+    top: 30%;
+    left: 78%;
+}
+
+#altimeter-label{
+    position: absolute;
+    font-weight: bold;
+    top: 40%;
+    left: 65%;
+}
+
+#altimeter-value{
+    position: absolute;
+    font-weight: bold;
+    top: 46%;
+    left: 68%;
+}
+
+#altimeter-metric{
+    background-image: url("/media/game3/hud/altimeter_metric_hud.png");
+    background-size: 100% 60%;
+    background-repeat: repeat-y;
+    position: absolute;
+    width: 1vw;
+    height: 24vh;
+    top: 30%;
+    left: 35%;
+}
+
+/* EVENTS  */
+.objects-layer{
+    overflow: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 200;
+}
+
+.object{
+    position: absolute;
+    z-index: 200;
+    /* border: 4px solid magenta; */
+}
+
+.coin{
+    animation: coin-animation 5s linear infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*DEBUG CONTROLS*/
+label {color: white;}
+input{ margin-right: 100px;}
+
+
+/* #region CRT FX */
+.scanline::after {
+    content: "";
+    position: absolute;
+  
+    inset: 0;
+  
+    will-change: background, background-size;
+    animation: scanlines var(--scanLinesSpeed) linear infinite;
+    z-index: 998;
+}
+
+.crt_borders::after {
+    content: "";
+    position: absolute;
+  
+    width: 100.25%;
+    height: 100.25%;
+  
+    background-image: url("../media/game3/crt.png");
+    background-size: 100% 100%;
+    z-index: 999;
+}
+
+@keyframes scanlines {
+    from {
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 0, 0, var(--scanLinesOpacity)) 51%
+      );
+      background-size: 100vmax var(--scanLinesSize);
+    }
+    to {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, var(--scanLinesOpacity)) 50%,
+        transparent 51%
+      );
+      background-size: 100vmax var(--scanLinesSize);
+    }
+  }
+
+  @keyframes coin-animation {
+    0% {
+    }
+    100%{
+        transform: rotate(180deg);
+    }
+
+  }

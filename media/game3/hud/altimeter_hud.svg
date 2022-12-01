@@ -1,0 +1,93 @@
+<svg id="eXs6kqASWo11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 850" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+    <defs>
+        <filter id="eXs6kqASWo13-filter" x="-150%" width="400%" y="-150%" height="400%">
+            <feGaussianBlur id="eXs6kqASWo13-filter-drop-shadow-0-blur" in="SourceAlpha" stdDeviation="1,1" />
+            <feOffset id="eXs6kqASWo13-filter-drop-shadow-0-offset" dx="0" dy="0" result="tmp" />
+            <feFlood id="eXs6kqASWo13-filter-drop-shadow-0-flood" flood-color="#bafbc7" />
+            <feComposite id="eXs6kqASWo13-filter-drop-shadow-0-composite" operator="in" in2="tmp" />
+            <feMerge id="eXs6kqASWo13-filter-drop-shadow-0-merge">
+                <feMergeNode id="eXs6kqASWo13-filter-drop-shadow-0-merge-node-1" />
+                <feMergeNode id="eXs6kqASWo13-filter-drop-shadow-0-merge-node-2" in="SourceGraphic" />
+            </feMerge>
+            <feGaussianBlur id="eXs6kqASWo13-filter-drop-shadow-1-blur" in="result" stdDeviation="1,1" />
+            <feOffset id="eXs6kqASWo13-filter-drop-shadow-1-offset" dx="0" dy="0" result="tmp" />
+            <feFlood id="eXs6kqASWo13-filter-drop-shadow-1-flood" flood-color="#7ff69c" />
+            <feComposite id="eXs6kqASWo13-filter-drop-shadow-1-composite" operator="in" in2="tmp" />
+            <feMerge id="eXs6kqASWo13-filter-drop-shadow-1-merge" result="result">
+                <feMergeNode id="eXs6kqASWo13-filter-drop-shadow-1-merge-node-1" />
+                <feMergeNode id="eXs6kqASWo13-filter-drop-shadow-1-merge-node-2" in="result" />
+            </feMerge>
+            <feGaussianBlur id="eXs6kqASWo13-filter-drop-shadow-2-blur" in="result" stdDeviation="5,5" />
+            <feOffset id="eXs6kqASWo13-filter-drop-shadow-2-offset" dx="0" dy="0" result="tmp" />
+            <feFlood id="eXs6kqASWo13-filter-drop-shadow-2-flood" flood-color="#509a7b" />
+            <feComposite id="eXs6kqASWo13-filter-drop-shadow-2-composite" operator="in" in2="tmp" />
+            <feMerge id="eXs6kqASWo13-filter-drop-shadow-2-merge" result="result">
+                <feMergeNode id="eXs6kqASWo13-filter-drop-shadow-2-merge-node-1" />
+                <feMergeNode id="eXs6kqASWo13-filter-drop-shadow-2-merge-node-2" in="result" />
+            </feMerge>
+            <feGaussianBlur id="eXs6kqASWo13-filter-drop-shadow-3-blur" in="result" stdDeviation="10,10" />
+            <feOffset id="eXs6kqASWo13-filter-drop-shadow-3-offset" dx="0" dy="0" result="tmp" />
+            <feFlood id="eXs6kqASWo13-filter-drop-shadow-3-flood" flood-color="rgba(35,103,82,0.8)" />
+            <feComposite id="eXs6kqASWo13-filter-drop-shadow-3-composite" operator="in" in2="tmp" />
+            <feMerge id="eXs6kqASWo13-filter-drop-shadow-3-merge" result="result">
+                <feMergeNode id="eXs6kqASWo13-filter-drop-shadow-3-merge-node-1" />
+                <feMergeNode id="eXs6kqASWo13-filter-drop-shadow-3-merge-node-2" in="result" />
+            </feMerge>
+            <feComponentTransfer id="eXs6kqASWo13-filter-contrast-0" result="result">
+                <feFuncR id="eXs6kqASWo13-filter-contrast-0-R" type="linear" slope="1.18" intercept="-0.09" />
+                <feFuncG id="eXs6kqASWo13-filter-contrast-0-G" type="linear" slope="1.18" intercept="-0.09" />
+                <feFuncB id="eXs6kqASWo13-filter-contrast-0-B" type="linear" slope="1.18" intercept="-0.09" />
+            </feComponentTransfer>
+        </filter>
+        <filter id="eXs6kqASWo14-filter" x="-150%" width="400%" y="-150%" height="400%">
+            <feGaussianBlur id="eXs6kqASWo14-filter-drop-shadow-0-blur" in="SourceAlpha" stdDeviation="1,1" />
+            <feOffset id="eXs6kqASWo14-filter-drop-shadow-0-offset" dx="0" dy="0" result="tmp" />
+            <feFlood id="eXs6kqASWo14-filter-drop-shadow-0-flood" flood-color="#62b189" />
+            <feComposite id="eXs6kqASWo14-filter-drop-shadow-0-composite" operator="in" in2="tmp" />
+            <feMerge id="eXs6kqASWo14-filter-drop-shadow-0-merge">
+                <feMergeNode id="eXs6kqASWo14-filter-drop-shadow-0-merge-node-1" />
+                <feMergeNode id="eXs6kqASWo14-filter-drop-shadow-0-merge-node-2" in="SourceGraphic" />
+            </feMerge>
+            <feGaussianBlur id="eXs6kqASWo14-filter-drop-shadow-1-blur" in="result" stdDeviation="1,1" />
+            <feOffset id="eXs6kqASWo14-filter-drop-shadow-1-offset" dx="0" dy="0" result="tmp" />
+            <feFlood id="eXs6kqASWo14-filter-drop-shadow-1-flood" flood-color="#80ff9f" />
+            <feComposite id="eXs6kqASWo14-filter-drop-shadow-1-composite" operator="in" in2="tmp" />
+            <feMerge id="eXs6kqASWo14-filter-drop-shadow-1-merge" result="result">
+                <feMergeNode id="eXs6kqASWo14-filter-drop-shadow-1-merge-node-1" />
+                <feMergeNode id="eXs6kqASWo14-filter-drop-shadow-1-merge-node-2" in="result" />
+            </feMerge>
+            <feGaussianBlur id="eXs6kqASWo14-filter-drop-shadow-2-blur" in="result" stdDeviation="1,1" />
+            <feOffset id="eXs6kqASWo14-filter-drop-shadow-2-offset" dx="0" dy="0" result="tmp" />
+            <feFlood id="eXs6kqASWo14-filter-drop-shadow-2-flood" flood-color="#509a7b" />
+            <feComposite id="eXs6kqASWo14-filter-drop-shadow-2-composite" operator="in" in2="tmp" />
+            <feMerge id="eXs6kqASWo14-filter-drop-shadow-2-merge" result="result">
+                <feMergeNode id="eXs6kqASWo14-filter-drop-shadow-2-merge-node-1" />
+                <feMergeNode id="eXs6kqASWo14-filter-drop-shadow-2-merge-node-2" in="result" />
+            </feMerge>
+            <feGaussianBlur id="eXs6kqASWo14-filter-drop-shadow-3-blur" in="result" stdDeviation="12,12" />
+            <feOffset id="eXs6kqASWo14-filter-drop-shadow-3-offset" dx="0" dy="0" result="tmp" />
+            <feFlood id="eXs6kqASWo14-filter-drop-shadow-3-flood" flood-color="#236752" />
+            <feComposite id="eXs6kqASWo14-filter-drop-shadow-3-composite" operator="in" in2="tmp" />
+            <feMerge id="eXs6kqASWo14-filter-drop-shadow-3-merge" result="result">
+                <feMergeNode id="eXs6kqASWo14-filter-drop-shadow-3-merge-node-1" />
+                <feMergeNode id="eXs6kqASWo14-filter-drop-shadow-3-merge-node-2" in="result" />
+            </feMerge>
+        </filter>
+    </defs>
+    <g transform="translate(30 15)">
+        <path d="M-0.5,0.966303h30v798.690907h-30v-4.49826h22.678402v-789.694388h-22.678402v-4.498259Z" transform="matrix(1 0 0 1.000387 0.5 9.033323)" filter="url(#eXs6kqASWo13-filter)" fill="#1bf619" />
+        <path d="M66.867406,426.799416h104.50004v-34.598832h-104.500039L44.383098,409.5l22.484308,17.299416Z" transform="matrix(.966953 0 0 1.298746 29.234293-122.198734)" filter="url(#eXs6kqASWo14-filter)" fill="none" stroke="#85f76e" stroke-width="1.64" stroke-linejoin="round" />
+        <text dx="0" dy="0" font-family="&quot;eXs6kqASWo11:::Roboto&quot;" font-size="28" font-weight="400" transform="translate(100.150074 377.10811)" stroke-width="0">
+            <tspan y="0" font-weight="400" stroke-width="0">
+                <![CDATA[
+ALT 
+]]>
+            </tspan>
+        </text>
+    </g>
+    <style>
+        <![CDATA[
+@font-face {font-family: 'eXs6kqASWo11:::Roboto';font-style: normal;font-weight: 400;src: url('/media/game3/font/ACES07_Light.otf') format('opentype');}
+]]>
+    </style>
+</svg>
