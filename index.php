@@ -137,7 +137,7 @@
     </div>
     <!-- SERVICES -->
     <div id="services" class="scroll-area">
-      <div class="container mt-6">
+      <div class="container mt-5">
         <div class="slide-content">
           <div class="row justify-content-center">
             <div class="col-2">
