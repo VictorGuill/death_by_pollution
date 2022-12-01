@@ -47,7 +47,7 @@
         <p class="title_game">TRAIN TRACK</p>
       </div>
       <div id="game3" class="game">
-        <p class="title_game">JUEGO 3</p>
+        <p class="title_game">SKY DIVE</p>
       </div>
     </div>
     <div id="btnContainer">
