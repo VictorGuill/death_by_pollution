@@ -22,7 +22,7 @@
   width: 100vw;
   height: 100vh;
 
-  background-image: url("../media/games_img/wallpaper_BW.jpg");
+  background-image: url("../media/games_menu/wallpaper_BW.jpg");
   background-size: cover;
   background-position: center;
   filter: blur(20px) grayscale(0.5) brightness(0.25) contrast(0.9);
@@ -283,7 +283,7 @@ a {
 }
 
 #game1 {
-  background-image: url("../media/games_img/game1_screenshot.png");
+  background-image: url("../media/games_menu/game1_screenshot.png");
   background-size: cover;
 }
 
@@ -291,4 +291,7 @@ a {
 }
 
 #game3 {
+  background-image: url("../media/games_menu/game3_screenshot.png");
+  background-size: 100% 100%;
+  background-position-x: center;
 }

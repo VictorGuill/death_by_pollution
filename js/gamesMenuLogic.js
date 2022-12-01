@@ -27,7 +27,7 @@ game3.addEventListener("click", (e) => {
 });
 
 function changeBackground(id) {
-  let img_path = "../media/games_img/";
+  let img_path = "../media/games_menu/";
 
   switch (id) {
     case "game1":
@@ -37,7 +37,7 @@ function changeBackground(id) {
       img_path = img_path + "game2_bg.jpg";
       break;
     case "game3":
-      img_path = img_path + "game3_screenshot.png";
+      img_path = img_path + "game3_bg.png";
       break;
     default:
       img_path = img_path + "wallpaper_BW.jpg";
