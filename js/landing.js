@@ -12,7 +12,6 @@ const goStartBtn = document.getElementById("goStartBtn");
 /* const startSlide = document.getElementById("start");
 const aboutSlide = document.getElementById("about");
 
-
 function gradientAbout(){
   let t = 0;
   aboutSlide.style.setProperty("--transition", t+"%");
@@ -28,6 +27,7 @@ container.addEventListener("scroll", gradientAbout); */
 
 // set navbar background color
 container.addEventListener("scroll", (e) => {
+  console.log(container.scrollTop);
   if (container.scrollTop >= viewportHeight - viewportHeight / 3) {
     nabvar.style.backgroundColor = " var(--DARK)";
   } else {

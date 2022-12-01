@@ -8,11 +8,12 @@ a,
 a:link,
 a:hover {
   color: unset;
+
 }
 
 /* Disable scrollbar */
 ::-webkit-scrollbar {
-  width: 0px;
+  /* width: 0px; */
 }
 
 body {
@@ -125,7 +126,7 @@ body {
 }
 
 .slide-content {
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .slide-text {
@@ -147,12 +148,7 @@ body {
 #start {
   height: calc(100vh);
 
-  background: rgb(61, 0, 102);
-  background: linear-gradient(
-    90deg,
-    rgba(61, 0, 102, 1) 5%,
-    rgba(0, 0, 0, 1) 65%
-  );
+  background: black;
 }
 #claim {
   margin-left: 8rem;
@@ -168,7 +164,7 @@ body {
 }
 
 #claim-text span {
-  color: var(--ACCENT);
+  color: var(--SECONDARY-DARK);
   font-weight: 700;
 }
 
@@ -181,82 +177,116 @@ body {
   width: 30vw;
   max-width: 600px;
   min-width: 200px;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  z-index: 0;
+}
+.slogan>p{
+  font-size: 24px;
+  font-weight: 280;
+  text-align: center;
+}
+.slogan{
+  z-index: 1;
+}
+#aboutBtnRow{
+  margin-top: 22%;
+  margin-bottom: 20px;
 }
 
-#aboutBtn {
+#aboutBtn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
-  font-size: 1.25em;
-  font-weight: 600;
-
-  color: var(--SECONDARY-DARK);
-  background-color: var(--ACCENT);
-
-  padding: 8px 20px;
-  border-bottom: 5px solid var(--DARK-ACCENT);
-  border-left: 5px solid var(--DARK-ACCENT);
-
-  transition: box-shadow 0.05s ease-in-out;
+  font-size: 24px;
+  font-weight: 200;
+  font-style: italic;
+  z-index: 1;
 }
-
-#aboutBtn:hover {
-  box-shadow: 0px 0px 20px 0px var(--DARK-ACCENT);
+#aboutBtn p{
+  margin-bottom: 10px;
 }
 /* #endregion */
 
 /* #region ABOUT */
 #about {
-  /* background-color: #199b0c; */
-  /* background-color: #1b9e0e; */
-  /* --transition: 0%;
-  --opacity: .9;
-  background-image: 
-  linear-gradient(90deg, rgba(61, 0, 102, var(--opacity)) 5%, rgba(0, 0, 0, var(--opacity)) 65%),
-  linear-gradient(rgba(61, 0, 102, 1) 0%, var(--LIGHT), black var(--transition)); */
-  background: radial-gradient(black 15%, transparent 16%) 0 0,
-    radial-gradient(black 15%, transparent 16%) 8px 8px,
-    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
-    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
-  background-color: #282828;
-  background-size: 16px 16px;
+  background-image: url(/media/landing/aboutImg.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
-.img-about {
+#about .slide-title, #problem .slide-title{
+  color: var(--SECONDARY-DARK);
+}
+#about .card-body{
+  padding:10px 80px;
+}
+.about-card-secondary{
+  font-size: 18px;
+  color: var(--SECONDARY-DARK);
+}
+.about-card-body{
+  font-size: 22px;
+  color:var(--DARKTEXT);
 }
 /* #endregion */
 
 /* #region THE PROBLEM */
 #problem {
-  background: var(--BACKGROUND);
+  background: var(--LIGHT);
 }
-.stat {
-  background-color: var(--SECONDARY-DARK);
-  border-radius: 50%;
-  padding: 5rem;
-  width: 25rem;
-  height: 25rem;
+#problem .card, #about .card{
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+#problem-title{
+  font-size: 36px;
+  color: var(--SECONDARY-DARK);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
-.stat h1 {
-  color: var(--LIGHT);
-  font-weight: 400;
+
+#problem .card-text{
+  color:var(--DARKTEXT);
+  text-align: center;
 }
-.stat img {
-  width: 50px;
-  margin-left: 15px;
+#problem .card-title{
+  color: var(--DARK-ACCENT);
+  text-align: center;
+}
+
+.card-icon{
+  display: block;
+  width: 60px;
+  margin: 10px auto;
 }
 /* #endregion */
 
 /* #region SERVICES */
 #services {
-  background-color: #5f0ebb;
+  background: radial-gradient(black 15%, transparent 16%) 0 0, radial-gradient(black 15%, transparent 16%) 8px 8px, radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px, radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
+  background-color: #282828;
+  background-size: 16px 16px;
   /* background-color: #0A4DFA; */
+}
+
+#service-title{
+  font-size: 36px;
+  color: var(--LIGHT);
+  text-align: center;
 }
 .services-img {
   width: 400px;
+}
+
+#services .card{
+  padding-top: 10px;
+}
+
+#services .card-text{
+  color: var(--DARKTEXT);
 }
 /* #endregion */
 
