@@ -43,15 +43,25 @@
       </div>
     </div>
 
-    <!-- ABOUT -->
-    <div id="about" class="scroll-area">
-      <div class="container mt-5">
-        <h1 class="slide-title contain-left">¿Que es eco-travelling?</h1>
+     <!-- ABOUT -->
+     <div id="about" class="scroll-area">
+      <div class="container m-auto">
         <div class="slide-content">
-          <div class="row">
-            <div class="col-6"><img class="img-fluid" src="./media/landing/eco_walk-removebg-preview.png" alt="eco_img"></div>
+          <div class="row justify-content-center ">
             <div class="col-6">
-              <p>“Eco travel encompasses all the variants of ecotourism and green travel. So whether it’s responsible travel, sustainable tourism, ethical tourism or culturally aware travel, they all fall under the same umbrella of eco travel. In essence, anyone who prefers to travel the green way is an eco traveller.”</p>
+              <div class="card">
+                <div class="card-body text-center">
+                  <p class="about-card-secondary">Eco-traveling</p>
+                  <br>
+                  <p class="about-card-body">“Los viajes ecológicos engloban todas las variantes del ecoturismo y los
+                    viajes verdes. Así que, ya sea un viaje responsable, un turismo sostenible, un turismo ético o un viaje
+                    culturalmente consciente, todos ellos se engloban bajo el mismo paraguas de los viajes ecológicos. En
+                    esencia, cualquiera que prefiera viajar de forma ecológica es un viajero ecológico.”</p>
+                  <br>
+                  <p class="about-card-secondary">Para nostros eco-travelling es la única </p>
+                  <p class="about-card-secondary">manera de viajar</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -59,21 +69,67 @@
     </div>
     <!-- THE PROBLEM -->
     <div id="problem" class="scroll-area">
-      <div class="container mt-5">
-        <h3 class="slide-title contain-left">El problema</h3>
+      <div class="container mt-6">
         <div class="slide-content">
+          <div class="row justify-content-center">
+            <div class="col-3">
+              <h3 id="problem-title">El problema</h3>
+            </div>
+          </div>
+          <div class="row justify-content-center mb-5">
+            <div class="col-1 d-flex justify-content-center">
+              <svg width="30px" height="20px">
+                <path stroke="#510087" stroke-width="2px" style="fill: none;" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+              </svg>
+            </div>
+          </div>
+          
           <div class="row justify-content-between">
-            <div class="col-3 stat">
-              <h1>Tierra<span><img src="./media/icons/train_white.png" alt="train"></span></h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing, elit eu mattis rutrum curae ultricies aptent, sociosqu tempor aliquam ridiculus litora.</p>
+            <div class="card col-3">
+              <div class="card-header">
+                <div>
+                  <img class="card-title card-icon" src="./media/landing/ic-train.png" alt="train_ico">
+                </div>
+                <h1 class="card-title">TIERRA</h1>
+              </div>
+              <div class="card-body">
+                <p class="card-text">Los vehículos por carretera suponen más del 70 % de las emisiones de gases de
+                  efecto invernadero, frente a casi el 1 % del tren</p>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+                <br>
+                <h5>CO2 --> 19%</h5>
+              </div>
             </div>
-            <div class="col-3 stat">
-              <h1>Mar<span><img src="./media/icons/ship_white.png" alt="ship"></h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing, elit eu mattis rutrum curae ultricies aptent, sociosqu tempor aliquam ridiculus litora.</p>
+            <div class="card col-3">
+              <div class="card-header">
+                <div>
+                  <img class="card-title card-icon" src="./media/landing/ic-ship.png" alt="ship_ico">
+                </div>
+                <h1 class="card-title">MAR</h1>
+              </div>
+                <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipiscing, elit eu mattis rutrum curae
+                  ultricies aptent, sociosqu tempor aliquam ridiculus litora.</p>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+                <br>
+                <h5>CO2 --> 19%</h5>
+              </div>
             </div>
-            <div class="col-3 stat">
-              <h1>Aire<span><img src="./media/icons/plane_white.png" alt="airplane"></h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipiscing, elit eu mattis rutrum curae ultricies aptent, sociosqu tempor aliquam ridiculus litora.</p>
+
+            <div class="card col-3">
+              <div class="card-header">
+                <div>
+                  <img class="card-title card-icon" src="./media/landing/ic-plane.png" alt="plane_ico">
+                </div>
+                <h1 class="card-title">AIRE</h1>
+              </div>
+              <div class="card-body">
+                <p class="card-text">El avión es el medio de transporte que provoca una mayor cantidad de emisiones de
+                  CO2. </p>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+                <br>
+                <h5>CO2 --> 19%</h5>
+              </div>
             </div>
           </div>
         </div>
@@ -81,26 +137,43 @@
     </div>
     <!-- SERVICES -->
     <div id="services" class="scroll-area">
-      <div class="container mt-5">
-        <h3 class="slide-title contain-left">Servicios</h3>
+      <div class="container mt-6">
         <div class="slide-content">
-          <p class="slide-text contain-center">Nuestra amplia flota de transportes <span style="color: var(--ACCENT);">eco</span> actuales.</p>
-          <div class="row justify-content-between mt-6">
-            <div class="col-4"><img class="services-img" src="./media/landing/eco_plane_stats.png" alt="eco_plane_stats"></div>
-            <div class="col-4"><img class="services-img" src="./media/landing/eco_plane_stats.png" alt="eco_plane_stats"></div>
-            <div class="col-4"><img class="services-img" src="./media/landing/eco_plane_stats.png" alt="eco_plane_stats"></div>
-          </div>
-          <div class="row justify-content-between mt-5">
-            <div class="col-4">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
-            </div>
-            <div class="col-4">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
-            </div>
-            <div class="col-4">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+          <div class="row justify-content-center">
+            <div class="col-2">
+              <h3 id="service-title">Servicios</h3>
             </div>
           </div>
+          <div class="row justify-content-center mb-5">
+            <div class="col-1 d-flex justify-content-center">
+              <svg width="30px" height="20px">
+                <path stroke="#faffff" stroke-width="2px" style="fill: none;" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+              </svg>
+            </div>
+          </div>
+          <p class="slide-text contain-center mx-auto">Nuestra flota de transportes <span
+              style="color: var(--ACCENT);">eco</span></p>
+              <div class="row justify-content-between mt-5">
+                <div class="card col-3">
+                  <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
+                  
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+                  </div>
+                </div>
+                <div class="card col-3">
+                  <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+                  </div>
+                </div>
+                <div class="card col-3">
+                  <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+                  </div>
+                </div>
+              </div>
         </div>
       </div>
     </div>

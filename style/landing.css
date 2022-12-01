@@ -249,7 +249,7 @@ body {
 
 /* #region ABOUT */
 #about {
-  background-image: url("../media/landing/aboutImg.jpg");
+  background-image: url("../media/landing/about_earth.jpeg");
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -274,6 +274,7 @@ body {
 /* #region THE PROBLEM */
 #problem {
   background: var(--LIGHT);
+  scroll-snap-align: start;
 }
 #problem .card,
 #about .card {
@@ -298,6 +299,10 @@ body {
   display: block;
   width: 60px;
   margin: 10px auto;
+}
+
+.card-header{
+  background: none;
 }
 /* #endregion */
 
