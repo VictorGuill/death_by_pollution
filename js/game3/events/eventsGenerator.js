@@ -10,7 +10,7 @@ export default class EventsGenerator{
         this.fCoins = this.gp.map.w * 2;
         this.fNotes = this.gp.map.w * 3;
         this.fDiamonds = this.gp.map.w * 3;
-        this.fToxic = this.gp.map.w;
+        this.fToxic = this.gp.map.w/4;
 
         
         this.spawnCoin = this.fCoins;
@@ -68,7 +68,7 @@ export default class EventsGenerator{
             this.spawnDiamond = planeX + this.random(this.fDiamonds, this.fDiamonds/2);
         }
         if(planeX >= this.spawnToxic){
-            this.generateToxic();
+            // this.generateToxic();
             this.spawnToxic = planeX + this.random(this.fToxic, this.fToxic/2);
         }
     }

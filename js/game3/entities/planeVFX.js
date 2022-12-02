@@ -49,6 +49,7 @@ export default class planeVfx {
 
     smokeVFX(){
         this.smoke = document.createElement("img");
+        this.smoke.classList.add("effectVFX");
         this.smoke.setAttribute("id", "smoke");
         this.smoke.style.position = "absolute";
         this.smoke.style.right = this.plane.w - this.plane.w/5 +"px";
@@ -57,6 +58,7 @@ export default class planeVfx {
     }
     smoke_fireVFX(){
         this.smoke_fire = document.createElement("img");
+        this.smoke_fire.classList.add("effectVFX");
         this.smoke_fire.style.position = "absolute";
         this.smoke_fire.setAttribute("id", "smoke_fire");
         this.smoke_fire.style.right = this.plane.w - this.plane.w/4 +"px";
@@ -66,6 +68,8 @@ export default class planeVfx {
 
     fireVFX(){
         this.fire = document.createElement("img");
+        this.fire.classList.add("effectVFX");
+
         this.fire.style.position = "absolute";
         this.fire.setAttribute("id", "fire");
         this.fire.style.right = this.plane.w - this.plane.w/2 +"px";
@@ -83,14 +87,18 @@ export default class planeVfx {
     }
 
     removeVFX(e){
-        e.style.animation = "effect-out 2s linear forwards";
+        e.style.animation = "effect-out 4s linear forwards";
         setTimeout( function() {
             e.remove();
-        },1000)
+        }, 5000)
     }
 
     updateThrust(){
-        this.thrust.style.transform = "scaleX(" + parseFloat((this.plane.speed) * .002) +") scaleY("+parseFloat((this.plane.speed) * .001)+")";
+        const statusEffects = document.querySelectorAll(".effectVFX");
+        this.thrust.style.transform = "scaleX(" + parseFloat((this.plane.speed) * .002) +") scaleY("+parseFloat((this.plane.speed) * .001)+") rotateZ("+(-this.plane.pitch*1.2)+"deg)";
+        statusEffects.forEach(e=>{
+            e.style.transform = "rotateZ("+(-this.plane.pitch/2)+"deg)";
+        });
     }
 
 
@@ -119,10 +127,10 @@ export default class planeVfx {
         } else if (planeHp == 1 && this.plane.state !== "fire"){
             this.plane.state = "fire";
             this.fireVFX();
-            this.removeVFX(this.smoke_fire);
         } else if (planeHp == 0 && this.plane.state !== "explosion"){
             this.plane.state = "explosion";
             this.explosionVFX();
+            this.removeVFX(this.smoke_fire);
             this.removeVFX(this.fire);
             this.plane.planeImg.style.opacity = 0;
         }

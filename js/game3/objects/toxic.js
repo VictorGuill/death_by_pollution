@@ -57,7 +57,7 @@ export default class Toxic extends Object {
     this.element.style.width = this.w + "px";
     this.element.style.height = this.h + "px";
 
-    this.hitboxRadius = this.w / 3.5;
+    this.hitboxRadius = this.w/1.5;
   }
 
   updateHitbox(){

@@ -312,6 +312,9 @@ input{ margin-right: 100px;}
     }
     
 }
+.effectVFX{
+    transform-origin: right;
+}
 
 
 @keyframes deploy-chute {
@@ -420,13 +423,4 @@ input{ margin-right: 100px;}
       );
       background-size: 100vmax var(--scanLinesSize);
     }
-  }
-
-  @keyframes coin-animation {
-    0% {
-    }
-    100%{
-        transform: rotate(180deg);
-    }
-
   }

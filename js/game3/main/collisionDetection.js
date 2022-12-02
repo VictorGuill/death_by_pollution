@@ -33,6 +33,8 @@ export default class CollisionDetection {
   }
 
   objectCheck(object) {
+
+    object.collision = false;
     let planeLeft = this.gp.plane.screenX + screenZoneOffsetX, //plane x
       planeRight = this.gp.plane.screenX + screenZoneOffsetX + this.gp.plane.w, //plane x + width
       planeBottom = this.gp.plane.screenY + screenZoneOffsetY, //plane y
@@ -83,7 +85,8 @@ export default class CollisionDetection {
       let distance = Math.sqrt( (distX ** 2) + (distY ** 2));
 
       if (distance < radius) {
-        console.log("TOXIC COLLISION");
+        object.collision = true;
+        return true;
       }
 
     }
