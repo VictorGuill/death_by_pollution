@@ -354,6 +354,23 @@ input{ margin-right: 100px;}
 	}
 }
 
+@keyframes toxic-pulse {
+	0% {
+		transform: scale(1);
+        opacity: .9;
+	}
+
+	50% {
+		transform: scale(0.8);
+        opacity: 1;
+	}
+
+	100% {
+		transform: scale(1);
+        opacity: .9;
+	}
+}
+
 @keyframes effect-in {
     0%{
         opacity: 0;
@@ -373,10 +390,17 @@ input{ margin-right: 100px;}
 }
 
 @keyframes pick-up {
-    100%{
-        transform: scale(0) rotate(90deg);
-        opacity: 0;
+    0%{
+        transform-origin: center center;
+        transform: translate(0px, 0px);
     }
+    15%{
+        transform: translateY(-40px);
+    }
+    100%{
+        transform: translate(140px, -40px) rotate(1080deg) scale(0);
+    }
+
 }
 
 @keyframes scanlines {

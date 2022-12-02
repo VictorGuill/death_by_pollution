@@ -21,12 +21,11 @@ export default class Diamond extends Object{
         this.element.classList.add("diamond");
         this.element.style.bottom = y + "px";
         this.element.style.left = -this.w + "px";
+        this.element.style.width = this.w + "px";
+        this.element.style.height = this.h + "px";
 
-        const diamondImg = document.createElement("img");
-        diamondImg.width = this.w;
-        diamondImg.height = this.h;
-        diamondImg.src = "/media/game3/objects/diamond.gif";
-        this.element.appendChild(diamondImg);
+        this.element.style.backgroundImage = "url(/media/game3/objects/diamond.gif)";
+        this.element.style.backgroundSize = "cover";
     }
     
 

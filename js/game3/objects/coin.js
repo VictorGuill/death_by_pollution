@@ -22,6 +22,7 @@ export default class Coin extends Object{
         this.element.classList.add("coin");
         this.element.style.bottom = y + "px";
         this.element.style.left =  1000 + "px";
+        
 
         const coinImg = document.createElement("img");
         coinImg.width = this.w;

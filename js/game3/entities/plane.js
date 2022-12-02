@@ -34,8 +34,8 @@ export default class Plane{
         this.cL = .5; //Lift coeficient
         this.cD = 1.5; //Drag coeficient
 
-        this.acceleration = 50;
-        this.deceleration = 10;
+        this.acceleration = 10;
+        this.deceleration = 40;
 
         this.canPSM = true;
         this.cobraRange = false;

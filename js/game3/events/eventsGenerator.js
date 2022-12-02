@@ -7,17 +7,23 @@ export default class EventsGenerator{
     constructor(gp){
         this.gp = gp;
 
-        this.fCoins = this.gp.map.w * 1.5;
-        this.fNotes = this.gp.map.w * 4;
-        this.fDiamonds = this.gp.map.w * 5;
-
-        this.fToxic = this.gp.map.w/4;
+        this.fCoins = this.gp.map.w * 2;
+        this.fNotes = this.gp.map.w * 3;
+        this.fDiamonds = this.gp.map.w * 3;
+        this.fToxic = this.gp.map.w;
 
         
         this.spawnCoin = this.fCoins;
         this.spawnNote = this.fNotes;
         this.spawnDiamond = this.fDiamonds;
         this.spawnToxic = this.fToxic;
+
+        // this.generateToxicDebug(400, 200);
+    }
+
+    generateToxicDebug(x, y){
+        const toxic = new Toxic(this.gp, y);
+        toxic.element.style.left = x + "px"; 
     }
 
     random(max, min){
@@ -71,25 +77,20 @@ export default class EventsGenerator{
     update(){
         this.spawnCheck();
 
-        this.gp.objects.forEach((obj, ind) => {
+        this.gp.objects.forEach((obj) => {
             obj.update();
             obj.draw();
 
-            this.gp.collisionDetection.objectCheck(obj)
-
-            if(obj.collision){
+            if(this.gp.collisionDetection.objectCheck(obj)){
                 switch(obj.name){
                     case "coin":
                         this.gp.ui.score += 100;
-                        this.gp.objects.splice(ind, 1);
                         break;
                     case "note":
                         this.gp.ui.score += 200;
-                        this.gp.objects.splice(ind, 1);
                         break
                     case "diamond":
                         this.gp.ui.score += 500;
-                        this.gp.objects.splice(ind, 1)
                         break;
                     case "toxic":
                         if (!obj.ticked){

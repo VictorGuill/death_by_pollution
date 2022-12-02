@@ -21,12 +21,11 @@ export default class Note extends Object{
         this.element.classList.add("note");
         this.element.style.bottom = y + "px";
         this.element.style.left = -this.w + "px";
+        this.element.style.width = this.w + "px";
+        this.element.style.height = this.h + "px";
 
-        const noteImg = document.createElement("img");
-        noteImg.width = this.w;
-        noteImg.height = this.h;
-        noteImg.src = "/media/game3/objects/note.gif";
-        this.element.appendChild(noteImg);
+        this.element.style.backgroundImage = "url(/media/game3/objects/note.gif)";
+        this.element.style.backgroundSize = "cover";
     }
 
 }

@@ -1,68 +1,76 @@
 import Object from "./object.js";
 
-export default class Toxic extends Object{
-    constructor(gp, y){
+export default class Toxic extends Object {
+  constructor(gp, y) {
     super(gp);
-
     this.name = "toxic";
 
-    this.createToxic(y);
-    this.drawHitbox();
+    this.initialY = y;
+    this.y = this.initialY;
 
 
-    // this.initialX = this.gp.plane.worldX*2 + this.gp.map.w;
-    
     this.ticked = false;
 
-    this.index;
-    
-    }
+    this.createToxic();
+    this.generateHitboxUI();
+  }
 
-    drawHitbox(){
-        this.hitbox = document.createElement("div");
-        this.hitbox.style.backgroundColor = "red";
-        this.hitbox.style.position = "absolute";
+  generateHitboxUI() {
+    // HITBOX DEBUG UI
+    this.hitbox = document.createElement("div");
+    this.hitbox.style.backgroundColor = "red";
+    this.hitbox.style.position = "absolute";
+    this.hitbox.style.border = "2px red solid";
+    this.hitbox.style.zIndex = "1000";
+    this.hitbox.style.height = this.hitboxRadius + "px"; 
+    this.hitbox.style.transformOrigin = "bottom";
+    this.hitbox.style.animation = "rotate-hitbox 4s linear infinite";
 
-        const hitboxX = this.w/2;
-        const hitboxY = this.h/2;
-        const r = this.w/4;
+    //CONSOLE LOG
+/*     console.log("");
+    console.log("element X = " + this.x);
+    console.log("hitbox X = " + this.hitboxX);
+    console.log("");
+    console.log("element Y = " + this.y);
+    console.log("hitbox Y = " + this.hitboxY);
+ */
+    this.gp.map.objects.appendChild(this.hitbox);
+  }
 
-        this.hitbox.style.top = hitboxY + "px";
-        this.hitbox.style.left = hitboxX + "px";
+  randomCloud() {
+    let size = Math.floor(Math.random() * (300 - 100)) + 100;
+    this.w = size;
+    this.h = size;
+    const num = Math.floor(Math.random() * (5 - 1)) + 1;
+    return "url(/media/game3/objects/toxic" + num + ".gif)";
+  }
 
-        this.hitbox.style.width = "2px";
-        this.hitbox.style.height = r + "px";
-        this.hitbox.style.border = "4px red solid";
-        this.hitbox.style.transformOrigin = "0% 0%";
-        this.hitbox.style.animation = "rotate-hitbox 2s linear infinite";
-        // this.hitbox.style.borderRadius = "50%";
+  createToxic() {
+    this.element.classList.add("toxic");
+    this.element.style.backgroundImage = this.randomCloud();
+    this.element.style.backgroundSize = "cover";
+    // this.element.style.animation = "toxic-pulse 4s infinite";
 
-        this.element.appendChild(this.hitbox);
-    }
+    this.element.style.bottom = this.y + "px";
+    this.element.style.left = -this.w + "px";
 
-    randomCloud(){
-        let size = Math.floor((Math.random()*(200 - 50)))+50;
-        this.w = size;
-        this.h = size;
-        const num = Math.floor((Math.random()*(5 - 1)))+1;
-        console.log(num);
-        return "/media/game3/objects/toxic"+num+".gif";
-    }
+    this.element.style.width = this.w + "px";
+    this.element.style.height = this.h + "px";
 
-    createToxic(y){
-        this.initialY = y;
-        this.element.classList.add("toxic");
-        this.element.style.bottom = y + "px";
-        this.element.style.right = -this.w + "px";
-        const toxicImg = document.createElement("img");
-        toxicImg.src = this.randomCloud();
-        toxicImg.width = this.w;
-        toxicImg.height = this.h;
-        this.element.appendChild(toxicImg);
-    }
+    this.hitboxRadius = this.w / 3.5;
+  }
 
-    update(){
-        return super.update();
-    }
+  updateHitbox(){
+    this.hitboxX = this.x + this.w / 2;
+    this.hitboxY = this.y + this.h / 2;
 
+    //DEBUG
+    this.hitbox.style.bottom = this.hitboxY + "px";
+    this.hitbox.style.left = this.hitboxX + "px";
+  }
+
+  update() {
+    this.updateHitbox();
+    return super.update();
+  }
 }
