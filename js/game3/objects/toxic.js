@@ -5,27 +5,47 @@ export default class Toxic extends Object{
     super(gp);
 
     this.name = "toxic";
-    this.w = 100;
-    this.h = 100;
 
-    this.hitboxX = this.x;
-    this.hitboxY = this.y;
-    this.hitboxW = this.w;
-    this.hitboxH = this.h;
+    this.createToxic(y);
+    this.drawHitbox();
+
 
     // this.initialX = this.gp.plane.worldX*2 + this.gp.map.w;
     
     this.ticked = false;
 
     this.index;
-    this.createToxic(y);
+    
+    }
+
+    drawHitbox(){
+        this.hitbox = document.createElement("div");
+        this.hitbox.style.backgroundColor = "red";
+        this.hitbox.style.position = "absolute";
+
+        const hitboxX = this.w/2;
+        const hitboxY = this.h/2;
+        const r = this.w/4;
+
+        this.hitbox.style.top = hitboxY + "px";
+        this.hitbox.style.left = hitboxX + "px";
+
+        this.hitbox.style.width = "2px";
+        this.hitbox.style.height = r + "px";
+        this.hitbox.style.border = "4px red solid";
+        this.hitbox.style.transformOrigin = "0% 0%";
+        this.hitbox.style.animation = "rotate-hitbox 2s linear infinite";
+        // this.hitbox.style.borderRadius = "50%";
+
+        this.element.appendChild(this.hitbox);
     }
 
     randomCloud(){
         let size = Math.floor((Math.random()*(200 - 50)))+50;
         this.w = size;
         this.h = size;
-        const num = Math.floor((Math.random()*(4 - 1)))+1;
+        const num = Math.floor((Math.random()*(5 - 1)))+1;
+        console.log(num);
         return "/media/game3/objects/toxic"+num+".gif";
     }
 

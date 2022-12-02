@@ -274,7 +274,7 @@ export default class Plane{
         // console.log("SpeedX: "+ Math.round(this.speedX));
         // console.log("SpeedY: "+ Math.round(this.speedY));
         // console.log("This HP: " + this.hp);
-        console.log("fuel: "+this.fuel);
+        // console.log("fuel: "+this.fuel);
         //console.log("LIFT COEF: " + this.cL);
         //console.log("DRAG COEF: " +this.cD);
         // console.log("Lift: "+ Math.round(this.gp.physics.lift));

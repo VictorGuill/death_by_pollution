@@ -304,6 +304,15 @@ input{ margin-right: 100px;}
 #smoke, #smoke_fire, #fire, #explosion{
     animation: effect-in 2s linear forwards;
 }
+@keyframes rotate-hitbox {
+    from { 
+        transform: rotate(0deg); 
+    } to { 
+        transform: rotate(720deg); 
+    }
+    
+}
+
 
 @keyframes deploy-chute {
     0%{
