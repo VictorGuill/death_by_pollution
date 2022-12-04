@@ -44,10 +44,10 @@
         <p class="title_game">SUPER SCUBA</p>
       </div>
       <div id="game2" class="game">
-        <p class="title_game">JUEGO 2</p>
+        <p class="title_game">TRAIN TRACK</p>
       </div>
       <div id="game3" class="game">
-        <p class="title_game">JUEGO 3</p>
+        <p class="title_game">SKY DIVE</p>
       </div>
     </div>
     <div id="btnContainer">
