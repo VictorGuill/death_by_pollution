@@ -9,23 +9,8 @@ const container = document.getElementById("scroll-container");
 const nabvar = document.getElementById("landing_nav");
 const goStartBtn = document.getElementById("goStartBtn");
 
-/* const startSlide = document.getElementById("start");
-const aboutSlide = document.getElementById("about");
 
-function gradientAbout(){
-  let t = 0;
-  aboutSlide.style.setProperty("--transition", t+"%");
-  let s = setInterval(function(){
-        t += 10;
-        aboutSlide.style.setProperty("--transition", t+"%");
-        if (t >= 200){
-          clearInterval(s);
-        }
-      }, 50)
-}
-container.addEventListener("scroll", gradientAbout); */
-
-// set navbar background color
+/* // set navbar background color
 container.addEventListener("scroll", (e) => {
   if (container.scrollTop >= viewportHeight - 150) {
     nabvar.style.backgroundColor = "#000000";
@@ -40,4 +25,45 @@ container.addEventListener("scroll", (e) => {
     // goStartBtn.style.display = "none";
     goStartBtn.style.opacity = "0";
   }
+}); */
+
+//ANIMATIONS
+//NEW GSAP
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.defaults({ scroller: "#scroll-container" });
+
+gsap.from(".about-card", { 
+  scrollTrigger: {
+    trigger: "#about",
+    start: "top bottom",
+    toggleActions: "restart",
+    markers: true
+  },
+  yPercent: 100,
+  scale: 0.8,
+  transformOrigin: "center bottom",
+  duration: 1.2,
+  ease: "power4.out"
 });
+
+
+gsap.set(".problem-card", {scale: 1});
+const problemTL = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#problem",
+    start: "top bottom",
+    toggleActions: "restart",
+    markers: true
+  }
+})
+
+problemTL.from(".problem-card", {
+  yPercent: 100,
+  duration: 1.2,
+  ease: "power4.out",
+});
+
+problemTL.from(".problem-card", {
+  scale: 1.01,
+  duration: 0.5
+},)

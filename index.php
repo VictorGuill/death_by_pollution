@@ -45,11 +45,13 @@
 
      <!-- ABOUT -->
      <div id="about" class="scroll-area">
+      <div class="box1"></div>
+      
       <div class="container m-auto">
         <div class="slide-content">
           <div class="row justify-content-center ">
             <div class="col-6">
-              <div class="card">
+              <div class="card about-card">
                 <div class="card-body text-center">
                   <p class="about-card-secondary">Eco-traveling</p>
                   <br>
@@ -67,6 +69,7 @@
         </div>
       </div>
     </div>
+
     <!-- THE PROBLEM -->
     <div id="problem" class="scroll-area">
       <div class="container mt-6">
@@ -135,6 +138,7 @@
         </div>
       </div>
     </div>
+
     <!-- SERVICES -->
     <div id="services" class="scroll-area">
       <div class="container mt-5">
@@ -187,6 +191,9 @@
   <a id="goStartBtn" href="#start">
     <div>⬆</div>
   </a>
+
+  <script src="./tercers/gsap/gsap.min.js"></script>
+  <script src="./tercers/gsap/ScrollTrigger.min.js"></script>
 
   <script src="./js/landing.js"></script>
 </body>
