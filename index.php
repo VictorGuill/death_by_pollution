@@ -45,13 +45,11 @@
 
      <!-- ABOUT -->
      <div id="about" class="scroll-area">
-      <div class="box1"></div>
-      
       <div class="container m-auto">
         <div class="slide-content">
           <div class="row justify-content-center ">
             <div class="col-6">
-              <div class="card about-card">
+              <div class="about-card card">
                 <div class="card-body text-center">
                   <p class="about-card-secondary">Eco-traveling</p>
                   <br>
@@ -88,7 +86,7 @@
           </div>
           
           <div class="row justify-content-between">
-            <div class="card col-3">
+            <div class="problem-card card col-3">
               <div class="card-header">
                 <div>
                   <img class="card-title card-icon" src="./media/landing/ic-train.png" alt="train_ico">
@@ -103,7 +101,7 @@
                 <h5>CO2 --> 19%</h5>
               </div>
             </div>
-            <div class="card col-3">
+            <div class="problem-card card col-3">
               <div class="card-header">
                 <div>
                   <img class="card-title card-icon" src="./media/landing/ic-ship.png" alt="ship_ico">
@@ -119,7 +117,7 @@
               </div>
             </div>
 
-            <div class="card col-3">
+            <div class="problem-card card col-3">
               <div class="card-header">
                 <div>
                   <img class="card-title card-icon" src="./media/landing/ic-plane.png" alt="plane_ico">
@@ -145,7 +143,7 @@
         <div class="slide-content">
           <div class="row justify-content-center">
             <div class="col-2">
-              <h3 id="service-title">Servicios</h3>
+              <a href="#services" style="text-decoration: none;"><h3 id="service-title">Servicios</h3></a>
             </div>
           </div>
           <div class="row justify-content-center mb-5">

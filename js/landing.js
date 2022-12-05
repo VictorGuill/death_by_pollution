@@ -10,7 +10,7 @@ const nabvar = document.getElementById("landing_nav");
 const goStartBtn = document.getElementById("goStartBtn");
 
 
-/* // set navbar background color
+// set navbar background color
 container.addEventListener("scroll", (e) => {
   if (container.scrollTop >= viewportHeight - 150) {
     nabvar.style.backgroundColor = "#000000";
@@ -25,7 +25,7 @@ container.addEventListener("scroll", (e) => {
     // goStartBtn.style.display = "none";
     goStartBtn.style.opacity = "0";
   }
-}); */
+});
 
 //ANIMATIONS
 //NEW GSAP
@@ -35,8 +35,9 @@ ScrollTrigger.defaults({ scroller: "#scroll-container" });
 gsap.from(".about-card", { 
   scrollTrigger: {
     trigger: "#about",
-    start: "top bottom",
-    toggleActions: "restart",
+    start: "40% bottom",
+    id: "about",
+    toggleActions: "play none none reverse",
     markers: true
   },
   yPercent: 100,
@@ -51,19 +52,21 @@ gsap.set(".problem-card", {scale: 1});
 const problemTL = gsap.timeline({
   scrollTrigger: {
     trigger: "#problem",
-    start: "top bottom",
-    toggleActions: "restart",
+    id: "problem-cards",
+    start: "center bottom",
+    toggleActions: "play none none reverse",
     markers: true
   }
 })
 
 problemTL.from(".problem-card", {
   yPercent: 100,
-  duration: 1.2,
+  duration: 1,
   ease: "power4.out",
 });
 
 problemTL.from(".problem-card", {
   scale: 1.01,
   duration: 0.5
-},)
+}, "-=.2")
+
