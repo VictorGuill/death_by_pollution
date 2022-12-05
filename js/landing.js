@@ -70,3 +70,20 @@ problemTL.from(".problem-card", {
   duration: 0.5
 }, "-=.2")
 
+const servicesTL = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#services",
+    start: "top top",
+    end: "center top",
+    // anticipatePin: 2,
+    // pin: true,
+    scrub: true,
+    markers: true
+  }
+})
+
+servicesTL.to(".service-card", {
+  rotationY: 180,
+  ease: "none",
+  duration: 2
+});
