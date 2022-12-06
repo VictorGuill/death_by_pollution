@@ -11,6 +11,10 @@ setCssVar("--scanLinesSize", "4px");
 //#endregion
 
 //#region PLAYER SETTINGS
+export const gameplayDuration = 5;
+//#endregion
+
+//#region PLAYER SETTINGS
 export const player_scale = 1;
 export const player_min_y = 0.14;
 export const player_max_y = 1;

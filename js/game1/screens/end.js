@@ -1,22 +1,26 @@
 import Screen from "./screen.js";
 
-export default class Menu extends Screen {
+export default class End extends Screen {
   constructor(id) {
     super(id);
 
     this.selection = 1;
   }
 
-  add() {
+  add(score) {
     super.add();
 
     const gameTitle = document.createElement("p");
     gameTitle.setAttribute("id", "gameTitle");
-    gameTitle.innerHTML = "SUPER<br><span>SCUBA</span>";
+    gameTitle.innerHTML = "THE END";
     this.dom.appendChild(gameTitle);
 
-    this.dom.appendChild(menuItem("play"));
-    this.dom.appendChild(menuItem("tutorial"));
+    const score_txt = document.createElement("p");
+    score_txt.setAttribute("id", "playerScore");
+    score_txt.innerHTML = "Your score: " + score;
+    this.dom.appendChild(score_txt);
+
+    this.dom.appendChild(menuItem("menu"));
     this.dom.appendChild(menuItem("credits"));
     this.dom.appendChild(menuItem("exit"));
   }
@@ -27,35 +31,24 @@ export default class Menu extends Screen {
       input["ArrowUp"] = false;
     }
 
-    if (input["ArrowDown"] && this.selection < 4) {
+    if (input["ArrowDown"] && this.selection < 3) {
       this.selection++;
       input["ArrowDown"] = false;
     }
 
     switch (this.selection) {
       case 1:
-        setSelected("play");
-        removeSelected("tutorial");
+        setSelected("menu");
         removeSelected("credits");
         removeSelected("exit");
         break;
-
       case 2:
-        removeSelected("play");
-        setSelected("tutorial");
-        removeSelected("credits");
-        removeSelected("exit");
-        break;
-
-      case 3:
-        removeSelected("play");
-        removeSelected("tutorial");
+        removeSelected("menu");
         setSelected("credits");
         removeSelected("exit");
         break;
-      case 4:
-        removeSelected("play");
-        removeSelected("tutorial");
+      case 3:
+        removeSelected("menu");
         removeSelected("credits");
         setSelected("exit");
         break;
@@ -64,10 +57,8 @@ export default class Menu extends Screen {
     if (input["Enter"]) {
       switch (this.selection) {
         case 1:
-          return "game";
+          return "menu";
         case 2:
-          return "tutorial";
-        case 3:
           return "credits";
         case 3:
           return "exit";

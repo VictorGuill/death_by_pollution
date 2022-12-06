@@ -2,8 +2,6 @@ export default class Ui {
   constructor(id) {
     this.id = id;
     this.ui = document.createElement("div");
-
-    this.max_time = 61;
   }
 
   // set iu div attributes and append to DOM
@@ -21,7 +19,7 @@ export default class Ui {
     // add game name
     const game_text = document.createElement("p");
     game_text.setAttribute("id", "game_text");
-    game_text.innerHTML = "scuba-test";
+    game_text.innerHTML = "SUPER SCUBA";
     game_text.style.color = "#ea5000";
     this.ui.appendChild(game_text);
 
@@ -31,13 +29,16 @@ export default class Ui {
     this.ui.appendChild(timer_text);
   }
 
-  updateValues(player, runtime) {
+  // removes div from DOM
+  remove() {
+    this.ui.remove();
+  }
+
+  updateValues(player, gameplayTimeLeft) {
     const trash_text = document.getElementById("trashText");
     trash_text.innerHTML = "score: " + player.trash_collected;
 
-    let time_left = this.max_time - runtime / 1000;
-
-    timer_text.innerHTML = secondsToTime(time_left) + "s";
+    timer_text.innerHTML = secondsToTime(gameplayTimeLeft) + "s";
     +"s";
   }
 }

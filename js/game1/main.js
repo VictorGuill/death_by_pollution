@@ -5,6 +5,7 @@ import * as func from "./functions.js";
 
 import Menu from "./screens/menu.js";
 import Map from "./screens/map.js";
+import End from "./screens/end.js";
 import Trash from "./items/trash.js";
 import Perk from "./items/perk.js";
 import Player from "./items/player.js";
@@ -14,6 +15,7 @@ import Ship from "./items/ship.js";
 
 //#region GAME SETUP
 export let elapsedTime = 0;
+export let gameplayTimeLeft;
 let screen_state = "menu";
 
 let trashes = [],
@@ -31,6 +33,8 @@ const map = new Map("map");
 const ui = new Ui("ui");
 const player = new Player("player", map);
 const ship = new Ship("ship", map);
+
+const end_screen = new End("end");
 //#endregion
 
 //#region GAME LOOP
@@ -51,7 +55,9 @@ function gameLoop(millis) {
           case "game":
             gameSetup();
             break;
-          case "options":
+          case "tutorial":
+            break;
+          case "credits":
             break;
           case "exit":
             window.location.href = "../pages/gamesMenu.php";
@@ -60,7 +66,42 @@ function gameLoop(millis) {
       }
       break;
     case "game":
-      updateGame(dt, elapsedTime);
+      if (gameplayTimeLeft > 1 || gameplayTimeLeft === undefined) {
+        updateGame(dt, elapsedTime);
+      } else {
+        map.remove();
+        ui.remove();
+
+        end_screen.add(player.trash_collected);
+
+        screen_state = "end_screen";
+
+        input["ArrowUp"] = false;
+        input["ArrowDown"] = false;
+        input["ArrowLeft"] = false;
+        input["ArrowRight"] = false;
+        input["Enter"] = false;
+      }
+      break;
+    case "end_screen":
+      let end_option = end_screen.actions(input);
+
+      if (end_option !== -1) {
+        console.log(end_option);
+        screen_state = end_option;
+        end_screen.remove();
+        switch (end_option) {
+          case "menu":
+            location.reload();
+            break;
+          case "credits":
+            location.reload();
+            break;
+          case "exit":
+            window.location.href = "../pages/gamesMenu.php";
+            break;
+        }
+      }
       break;
     case "options":
       console.log("in options");
@@ -110,6 +151,7 @@ addEventListener("resize", (e) => {
 function gameSetup() {
   map.add();
   map.resize();
+  map.setGameTime(elapsedTime);
   ui.add();
   player.add();
   player.resize();
@@ -120,6 +162,8 @@ function gameSetup() {
 }
 
 function updateGame(dt, elapsedTime) {
+  gameplayTimeLeft = map.max_time / 1000 - elapsedTime / 1000;
+
   player.move(dt, input);
 
   checkTrashCollition(trashes);
@@ -128,7 +172,7 @@ function updateGame(dt, elapsedTime) {
   player.applyPerk(elapsedTime, trashes);
 
   perk_acc = perkSpawn(dt, perk_acc, perks);
-  ui.updateValues(player, elapsedTime);
+  ui.updateValues(player, gameplayTimeLeft);
 }
 
 // create initial trashes before game starts

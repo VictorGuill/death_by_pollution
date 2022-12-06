@@ -1,5 +1,17 @@
 /* Animations */
 
+@keyframes score {
+  0% {
+    transform: scale(80%);
+  }
+  50% {
+    transform: scale(95%);
+  }
+  100% {
+    transform: scale(80%);
+  }
+}
+
 /* #region ITEMS */
 @keyframes item-spawn {
   0% {

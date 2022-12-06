@@ -17,7 +17,7 @@ onmouseover = (e) => {
 };
 
 game1.addEventListener("click", (e) => {
-  window.location.href = "../games/game1.html";
+  window.location.href = "../games/game1.php";
 });
 game2.addEventListener("click", (e) => {
   window.location.href = "../games/game2.html";
