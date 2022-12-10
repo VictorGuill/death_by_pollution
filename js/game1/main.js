@@ -2,6 +2,7 @@
 import { input } from "./input.js";
 import * as cfg from "./config.js";
 import * as func from "./functions.js";
+import { setCookie, getCookie, eraseCookie } from "../cookiesFunctions.js";
 
 import Menu from "./screens/menu.js";
 import Map from "./screens/map.js";
@@ -50,19 +51,44 @@ function gameLoop(millis) {
 
       if (option !== -1) {
         screen_state = option;
-        menu_start.remove();
         switch (option) {
           case "game":
+            menu_start.remove();
             gameSetup();
             break;
           case "tutorial":
+            const tutorialModal = document.getElementById("tutorialModal");
+            tutorialModal.style.display = "grid";
+            input["Enter"] = false;
             break;
           case "credits":
+            const creditsModal = document.getElementById("creditsModal");
+            creditsModal.style.display = "grid";
+            input["Enter"] = false;
             break;
           case "exit":
+            menu_start.remove();
             window.location.href = "../pages/gamesMenu.php";
             break;
         }
+      }
+      break;
+    case "tutorial":
+      if (input["Enter"]) {
+        const tutorialModal = document.getElementById("tutorialModal");
+        tutorialModal.style.display = "none";
+
+        input["Enter"] = false;
+        screen_state = "menu";
+      }
+      break;
+    case "credits":
+      if (input["Enter"]) {
+        const creditsModal = document.getElementById("creditsModal");
+        creditsModal.style.display = "none";
+
+        input["Enter"] = false;
+        screen_state = "menu";
       }
       break;
     case "game":
@@ -73,6 +99,7 @@ function gameLoop(millis) {
         ui.remove();
 
         end_screen.add(player.trash_collected);
+        setCookie("game1_score", player.trash_collected, 1);
 
         screen_state = "end_screen";
 
@@ -87,24 +114,32 @@ function gameLoop(millis) {
       let end_option = end_screen.actions(input);
 
       if (end_option !== -1) {
-        console.log(end_option);
         screen_state = end_option;
-        end_screen.remove();
         switch (end_option) {
           case "menu":
+            end_screen.remove();
             location.reload();
             break;
-          case "credits":
-            location.reload();
+          case "credits_end":
+            const creditsModal = document.getElementById("creditsModal");
+            creditsModal.style.display = "grid";
+            input["Enter"] = false;
             break;
           case "exit":
+            end_screen.remove();
             window.location.href = "../pages/gamesMenu.php";
             break;
         }
       }
       break;
-    case "options":
-      console.log("in options");
+    case "credits_end":
+      if (input["Enter"]) {
+        const creditsModal = document.getElementById("creditsModal");
+        creditsModal.style.display = "none";
+
+        input["Enter"] = false;
+        screen_state = "end_screen";
+      }
       break;
     case "exit":
       // const redirectingTitle = document.createElement("p");
@@ -121,7 +156,11 @@ function gameLoop(millis) {
 
 //#region RESIZE EVENT
 addEventListener("resize", (e) => {
-  if (screen_state === "menu") {
+  if (
+    screen_state === "menu" ||
+    screen_state === "tutorial" ||
+    screen_state === "credits"
+  ) {
     menu_start.resize();
   }
 
@@ -137,6 +176,10 @@ addEventListener("resize", (e) => {
     perks.forEach((perk) => {
       perk.resize();
     });
+  }
+
+  if (screen_state === "end_screen") {
+    end_screen.resize();
   }
 
   // prevent bug: input sometimes remain true when resizing

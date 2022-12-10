@@ -12,6 +12,21 @@
   }
 }
 
+@keyframes credits-name {
+  0% {
+    text-shadow: 2px 2px black;
+  }
+  49% {
+    text-shadow: 2px 2px black;
+  }
+  50% {
+    text-shadow: 2px 2px rgba(0, 0, 0, 0);
+  }
+  100% {
+    text-shadow: 2px 2px rgba(0, 0, 0, 0);
+  }
+}
+
 /* #region ITEMS */
 @keyframes item-spawn {
   0% {

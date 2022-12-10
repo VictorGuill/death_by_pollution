@@ -59,7 +59,7 @@ export default class End extends Screen {
         case 1:
           return "menu";
         case 2:
-          return "credits";
+          return "credits_end";
         case 3:
           return "exit";
       }

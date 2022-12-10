@@ -74,7 +74,7 @@
   transition: transform 0.1s cubic-bezier(0.14, 1.17, 0.46, 0.98);
 
   border-bottom: 3px solid;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 
   position: relative;
 }
@@ -93,9 +93,6 @@
   position: absolute;
 
   bottom: -34px;
-}
-
-#scoresBtn {
 }
 
 #headerContainer {
@@ -174,9 +171,6 @@ a {
   width: 100%;
   background: var(--LIGHT);
   transition: 0.2s;
-}
-
-#scoresBtn a:hover {
 }
 
 #info {
@@ -296,4 +290,27 @@ a {
   background-image: url("../media/games_menu/game3_screenshot.png");
   background-size: 100% 100%;
   background-position-x: center;
+}
+
+.blocked {
+  filter: grayscale(1) contrast(0.5);
+}
+
+.blocked::after {
+  content: "";
+  background-image: url("../media/blockedIcon.png");
+  background-size: 30%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100%;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  position: absolute;
+  display: inline-block;
+  backdrop-filter: blur(5px);
 }

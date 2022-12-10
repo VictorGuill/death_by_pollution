@@ -1,3 +1,17 @@
+<?php require_once("../php_libraries/bd.php");
+
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+if (isset($_COOKIE['game1_score'])) {
+  insertUserScore(0, $_SESSION['id'], $_COOKIE['game1_score']);
+  unset($_COOKIE['game1_score']);
+  setcookie('game1_score', null, -1, '/');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,11 +57,43 @@
       <div id="game1" class="game">
         <p class="title_game">SUPER SCUBA</p>
       </div>
-      <div id="game2" class="game">
-        <p class="title_game">TRAIN TRACK</p>
+      <div id="game2" class="game <?php
+                                  if (isset($_SESSION['phase'])) {
+                                    if ($_SESSION['phase'] < 2) {
+                                      echo "blocked";
+                                    }
+                                  } else {
+                                    echo "blocked";
+                                  }
+                                  ?>">
+        <p class="title_game"><?php
+                              if (isset($_SESSION['phase'])) {
+                                if ($_SESSION['phase'] >= 2) {
+                                  echo "SKY DIVE";
+                                }
+                              } else {
+                                echo "";
+                              }
+                              ?></p>
       </div>
-      <div id="game3" class="game">
-        <p class="title_game">SKY DIVE</p>
+      <div id="game3" class="game <?php
+                                  if (isset($_SESSION['phase'])) {
+                                    if ($_SESSION['phase'] < 3) {
+                                      echo "blocked";
+                                    }
+                                  } else {
+                                    echo "blocked";
+                                  }
+                                  ?>">
+        <p class="title_game"><?php
+                              if (isset($_SESSION['phase'])) {
+                                if ($_SESSION['phase'] >= 3) {
+                                  echo "SKY DIVE";
+                                }
+                              } else {
+                                echo "";
+                              }
+                              ?></p>
       </div>
     </div>
     <div id="btnContainer">

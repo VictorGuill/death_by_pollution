@@ -22,7 +22,9 @@ if (isset($_POST["login"])) {
         //         echo "<br>";
         //     }
         // }
+        $_SESSION["id"] = $user[0]["id"];
         $_SESSION["name"] = $user[0]["name"];
+        $_SESSION["phase"] = $user[0]["phase"];
         $_SESSION["user_type"] = setUserType($user[0]["user_type_id"]);
     }
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
@@ -33,17 +35,21 @@ if (isset($_POST["register"])) {
 
     $hashedPassword = hash("sha512", $_POST["password"]);
 
-    insertUser(strtolower($_POST["name"]), $hashedPassword, 0, 0);
+    insertUser(strtolower($_POST["name"]), $hashedPassword, 1, 0);
 
     $user = selectUser(strtolower($_POST["name"]), $hashedPassword);
+    $_SESSION["id"] = $user[0]["id"];
     $_SESSION["name"] = $user[0]["name"];
+    $_SESSION["phase"] = $user[0]["phase"];
     $_SESSION["user_type"] = setUserType($user[0]["user_type_id"]);
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
 }
 
 if (isset($_POST["logout"])) {
+    unset($_SESSION["id"]);
     unset($_SESSION["name"]);
+    unset($_SESSION["phase"]);
     unset($_SESSION["user_type"]);
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();

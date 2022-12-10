@@ -17,6 +17,14 @@ export default class Screen {
     this.dom.setAttribute("class", "crt_borders"); //add old monitor borders
     document.body.appendChild(this.dom);
 
+    // tutorial & credits screens (hidden by default)
+    // const tutorial = document.createElement("div");
+    // tutorial.setAttribute("id", "tutorialModal");
+    // const credits = document.createElement("div");
+    // credits.setAttribute("id", "creditsModal");
+    // this.dom.appendChild(tutorial);
+    // this.dom.appendChild(credits);
+
     this.resize();
   }
 

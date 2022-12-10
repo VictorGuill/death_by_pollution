@@ -69,7 +69,7 @@ export default class Menu extends Screen {
           return "tutorial";
         case 3:
           return "credits";
-        case 3:
+        case 4:
           return "exit";
       }
     }

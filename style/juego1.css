@@ -47,7 +47,9 @@ body {
 
   will-change: background, background-size;
   animation: scanlines var(--scanLinesSpeed) linear infinite;
-  z-index: 9;
+  z-index: 59;
+
+  pointer-events: none;
 }
 
 .crt_borders::after {
@@ -59,7 +61,7 @@ body {
 
   background-image: url("../media/game1_assets/crt.png");
   background-size: cover;
-  z-index: 10;
+  z-index: 60;
 }
 /* #endregion */
 
@@ -133,6 +135,172 @@ body {
 #gameTitle span {
   font-size: 12vmin;
   margin-bottom: 10vmin;
+}
+
+#tutorialModal,
+#creditsModal {
+  display: none;
+
+  width: 80vmin;
+
+  position: fixed;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+
+  border: 3px solid red;
+  border-left: none;
+  border-top: none;
+
+  background-color: white;
+  z-index: 50;
+
+  font-size: 2vmin;
+  text-transform: uppercase;
+  font-family: "Press Start 2P", cursive;
+
+  backdrop-filter: blur(10px);
+}
+
+#tutorialModal {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 10% 40% 25% 25%;
+
+  height: 60vmin;
+}
+
+#tutorialModal .title,
+#creditsModal .title {
+  grid-area: 1 / 1 / 2 / 2;
+
+  padding: 2vmin;
+
+  font-size: 2.8vmin;
+  color: yellow;
+  background-color: black;
+}
+
+#tutorialModal p:nth-child(2) {
+  grid-area: 2 / 1 / 3 / 4;
+
+  align-self: center;
+
+  line-height: 140%;
+  font-size: 2.6vmin;
+  padding: 0 5vmin;
+}
+
+#tutorialModal p:nth-child(3) {
+  grid-area: 3 / 1 / 4 / 3;
+
+  align-self: center;
+
+  line-height: 140%;
+  font-size: 1.8vmin;
+  padding: 0 5vmin;
+}
+
+#tutorialModal img:nth-child(4) {
+  grid-area: 3 / 3 / 4 / 4;
+
+  width: 90%;
+  height: auto;
+
+  align-self: center;
+}
+
+#tutorialModal p:nth-child(5) {
+  grid-area: 4 / 1 / 5 / 3;
+
+  align-self: center;
+
+  line-height: 140%;
+  font-size: 1.8vmin;
+  padding: 0 5vmin;
+}
+
+#tutorialModal img:nth-child(6) {
+  grid-area: 4 / 3 / 5 / 4;
+
+  margin-left: 2vmin;
+
+  width: 70%;
+  height: auto;
+
+  align-self: center;
+}
+
+#tutorialModal span,
+#creditsModal span {
+  color: red;
+  text-shadow: 2px 2px black;
+}
+
+#creditsModal {
+  height: 40vmin;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 20% 80%;
+}
+
+#creditsModal span {
+  font-size: 2.8vmin;
+  animation: credits-name 1s linear infinite;
+}
+
+#creditsModal .title {
+  margin-bottom: auto;
+  height: 95%;
+}
+
+#creditsModal p {
+  grid-area: 2 / 2 / 3 / 4;
+  align-self: center;
+  padding: 0 4vmin 0 1vmin;
+  text-align: center;
+  line-height: 160%;
+  font-size: 2.4vmin;
+  transform: translateY(-2.5vmin);
+}
+
+#creditsModal div {
+  background-image: url("../media/game1_assets/victorPixel.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  grid-area: 2 / 1 / 3 / 2;
+
+  width: 80%;
+  aspect-ratio: 1 / 1;
+
+  padding-left: 7.5vmin;
+  align-self: center;
+  justify-self: flex-end;
+
+  border-radius: 50%;
+  border: 0.25vmin solid black;
+  transform: translateY(-1vmin);
+}
+
+#githubLogo {
+  background-image: url("../media/game1_assets/github.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  grid-area: 2 / 2 / 3 / 4;
+  height: 25%;
+  width: auto;
+  cursor: pointer;
+
+  margin-bottom: 7vmin;
+
+  transition: transform 0.1s linear;
+  align-self: flex-end;
+}
+
+#githubLogo:hover {
+  transform: scale(1.15);
 }
 /* #endregion */
 
