@@ -1,4 +1,6 @@
 <?php
+require_once("../php_libraries/bd.php");
+
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -35,50 +37,69 @@ if (!isset($_SESSION)) {
           </div>";
   } else {
     echo "<section class='intro'>
-            <div class='bg-image h-100'>
-              <div class='mask d-flex align-items-center h-100'>
-                <div class='container'>
-                  <div class='row justify-content-center'>
-                    <div class='col-12'>
-                      <div class='card shadow-2-strong'>
-                        <div class='card-body'>
-                          <div class='table-responsive'>
-                            <table class='table table-borderless mb-0'>
-                              <thead>
-                                <tr>
-                                  <th scope='col'>ID</th>
-                                  <th scope='col'>NAME</th>
-                                  <th scope='col'>PHASE</th>
-                                  <th scope='col'>USER TYPE</th>
-                                  <th scope='col'>ACTIONS</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>01</td>
-                                  <td>Tiger Nixon</td>
-                                  <td>2</td>
-                                  <td>Admin</td>
-                                  <td>
-                                    <button type='button' class='btn btn-primary btn-sm'>
-                                      <i>✏️</i>
-                                    </button>
-                                    <button type='button' class='btn btn-danger btn-sm'>
-                                      <i>❌</i>
-                                    </button>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
+    <div class='bg-image h-100'>
+      <div class='mask d-flex align-items-center h-100'>
+        <div class='container'>
+          <div class='row justify-content-center'>
+            <div class='col-12'>
+              <div class='card shadow-2-strong'>
+                <div class='card-body'>
+                  <div class='table-responsive'>
+                    <table class='table table-borderless mb-0'>
+                      <thead>
+                        <tr>
+                          <th scope='col'>ID</th>
+                          <th scope='col'>NAME</th>
+                          <th scope='col'>PHASE</th>
+                          <th scope='col'>USER TYPE</th>
+                          <th scope='col'>ACTIONS</th>
+                        </tr>
+                      </thead>
+                      <tbody>";
+
+    $users = selectAllUsers();
+
+    foreach ($users as $user) {
+      switch ($user['user_type_id']) {
+        case 0:
+          $user['user_type_id'] = "user";
+          break;
+        case 1:
+          $user['user_type_id'] = "admin";
+          break;
+        case 2:
+          $user['user_type_id'] = "super admin";
+          break;
+      }
+
+      echo "<tr>
+                          <td>" . $user['id'] . "</td>
+                          <td>" . $user['name'] . "</td>
+                          <td>" . $user['phase'] . "</td>
+                          <td>" . $user['user_type_id'] . "</td>
+                          <td>
+                            <button type='button' class='btn btn-primary btn-sm'>
+                              <i>✏️</i>
+                            </button>
+                            <button type='button' class='btn btn-danger btn-sm'>
+                              <i>❌</i>
+                            </button>
+                          </td>
+                        </tr>";
+    }
+
+
+    echo "</tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>";
+            </div>
+            </div>
+            </div>
+            </section>";
   }
   ?>
   <script src="../js/loginPanelLogic.js"></script>

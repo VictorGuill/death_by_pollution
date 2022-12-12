@@ -21,7 +21,6 @@ name_input.addEventListener("input", function (e) {
 
 pass_input.addEventListener("input", function (e) {
   checkEmptyFields();
-  checkPasswordsMatch();
 });
 
 pass2_input.addEventListener("input", function (e) {
@@ -81,7 +80,7 @@ function showLogin() {
 }
 
 function showLogin_noAnimation() {
-  showLogin();
+  login_panel.style.display = "inherit";
   login_panel.style.animation = "";
 }
 

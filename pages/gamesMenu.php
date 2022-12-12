@@ -61,11 +61,7 @@ if (isset($_SESSION["name"])) {
                                     echo "blocked";
                                   }
                                   ?>">
-        <p class="title_game"><?php
-                              if (!isset($_SESSION['phase'])) {
-                                echo "SUPER SCUBA";
-                              }
-                              ?></p>
+        <p class="title_game">SUPER SCUBA</p>
       </div>
       <div id="game2" class="game <?php
                                   if (isset($_SESSION['phase'])) {

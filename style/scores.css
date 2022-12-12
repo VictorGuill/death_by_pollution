@@ -92,18 +92,35 @@ body {
   border-right: 0;
 }
 
+#rank1 span {
+  font-size: 55%;
+  color: rgb(255, 255, 0);
+}
+
+#rank2 span {
+  font-size: 55%;
+  color: rgb(198, 193, 193);
+}
+
+#rank3 span {
+  font-size: 55%;
+  color: rgb(185, 96, 0);
+}
+
 #rank1 p,
 #rank2 p,
 #rank3 p {
   position: absolute;
   width: 100%;
 
-  top: -75px;
+  top: -60px;
 
   /* Trick to center absolute child in the middle */
   left: 50%;
   transform: translateX(-50%);
+  text-transform: capitalize;
 
+  line-height: 110%;
   text-align: center;
   font-size: 2.5em;
 }
@@ -130,7 +147,8 @@ body {
 #rank3 div p {
   position: absolute;
 
-  top: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
   left: 50%;
 
   font-size: 2em;

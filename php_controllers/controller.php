@@ -13,7 +13,6 @@ if (isset($_POST["login"])) {
 
     if (empty($user)) {
         $_SESSION["error"] = "El usuario " . $_POST["name"] . " no existe o la contraseña es errónea.";
-        header('Location: ' . $_SERVER["HTTP_REFERER"]);
     } else {
         // foreach ($user as $key) {
         //     echo print_r($key);

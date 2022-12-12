@@ -7,6 +7,10 @@ body {
   height: 100%;
 }
 
+table {
+  text-transform: capitalize;
+}
+
 table td,
 table th {
   text-overflow: ellipsis;

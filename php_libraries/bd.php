@@ -56,6 +56,22 @@ function selectUser($name, $password)
     return $result;
 }
 
+function selectAllUsers()
+{
+    $conexion = openDB();
+
+    $queryText = "SELECT id, name, phase, user_type_id FROM users;";
+
+    $query = $conexion->prepare($queryText);
+    $query->execute();
+
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $conexion = closeDB();
+
+    return $result;
+}
+
 function getUserType($name)
 {
     $conexion = openDB();
@@ -101,6 +117,53 @@ function changeUserPhase($userID, $newPhase)
     $conexion = openDB();
 
     $queryText = "UPDATE users SET users.phase = " . $newPhase . " WHERE users.id = " . $userID . ";";
+
+    $query = $conexion->prepare($queryText);
+    $query->execute();
+
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $conexion = closeDB();
+
+    return $result;
+}
+
+function selectGameScores($game)
+{
+    $conexion = openDB();
+
+    $queryText = "SELECT users.name, score FROM users
+    INNER JOIN scores
+    ON users.id = scores.users_id
+    INNER JOIN games
+    ON scores.games_id = games.id
+    WHERE games.id = " . $game . "
+    ORDER BY scores.score DESC
+    LIMIT 10000
+    OFFSET 3;";
+
+    $query = $conexion->prepare($queryText);
+    $query->execute();
+
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $conexion = closeDB();
+
+    return $result;
+}
+
+function selectSpecificScore($game, $postion)
+{
+    $conexion = openDB();
+
+    $queryText = "SELECT users.name, score FROM users
+    INNER JOIN scores
+    ON users.id = scores.users_id
+    INNER JOIN games
+    ON scores.games_id = games.id
+    WHERE games.id = " . $game . "
+    ORDER BY scores.score DESC
+    LIMIT " . $postion . ", 1;";
 
     $query = $conexion->prepare($queryText);
     $query->execute();

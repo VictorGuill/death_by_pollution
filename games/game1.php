@@ -16,7 +16,6 @@ if (isset($_COOKIE['game1_score'])) {
   unset($_COOKIE['game1_score']);
   setcookie('game1_score', null, -1, '/');
 }
-
 ?>
 
 <!DOCTYPE html>

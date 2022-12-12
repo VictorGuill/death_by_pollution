@@ -123,6 +123,10 @@ SET users.phase = 2
 WHERE users.id = 5;
 
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 1, 45, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 75, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 53, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 23, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 223, 60, now());
 
 SELECT * FROM user_type;
 
@@ -152,4 +156,32 @@ SELECT * FROM users
 INNER JOIN scores
 ON users.id = scores.users_id
 INNER JOIN games
-ON scores.games_id = games.id;
+ON scores.games_id = games.id
+WHERE games.id = 1;
+
+SELECT users.name, score FROM users
+INNER JOIN scores
+ON users.id = scores.users_id
+INNER JOIN games
+ON scores.games_id = games.id
+WHERE games.id = 0
+ORDER BY scores.score DESC
+LIMIT 10000
+OFFSET 3;
+
+SELECT users.name, score FROM users
+INNER JOIN scores
+ON users.id = scores.users_id
+INNER JOIN games
+ON scores.games_id = games.id
+WHERE games.id = 1
+ORDER BY scores.score DESC
+LIMIT 2, 1;
+
+
+
+
+
+SELECT * FROM users
+INNER JOIN scores
+ON users.id = scores.user_id;
