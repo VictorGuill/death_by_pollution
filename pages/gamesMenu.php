@@ -4,10 +4,12 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-if (isset($_COOKIE['game1_score'])) {
-  insertUserScore(0, $_SESSION['id'], $_COOKIE['game1_score']);
-  unset($_COOKIE['game1_score']);
-  setcookie('game1_score', null, -1, '/');
+if (isset($_SESSION["name"])) {
+  if (isset($_COOKIE['game1_score'])) {
+    insertUserScore(0, $_SESSION['id'], $_COOKIE['game1_score']);
+    unset($_COOKIE['game1_score']);
+    setcookie('game1_score', null, -1, '/');
+  }
 }
 
 ?>
@@ -54,8 +56,16 @@ if (isset($_COOKIE['game1_score'])) {
       <p id="title"><span id="yellowTittle">|</span> GAMES</p>
     </div>
     <div id="games">
-      <div id="game1" class="game">
-        <p class="title_game">SUPER SCUBA</p>
+      <div id="game1" class="game <?php
+                                  if (!isset($_SESSION['phase'])) {
+                                    echo "blocked";
+                                  }
+                                  ?>">
+        <p class="title_game"><?php
+                              if (!isset($_SESSION['phase'])) {
+                                echo "SUPER SCUBA";
+                              }
+                              ?></p>
       </div>
       <div id="game2" class="game <?php
                                   if (isset($_SESSION['phase'])) {

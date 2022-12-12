@@ -314,3 +314,9 @@ a {
   display: inline-block;
   backdrop-filter: blur(5px);
 }
+
+#userName button {
+  color: var(--SECONDARY-DARK);
+  text-transform: uppercase;
+  font-weight: 500;
+}

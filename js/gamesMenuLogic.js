@@ -17,13 +17,19 @@ onmouseover = (e) => {
 };
 
 game1.addEventListener("click", (e) => {
-  window.location.href = "../games/game1.php";
+  if (!e.target.classList.contains("blocked")) {
+    window.location.href = "../games/game1.php";
+  }
 });
 game2.addEventListener("click", (e) => {
-  window.location.href = "../games/game2.html";
+  if (!e.target.classList.contains("blocked")) {
+    window.location.href = "../games/game2.php";
+  }
 });
 game3.addEventListener("click", (e) => {
-  window.location.href = "../games/game3.html";
+  if (!e.target.classList.contains("blocked")) {
+    window.location.href = "../games/game3.php";
+  }
 });
 
 function changeBackground(id) {
