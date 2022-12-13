@@ -1,3 +1,4 @@
+import * as ct from "./constants.js";
 import Entity from "./Entity.js";
 import Piece from "./pieces.js";
 import * as f from "./functions.js";
@@ -21,20 +22,18 @@ for (let i = 0; i < gridSize; i++) {
   arrTrack[i] = new Array(gridSize);
   arrTrack[i].fill(0);
 }
-if (arrTrack[1][1] == 0) {
-  arrTrack[1][1] = 'start';
-} else if (arrTrack[endRow - 1][endColumn - 1] == 0) {
-  arrTrack[endRow - 1][endColumn - 1] = 'end';
+if (arrTrack[ct.startRow-1][ct.startColumn-1] == 0) {
+  arrTrack[ct.startRow-1][ct.startColumn-1] = 'start';
+} else if (arrTrack[ct.endRow - 1][ct.endColumn - 1] == 0) {
+  arrTrack[ct.endRow - 1][ct.endColumn - 1] = 'end';
 }
 
-const start = new Entity('start', "start", 2, 2);
+const start = new Entity('start', "start", ct.startRow, ct.startColumn);
 start.add();
 obstacles_id_counter++;
 obstacles_array.push(start);
 
-let endRow = 13;
-let endColumn = 13;
-const end = new Entity('end', "end", endRow, endColumn);
+const end = new Entity('end', "end", ct.endRow, ct.endColumn);
 end.add();
 obstacles_id_counter++;
 obstacles_array.push(end);
@@ -187,4 +186,4 @@ dropSpaces.forEach(el => {
 })
 
 //check train track
-document.getElementById("button2").addEventListener("click", f.finish);
+document.getElementById("button2").addEventListener("click", f.end_game);

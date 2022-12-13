@@ -31,8 +31,6 @@ export default class Piece {
         rand_img[5] = "../media/game2/tracks/lt.png";
         rand_img[6] = "../media/game2/tracks/tb.png";
         rand_img[7] = "../media/game2/tracks/lr.png";
-        rand_img[8] = "../media/game2/tracks/tb.png";
-        rand_img[9] = "../media/game2/tracks/lr.png";
     
         let random = this.rand(rand_img.length);
         this.src = rand_img[random];

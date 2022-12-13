@@ -51,7 +51,13 @@
       }
       tick();
     }
+
     countdown(2, 00);
+
+    function GameOver() {
+      alert('YOU LOSE!');
+      clearInterval(timeoutHandle);
+    }
   </script>
 </body>
 
