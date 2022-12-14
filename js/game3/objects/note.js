@@ -24,7 +24,7 @@ export default class Note extends Object{
         this.element.style.width = this.w + "px";
         this.element.style.height = this.h + "px";
 
-        this.element.style.backgroundImage = "url(/media/game3/objects/note.gif)";
+        this.element.style.backgroundImage = "url(/death_by_pollution/media/game3/objects/note.gif)";
         this.element.style.backgroundSize = "cover";
     }
 

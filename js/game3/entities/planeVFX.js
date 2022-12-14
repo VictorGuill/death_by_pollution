@@ -17,7 +17,7 @@ export default class planeVfx {
         this.thrust.style.top = "0";
         this.thrust.style.left = "-14px";
         this.thrust.style.transformOrigin = "right";
-        this.thrust.src = "/media/game3/vfx/thrust_blue.gif";
+        this.thrust.src = "/death_by_pollution/media/game3/vfx/thrust_blue.gif";
         this.plane.element.appendChild(this.thrust);
     }
 
@@ -30,7 +30,7 @@ export default class planeVfx {
         this.speed.style.top = "0";
         this.speed.style.left = "-60px";
         this.speed.style.transformOrigin = "right";
-        this.speed.src= "/media/game3/vfx/wind.gif";
+        this.speed.src= "/death_by_pollution/media/game3/vfx/wind.gif";
         this.plane.element.appendChild(this.speed);
     }
 
@@ -40,7 +40,7 @@ export default class planeVfx {
             this.chute.style.position = "absolute";
             this.chute.style.opacity = "1";
             this.chute.style.left = "-80px";
-            this.chute.src= "/media/game3/vfx/chute.gif";
+            this.chute.src= "/death_by_pollution/media/game3/vfx/chute.gif";
             this.chute.style.animation = "deploy-chute 1s linear forwards"
             this.plane.element.appendChild(this.chute);
             this.plane.chute = true;
@@ -53,7 +53,7 @@ export default class planeVfx {
         this.smoke.setAttribute("id", "smoke");
         this.smoke.style.position = "absolute";
         this.smoke.style.right = this.plane.w - this.plane.w/5 +"px";
-        this.smoke.src = "/media/game3/vfx/smoke.gif";
+        this.smoke.src = "/death_by_pollution/media/game3/vfx/smoke.gif";
         this.plane.element.appendChild(this.smoke);
     }
     smoke_fireVFX(){
@@ -62,7 +62,7 @@ export default class planeVfx {
         this.smoke_fire.style.position = "absolute";
         this.smoke_fire.setAttribute("id", "smoke_fire");
         this.smoke_fire.style.right = this.plane.w - this.plane.w/4 +"px";
-        this.smoke_fire.src = "/media/game3/vfx/smoke_fire.gif"; 
+        this.smoke_fire.src = "/death_by_pollution/media/game3/vfx/smoke_fire.gif"; 
         this.plane.element.appendChild(this.smoke_fire);
     }
 
@@ -73,7 +73,7 @@ export default class planeVfx {
         this.fire.style.position = "absolute";
         this.fire.setAttribute("id", "fire");
         this.fire.style.right = this.plane.w - this.plane.w/2 +"px";
-        this.fire.src = "/media/game3/vfx/fire.gif";
+        this.fire.src = "/death_by_pollution/media/game3/vfx/fire.gif";
         this.plane.element.appendChild(this.fire);
     }
 
@@ -82,7 +82,7 @@ export default class planeVfx {
         this.explosion.style.position = "absolute";
         this.explosion.setAttribute("id", "explosion");
         this.explosion.style.margin = "auto";
-        this.explosion.src = "/media/game3/vfx/explosion1.gif";
+        this.explosion.src = "/death_by_pollution/media/game3/vfx/explosion1.gif";
         this.plane.element.appendChild(this.explosion);
     }
 

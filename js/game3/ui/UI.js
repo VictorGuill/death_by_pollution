@@ -97,7 +97,7 @@ export default class UI {
             this.hud.speedometer.imgContainer.setAttribute("id", "speedometerImgContainer");
             this.hud.speedometer.imgContainer.style.height = "100%";
             const speedometerImg = document.createElement("img");
-            speedometerImg.src = "/media/game3/hud/speedometer_hud.png";
+            speedometerImg.src = "/death_by_pollution/media/game3/hud/speedometer_hud.png";
             this.hud.speedometer.imgContainer.appendChild(speedometerImg);
             this.hud.speedometer.appendChild(this.hud.speedometer.imgContainer);
             //res
@@ -124,7 +124,7 @@ export default class UI {
         this.hud.altimeter.setAttribute("id", "altimeter");
             //img
             const altimeterImg = document.createElement("img");
-            altimeterImg.src = "/media/game3/hud/altimeter_hud.png";
+            altimeterImg.src = "/death_by_pollution/media/game3/hud/altimeter_hud.png";
             this.hud.altimeter.appendChild(altimeterImg);
             //res
             const altimeterElements = document.createElement("div");
