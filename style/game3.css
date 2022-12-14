@@ -5,6 +5,11 @@
     font-weight: 100;
 }
 :root{
+    --deviceWidth: 1920px;
+    --deviceHeight: 1080px;
+
+    --mapHeight: 640px;
+
     --powerHeight: 0%;
     --maxPowerHeight: 92%;
     --scanLinesSpeed: 0.8s;
@@ -23,60 +28,69 @@ body {
     padding: 0;
     margin: 0;
     background-color: black;
-    height: 100vh;
-    width: 100vw;
     overflow-x: hidden;
 }
 
+img{
+    display: block;
+}
 
 #gp {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
 #ui {
     position: absolute;
-    height: 80%;
+    display: flex;
+    justify-content: center;
+    height: var(--mapHeight);
     width: 100%;
-    border: 4px solid magenta;
     z-index: 900;
 }
 
 #map {
     position: relative;
     width: 100vw;
-    height: 80vh;
-    
+    height: var(--mapHeight);
+    overflow: hidden;
 }
 
-.layer {
+.layer-bg {
     position: absolute;
     width: 100%;
     height: 100%;
     background-repeat: repeat-x;
-    background-size: 1920px 1080px;
-    
+    background-size: var(--deviceWidth) var(--deviceHeight);
+}
+
+#airport{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    z-index: 100;
 }
 
 #planeScreenZone {
     position: absolute;
     width: 70%;
-    height: 98%;
-    bottom: 10px;
+    height: 94%;
+    bottom: 20px;
     left: 30px;
-    border: 4px solid #cc9900;
     z-index: 200;
-    
 }
 
 #plane {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 900;
-    
 }
 
 #progress-bar {
@@ -94,7 +108,6 @@ body {
     width: 100%;
     height: 10px;
     background-color: red;
-
 }
 
 #time-score{
@@ -102,14 +115,15 @@ body {
     left: 50px;
     top: 20px;
     height: fit-content;
-    width: fit-content;
+    max-width: 200px;
+    min-width: 110px;
     background-color: rgba(100, 100, 100, 0.3);
 }
 
 #time-score p, #speedometer-label, #altimeter-label, #speedometer-value, #altimeter-value{
     font-family: aceCombat;
     padding: 5px;
-    font-size: 2.5vmin;
+    font-size: 1.8vmin;
     color: #85f76eb3;
     text-shadow: 
             0px 0px 1px #80ff9f,
@@ -118,6 +132,30 @@ body {
             0px 0px 5px #509a7b,
             0px 0px 10px #236752;
 }
+
+.alertMessage{
+    font-family: aceCombat;
+    font-weight: 300;
+    padding: 5px;
+    font-size: 3vmin;
+    color: #e90000;
+    text-shadow: 
+            0px 0px 2px #c55f5f,
+            0px 0px 2px #cf4d4d, 
+            0px 0px 5px #e90000, 
+            0px 0px 5px #871e1e,
+            0px 0px 10px #780808;
+
+    border: #e90000 2px solid;
+    border-radius: 4px;
+    box-shadow: 
+            0px 0px 2px #c55f5f,
+            0px 0px 2px #cf4d4d, 
+            0px 0px 5px #b13131, 
+            0px 0px 5px #871e1e,
+            0px 0px 10px #780808;
+}
+
 
 #hud{
     position: absolute;
@@ -131,11 +169,13 @@ body {
 #speedometer, #altimeter{
     position: relative;
     align-self: center;
+    margin: 0 2rem;
     top: 0;
+    height: 100%;
     width: min-content;
 }
 #speedometer img, #altimeter img {
-    object-fit: contain;
+    height: 100%;
     width: 8vw;
 }
 
@@ -181,12 +221,12 @@ body {
 
 #speedometer-metric{
     background-image: url("/media/game3/hud/speedometer_metric_hud.png");
-    background-size: 100% 60%;
+    background-size: 100% 50%;
     background-repeat: repeat-y;
     position: absolute;
     width: 1vw;
-    height: 24vh;
-    top: 30%;
+    height: 20vh;
+    top: 20%;
     left: 78%;
 }
 
@@ -194,7 +234,7 @@ body {
     position: absolute;
     font-weight: bold;
     top: 40%;
-    left: 65%;
+    left: 68%;
 }
 
 #altimeter-value{
@@ -206,12 +246,12 @@ body {
 
 #altimeter-metric{
     background-image: url("/media/game3/hud/altimeter_metric_hud.png");
-    background-size: 100% 60%;
+    background-size: 100% 50%;
     background-repeat: repeat-y;
     position: absolute;
     width: 1vw;
-    height: 24vh;
-    top: 30%;
+    height: 20vh;
+    top: 20%;
     left: 35%;
 }
 
@@ -227,20 +267,13 @@ body {
 .object{
     position: absolute;
     z-index: 200;
+    width: fit-content;
     /* border: 4px solid magenta; */
 }
 
 .coin{
-    animation: coin-animation 5s linear infinite;
+    /* animation: coin-animation 5s linear infinite; */
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -273,6 +306,111 @@ input{ margin-right: 100px;}
     z-index: 999;
 }
 
+#smoke, #smoke_fire, #fire, #explosion{
+    animation: effect-in 2s linear forwards;
+}
+@keyframes rotate-hitbox {
+    from { 
+        transform: rotate(0deg); 
+    } to { 
+        transform: rotate(720deg); 
+    }
+    
+}
+.effectVFX{
+    transform-origin: right;
+}
+
+
+@keyframes deploy-chute {
+    0%{
+        transform-origin: right;
+        transform:  scaleY(0) scaleX(0);
+    }
+    20%{
+        transform: scaleX(1) scaleY(.2);;
+    }
+    50%{
+        transform: scaleY(.8);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
+
+@keyframes fade-out {
+    100%{
+        opacity: 0;
+    }
+}
+
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.96);
+        opacity: .9;
+	}
+
+	50% {
+		transform: scale(1);
+        opacity: 1;
+	}
+
+	100% {
+		transform: scale(0.96);
+        opacity: .9;
+	}
+}
+
+@keyframes toxic-pulse {
+	0% {
+		transform: scale(1);
+        opacity: .9;
+	}
+
+	50% {
+		transform: scale(0.8);
+        opacity: 1;
+	}
+
+	100% {
+		transform: scale(1);
+        opacity: .9;
+	}
+}
+
+@keyframes effect-in {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes effect-out {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes pick-up {
+    0%{
+        transform-origin: center center;
+        transform: translate(0px, 0px);
+    }
+    15%{
+        transform: translateY(-40px);
+    }
+    100%{
+        transform: translate(140px, -40px) rotate(1080deg) scale(0);
+    }
+
+}
+
 @keyframes scanlines {
     from {
       background: linear-gradient(
@@ -290,13 +428,4 @@ input{ margin-right: 100px;}
       );
       background-size: 100vmax var(--scanLinesSize);
     }
-  }
-
-  @keyframes coin-animation {
-    0% {
-    }
-    100%{
-        transform: rotate(180deg);
-    }
-
   }

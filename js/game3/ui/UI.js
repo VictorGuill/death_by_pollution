@@ -3,6 +3,17 @@ export default class UI {
         this.gp = gp;
         this.addUI();
         this.addElements();
+        this.mssgOn = false;
+
+        this.caution = false;
+        this.airportNear = false;
+        this.pullUp = false;
+        this.lowFuel = false;
+        this.deployChute = false;
+
+/*         this.drawCaution();
+        this.drawPullUp(); */
+
     }
 
     addUI(){
@@ -84,6 +95,7 @@ export default class UI {
             //img
             this.hud.speedometer.imgContainer = document.createElement("div");
             this.hud.speedometer.imgContainer.setAttribute("id", "speedometerImgContainer");
+            this.hud.speedometer.imgContainer.style.height = "100%";
             const speedometerImg = document.createElement("img");
             speedometerImg.src = "/media/game3/hud/speedometer_hud.png";
             this.hud.speedometer.imgContainer.appendChild(speedometerImg);
@@ -143,19 +155,16 @@ export default class UI {
     }
 
     addTimeScore(){
-        this.timeScore = document.createElement("div");
-        this.timeScore.setAttribute("id", "time-score");
-        const timeLabel = document.createElement("p");
-        timeLabel.innerHTML = "TIME 23:40:11";
+        const timeScore = document.createElement("div");
+        timeScore.setAttribute("id", "time-score");
 
-        const scoreLabel = document.createElement("p");
-        scoreLabel.innerHTML = "SCORE 000000";
+        this.timeLabel = document.createElement("p");
+        this.scoreLabel = document.createElement("p");
+        
+        timeScore.appendChild(this.timeLabel);
+        timeScore.appendChild(this.scoreLabel);
 
-        this.timeScore.appendChild(timeLabel);
-        this.timeScore.appendChild(scoreLabel);
-
-        this.element.appendChild(this.timeScore);
-
+        this.element.appendChild(timeScore);
     }
 
     addProgressBar(){
@@ -168,21 +177,89 @@ export default class UI {
         this.element.appendChild(this.progressBar);
     }
 
-    progress() {
+    drawProgressBar() {
         this.progressBar.bar.style.width = this.gp.plane.worldX/100 +"px";
     }
 
-    hudMetricsUpdate(){
-        this.hud.speedometer.value.innerHTML = Math.round(this.gp.plane.speed);
-        this.hud.speedometer.metric.style.backgroundPositionY = this.gp.plane.speed + "px";
-        this.hud.altimeter.value.innerHTML = Math.round(this.gp.plane.worldY);
-        this.hud.altimeter.metric.style.backgroundPositionY = this.gp.plane.worldY + "px";
-
-        this.hud.speedometer.imgContainer.style.setProperty("--powerHeight", this.gp.plane.speed + "px")
+    drawTimeScore(t){
+        this.gp.time = this.secondsToTime(t/1000);
+        this.timeLabel.innerHTML = "TIME " + this.gp.time;
+        this.scoreLabel.innerHTML = "SCORE " + this.gp.score;
     }
 
-    draw() {
-        this.progress();
-        this.hudMetricsUpdate();
+    drawHudMetrics(){
+        //speedometer
+        this.hud.speedometer.value.innerHTML = Math.round(this.gp.plane.speed);
+        this.hud.speedometer.metric.style.backgroundPositionY = this.gp.plane.speed + "px";
+        this.hud.speedometer.imgContainer.style.setProperty("--powerHeight", this.gp.physics.getPercentSpeed(this.gp.plane, this.gp.plane.speed)-8  + "%")
+
+        //altimeter
+        this.hud.altimeter.value.innerHTML = Math.round(this.gp.plane.worldY);
+        this.hud.altimeter.metric.style.backgroundPositionY = this.gp.plane.worldY + "px";
+    }
+
+
+    drawAlertMessage(mssg, y, pulse){
+            const mDiv = document.createElement("div");
+            mDiv.setAttribute("id", "alert-"+mssg.replaceAll(" ", "").toLowerCase());
+            mDiv.style.position = "absolute";
+            mDiv.style.top = y + "px";
+            if (pulse) {
+                mDiv.style.animation = "pulse 1s infinite";
+            }
+            const m = document.createElement("span");
+            m.innerHTML = mssg.toUpperCase();
+            m.classList.add("alertMessage");
+            mDiv.appendChild(m);
+            this.element.appendChild(mDiv);
+    }
+
+    drawCaution(){
+        if (!this.caution){
+            this.drawAlertMessage("CAUTION", this.gp.map.h/6, false);
+            this.caution = true;
+        }
+    }
+
+    drawPullUp(){
+        if (!this.pullUp){
+            this.drawAlertMessage("PULL UP", this.gp.map.h/1.5, true);
+        }
+    }
+    drawLowFuel(){
+        this.drawAlertMessage("LOW FUEL", this.gp.map.h/3.6, true);
+    }
+    drawNearAirport(){
+        this.drawAlertMessage("AIRPORT NEAR", this.gp.map.h/3.6, false);
+    }
+
+    drawDeployChute(){
+        this.drawAlertMessage("DEPLOY CHUTE", this.gp.map.h/3.6, true);
+
+    }
+
+    alertMessageOff(mssg){
+        const alert = document.querySelector("#alert-"+mssg);
+        alert.style.animation = "fade-out 1s forwards";
+        alert.remove();
+    }
+
+
+    secondsToTime(e) {
+        const m = Math.floor((e % 3600) / 60)
+            .toString()
+            .padStart(2, "0"),
+          s = Math.floor(e % 60)
+            .toString()
+            .padStart(2, "0");
+      
+        return m + ":" + s;
+    }
+
+    draw(timeElapsed) {
+        // this.displayAlert();
+        this.drawProgressBar();
+        this.drawTimeScore(timeElapsed);
+        this.drawHudMetrics();
     }
 }
