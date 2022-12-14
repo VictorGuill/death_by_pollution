@@ -220,7 +220,7 @@ img{
 }
 
 #speedometer-metric{
-    background-image: url("/media/game3/hud/speedometer_metric_hud.png");
+    background-image: url("/death_by_pollution/media/game3/hud/speedometer_metric_hud.png");
     background-size: 100% 50%;
     background-repeat: repeat-y;
     position: absolute;
@@ -245,7 +245,7 @@ img{
 }
 
 #altimeter-metric{
-    background-image: url("/media/game3/hud/altimeter_metric_hud.png");
+    background-image: url("/death_by_pollution/media/game3/hud/altimeter_metric_hud.png");
     background-size: 100% 50%;
     background-repeat: repeat-y;
     position: absolute;
@@ -301,7 +301,7 @@ input{ margin-right: 100px;}
     width: 100.25%;
     height: 100.25%;
   
-    background-image: url("../media/game3/crt.png");
+    background-image: url("/death_by_pollution/media/game3/crt.png");
     background-size: 100% 100%;
     z-index: 999;
 }

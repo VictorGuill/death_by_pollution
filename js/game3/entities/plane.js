@@ -142,6 +142,7 @@ export default class Plane{
         // this.gp.ui.alertMessageOff();
         }
         if (this.state == "explosion"){
+            this.gp.slot.saveScore();
             this.collision = true;
         }
 

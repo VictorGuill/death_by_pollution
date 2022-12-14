@@ -5,6 +5,7 @@ import CollisionDetection from './collisionDetection.js'
 import Phisics from './physics.js';
 import input_codes from './keyHandler.js';
 import EventHandler from './eventHandler.js';
+import Slot from './slot.js';
 
 const gameWrapper = document.getElementById("game-wrapper");
 
@@ -29,6 +30,7 @@ export class GamePanel {
         this.eH = new EventHandler(this);
         this.input = input_codes;
         this.collisionDetection = new CollisionDetection(this);
+        this.slot = new Slot(this);
     }
 
     addGPelement(){

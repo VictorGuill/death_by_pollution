@@ -7,10 +7,10 @@ export default class EventsGenerator{
     constructor(gp){
         this.gp = gp;
 
-        this.fCoins = this.gp.map.w * 2;
-        this.fNotes = this.gp.map.w * 3;
+        this.fCoins = this.gp.map.w;
+        this.fNotes = this.gp.map.w;
         this.fDiamonds = this.gp.map.w * 3;
-        this.fToxic = this.gp.map.w/4;
+        this.fToxic = this.gp.map.w/2;
 
         
         this.spawnCoin = this.fCoins;
