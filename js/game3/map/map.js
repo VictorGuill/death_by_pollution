@@ -205,6 +205,10 @@ export default class Map {
         this.h = this.element.offsetHeight;
         this.screenPlaneZoneHeight = this.screenPlaneZone.offsetHeight;
         this.screenPlaneZoneWidth = this.screenPlaneZone.offsetWidth;
+        document.documentElement.style.setProperty('--deviceWidth', window.innerWidth);
+        document.documentElement.style.setProperty('deviceHeight', window.innerHeight);
+        console.log("W: "+window.innerWidth);
+        console.log("H: "+window.innerHeight);
     }
 
     drawLayersX(){

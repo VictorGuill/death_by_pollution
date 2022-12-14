@@ -97,7 +97,7 @@ export default class planeVfx {
         const statusEffects = document.querySelectorAll(".effectVFX");
         this.thrust.style.transform = "scaleX(" + parseFloat((this.plane.speed) * .002) +") scaleY("+parseFloat((this.plane.speed) * .001)+") rotateZ("+(-this.plane.pitch*1.2)+"deg)";
         statusEffects.forEach(e=>{
-            e.style.transform = "rotateZ("+(-this.plane.pitch/2)+"deg)";
+            e.style.transform = "rotateZ("+(-this.plane.pitch/4)+"deg)";
         });
     }
 

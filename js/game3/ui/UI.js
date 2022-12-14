@@ -98,6 +98,7 @@ export default class UI {
             //img
             this.hud.speedometer.imgContainer = document.createElement("div");
             this.hud.speedometer.imgContainer.setAttribute("id", "speedometerImgContainer");
+            this.hud.speedometer.imgContainer.style.height = "100%";
             const speedometerImg = document.createElement("img");
             speedometerImg.src = "/media/game3/hud/speedometer_hud.png";
             this.hud.speedometer.imgContainer.appendChild(speedometerImg);

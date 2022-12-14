@@ -5,6 +5,11 @@
     font-weight: 100;
 }
 :root{
+    --deviceWidth: 1920px;
+    --deviceHeight: 1080px;
+
+    --mapHeight: 640px;
+
     --powerHeight: 0%;
     --maxPowerHeight: 92%;
     --scanLinesSpeed: 0.8s;
@@ -43,7 +48,7 @@ img{
     position: absolute;
     display: flex;
     justify-content: center;
-    height: 80%;
+    height: var(--mapHeight);
     width: 100%;
     z-index: 900;
 }
@@ -51,7 +56,7 @@ img{
 #map {
     position: relative;
     width: 100vw;
-    height: 80vh;
+    height: var(--mapHeight);
     overflow: hidden;
 }
 
@@ -60,7 +65,7 @@ img{
     width: 100%;
     height: 100%;
     background-repeat: repeat-x;
-    background-size: 1920px 1080px;
+    background-size: var(--deviceWidth) var(--deviceHeight);
 }
 
 #airport{
@@ -118,7 +123,7 @@ img{
 #time-score p, #speedometer-label, #altimeter-label, #speedometer-value, #altimeter-value{
     font-family: aceCombat;
     padding: 5px;
-    font-size: 2.5vmin;
+    font-size: 1.8vmin;
     color: #85f76eb3;
     text-shadow: 
             0px 0px 1px #80ff9f,
@@ -166,10 +171,11 @@ img{
     align-self: center;
     margin: 0 2rem;
     top: 0;
+    height: 100%;
     width: min-content;
 }
 #speedometer img, #altimeter img {
-    object-fit: contain;
+    height: 100%;
     width: 8vw;
 }
 
@@ -215,12 +221,12 @@ img{
 
 #speedometer-metric{
     background-image: url("/media/game3/hud/speedometer_metric_hud.png");
-    background-size: 100% 60%;
+    background-size: 100% 50%;
     background-repeat: repeat-y;
     position: absolute;
     width: 1vw;
-    height: 24vh;
-    top: 30%;
+    height: 20vh;
+    top: 20%;
     left: 78%;
 }
 
@@ -228,7 +234,7 @@ img{
     position: absolute;
     font-weight: bold;
     top: 40%;
-    left: 65%;
+    left: 68%;
 }
 
 #altimeter-value{
@@ -240,12 +246,12 @@ img{
 
 #altimeter-metric{
     background-image: url("/media/game3/hud/altimeter_metric_hud.png");
-    background-size: 100% 60%;
+    background-size: 100% 50%;
     background-repeat: repeat-y;
     position: absolute;
     width: 1vw;
-    height: 24vh;
-    top: 30%;
+    height: 20vh;
+    top: 20%;
     left: 35%;
 }
 

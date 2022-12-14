@@ -6,8 +6,8 @@ export default class Plane{
         this.id = "plane";
     //----POSITIONS----
         // screen
-        this.screenX = inicialX;
-        this.screenY = inicialY;
+        this.initialX = inicialX;
+        this.initialY = inicialY;
         // world
         this.worldX = 0;
         this.worldY = 0;
@@ -141,7 +141,9 @@ export default class Plane{
         } else {
         // this.gp.ui.alertMessageOff();
         }
-
+        if (this.state == "explosion"){
+            this.collision = true;
+        }
 
     }
 
@@ -250,7 +252,6 @@ export default class Plane{
         this.updateSpeed(dt);
         this.updatePitch(dt);
         this.updatePositions(dt);
-        this.checkState();
         this.vfx.update();
         //toggle level pitch for ez mode
         if(this.ezModePitch){
@@ -263,7 +264,7 @@ export default class Plane{
         this.fly(dt);
         this.gp.physics.update(this, dt);
         this.gp.collisionDetection.mapBounderiesCheck(this);
-        
+        this.checkState();
         
     /*  ------------ DEBUG ----------  */
         /* console.log("-------SPEED-----");
@@ -274,7 +275,7 @@ export default class Plane{
         // console.log("SpeedX: "+ Math.round(this.speedX));
         // console.log("SpeedY: "+ Math.round(this.speedY));
         // console.log("This HP: " + this.hp);
-        console.log("fuel: "+this.fuel);
+        // console.log("fuel: "+this.fuel);
         //console.log("LIFT COEF: " + this.cL);
         //console.log("DRAG COEF: " +this.cD);
         // console.log("Lift: "+ Math.round(this.gp.physics.lift));
@@ -287,13 +288,13 @@ export default class Plane{
         // console.log("World Y: " + Math.round(this.worldY))
         // console.log ("Screen X: "+ Math.round(this.screenX));
         // console.log("Screen Y: "+ Math.round(this.screenY));
-        /* console.log("Collison = " + this.collision); */
+        console.log("Collison = " + this.collision); 
     }
 
 
     draw() {
         this.element.style.bottom = this.worldY +"px";
-        this.element.style.left = this.screenX + "px";
+        this.element.style.left = this.initialX + this.screenX + "px";
     }
 
         //---- GETTERS ----

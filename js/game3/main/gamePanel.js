@@ -22,7 +22,7 @@ export class GamePanel {
         this.map = new Map(this);
         this.collisionDetection = new CollisionDetection(this);
         this.physics = new Phisics(this);
-        this.plane = new Plane(this, 200, 200);
+        this.plane = new Plane(this, 140, 0);
         this.ui = new UI (this);
         this.eH = new EventHandler(this);
         
@@ -37,8 +37,8 @@ export class GamePanel {
     update(dt) {
         if (this.gameState == this.playState){
             this.plane.update(dt);
+            this.eH.update();
         } else if (this.gameState == this.pauseState){}
-        this.eH.update();
     }
 
     draw(timeElapsed) {

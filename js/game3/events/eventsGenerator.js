@@ -75,29 +75,32 @@ export default class EventsGenerator{
 
 
     update(){
+        
+            
+        
         this.spawnCheck();
-
         this.gp.objects.forEach((obj) => {
             obj.update();
             obj.draw();
-
-            if(this.gp.collisionDetection.objectCheck(obj)){
-                switch(obj.name){
-                    case "coin":
-                        this.gp.ui.score += 100;
-                        break;
-                    case "note":
-                        this.gp.ui.score += 200;
-                        break
-                    case "diamond":
-                        this.gp.ui.score += 500;
-                        break;
-                    case "toxic":
-                        if (!obj.ticked){
-                            this.gp.plane.hp--;
-                        }
-                        obj.ticked = true;
-                        break;
+            if (this.gp.plane.state != "explosion"){
+                if(this.gp.collisionDetection.objectCheck(obj)){
+                    switch(obj.name){
+                        case "coin":
+                            this.gp.ui.score += 100;
+                            break;
+                        case "note":
+                            this.gp.ui.score += 200;
+                            break
+                        case "diamond":
+                            this.gp.ui.score += 500;
+                            break;
+                        case "toxic":
+                            if (!obj.ticked){
+                                this.gp.plane.hp--;
+                            }
+                            obj.ticked = true;
+                            break;
+                    }
                 }
             }
 
@@ -107,5 +110,4 @@ export default class EventsGenerator{
             }
         });
     }
-
 }
