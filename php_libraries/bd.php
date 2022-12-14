@@ -5,7 +5,7 @@ function openDB()
     $servername = "localhost:3306";
     $username = "root";
     #region PASSWORD
-    $password = "";
+    $password = "12345";
     #endregion
 
     $conexion = new PDO("mysql:host=$servername;dbname=death_by_p", $username, $password);

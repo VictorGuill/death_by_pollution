@@ -185,7 +185,7 @@ SELECT * FROM users
 INNER JOIN scores
 ON users.id = scores.users_id
 INNER JOIN games
-ON scores.games_id = 0
+ON games_id = 0
 WHERE users.id = 5;
 
 DELETE FROM users WHERE users.id=7;
