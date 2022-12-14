@@ -28,7 +28,7 @@ export default class Coin extends Object{
         coinImg.width = this.w;
         coinImg.height = this.h;
         coinImg.style.opacity = "0.8";
-        coinImg.src = "/media/game3/objects/coin.gif";
+        coinImg.src = "/death_by_pollution/media/game3/objects/coin.gif";
         this.element.appendChild(coinImg);
     }
 

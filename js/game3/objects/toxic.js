@@ -42,7 +42,7 @@ export default class Toxic extends Object {
     this.w = size;
     this.h = size;
     const num = Math.floor(Math.random() * (5 - 1)) + 1;
-    return "url(/media/game3/objects/toxic" + num + ".gif)";
+    return "url(/death_by_pollution/media/game3/objects/toxic" + num + ".gif)";
   }
 
   createToxic() {

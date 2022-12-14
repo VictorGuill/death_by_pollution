@@ -60,7 +60,7 @@ export default class Plane{
         this.element = document.createElement("div");
         this.element.setAttribute("id", this.id);
         this.planeImg = document.createElement("img");
-        this.planeImg.setAttribute("src", "/media/game3/croped_plane.png");
+        this.planeImg.setAttribute("src", "/death_by_pollution/media/game3/croped_plane.png");
         this.planeImg.style.width = "50px";
         this.planeImg.style.display = "block";
         this.element.appendChild(this.planeImg);
