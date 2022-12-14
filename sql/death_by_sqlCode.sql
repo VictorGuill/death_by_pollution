@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `death_by_p`.`scores` (
   CONSTRAINT `fk_games_has_users_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `death_by_p`.`users` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -134,7 +134,7 @@ SELECT * FROM users;
 SELECT * FROM games;
 SELECT * FROM scores;
 
-DELETE FROM users WHERE users.id=3;
+DELETE FROM users WHERE users.id=6;
 
 
 SELECT  user_type.name FROM users
@@ -181,7 +181,11 @@ LIMIT 2, 1;
 
 
 
-
 SELECT * FROM users
 INNER JOIN scores
-ON users.id = scores.user_id;
+ON users.id = scores.users_id
+INNER JOIN games
+ON scores.games_id = 0
+WHERE users.id = 5;
+
+DELETE FROM users WHERE users.id=7;

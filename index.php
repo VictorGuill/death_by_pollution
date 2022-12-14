@@ -25,7 +25,7 @@
       <div id="text1">SAME GREEN VIEWS</div>
       <div id="planeWindow">
         <!-- <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" /> -->
-        <video autoplay muted>
+        <video autoplay loop muted>
           <source src="./media/landing/fotoVentanaAvion_editable.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -43,8 +43,8 @@
       </div>
     </div>
 
-     <!-- ABOUT -->
-     <div id="about" class="scroll-area">
+    <!-- ABOUT -->
+    <div id="about" class="scroll-area">
       <div class="container m-auto">
         <div class="slide-content">
           <div class="row justify-content-center ">
@@ -83,7 +83,7 @@
               </svg>
             </div>
           </div>
-          
+
           <div class="row justify-content-between">
             <div class="card col-3">
               <div class="card-header">
@@ -107,7 +107,7 @@
                 </div>
                 <h1 class="card-title">MAR</h1>
               </div>
-                <div class="card-body">
+              <div class="card-body">
                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipiscing, elit eu mattis rutrum curae
                   ultricies aptent, sociosqu tempor aliquam ridiculus litora.</p>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
@@ -151,29 +151,28 @@
               </svg>
             </div>
           </div>
-          <p class="slide-text contain-center mx-auto">Nuestra flota de transportes <span
-              style="color: var(--ACCENT);">eco</span></p>
-              <div class="row justify-content-between mt-5">
-                <div class="card col-3">
-                  <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
-                  
-                  <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
-                  </div>
-                </div>
-                <div class="card col-3">
-                  <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
-                  </div>
-                </div>
-                <div class="card col-3">
-                  <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
-                  </div>
-                </div>
+          <p class="slide-text contain-center mx-auto">Nuestra flota de transportes <span style="color: var(--ACCENT);">eco</span></p>
+          <div class="row justify-content-between mt-5">
+            <div class="card col-3">
+              <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
+
+              <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
               </div>
+            </div>
+            <div class="card col-3">
+              <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+              </div>
+            </div>
+            <div class="card col-3">
+              <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

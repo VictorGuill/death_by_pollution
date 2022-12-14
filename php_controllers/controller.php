@@ -54,6 +54,14 @@ if (isset($_POST["logout"])) {
     die();
 }
 
+if (isset($_POST["deleteUser"])) {
+
+    deleteUser($_POST["deleteUser"]);
+
+    header('Location: ' . $_SERVER["HTTP_REFERER"]);
+    die();
+}
+
 function setUserType($type)
 {
     switch ($type) {

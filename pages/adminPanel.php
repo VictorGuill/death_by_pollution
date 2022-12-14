@@ -39,7 +39,7 @@ if (!isset($_SESSION)) {
     echo "<section class='intro'>
     <div class='bg-image h-100'>
       <div class='mask d-flex align-items-center h-100'>
-        <div class='container'>
+        <div class='container' style='width: 75%;'>
           <div class='row justify-content-center'>
             <div class='col-12'>
               <div class='card shadow-2-strong'>
@@ -48,7 +48,6 @@ if (!isset($_SESSION)) {
                     <table class='table table-borderless mb-0'>
                       <thead>
                         <tr>
-                          <th scope='col'>ID</th>
                           <th scope='col'>NAME</th>
                           <th scope='col'>PHASE</th>
                           <th scope='col'>USER TYPE</th>
@@ -73,21 +72,26 @@ if (!isset($_SESSION)) {
       }
 
       echo "<tr>
-                          <td>" . $user['id'] . "</td>
                           <td>" . $user['name'] . "</td>
                           <td>" . $user['phase'] . "</td>
                           <td>" . $user['user_type_id'] . "</td>
-                          <td>
-                            <button type='button' class='btn btn-primary btn-sm'>
+                          <td style='display: flex;'>
+                            <button type='button' class='btn btn-primary btn-sm' style='margin: 0 10px;'>
                               <i>✏️</i>
-                            </button>
-                            <button type='button' class='btn btn-danger btn-sm'>
-                              <i>❌</i>
-                            </button>
-                          </td>
-                        </tr>";
-    }
+                            </button>";
 
+      if ($user['user_type_id'] !== "super admin") {
+        echo "<form method='post' action='../php_controllers/controller.php' enctype='multipart/form-data'>
+      <button type='submit'  class='btn btn-danger btn-sm' name='deleteUser' value='" . $user['id'] . "'>
+        <i>❌</i>
+      </button>
+    </form>";
+      }
+
+
+      echo "</td>
+          </tr>";
+    }
 
     echo "</tbody>
                       </table>

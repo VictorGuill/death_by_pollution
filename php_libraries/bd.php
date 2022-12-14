@@ -2,10 +2,10 @@
 
 function openDB()
 {
-    $servername = "localhost";
+    $servername = "localhost:3306";
     $username = "root";
     #region PASSWORD
-    $password = "12345";
+    $password = "";
     #endregion
 
     $conexion = new PDO("mysql:host=$servername;dbname=death_by_p", $username, $password);
@@ -112,6 +112,27 @@ function insertUserScore($gameID, $userID, $score)
     $conexion = closeDB();
 }
 
+function selectUserScores($gameID, $userID)
+{
+    $conexion = openDB();
+
+    $queryText = "SELECT MIN(score) FROM users
+    INNER JOIN scores
+    ON users.id = scores.users_id
+    INNER JOIN games
+    ON scores.games_id = " . $gameID . "
+    WHERE users.id = " . $userID;
+
+    $query = $conexion->prepare($queryText);
+    $query->execute();
+
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $conexion = closeDB();
+
+    return $result;
+}
+
 function changeUserPhase($userID, $newPhase)
 {
     $conexion = openDB();
@@ -164,6 +185,22 @@ function selectSpecificScore($game, $postion)
     WHERE games.id = " . $game . "
     ORDER BY scores.score DESC
     LIMIT " . $postion . ", 1;";
+
+    $query = $conexion->prepare($queryText);
+    $query->execute();
+
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $conexion = closeDB();
+
+    return $result;
+}
+
+function deleteUser($userID)
+{
+    $conexion = openDB();
+
+    $queryText = "DELETE FROM users WHERE users.id= " . $userID;
 
     $query = $conexion->prepare($queryText);
     $query->execute();
