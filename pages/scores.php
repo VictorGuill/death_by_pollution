@@ -127,7 +127,7 @@ if ($selection === "") {
                           <tbody>
                             <?php
                             $scores = selectGameScores($selection);
-                            $counter = 3;
+                            $counter = 4;
 
                             foreach ($scores as $value) {
                               echo "<tr>

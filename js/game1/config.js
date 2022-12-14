@@ -11,7 +11,7 @@ setCssVar("--scanLinesSize", "4px");
 //#endregion
 
 //#region PLAYER SETTINGS
-export const gameplayDuration = 60;
+export const gameplayDuration = 3;
 //#endregion
 
 //#region PLAYER SETTINGS
