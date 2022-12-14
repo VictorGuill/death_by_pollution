@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `death_by_p`.`scores` (
   CONSTRAINT `fk_games_has_users_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `death_by_p`.`users` (`id`)
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -123,10 +123,15 @@ SET users.phase = 2
 WHERE users.id = 5;
 
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 1, 45, 60, now());
+
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 75, 60, now());
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 53, 60, now());
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 23, 60, now());
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 223, 60, now());
+
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 3, 90000, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 1, 75000, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 2, 45000, 60, now());
 
 SELECT * FROM user_type;
 
@@ -134,7 +139,7 @@ SELECT * FROM users;
 SELECT * FROM games;
 SELECT * FROM scores;
 
-DELETE FROM users WHERE users.id=6;
+DELETE FROM users WHERE users.id=3;
 
 
 SELECT  user_type.name FROM users
@@ -148,7 +153,7 @@ WHERE users.name = "victor";
 
 SELECT * FROM users
 WHERE users.name = "victor"
-AND users.password = "3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2";
+AND users.password = "12345";
 
 
 -- query get user results game
@@ -181,11 +186,7 @@ LIMIT 2, 1;
 
 
 
+
 SELECT * FROM users
 INNER JOIN scores
-ON users.id = scores.users_id
-INNER JOIN games
-ON games_id = 0
-WHERE users.id = 5;
-
-DELETE FROM users WHERE users.id=7;
+ON users.id = scores.user_id;
