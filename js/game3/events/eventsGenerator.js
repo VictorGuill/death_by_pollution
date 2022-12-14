@@ -68,7 +68,7 @@ export default class EventsGenerator{
             this.spawnDiamond = planeX + this.random(this.fDiamonds, this.fDiamonds/2);
         }
         if(planeX >= this.spawnToxic){
-            // this.generateToxic();
+            this.generateToxic();
             this.spawnToxic = planeX + this.random(this.fToxic, this.fToxic/2);
         }
     }

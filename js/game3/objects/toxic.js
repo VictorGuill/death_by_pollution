@@ -24,7 +24,7 @@ export default class Toxic extends Object {
     this.hitbox.style.zIndex = "1000";
     this.hitbox.style.height = this.hitboxRadius + "px"; 
     this.hitbox.style.transformOrigin = "bottom";
-    this.hitbox.style.animation = "rotate-hitbox 4s linear infinite";
+    this.hitbox.style.animation = "rotate-hitbox 1s linear infinite";
 
     //CONSOLE LOG
 /*     console.log("");
@@ -57,7 +57,7 @@ export default class Toxic extends Object {
     this.element.style.width = this.w + "px";
     this.element.style.height = this.h + "px";
 
-    this.hitboxRadius = this.w/1.5;
+    this.hitboxRadius = this.w/2.5;
   }
 
   updateHitbox(){

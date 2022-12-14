@@ -14,6 +14,9 @@ export default class UI {
         this.lowFuel = false;
         this.deployChute = false;
 
+/*         this.drawCaution();
+        this.drawPullUp(); */
+
     }
 
     addUI(){
