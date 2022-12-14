@@ -1,9 +1,6 @@
 export default class UI {
     constructor(gp){
         this.gp = gp;
-        this.time = 0;
-        this.score = 0;
-        this.timeElapsed = 0;
         this.addUI();
         this.addElements();
         this.mssgOn = false;
@@ -185,9 +182,9 @@ export default class UI {
     }
 
     drawTimeScore(t){
-        this.time = this.secondsToTime(t/1000);
-        this.timeLabel.innerHTML = "TIME " + this.time;
-        this.scoreLabel.innerHTML = "SCORE " + this.score;
+        this.gp.time = this.secondsToTime(t/1000);
+        this.timeLabel.innerHTML = "TIME " + this.gp.time;
+        this.scoreLabel.innerHTML = "SCORE " + this.gp.score;
     }
 
     drawHudMetrics(){

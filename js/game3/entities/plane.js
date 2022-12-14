@@ -288,13 +288,13 @@ export default class Plane{
         // console.log("World Y: " + Math.round(this.worldY))
         // console.log ("Screen X: "+ Math.round(this.screenX));
         // console.log("Screen Y: "+ Math.round(this.screenY));
-        console.log("Collison = " + this.collision); 
+        // console.log("Collison = " + this.collision); 
     }
 
 
     draw() {
         this.element.style.bottom = this.worldY +"px";
-        this.element.style.left = this.initialX + this.screenX + "px";
+        this.element.style.left = this.screenX + "px";
     }
 
         //---- GETTERS ----

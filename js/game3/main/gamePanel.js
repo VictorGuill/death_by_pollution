@@ -16,16 +16,19 @@ export class GamePanel {
         this.pauseState = 1;
         this.gameState = this.playState;
 
+        //game data
+        this.time = 0;
+        this.score = 0;
+
         this.addGPelement(); //gp div on document
-        this.objects = new Array();
-        this.input = input_codes;
         this.map = new Map(this);
-        this.collisionDetection = new CollisionDetection(this);
+        this.objects = new Array();
         this.physics = new Phisics(this);
         this.plane = new Plane(this, 140, 0);
         this.ui = new UI (this);
         this.eH = new EventHandler(this);
-        
+        this.input = input_codes;
+        this.collisionDetection = new CollisionDetection(this);
     }
 
     addGPelement(){

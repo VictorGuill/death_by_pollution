@@ -86,13 +86,13 @@ export default class EventsGenerator{
                 if(this.gp.collisionDetection.objectCheck(obj)){
                     switch(obj.name){
                         case "coin":
-                            this.gp.ui.score += 100;
+                            this.gp.score += 100;
                             break;
                         case "note":
-                            this.gp.ui.score += 200;
+                            this.gp.score += 200;
                             break
                         case "diamond":
-                            this.gp.ui.score += 500;
+                            this.gp.score += 500;
                             break;
                         case "toxic":
                             if (!obj.ticked){
