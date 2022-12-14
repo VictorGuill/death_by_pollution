@@ -238,7 +238,7 @@ body {
 #about {
   position: relative;
   background-image: url("../media/landing/about_earth.jpeg");
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -265,7 +265,7 @@ body {
   color: var(--SECONDARY-DARK);
 }
 #about .card-body {
-  padding: 10px 80px;
+  padding: 30px 60px;
 }
 .about-card-secondary {
   font-size: 18px;
@@ -279,14 +279,15 @@ body {
 
 /* #region THE PROBLEM */
 #problem {
-  background: var(--LIGHT);
+  background-image: url("../media/landing/plane.jpeg");
+  background-size: cover;
   scroll-snap-align: start;
   height: 80vh;
 }
 #problem .card,
 #about .card {
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
-  height: 55vh;
+  height: fit-content;
 }
 #problem-title {
   font-size: 36px;
@@ -295,6 +296,7 @@ body {
 }
 
 #problem .card-text {
+  font-size: 18px;
   color: var(--DARKTEXT);
   text-align: center;
 }
@@ -332,7 +334,7 @@ body {
   text-align: center;
 }
 .services-img {
-  width: 400px;
+  width: fit-content;
 }
 
 #services .card {
@@ -340,8 +342,10 @@ body {
 }
 
 #services .card-text {
+  font-size: 18px;
   color: var(--DARKTEXT);
 }
+
 /* #endregion */
 
 /* #region footer */

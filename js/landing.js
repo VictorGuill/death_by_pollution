@@ -38,7 +38,7 @@ gsap.from(".about-card", {
     start: "40% bottom",
     id: "about",
     toggleActions: "play none none reverse",
-    markers: true
+    // markers: true
   },
   yPercent: 100,
   scale: 0.8,
@@ -55,7 +55,7 @@ const problemTL = gsap.timeline({
     id: "problem-cards",
     start: "center bottom",
     toggleActions: "play none none reverse",
-    markers: true
+    // markers: true
   }
 })
 
@@ -70,20 +70,63 @@ problemTL.from(".problem-card", {
   duration: 0.5
 }, "-=.2")
 
-const servicesTL = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#services",
-    start: "top top",
-    end: "center top",
-    // anticipatePin: 2,
-    // pin: true,
-    scrub: true,
-    markers: true
-  }
-})
-
-servicesTL.to(".service-card", {
+let serviceCard1 = gsap
+.to("#serviceCard1", {
   rotationY: 180,
   ease: "none",
-  duration: 2
-});
+  duration: 2,
+}).pause();
+
+let serviceCard2 = gsap
+.to("#serviceCard2", {
+  rotationY: 180,
+  ease: "none",
+  duration: 2,
+}).pause();
+
+let serviceCard3 = gsap
+.to("#serviceCard3", {
+  rotationY: 180,
+  ease: "none",
+  duration: 2,
+}).pause();
+
+
+function rotateCard(card){
+  var cardAnim = gsap.getProperty(card, "id");
+  console.log(cardAnim);
+  switch(cardAnim){
+    case "serviceCard1":
+      if (serviceCard1.reversed()) {
+        serviceCard1.play();
+      } else {
+        serviceCard1.reverse();
+      }
+      break;
+    case "serviceCard2":
+      if (serviceCard2.reversed()) {
+        serviceCard2.play();
+      } else {
+        serviceCard2.reverse();
+      }
+      break;
+    case "serviceCard3":
+    if (serviceCard3.reversed()) {
+      serviceCard3.play();
+    } else {
+      serviceCard3.reverse();
+    }
+    break;
+  }
+  
+  /* while(rotationState <= 90){
+    console.log(rotationState);
+  } */
+
+}
+
+/* onUpdate: () => {
+  rotState = gsap.getProperty(card, "rotationY");
+  console.log(rotState);
+},
+onComplete: () => {card.reversed = true} */

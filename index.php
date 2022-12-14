@@ -20,31 +20,27 @@
 
   <!-- CONTENT -->
   <div id="scroll-container">
-    <!-- PRESENTATION -->
-    <div id="start" class="scroll-area">
-      <div id="text1">SAME GREEN VIEWS</div>
-      <div id="planeWindow">
-        <!-- <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" /> -->
-        <video autoplay muted>
-          <source src="./media/landing/fotoVentanaAvion_editable.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div id="text2">NEW TRAVELING MEANS</div>
-      <div class="container my-auto">
-        <div id="aboutBtnRow">
-          <a id="aboutBtn" href="#about">
-            <p>Qué es Eco Travelling?</p>
-            <svg width="30px" height="20px">
-              <path stroke="#ffffff" stroke-width="2px" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
-            </svg>
-          </a>
+        <!-- PRESENTATION -->
+        <div id="start" class="scroll-area">
+          <div id="text1">SAME GREEN VIEWS</div>
+          <div id="planeWindow">
+            <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" />
+          </div>
+          <div id="text2">NEW TRAVELING MEANS</div>
+          <div class="container my-auto">
+            <div id="aboutBtnRow">
+              <a id="aboutBtn" href="#about">
+                <p>Qué es Eco Travelling?</p>
+                <svg width="30px" height="20px">
+                  <path stroke="#ffffff" stroke-width="2px" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-     <!-- ABOUT -->
-     <div id="about" class="scroll-area">
+    <!-- ABOUT -->
+    <div id="about" class="scroll-area">
       <div class="container m-auto">
         <div class="slide-content">
           <div class="row justify-content-center ">
@@ -67,7 +63,6 @@
         </div>
       </div>
     </div>
-
     <!-- THE PROBLEM -->
     <div id="problem" class="scroll-area">
       <div class="container mt-6">
@@ -116,7 +111,6 @@
                 <h5>CO2 --> 19%</h5>
               </div>
             </div>
-
             <div class="problem-card card col-3">
               <div class="card-header">
                 <div>
@@ -136,14 +130,13 @@
         </div>
       </div>
     </div>
-
     <!-- SERVICES -->
     <div id="services" class="scroll-area">
-      <div class="container mt-5">
+      <div class="container mt-6">
         <div class="slide-content">
           <div class="row justify-content-center">
             <div class="col-2">
-              <a href="#services" style="text-decoration: none;"><h3 id="service-title">Servicios</h3></a>
+              <h3 id="service-title">Servicios</h3>
             </div>
           </div>
           <div class="row justify-content-center mb-5">
@@ -155,22 +148,21 @@
           </div>
           <p class="slide-text contain-center mx-auto">Nuestra flota de transportes <span
               style="color: var(--ACCENT);">eco</span></p>
-              <div class="row justify-content-between mt-5">
-                <div class="card col-3">
-                  <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
-                  
+              <div class="row justify-content-between mt-5" >
+                <div id="serviceCard1" class="card col-3" onclick=rotateCard(this)>
+                  <img src="/death_by_pollution/media/landing/new_ship.jpeg" class="img-fluid card-img-top" alt="..." >
                   <div class="card-body">
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
                   </div>
                 </div>
-                <div class="card col-3">
-                  <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
+                <div id="serviceCard2" class="card col-3" onclick=rotateCard(this)>
+                  <img src="/death_by_pollution/media/landing/new_train.jpeg" class="img-fluid card-img-top" alt="...">
                   <div class="card-body">
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
                   </div>
                 </div>
-                <div class="card col-3">
-                  <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
+                <div id="serviceCard3" class="card col-3" onclick=rotateCard(this)>
+                  <img src="/death_by_pollution/media/landing/new_plane.jpeg" class="img-fluid card-img-top" alt="...">
                   <div class="card-body">
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
                   </div>
@@ -179,20 +171,21 @@
         </div>
       </div>
     </div>
-
     <!-- FOOTER -->
     <?php require_once("./php_partials/footer.php"); ?>
-
   </div>
+
+
+
 
   <!-- UTILITIES -->
   <a id="goStartBtn" href="#start">
     <div>⬆</div>
   </a>
 
+
   <script src="./tercers/gsap/gsap.min.js"></script>
   <script src="./tercers/gsap/ScrollTrigger.min.js"></script>
-
   <script src="./js/landing.js"></script>
 </body>
 
