@@ -9,21 +9,6 @@ const container = document.getElementById("scroll-container");
 const nabvar = document.getElementById("landing_nav");
 const goStartBtn = document.getElementById("goStartBtn");
 
-/* const startSlide = document.getElementById("start");
-const aboutSlide = document.getElementById("about");
-
-function gradientAbout(){
-  let t = 0;
-  aboutSlide.style.setProperty("--transition", t+"%");
-  let s = setInterval(function(){
-        t += 10;
-        aboutSlide.style.setProperty("--transition", t+"%");
-        if (t >= 200){
-          clearInterval(s);
-        }
-      }, 50)
-}
-container.addEventListener("scroll", gradientAbout); */
 
 // set navbar background color
 container.addEventListener("scroll", (e) => {
@@ -41,3 +26,108 @@ container.addEventListener("scroll", (e) => {
     goStartBtn.style.opacity = "0";
   }
 });
+
+//ANIMATIONS
+//NEW GSAP
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.defaults({ scroller: "#scroll-container" });
+
+gsap.from(".about-card", { 
+  scrollTrigger: {
+    trigger: "#about",
+    start: "40% bottom",
+    id: "about",
+    toggleActions: "play none none reverse",
+    markers: true
+  },
+  yPercent: 100,
+  scale: 0.8,
+  transformOrigin: "center bottom",
+  duration: 1.2,
+  ease: "power4.out"
+});
+
+
+gsap.set(".problem-card", {scale: 1});
+const problemTL = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#problem",
+    id: "problem-cards",
+    start: "center bottom",
+    toggleActions: "play none none reverse",
+
+    // markers: true
+  }
+})
+
+problemTL.from(".problem-card", {
+  yPercent: 100,
+  duration: 1,
+  ease: "power4.out",
+});
+
+problemTL.from(".problem-card", {
+  scale: 1.01,
+  duration: 0.5
+}, "-=.2")
+
+let serviceCard1 = gsap
+.to("#serviceCard1", {
+  rotationY: 180,
+  ease: "none",
+  duration: 2,
+}).reverse();
+
+let serviceCard2 = gsap
+.to("#serviceCard2", {
+  rotationY: 180,
+  ease: "none",
+  duration: 2,
+}).reverse();
+
+let serviceCard3 = gsap
+.to("#serviceCard3", {
+  rotationY: 180,
+  ease: "none",
+  duration: 2,
+}).reverse();
+
+
+function rotateCard(card){
+  var cardAnim = gsap.getProperty(card, "id");
+  console.log(cardAnim);
+  switch(cardAnim){
+    case "serviceCard1":
+      if (serviceCard1.reversed()) {
+        serviceCard1.play();
+      } else {
+        serviceCard1.reverse();
+      }
+      break;
+    case "serviceCard2":
+      if (serviceCard2.reversed()) {
+        serviceCard2.play();
+      } else {
+        serviceCard2.reverse();
+      }
+      break;
+    case "serviceCard3":
+    if (serviceCard3.reversed()) {
+      serviceCard3.play();
+    } else {
+      serviceCard3.reverse();
+    }
+    break;
+  }
+  
+  /* while(rotationState <= 90){
+    console.log(rotationState);
+  } */
+
+}
+
+/* onUpdate: () => {
+  rotState = gsap.getProperty(card, "rotationY");
+  console.log(rotState);
+},
+onComplete: () => {card.reversed = true} */

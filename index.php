@@ -8,7 +8,7 @@
   <title>Landing</title>
   <link rel="icon" type="image/x-icon" href="/death_by_pollution/media/icons/favicon32.png">
   <link rel="stylesheet" href="./tercers/boostrap5/bootstrap.min.css" />
-  <script src="./tercers/boostrap5/bootstrap.bundle.min.js"></script>
+  <script src="./tercers/boostrap5/bootstrap.bundle.min.js"></script> 
   <link rel="stylesheet" href="./style/colores.css" />
   <link rel="stylesheet" href="./style/landing.css" />
   <link rel="stylesheet" href="./style/login.css" />
@@ -20,11 +20,12 @@
 
   <!-- CONTENT -->
   <div id="scroll-container">
-    <!-- PRESENTATION -->
+        <!-- PRESENTATION -->
     <div id="start" class="scroll-area">
       <div id="text1">SAME GREEN VIEWS</div>
       <div id="planeWindow">
         <!-- <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" /> -->
+        <video autoplay loop muted>
         <video autoplay loop muted>
           <source src="./media/landing/fotoVentanaAvion_editable.mp4" type="video/mp4">
           Your browser does not support the video tag.
@@ -49,7 +50,7 @@
         <div class="slide-content">
           <div class="row justify-content-center ">
             <div class="col-6">
-              <div class="card">
+              <div class="about-card card">
                 <div class="card-body text-center">
                   <p class="about-card-secondary">Eco-traveling</p>
                   <br>
@@ -85,7 +86,7 @@
           </div>
 
           <div class="row justify-content-between">
-            <div class="card col-3">
+            <div class="problem-card card col-3">
               <div class="card-header">
                 <div>
                   <img class="card-title card-icon" src="./media/landing/ic-train.png" alt="train_ico">
@@ -100,7 +101,7 @@
                 <h5>CO2 --> 19%</h5>
               </div>
             </div>
-            <div class="card col-3">
+            <div class="problem-card card col-3">
               <div class="card-header">
                 <div>
                   <img class="card-title card-icon" src="./media/landing/ic-ship.png" alt="ship_ico">
@@ -115,8 +116,7 @@
                 <h5>CO2 --> 19%</h5>
               </div>
             </div>
-
-            <div class="card col-3">
+            <div class="problem-card card col-3">
               <div class="card-header">
                 <div>
                   <img class="card-title card-icon" src="./media/landing/ic-plane.png" alt="plane_ico">
@@ -151,42 +151,46 @@
               </svg>
             </div>
           </div>
-          <p class="slide-text contain-center mx-auto">Nuestra flota de transportes <span style="color: var(--ACCENT);">eco</span></p>
-          <div class="row justify-content-between mt-5">
-            <div class="card col-3">
-              <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
-
-              <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+          <p class="slide-text contain-center mx-auto">Nuestra flota de transportes <span
+              style="color: var(--ACCENT);">eco</span></p>
+              <div class="row justify-content-between mt-5" >
+                <div id="serviceCard1" class="card col-3" onclick=rotateCard(this)>
+                  <img src="/death_by_pollution/media/landing/new_ship.jpeg" class="img-fluid card-img-top" alt="..." >
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+                  </div>
+                </div>
+                <div id="serviceCard2" class="card col-3" onclick=rotateCard(this)>
+                  <img src="/death_by_pollution/media/landing/new_train.jpeg" class="img-fluid card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+                  </div>
+                </div>
+                <div id="serviceCard3" class="card col-3" onclick=rotateCard(this)>
+                  <img src="/death_by_pollution/media/landing/new_plane.jpeg" class="img-fluid card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="card col-3">
-              <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
-              </div>
-            </div>
-            <div class="card col-3">
-              <img src="media/landing/eco_plane_stats.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-
     <!-- FOOTER -->
     <?php require_once("./php_partials/footer.php"); ?>
-
   </div>
+
+
+
 
   <!-- UTILITIES -->
   <a id="goStartBtn" href="#start">
     <div>⬆</div>
   </a>
 
+
+  <script src="./tercers/gsap/gsap.min.js"></script>
+  <script src="./tercers/gsap/ScrollTrigger.min.js"></script>
   <script src="./js/landing.js"></script>
 </body>
 

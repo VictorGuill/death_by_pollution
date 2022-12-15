@@ -12,13 +12,13 @@ a:hover {
 
 /* Disable scrollbar */
 ::-webkit-scrollbar {
-  width: 0px;
+  /* width: 0px; */
 }
+
 
 body {
   height: 100vh;
   width: 100vw;
-  scroll-snap-type: y mandatory;
   font-family: "Outfit", sans-serif;
 }
 
@@ -132,7 +132,7 @@ body {
 }
 
 .slide-content {
-  margin-top: 2rem;
+  margin-top: 2vh;
 }
 
 .slide-text {
@@ -202,19 +202,6 @@ body {
   grid-area: 3 / 2 / 4 / 3;
 }
 
-#claim {
-  margin-left: 8rem;
-}
-
-#claim-text {
-  margin: auto 0;
-
-  font-size: 3.5vw;
-  font-weight: 500;
-
-  line-height: 1em;
-}
-
 #aboutBtnRow {
   width: 100%;
   grid-area: 3 / 2 / 4 / 3;
@@ -249,17 +236,40 @@ body {
 
 /* #region ABOUT */
 #about {
+  position: relative;
   background-image: url("../media/landing/about_earth.jpeg");
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
+}
+
+.animation{
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 30%,  rgba(2,0,36,1)100%);
+}
+
+.box1{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 60px;
+  width: 60px;
+  background-color: red;
+  z-index: 1000;
 }
 
 #about .slide-title,
 #problem .slide-title {
   color: var(--SECONDARY-DARK);
 }
+#about .card{
+  height: fit-content;
+}
+
 #about .card-body {
-  padding: 10px 80px;
+  padding: 30px 60px;
 }
 .about-card-secondary {
   font-size: 18px;
@@ -273,8 +283,10 @@ body {
 
 /* #region THE PROBLEM */
 #problem {
-  background: var(--LIGHT);
+  background-image: url("../media/landing/plane.jpeg");
+  background-size: cover;
   scroll-snap-align: start;
+  height: 80vh;
 }
 #problem .card,
 #about .card {
@@ -287,6 +299,7 @@ body {
 }
 
 #problem .card-text {
+  font-size: 18px;
   color: var(--DARKTEXT);
   text-align: center;
 }
@@ -308,13 +321,14 @@ body {
 
 /* #region SERVICES */
 #services {
+  height: 96vh;
+  scroll-snap-align: end;
   background: radial-gradient(black 15%, transparent 16%) 0 0,
     radial-gradient(black 15%, transparent 16%) 8px 8px,
     radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
     radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
   background-color: #282828;
   background-size: 16px 16px;
-  /* background-color: #0A4DFA; */
 }
 
 #service-title {
@@ -323,7 +337,7 @@ body {
   text-align: center;
 }
 .services-img {
-  width: 400px;
+  width: fit-content;
 }
 
 #services .card {
@@ -331,8 +345,10 @@ body {
 }
 
 #services .card-text {
+  font-size: 18px;
   color: var(--DARKTEXT);
 }
+
 /* #endregion */
 
 /* #region footer */
