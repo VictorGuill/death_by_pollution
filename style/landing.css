@@ -264,6 +264,10 @@ body {
 #problem .slide-title {
   color: var(--SECONDARY-DARK);
 }
+#about .card{
+  height: fit-content;
+}
+
 #about .card-body {
   padding: 30px 60px;
 }
@@ -287,7 +291,6 @@ body {
 #problem .card,
 #about .card {
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
-  height: fit-content;
 }
 #problem-title {
   font-size: 36px;

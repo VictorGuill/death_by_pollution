@@ -38,7 +38,7 @@ gsap.from(".about-card", {
     start: "40% bottom",
     id: "about",
     toggleActions: "play none none reverse",
-    // markers: true
+    markers: true
   },
   yPercent: 100,
   scale: 0.8,
@@ -55,6 +55,7 @@ const problemTL = gsap.timeline({
     id: "problem-cards",
     start: "center bottom",
     toggleActions: "play none none reverse",
+
     // markers: true
   }
 })
@@ -75,21 +76,21 @@ let serviceCard1 = gsap
   rotationY: 180,
   ease: "none",
   duration: 2,
-}).pause();
+}).reverse();
 
 let serviceCard2 = gsap
 .to("#serviceCard2", {
   rotationY: 180,
   ease: "none",
   duration: 2,
-}).pause();
+}).reverse();
 
 let serviceCard3 = gsap
 .to("#serviceCard3", {
   rotationY: 180,
   ease: "none",
   duration: 2,
-}).pause();
+}).reverse();
 
 
 function rotateCard(card){

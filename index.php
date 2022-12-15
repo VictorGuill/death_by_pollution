@@ -8,7 +8,7 @@
   <title>Landing</title>
   <link rel="icon" type="image/x-icon" href="/death_by_pollution/media/icons/favicon32.png">
   <link rel="stylesheet" href="./tercers/boostrap5/bootstrap.min.css" />
-  <script src="./tercers/boostrap5/bootstrap.bundle.min.js"></script>
+  <script src="./tercers/boostrap5/bootstrap.bundle.min.js"></script> 
   <link rel="stylesheet" href="./style/colores.css" />
   <link rel="stylesheet" href="./style/landing.css" />
   <link rel="stylesheet" href="./style/login.css" />
@@ -21,23 +21,27 @@
   <!-- CONTENT -->
   <div id="scroll-container">
         <!-- PRESENTATION -->
-        <div id="start" class="scroll-area">
-          <div id="text1">SAME GREEN VIEWS</div>
-          <div id="planeWindow">
-            <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" />
-          </div>
-          <div id="text2">NEW TRAVELING MEANS</div>
-          <div class="container my-auto">
-            <div id="aboutBtnRow">
-              <a id="aboutBtn" href="#about">
-                <p>Qué es Eco Travelling?</p>
-                <svg width="30px" height="20px">
-                  <path stroke="#ffffff" stroke-width="2px" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
-                </svg>
-              </a>
-            </div>
-          </div>
+    <div id="start" class="scroll-area">
+      <div id="text1">SAME GREEN VIEWS</div>
+      <div id="planeWindow">
+        <!-- <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" /> -->
+        <video autoplay loop muted>
+          <source src="./media/landing/fotoVentanaAvion_editable.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div id="text2">NEW TRAVELING MEANS</div>
+      <div class="container my-auto">
+        <div id="aboutBtnRow">
+          <a id="aboutBtn" href="#about">
+            <p>Qué es Eco Travelling?</p>
+            <svg width="30px" height="20px">
+              <path stroke="#ffffff" stroke-width="2px" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+            </svg>
+          </a>
         </div>
+      </div>
+    </div>
 
     <!-- ABOUT -->
     <div id="about" class="scroll-area">
