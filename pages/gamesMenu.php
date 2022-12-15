@@ -10,6 +10,11 @@ if (isset($_SESSION["name"])) {
     unset($_COOKIE['game1_score']);
     setcookie('game1_score', null, -1, '/');
   }
+  if (isset($_COOKIE['game2_score'])) {
+    insertUserScore(1, $_SESSION['id'], $_COOKIE['game2_score']);
+    unset($_COOKIE['game2_score']);
+    setcookie('game2_score', null, -1, '/');
+  }
   if (isset($_COOKIE["game3_score"])) {
     insertUserScore(2, $_SESSION['id'], $_COOKIE['game3_score']);
     unset($_COOKIE["game3_score"]);

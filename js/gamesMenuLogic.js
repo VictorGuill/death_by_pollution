@@ -23,7 +23,7 @@ game1.addEventListener("click", (e) => {
 });
 game2.addEventListener("click", (e) => {
   if (!e.target.classList.contains("blocked")) {
-    window.location.href = "../games/game2.php";
+    window.location.href = "../games/menu.html";
   }
 });
 game3.addEventListener("click", (e) => {
