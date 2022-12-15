@@ -5,7 +5,7 @@ function openDB()
     $servername = "localhost:3306";
     $username = "root";
     #region PASSWORD
-    $password = "1234";
+    $password = "12345";
     #endregion
 
     $conexion = new PDO("mysql:host=$servername;dbname=death_by_p", $username, $password);
@@ -153,13 +153,14 @@ function selectGameScores($game)
 {
     $conexion = openDB();
 
-    $queryText = "SELECT users.name, score FROM users
+    $queryText = "SELECT users.name, REPLACE(FORMAT(MAX(score),'N'),',','.') AS score FROM users
     INNER JOIN scores
     ON users.id = scores.users_id
     INNER JOIN games
     ON scores.games_id = games.id
-    WHERE games.id = " . $game . "
-    ORDER BY scores.score DESC
+    WHERE games.id =" . $game . "
+    GROUP BY users.name
+    ORDER BY MAX(score) DESC
     LIMIT 10000
     OFFSET 3;";
 
@@ -177,13 +178,14 @@ function selectSpecificScore($game, $postion)
 {
     $conexion = openDB();
 
-    $queryText = "SELECT users.name, score FROM users
+    $queryText =  "SELECT users.name, REPLACE(FORMAT(MAX(score),'N'),',','.') AS score FROM users
     INNER JOIN scores
     ON users.id = scores.users_id
     INNER JOIN games
     ON scores.games_id = games.id
-    WHERE games.id = " . $game . "
-    ORDER BY scores.score DESC
+    WHERE games.id =" . $game . "
+    GROUP BY users.name
+    ORDER BY MAX(score) DESC
     LIMIT " . $postion . ", 1;";
 
     $query = $conexion->prepare($queryText);

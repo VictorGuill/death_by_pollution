@@ -58,10 +58,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `death_by_p`;
+-- SUPER ADMINDS
 INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('victor','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','3','2');
 INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('guillem','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','3','2');
 INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('maria','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','3','2');
 
+-- USERS
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('Ramon','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','0','0');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('Sheila','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','0','0');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('Josep','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','0','0');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('Carla','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','0','0');
 COMMIT;
 
 -- -----------------------------------------------------
@@ -106,38 +112,61 @@ CREATE TABLE IF NOT EXISTS `death_by_p`.`scores` (
   CONSTRAINT `fk_games_has_users_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `death_by_p`.`users` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- GAME SUPER SCUBA
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 1, 560, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 1, 472, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 2, 521, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 3, 498, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 4, 234, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 5, 284, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 6, 447, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 7, 512, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 7, 435, 60, now());
+
+-- GAME TRAIN TRACK
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 20, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 7, 20, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 23, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 3, 24, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 4, 18, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 5, 16, 120, now());
+
+-- GAME SKY DIVE
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 1, 75000, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 2, 45000, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 3, 90000, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 4, 2000, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 6, 6000, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 7, 90000, 60, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 7, 1200000, 60, now());
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
--- CREATE DB END
+-----------------------------------------------------------------
+-- CREATE DB END ------------------------------------------------
+-----------------------------------------------------------------
 
 
+-----------------------------------------------------------------
+-- BIG PILE OF TRASH QUERY TESTS ⬇️ ------------------------------
+-----------------------------------------------------------------
 
 UPDATE users
 SET users.phase = 2
 WHERE users.id = 5;
-
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 1, 45, 60, now());
-
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 75, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 53, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 23, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 223, 60, now());
-
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 3, 90000, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 1, 75000, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 2, 45000, 60, now());
 
 SELECT * FROM user_type;
 
 SELECT * FROM users;
 SELECT * FROM games;
 SELECT * FROM scores;
+
+
 
 DELETE FROM users WHERE users.id=3;
 
@@ -157,12 +186,27 @@ AND users.password = "12345";
 
 
 -- query get user results game
-SELECT * FROM users
+SELECT users.name, MAX(score) AS score FROM users
 INNER JOIN scores
 ON users.id = scores.users_id
 INNER JOIN games
 ON scores.games_id = games.id
-WHERE games.id = 1;
+WHERE games.id = 2
+GROUP BY users.name
+ORDER BY MAX(score) DESC;
+
+SELECT DISTINCT score FROM scores
+WHERE games_id = 0
+ORDER BY score DESC;
+
+SELECT * FROM users
+INNER JOIN ( SELECT 
+              MAX(score) AS tumadre
+          FROM
+              scores
+        ) AS scoreNew
+ON scores.users_id = users.id
+WHERE users.games_id = 1;
 
 SELECT users.name, score FROM users
 INNER JOIN scores
@@ -183,6 +227,14 @@ WHERE games.id = 1
 ORDER BY scores.score DESC
 LIMIT 2, 1;
 
+SELECT users.name, score FROM users
+INNER JOIN scores
+ON users.id = scores.users_id
+INNER JOIN games
+ON scores.games_id = games.id
+WHERE games.id = 0
+ORDER BY scores.score DESC;
+
 
 
 
@@ -190,3 +242,14 @@ LIMIT 2, 1;
 SELECT * FROM users
 INNER JOIN scores
 ON users.id = scores.user_id;
+
+SELECT users.name, REPLACE(FORMAT(MAX(score),'N'),',','.') AS score FROM users
+INNER JOIN scores
+ON users.id = scores.users_id
+INNER JOIN games
+ON scores.games_id = games.id
+WHERE games.id = 1
+GROUP BY users.name
+ORDER BY MAX(score) DESC
+LIMIT 10000
+OFFSET 0;

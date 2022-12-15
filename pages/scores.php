@@ -51,15 +51,15 @@ if ($selection === "") {
           <option value="1" <?php
                             if ($selection === "0") {
                               echo "selected";
-                            } ?>>Game 1</option>
+                            } ?>>SUPER SCUBA</option>
           <option value="2" <?php
                             if ($selection === "1") {
                               echo "selected";
-                            } ?>>Game 2</option>
+                            } ?>>TRAIN TRACK</option>
           <option value="3" <?php
                             if ($selection === "2") {
                               echo "selected";
-                            } ?>>Game 3</option>
+                            } ?>>SKY DIVE</option>
         </select>
       </div>
       <div class="col-1"></div>
