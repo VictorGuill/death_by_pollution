@@ -26,7 +26,7 @@ if (isset($_COOKIE['game2_score'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TRAIN TRACK</title>
-  <link rel="stylesheet" href="../style/juego2.css" />
+  <link rel="stylesheet" href="../style/game2.css" />
   <link rel='shortcut icon' href='../media/game2/objects/house2.gif' type='image/x-icon'>
 </head>
 
@@ -77,37 +77,40 @@ if (isset($_COOKIE['game2_score'])) {
 
     function GameOver() {
       const END_SCREEN = document.createElement("div");
-      END_SCREEN.setAttribute("id", "endScreen");
-      const game = document.querySelector("#game");
-      game.appendChild(END_SCREEN);
+        END_SCREEN.setAttribute("id", "endScreen");
+        const game = document.querySelector("#game");
+        game.appendChild(END_SCREEN);
 
-      const END_TITLE = document.createElement("div");
-      END_TITLE.setAttribute("id", "title");
-      const end_screen = document.querySelector("#endScreen");
-      end_screen.appendChild(END_TITLE);
+        const END_TITLE = document.createElement("div");
+        END_TITLE.setAttribute("id", "title");
+        END_TITLE.innerHTML = "YOU LOSE";
+        END_TITLE.style.color = "#c6333f";
+        const end_screen = document.querySelector("#endScreen");
+        end_screen.appendChild(END_TITLE);
 
-      const SCORE = document.createElement("div");
-      SCORE.setAttribute("id", "score");
-      end_screen.appendChild(SCORE);
+        const SCORE = document.createElement("div");
+        SCORE.setAttribute("id", "score");
+        SCORE.innerHTML = "Your score is:<br><p>0</p>";
+        end_screen.appendChild(SCORE);
 
-      const PLAY_AGAIN = document.createElement("div");
-      PLAY_AGAIN.setAttribute("id", "playAgain");
-      end_screen.appendChild(PLAY_AGAIN);
-      const LINK_PLAY_AGAIN = document.createElement("a");
-      LINK_PLAY_AGAIN.href = "./game2.php"
-      LINK_PLAY_AGAIN.innerHTML = "PLAY AGAIN";
-      PLAY_AGAIN.appendChild(LINK_PLAY_AGAIN);
+        const PLAY_AGAIN = document.createElement("div");
+        PLAY_AGAIN.setAttribute("id", "playAgain");
+        end_screen.appendChild(PLAY_AGAIN);
+        const LINK_PLAY_AGAIN = document.createElement("a");
+        LINK_PLAY_AGAIN.href = "./game2.php"
+        LINK_PLAY_AGAIN.innerHTML = "PLAY AGAIN";
+        PLAY_AGAIN.appendChild(LINK_PLAY_AGAIN);
 
-      const EXIT = document.createElement("div");
-      EXIT.setAttribute("id", "exit");
-      EXIT.style.marginTop = "0";
-      end_screen.appendChild(EXIT);
-      const LINK_EXIT = document.createElement("a");
-      LINK_EXIT.href = "../pages/gamesMenu.php"
-      LINK_EXIT.innerHTML = "EXIT";
-      EXIT.appendChild(LINK_EXIT);
+        const EXIT = document.createElement("div");
+        EXIT.setAttribute("id", "exit");
+        EXIT.style.marginTop = "0";
+        end_screen.appendChild(EXIT);
+        const LINK_EXIT = document.createElement("a");
+        LINK_EXIT.href = "../pages/gamesMenu.php"
+        LINK_EXIT.innerHTML = "EXIT";
+        EXIT.appendChild(LINK_EXIT);
 
-      clearInterval(timeoutHandle);
+        clearInterval(timeoutHandle);
     }
   </script>
 </body>

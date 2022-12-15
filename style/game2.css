@@ -35,6 +35,11 @@
   background-color: #dadada;
 }
 
+#tools {
+  display: flex;
+  flex-direction: column;
+}
+
 #items_picker {
   width: 8vmin;
   height: 28vmin;
@@ -46,12 +51,13 @@
   margin-left: 1vmin;
 
   border-radius: 1vmin;
-  background-color: #da7e53;
+  background-color: #009361;
 }
 
 #button,
 #button2,
 #timer {
+  border: 1em;
   width: 8vmin;
   height: 8vmin;
 
@@ -68,16 +74,27 @@
   color: white;
 
   border-radius: 1vmin;
-  background-color: #da7e53;
+  background-color: #009361;
 }
 
 button {
   all: unset;
 }
 
-#button:hover,
-#button2:hover {
+#button:hover {
   background-color: #da6b38;
+}
+
+#button2 {
+  font-size: 20px;
+  padding: 1em;
+  width: max-content;
+  margin-top: 30vh;
+  background-color: #c5324a;
+}
+
+#button2:hover {
+  background-color: #972638;
 }
 
 .start,
@@ -126,6 +143,7 @@ button {
 
 #title,
 #text,
+#subtext,
 #score,
 #playAgain,
 #exit {
@@ -136,12 +154,18 @@ button {
   margin: auto;
 }
 
+#subtext {
+  font-size: 20px;
+}
+
 #title {
   font-size: 90px;
   color: #c4a126;
 }
 
-#play { margin: auto; }
+#play {
+  margin: auto;
+}
 
 #play a {
   text-decoration: none;
@@ -149,20 +173,24 @@ button {
   color: #a8650d;
 }
 
-#play a:hover { color: #91570b; }
+#play a:hover {
+  color: #91570b;
+}
 
-#todo { margin: 2vh }
+#todo {
+  margin: 2vh
+}
 
-#text {
+#text, #subtext {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 
   margin: 3vh;
 }
 
-#text img {
+#text img, #subtext img  {
   margin-left: 2vw;
   margin-right: 2vw;
 }
@@ -179,37 +207,10 @@ button {
 
 #playAgain a:hover,
 #exit a:hover {
-  color: #91570b ;
+  color: #91570b;
 }
 
 #score p {
   margin-top: 50px;
   font-size: 100px;
 }
-
-/* #title {
-  text-align: center;
-  justify-content: center;
-  font-size: 70px;
-}
-
-#playAgain {
-  margin-bottom: 0;
-}
-
-#exit {
-  margin-top: 0;
-}
-
-
-#endWindow {
-  position: "absolute";
-  border-radius: "0.5vmin";
-  width: "60vw";
-  height: "60vh";
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  background-color: "red";
-} */
