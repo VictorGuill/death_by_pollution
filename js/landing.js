@@ -37,7 +37,7 @@ gsap.from(".about-card", {
     start: "40% bottom",
     id: "about",
     toggleActions: "play none none reverse",
-    markers: true,
+    // markers: true,
   },
   yPercent: 100,
   scale: 0.8,
@@ -53,19 +53,18 @@ const problemTL = gsap.timeline({
     id: "problem-cards",
     start: "center bottom",
     toggleActions: "play none none reverse",
-
     // markers: true
   },
 });
 
-problemTL.from(".problem-card", {
+problemTL.from(".problem-card", 
+{
   yPercent: 100,
   duration: 1,
   ease: "power4.out",
 });
 
-problemTL.from(
-  ".problem-card",
+problemTL.from(".problem-card",
   {
     scale: 1.01,
     duration: 0.5,
