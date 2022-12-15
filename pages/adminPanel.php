@@ -81,13 +81,10 @@ if (!isset($_SESSION)) {
                             </button>";
 
       if ($user['user_type_id'] !== "super admin") {
-        echo "<form method='post' action='../php_controllers/controller.php' enctype='multipart/form-data'>
-      <button type='submit'  class='btn btn-danger btn-sm' name='deleteUser' value='" . $user['id'] . "'>
+        echo "<button type='button' class='btn btn-danger btn-sm btn-delete id:" . $user['id'] . "' data-bs-toggle='modal' data-bs-target='#deleteModal'>
         <i>❌</i>
-      </button>
-    </form>";
+      </button>";
       }
-
 
       echo "</td>
           </tr>";
@@ -106,30 +103,38 @@ if (!isset($_SESSION)) {
             </section>";
   }
   ?>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Borrar usuario</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <form method='post' action='../php_controllers/controller.php' enctype='multipart/form-data'>
+            <button id="deleteUserBtn" type='submit' class='btn btn-danger' name='deleteUser' value=''>
+              <i>Borrar usuario</i>
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  <script src="../js/loginPanelLogic.js"></script>
+
+  <script>
+    const toggleElements = document.querySelectorAll('.btn-delete');
+    const deleteUserBtn = document.getElementById("deleteUserBtn");
+
+    toggleElements.forEach(e => {
+      e.addEventListener('click', function() {
+        deleteUserBtn.value = e.classList[4].substring(3, 4);
+      });
+    });
+  </script>
+
+  <script src=" ../js/loginPanelLogic.js"></script>
 </body>
 
 </html>
