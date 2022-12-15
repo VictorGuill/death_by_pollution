@@ -1,3 +1,23 @@
+<?php require_once("../php_libraries/bd.php");
+
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+switch ($_SESSION['phase']) {
+  case 2:
+    $_SESSION['phase'] = 3;
+    changeUserPhase($_SESSION['id'], 3);
+    break;
+}
+
+if (isset($_COOKIE['game2_score'])) {
+  insertUserScore(0, $_SESSION['id'], $_COOKIE['game2_score']);
+  unset($_COOKIE['game2_score']);
+  setcookie('game2_score', null, -1, '/');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
