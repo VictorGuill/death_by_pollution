@@ -4,8 +4,9 @@ const gp = new GamePanel("gp");
 
 function loop(timestamp) {
     var dt = (timestamp - lastRender)/100;
-    gp.update(dt);
+    
     gp.draw(timestamp);
+    gp.update(dt);
 
     lastRender = timestamp
     window.requestAnimationFrame(loop);

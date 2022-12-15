@@ -1,3 +1,4 @@
+import { playState } from "../main/gamePanel.js";
 import planeVfx from "./planeVFX.js";
 
 export default class Plane{
@@ -52,8 +53,7 @@ export default class Plane{
 
         this.ezModePitch = true;
 
-        this.addPlane();
-        this.vfx = new planeVfx(this);
+        this.elementAdded = false;
     }
 
     addPlane() {
@@ -65,6 +65,10 @@ export default class Plane{
         this.planeImg.style.display = "block";
         this.element.appendChild(this.planeImg);
         this.gp.map.screenPlaneZone.appendChild(this.element);
+
+        this.vfx = new planeVfx(this);
+        
+        this.elementAdded = true;
     }
 
     accelerate(dt) {
@@ -294,8 +298,14 @@ export default class Plane{
 
 
     draw() {
-        this.element.style.bottom = this.worldY +"px";
-        this.element.style.left = this.screenX + "px";
+        if (this.gp.gameState == playState) {
+            if (!this.elementAdded) {
+                this.addPlane();
+            }
+            this.element.style.bottom = this.worldY +"px";
+            this.element.style.left = this.screenX + "px";
+        }
+
     }
 
         //---- GETTERS ----

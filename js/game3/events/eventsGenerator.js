@@ -7,18 +7,22 @@ export default class EventsGenerator{
     constructor(gp){
         this.gp = gp;
 
+        this.init = false;
+        // this.generateToxicDebug(400, 200);
+    }
+
+    initGenerator() {
         this.fCoins = this.gp.map.w;
         this.fNotes = this.gp.map.w;
         this.fDiamonds = this.gp.map.w * 3;
         this.fToxic = this.gp.map.w/2;
 
-        
         this.spawnCoin = this.fCoins;
         this.spawnNote = this.fNotes;
         this.spawnDiamond = this.fDiamonds;
         this.spawnToxic = this.fToxic;
 
-        // this.generateToxicDebug(400, 200);
+        this.init = true;
     }
 
     generateToxicDebug(x, y){
@@ -75,8 +79,11 @@ export default class EventsGenerator{
 
 
     update(){
-        
-            
+        if (this.gp.map.elementsAdded) {
+            if (!this.init) {
+                this.initGenerator();
+            }
+        }
         
         this.spawnCheck();
         this.gp.objects.forEach((obj) => {

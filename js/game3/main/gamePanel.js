@@ -3,25 +3,42 @@ import Map from '../map/map.js';
 import UI from '../ui/UI.js';
 import CollisionDetection from './collisionDetection.js'
 import Phisics from './physics.js';
-import input_codes from './keyHandler.js';
 import EventHandler from './eventHandler.js';
 import Slot from './slot.js';
+import MenuHandler from './menuHandler.js';
 
-const gameWrapper = document.getElementById("game-wrapper");
+//KEY INPUTS
+import input_codes from './keyHandler.js';
+
+//GAME HEIGHT
+export const gameHeight = 640;
+
+//GAME STATES
+export const 
+    titleState = 0, 
+    playState = 1,
+    pauseState = 2,
+    endGameState = 3;
+//MENU STATES
+export const 
+    mainMenu = 4,
+    optionsMenu = 5,
+    tutorialMenu = 6;
+
 
 export class GamePanel {
     constructor (){
         this.id = "gp";
-        //game states
-        this.playState = 0;
-        this.pauseState = 1;
-        this.gameState = this.playState;
+        
+        this.gameState = titleState;
+        this.menuState = mainMenu;
 
         //game data
         this.time = 0;
         this.score = 0;
 
         this.addGPelement(); //gp div on document
+        this.mH = new MenuHandler(this);
         this.map = new Map(this);
         this.objects = new Array();
         this.physics = new Phisics(this);
@@ -40,15 +57,20 @@ export class GamePanel {
     }
 
     update(dt) {
-        if (this.gameState == this.playState){
+        if (this.gameState == playState){
             this.plane.update(dt);
             this.eH.update();
-        } else if (this.gameState == this.pauseState){}
+        } else if (this.gameState == pauseState){}
     }
 
     draw(timeElapsed) {
-        this.plane.draw();
-        this.map.draw();
-        this.ui.draw(timeElapsed);
+        if (this.gameState == titleState) {
+            this.mH.draw();
+        } else if (this.gameState == playState) {
+            this.map.draw();
+            this.plane.draw();
+            this.ui.draw(timeElapsed);
+        }
+
     }
 }

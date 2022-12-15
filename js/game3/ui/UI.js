@@ -1,8 +1,11 @@
+import { playState } from "../main/gamePanel.js";
+
 export default class UI {
     constructor(gp){
         this.gp = gp;
-        this.addUI();
-        this.addElements();
+
+        this.elementsAdded = false;
+        
         this.mssgOn = false;
 
         this.caution = false;
@@ -20,6 +23,8 @@ export default class UI {
         this.element = document.createElement("div");
         this.element.setAttribute("id", "ui");
         this.gp.element.appendChild(this.element);
+        this.addElements();
+        this.elementsAdded = true;
     }
 
     addElements(){
@@ -257,9 +262,14 @@ export default class UI {
     }
 
     draw(timeElapsed) {
-        // this.displayAlert();
+        if (this.gp.gameState == playState) {
+            if (!this.elementsAdded) {
+                this.addUI();
+            }
         this.drawProgressBar();
         this.drawTimeScore(timeElapsed);
         this.drawHudMetrics();
+        }
+
     }
 }

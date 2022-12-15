@@ -2,23 +2,27 @@
 const bgImgHeight = 1100;
 const airportWidth = 3000;
 
+import { playState } from "../main/gamePanel.js";
+
 export default class Map {
     constructor(gp) {
         this.gp = gp;
         this.id = "map";
         this.x = 0;
         this.y = 0;
-        this.addElement();
-        this.addLayers();
+        
+        this.elementsAdded = false;
     }
 
-    addElement() {
+    addElements() {
         this.element = document.createElement("div");
         this.element.setAttribute("id", this.id);
         this.element.classList.add("crt_borders");
         this.gp.element.appendChild(this.element);
         this.addScreenZone()
         this.getSize();
+        this.addLayers();
+        this.elementsAdded = true;
     }
 
     addScreenZone() {
@@ -241,7 +245,13 @@ export default class Map {
     }
 
     draw() {
-        this.drawLayersX();
-        this.drawLayersY();
+        if (this.gp.gameState == playState) {
+            if (!this.elementsAdded){
+                this.addElements();
+            }
+            this.drawLayersX();
+            this.drawLayersY();
+        }
+
     }
 }
