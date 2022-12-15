@@ -26,7 +26,6 @@
       <div id="planeWindow">
         <!-- <img src="./media/landing/fotoVentanaAvion.png" alt="Plane window" /> -->
         <video autoplay loop muted>
-        <video autoplay loop muted>
           <source src="./media/landing/fotoVentanaAvion_editable.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
