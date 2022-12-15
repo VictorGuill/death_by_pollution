@@ -341,12 +341,26 @@ body {
 }
 
 #services .card {
+  height: fit-content;
   padding-top: 10px;
 }
 
 #services .card-text {
   font-size: 18px;
   color: var(--DARKTEXT);
+}
+
+#services .gamesLink{
+  color: var(--LIGHT);
+  font-weight: 600;
+  background-color: var(--SECONDARY-DARK);
+  border-color: var(--DARK);
+  justify-content: center;
+}
+#services .gamesLink:hover{
+  color: var(--LIGHT);
+  background-color: var(--DARK);
+  border-color: var(--SECONDARY-DARK);
 }
 
 /* #endregion */

@@ -73,6 +73,9 @@ problemTL.from(
   "-=.2"
 );
 
+const card1Img = document.querySelector("#serviceCard1 img");
+const card1Body = document.querySelector("#serviceCard1 .card-body");
+const card1Link = document.querySelector("#serviceCard1 a");
 let serviceCard1 = gsap
   .to("#serviceCard1", {
     rotationY: 180,
@@ -80,23 +83,30 @@ let serviceCard1 = gsap
     duration: 0.8,
     onUpdate: () => {
       let rot = gsap.getProperty("#serviceCard1", "rotationY");
-      const img = document.querySelector("#serviceCard1 img");
-      const body = document.querySelector("#serviceCard1 .card-body");
       if (rot > 90) {
-        img.src = "./media/games_menu/game1_screenshot.png";
-        img.style.height = "40vh";
-        img.style.transform = "scaleX(-1)";
-        body.style.display = "none";
+        card1Img.src = "./media/games_menu/game1_screenshot.png";
+        card1Img.style.height = "530px";
+        card1Img.style.transform = "scaleX(-1)";
+        card1Body.style.display = "none";
       } else if (rot < 90) {
-        img.src = "./media/landing/new_ship.jpeg";
-        img.style.height = "auto";
-        img.style.transform = "scaleX(1)";
-        body.style.display = "inherit";
+        card1Img.src = "./media/landing/new_ship.jpeg";
+        card1Img.style.height = "auto";
+        card1Img.style.transform = "scaleX(1)";
+        card1Body.style.display = "inherit";
+        card1Link.style.display = "none";
       }
     },
+    onComplete: ()=>{
+      card1Link.style.display = "inherit";
+      card1Link.style.transform = "scaleX(-1)";
+    }
   })
   .reverse();
+  card1Link.addEventListener("click", ()=>{serviceCard1.kill()});
 
+const card2Img = document.querySelector("#serviceCard2 img");
+const card2Body = document.querySelector("#serviceCard2 .card-body");
+const card2Link = document.querySelector("#serviceCard2 a");
 let serviceCard2 = gsap
   .to("#serviceCard2", {
     rotationY: 180,
@@ -104,23 +114,32 @@ let serviceCard2 = gsap
     duration: 0.8,
     onUpdate: () => {
       let rot = gsap.getProperty("#serviceCard2", "rotationY");
-      const img = document.querySelector("#serviceCard2 img");
-      const body = document.querySelector("#serviceCard2 .card-body");
+      
       if (rot > 90) {
-        img.src = "./media/games_menu/game2_screenshot.png";
-        img.style.height = "40vh";
-        img.style.transform = "scaleX(-1)";
-        body.style.display = "none";
+        card2Img.src = "./media/games_menu/game2_screenshot.png";
+        card2Img.style.height = "530px";
+        card2Img.style.transform = "scaleX(-1)";
+        card2Body.style.display = "none";
       } else if (rot < 90) {
-        img.src = "./media/landing/new_train.jpeg";
-        img.style.height = "auto";
-        img.style.transform = "scaleX(1)";
-        body.style.display = "inherit";
+        card2Img.src = "./media/landing/new_train.jpeg";
+        card2Img.style.height = "auto";
+        card2Img.style.transform = "scaleX(1)";
+        card2Body.style.display = "inherit";
+        card2Link.style.display = "none";
       }
     },
+    onComplete: ()=>{
+      card2Link.style.display = "inherit";
+      card2Link.style.transform = "scaleX(-1)";
+    }
   })
   .reverse();
+  card2Link.addEventListener("click", ()=>{serviceCard2.kill()});
 
+const card3 = document.getElementById("serviceCard3");
+const card3Img = document.querySelector("#serviceCard3 img");
+const card3Body = document.querySelector("#serviceCard3 .card-body");
+const card3Link = document.querySelector("#serviceCard3 a");
 let serviceCard3 = gsap
   .to("#serviceCard3", {
     rotationY: 180,
@@ -128,22 +147,26 @@ let serviceCard3 = gsap
     duration: 0.8,
     onUpdate: () => {
       let rot = gsap.getProperty("#serviceCard3", "rotationY");
-      const img = document.querySelector("#serviceCard3 img");
-      const body = document.querySelector("#serviceCard3 .card-body");
-      if (rot > 90) {
-        img.src = "./media/games_menu/game3_screenshot.png";
-        img.style.height = "40vh";
-        img.style.transform = "scaleX(-1)";
-        body.style.display = "none";
-      } else if (rot < 90) {
-        img.src = "./media/landing/new_plane.jpeg";
-        img.style.height = "auto";
-        img.style.transform = "scaleX(1)";
-        body.style.display = "inherit";
+      if (rot >= 90) {
+        card3Img.src = "./media/games_menu/game3_screenshot.png";
+        card3Img.style.height = "530px";
+        card3Img.style.transform = "scaleX(-1)";
+        card3Body.style.display = "none";
+      } else if (rot <= 90) {
+        card3Img.src = "./media/landing/new_plane.jpeg";
+        card3Img.style.height = "auto";
+        card3Img.style.transform = "scaleX(1)";
+        card3Body.style.display = "inherit";
+        card3Link.style.display = "none";
       }
     },
+    onComplete: ()=>{
+      card3Link.style.display = "inherit";
+      card3Link.style.transform = "scaleX(-1)";
+    }
   })
   .reverse();
+card3Link.addEventListener("click", ()=>{serviceCard3.kill()});
 
 function rotateCard(card) {
   var cardAnim = gsap.getProperty(card, "id");

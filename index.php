@@ -157,18 +157,21 @@
               <div class="card-body" style="display: inherit;">
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
               </div>
+              <a href="./pages/gamesMenu.php" class="btn gamesLink mb-2" style="display: none;">JUGAR</a>
             </div>
             <div id="serviceCard2" class="card col-3" onclick=rotateCard(this)>
               <img src="/death_by_pollution/media/landing/new_train.jpeg" class="img-fluid card-img-top mb-2" alt="...">
               <div class="card-body">
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
               </div>
+              <a href="./pages/gamesMenu.php" class="btn gamesLink mb-2" style="display: none;">JUGAR</a>
             </div>
             <div id="serviceCard3" class="card col-3" onclick=rotateCard(this)>
               <img src="/death_by_pollution/media/landing/new_plane.jpeg" class="img-fluid card-img-top mb-2" alt="...">
               <div class="card-body">
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed dignissim eros.</p>
               </div>
+              <a href="./pages/gamesMenu.php" class="btn gamesLink mb-2" style="display: none;">JUGAR</a>
             </div>
           </div>
         </div>
