@@ -1,4 +1,5 @@
 import { startColumn, startRow, endRow, endColumn } from "./constants.js";
+import EndScreen from "./screens/EndScreen.js";
 
 export function getPositions(track) {
     let positionArr = [];
@@ -157,13 +158,13 @@ export function orderPieces(array) {
     let size = array.length + 2;
     console.log("array length: " + array.length + "    SIZE: " + size);
 
-    let startPosition = [startRow-1,startColumn-1];
+    let startPosition = [startRow - 1, startColumn - 1];
     console.log(startPosition);
     if (arrayOrdered.length == 0) {
         arrayOrdered.push(startPosition);
     }
 
-    let i = 0,i_Ordered = 0;
+    let i = 0, i_Ordered = 0;
     let isOrdered = true;
     do {
         if (i + 1 <= array.length) {
@@ -175,18 +176,18 @@ export function orderPieces(array) {
             if ((intColNext == intCol && (intRowNext == intRow - 1 || intRowNext == intRow + 1))
                 || (intRowNext == intRow && (intColNext == intCol + 1 || intColNext == intCol - 1))) {
                 arrayOrdered.push(array[i]);
-                array.splice(i,1);
+                array.splice(i, 1);
                 i = 0;
                 i_Ordered++;
                 console.log(arrayOrdered);
             } else {
                 i++;
             }
-            if ((intRow == 11 || intRow == 13) && (intCol == 11 || intCol == 12)){
+            if ((intRow == 11 || intRow == 13) && (intCol == 11 || intCol == 13)) {
                 isOrdered = false;
             }
         }
-        if (array.length==0 || array.length==1){
+        if (array.length == 0 || array.length == 1) {
             isOrdered = false;
         }
     } while (isOrdered);
@@ -216,16 +217,17 @@ export function positionPiece(array) {
             else if (intRow === intRowNext && (intCol + 1 === intColNext)) {
                 positions.push('right');
             }
-            let dropSpace = document.getElementById(intRowNext+"drop"+intColNext);
+            let dropSpace = document.getElementById(intRowNext + "drop" + intColNext);
             images.push(dropSpace.firstChild.className);
             console.log("first child" + dropSpace.firstChild);
             console.log(images);
         }
     }
-    return [positions,images];
+    return [positions, images];
 }
 
 export function end_game() {
+    const end = new EndScreen("endScreen");
     let track = [];
     let numPieces = 0;
 
@@ -237,6 +239,9 @@ export function end_game() {
             track.push(trackPieces[i]);
             numPieces++; //counter of the number of pieces
         }
+    }
+    if (numPieces < 21){
+        end.GameOver();
     }
     //array with the positions of the pieces at the map
     let positionsArr = getPositions(track);
@@ -256,10 +261,11 @@ export function end_game() {
         }
     }
     console.log(trackCorrect.every(isTrue));
+    console.log(numPieces);
     if (trackCorrect.every(isTrue) && numPieces >= 21) {
-        Winner();
+        end.Winner(numPieces);
     } else {
-        GameOver();
+        end.GameOver();
     }
 }
 
@@ -270,31 +276,3 @@ function isTrue(el) {
         return false;
     }
 }
-
-export function Winner() {
-    alert('YOU WIN!');
-    clearInterval(timeoutHandle);
-}
-
-export function GameOver() {
-    alert('YOU LOSE!');
-    clearInterval(timeoutHandle);
-}
-
-
-// if (intRow !== intRowNext && intCol !== intColNext) {
-//     let posTemp = i++;
-//     let posTempNext = posTemp++;
-//     while (array[i][0] !== array[posTemp][0] && array[i][1] !== array[posTemp][1]) {
-//         let tempX, tempY;
-//         tempX = array[posTemp][0];
-//         array[posTemp][0] = array[asd][0];
-//         array[asd][0] = tempX;
-
-//         tempY = array[posTemp][1];
-//         array[posTemp][1] = array[asd][1];
-//         array[asd][1] = tempY;
-//         asd++;
-//     }
-//     i--;
-// }

@@ -24,7 +24,8 @@ for (let i = 0; i < gridSize; i++) {
 }
 if (arrTrack[ct.startRow-1][ct.startColumn-1] == 0) {
   arrTrack[ct.startRow-1][ct.startColumn-1] = 'start';
-} else if (arrTrack[ct.endRow - 1][ct.endColumn - 1] == 0) {
+}
+if (arrTrack[ct.endRow - 1][ct.endColumn - 1] == 0) {
   arrTrack[ct.endRow - 1][ct.endColumn - 1] = 'end';
 }
 
@@ -151,6 +152,7 @@ function reloadPieces() {
   numReload++;
 }
 
+//load pieces first time
 export function loadPiece() {
   let pieceData = document.querySelectorAll('#piece');
 
