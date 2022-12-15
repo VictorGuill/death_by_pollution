@@ -23,16 +23,14 @@ export default class Piece {
     randomPiece() {
         //image array route
         let rand_img = new Array();
-        rand_img[0] = "../media/game2/tracks/tb.png";
+        rand_img[0] = "../media/game2/tracks/tb_pixel.png";
         rand_img[1] = "../media/game2/tracks/br.png";
         rand_img[2] = "../media/game2/tracks/lb.png";
-        rand_img[3] = "../media/game2/tracks/lr.png";
+        rand_img[3] = "../media/game2/tracks/lr_pixel.png";
         rand_img[4] = "../media/game2/tracks/tr.png";
         rand_img[5] = "../media/game2/tracks/lt.png";
-        rand_img[6] = "../media/game2/tracks/tb.png";
-        rand_img[7] = "../media/game2/tracks/lr.png";
-        rand_img[8] = "../media/game2/tracks/tb.png";
-        rand_img[9] = "../media/game2/tracks/lr.png";
+        rand_img[6] = "../media/game2/tracks/tb_pixel.png";
+        rand_img[7] = "../media/game2/tracks/lr_pixel.png";
     
         let random = this.rand(rand_img.length);
         this.src = rand_img[random];

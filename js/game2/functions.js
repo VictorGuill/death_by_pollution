@@ -1,3 +1,6 @@
+import { startColumn, startRow, endRow, endColumn } from "./constants.js";
+import EndScreen from "./screens/EndScreen.js";
+
 export function getPositions(track) {
     let positionArr = [];
     for (let j = 0; j < track.length; j++) {
@@ -14,17 +17,16 @@ export function checkPiece(piece1, piece2, position) {
     switch (piece1) {
         case 'img0':
         case 'img6':
-        case 'img8':
             switch (position) {
                 case 'top':
-                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img8' || piece2 == 'img1' || piece2 == 'img2') {
+                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img1' || piece2 == 'img2') {
                         isCorrect = true;
                     }
                     break;
                 case 'left':
                     break;
                 case 'bottom':
-                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img8' ||  piece2 == 'img4' || piece2 == 'img5') {
+                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img4' || piece2 == 'img5') {
                         isCorrect = true;
                     }
                     break;
@@ -42,12 +44,12 @@ export function checkPiece(piece1, piece2, position) {
                 case 'left':
                     break;
                 case 'bottom':
-                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img8' || piece2 == 'img4' || piece2 == 'img5') {
+                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img4' || piece2 == 'img5') {
                         isCorrect = true;
                     }
                     break;
                 case 'right':
-                    if (piece2 == 'img2' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img9' || piece2 == 'img5') {
+                    if (piece2 == 'img2' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img5') {
                         isCorrect = true;
                     }
                     break;
@@ -62,12 +64,12 @@ export function checkPiece(piece1, piece2, position) {
                 case 'top':
                     break;
                 case 'left':
-                    if (piece2 == 'img1' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img9' || piece2 == 'img4') {
+                    if (piece2 == 'img1' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img4') {
                         isCorrect = true;
                     }
                     break;
                 case 'bottom':
-                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img8' || piece2 == 'img4' || piece2 == 'img5') {
+                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img4' || piece2 == 'img5') {
                         isCorrect = true;
                     }
                     break;
@@ -81,19 +83,18 @@ export function checkPiece(piece1, piece2, position) {
 
         case 'img3':
         case 'img7':
-        case 'img9':
             switch (position) {
                 case 'top':
                     break;
                 case 'left':
-                    if (piece2 == 'img1' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img9' || piece2 == 'img4') {
+                    if (piece2 == 'img1' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img4') {
                         isCorrect = true;
                     }
                     break;
                 case 'bottom':
                     break;
                 case 'right':
-                    if (piece2 == 'img2' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img9' || piece2 == 'img5') {
+                    if (piece2 == 'img2' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img5') {
                         isCorrect = true;
                     }
                     break;
@@ -106,7 +107,7 @@ export function checkPiece(piece1, piece2, position) {
         case 'img4':
             switch (position) {
                 case 'top':
-                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img8' || piece2 == 'img1' || piece2 == 'img2') {
+                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img1' || piece2 == 'img2') {
                         isCorrect = true;
                     }
                     break;
@@ -114,7 +115,7 @@ export function checkPiece(piece1, piece2, position) {
                 case 'bottom':
                     break;
                 case 'right':
-                    if (piece2 == 'img2' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img9' || piece2 == 'img5') {
+                    if (piece2 == 'img2' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img5') {
                         isCorrect = true;
                     }
                     break;
@@ -127,12 +128,12 @@ export function checkPiece(piece1, piece2, position) {
         case 'img5':
             switch (position) {
                 case 'top':
-                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img8' || piece2 == 'img1' || piece2 == 'img2') {
+                    if (piece2 == 'img0' || piece2 == 'img6' || piece2 == 'img1' || piece2 == 'img2') {
                         isCorrect = true;
                     }
                     break;
                 case 'left':
-                    if (piece2 == 'img1' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img9' || piece2 == 'img4') {
+                    if (piece2 == 'img1' || piece2 == 'img3' || piece2 == 'img7' || piece2 == 'img4') {
                         isCorrect = true;
                     }
                     break;
@@ -152,71 +153,126 @@ export function checkPiece(piece1, piece2, position) {
     return isCorrect;
 }
 
-export function comparePieces(array) {
-    let positions = [];
-    for (var i = 0; i < array.length; i++) {
-        if (i + 1 < array.length) {
-            if (parseInt(array[i][0]) + 1 === parseInt(array[i + 1][0]) && array[i][1] === array[i + 1][1]) { //revisamos que i sea diferente de j, para que no compare el mismo elemento exacto.
-                positions.push('bottom');
+export function orderPieces(array) {
+    let arrayOrdered = [];
+    let size = array.length + 2;
+    console.log("array length: " + array.length + "    SIZE: " + size);
+
+    let startPosition = [startRow - 1, startColumn - 1];
+    console.log(startPosition);
+    if (arrayOrdered.length == 0) {
+        arrayOrdered.push(startPosition);
+    }
+
+    let i = 0, i_Ordered = 0;
+    let isOrdered = true;
+    do {
+        if (i + 1 <= array.length) {
+            let intRow = parseInt(arrayOrdered[i_Ordered][0]);
+            let intCol = parseInt(arrayOrdered[i_Ordered][1]);
+            let intRowNext = parseInt(array[i][0]);
+            let intColNext = parseInt(array[i][1]);
+
+            if ((intColNext == intCol && (intRowNext == intRow - 1 || intRowNext == intRow + 1))
+                || (intRowNext == intRow && (intColNext == intCol + 1 || intColNext == intCol - 1))) {
+                arrayOrdered.push(array[i]);
+                array.splice(i, 1);
+                i = 0;
+                i_Ordered++;
+                console.log(arrayOrdered);
+            } else {
+                i++;
             }
-            else if (parseInt(array[i][0]) - 1 === parseInt(array[i + 1][0]) && array[i][1] === array[i + 1][1]) { //revisamos que i sea diferente de j, para que no compare el mismo elemento exacto.
-                positions.push('left');
-            }
-            else if (parseInt(array[i + 1][1]) + 1 === parseInt(array[i + 1][1]) && array[i][0] === array[i + 1][0]) { //revisamos que i sea diferente de j, para que no compare el mismo elemento exacto.
-                positions.push('top');
-            }
-            else if (parseInt(array[i + 1][1]) - 1 === parseInt(array[i][1]) && array[i][0] === array[i + 1][0]) { //revisamos que i sea diferente de j, para que no compare el mismo elemento exacto.
-                positions.push('right');
+            if ((intRow == 11 || intRow == 13) && (intCol == 11 || intCol == 13)) {
+                isOrdered = false;
             }
         }
-    }
-    return positions;
+        if (array.length == 0 || array.length == 1) {
+            isOrdered = false;
+        }
+    } while (isOrdered);
+
+    return arrayOrdered;
 }
 
-export function finish() {
+export function positionPiece(array) {
+    let positions = [];
+    let images = [];
+    for (var i = 0; i < array.length; i++) {
+        if (i + 1 < array.length) {
+            let intRow = parseInt(array[i][0]);
+            let intCol = parseInt(array[i][1]);
+            let intRowNext = parseInt(array[i + 1][0]);
+            let intColNext = parseInt(array[i + 1][1]);
+
+            if ((intRow + 1 === intRowNext) && intCol === intColNext) {
+                positions.push('bottom');
+            }
+            else if ((intRow - 1 === intRowNext) && intCol === intCol) {
+                positions.push('top');
+            }
+            else if (intRow === intRowNext && (intCol - 1 === intColNext)) {
+                positions.push('left');
+            }
+            else if (intRow === intRowNext && (intCol + 1 === intColNext)) {
+                positions.push('right');
+            }
+            let dropSpace = document.getElementById(intRowNext + "drop" + intColNext);
+            images.push(dropSpace.firstChild.className);
+            console.log("first child" + dropSpace.firstChild);
+            console.log(images);
+        }
+    }
+    return [positions, images];
+}
+
+export function end_game() {
+    const end = new EndScreen("endScreen");
     let track = [];
     let numPieces = 0;
 
+    //pick the dropSpace elements
     let trackPieces = document.querySelectorAll(".dropSpace");
     for (let i = 0; i < trackPieces.length; i++) {
+        //if the dropSpace have a child, we put it in the track array
         if (trackPieces[i].childElementCount !== 0) {
             track.push(trackPieces[i]);
-            numPieces++;
+            numPieces++; //counter of the number of pieces
         }
     }
+    if (numPieces < 21){
+        end.GameOver();
+    }
+    //array with the positions of the pieces at the map
     let positionsArr = getPositions(track);
-    let positions = comparePieces(positionsArr);
-    let trackImgs = document.querySelectorAll(".dropSpace img");
-    let trackCorrect = [];
-    let checkArr;
+    //knowing the position of the piece and the next one
+    let orderPositions = orderPieces(positionsArr);
+    let positions_images = positionPiece(orderPositions);
+    let positions = positions_images[0];
+    let trackImgs = positions_images[1];
+    console.log(trackImgs);
+    //getting the img
+    let trackCorrect = []; //array to check the path
     for (let k = 0; k < positions.length; k++) {
-        if (k + 1 <= positions.length) {
-            checkArr = checkPiece(trackImgs[k].className, trackImgs[k + 1].className, positions[k]);
+        if (k + 1 < positions.length) {
+            let checkArr = checkPiece(trackImgs[k], trackImgs[k + 1], positions[k + 1]);
             trackCorrect.push(checkArr);
-            console.log(trackCorrect);
+            console.log(checkArr);
         }
     }
-    function isTrue(el) {
-        if(el === true){
-            return true;
-        } else {
-            return false;
-        }
-      }
-      console.log(trackCorrect.every(isTrue));
+    console.log(trackCorrect.every(isTrue));
+    console.log(numPieces);
     if (trackCorrect.every(isTrue) && numPieces >= 21) {
-        Winner();
+        end.Winner(numPieces);
     } else {
-        GameOver();
+        end.GameOver();
     }
 }
 
-export function Winner() {
-    alert('YOU WIN!');
-    clearInterval(timeoutHandle);
-}
-
-export function GameOver() {
-    alert('YOU LOSE!');
-    clearInterval(timeoutHandle);
+function isTrue(el) {
+    if (el === true) {
+        return true;
+    } else {
+        return false;
+    }
 }
