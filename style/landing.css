@@ -12,9 +12,8 @@ a:hover {
 
 /* Disable scrollbar */
 ::-webkit-scrollbar {
-  /* width: 0px; */
+  width: 0px;
 }
-
 
 body {
   height: 100vh;
@@ -242,15 +241,20 @@ body {
   background-repeat: no-repeat;
 }
 
-.animation{
+.animation {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 30%,  rgba(2,0,36,1)100%);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 212, 255, 1) 0%,
+    rgba(9, 9, 121, 1) 30%,
+    rgba(2, 0, 36, 1) 100%
+  );
 }
 
-.box1{
+.box1 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -264,7 +268,7 @@ body {
 #problem .slide-title {
   color: var(--SECONDARY-DARK);
 }
-#about .card{
+#about .card {
   height: fit-content;
 }
 
@@ -314,7 +318,7 @@ body {
   margin: 10px auto;
 }
 
-.card-header{
+.card-header {
   background: none;
 }
 /* #endregion */
@@ -350,14 +354,14 @@ body {
   color: var(--DARKTEXT);
 }
 
-#services .gamesLink{
+#services .gamesLink {
   color: var(--LIGHT);
   font-weight: 600;
   background-color: var(--SECONDARY-DARK);
   border-color: var(--DARK);
   justify-content: center;
 }
-#services .gamesLink:hover{
+#services .gamesLink:hover {
   color: var(--LIGHT);
   background-color: var(--DARK);
   border-color: var(--SECONDARY-DARK);
