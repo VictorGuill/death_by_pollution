@@ -2,6 +2,16 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+
+if (isset($_GET["lang"])) {
+    $_SESSION["lang"] = $_GET["lang"];
+} else if (!isset($_SESSION["lang"])) {
+    $_SESSION["lang"] = "en";
+}
+
+$path = $_SERVER["DOCUMENT_ROOT"] . "/death_by_pollution/lang/" . $_SESSION["lang"] . ".ini";
+$Language = parse_ini_file(($path));
+
 ?>
 
 <nav id="landing_nav" class="navbar navbar-expand-lg navbar-dark p-3" id="headerNav">
@@ -32,7 +42,7 @@ if (!isset($_SESSION)) {
                             <img src="/death_by_pollution/media/icons/globe.svg" height="23" />
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href='?lang=en'>ENGLISH</a></li>
+                            <li><a class="dropdown-item" href='?lang=en'>ENGLISH 📗🧾📔⬇️</a></li>
                             <li><a class="dropdown-item" href='?lang=es'>ESPAÑOL</a></li>
                             <li><a class="dropdown-item" href='?lang=ca'>CATALÀ</a></li>
                         </ul>

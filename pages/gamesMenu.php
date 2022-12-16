@@ -87,7 +87,7 @@ if (isset($_SESSION["name"])) {
         <p class="title_game"><?php
                               if (isset($_SESSION['phase'])) {
                                 if ($_SESSION['phase'] >= 2) {
-                                  echo "SKY DIVE";
+                                  echo "TRAIN TRACK";
                                 }
                               } else {
                                 echo "";

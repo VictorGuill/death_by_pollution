@@ -16,13 +16,6 @@
 </head>
 
 <body>
-  <?php
-  $lang = "en";
-  if (isset($_GET["lang"])) {
-    $lang = $_GET["lang"];
-  }
-  $Language = parse_ini_file(("lang/$lang.ini"));
-  ?>
   <!-- NAVBAR -->
   <?php require_once("../php_partials/navbar.php"); ?>
 
@@ -39,7 +32,7 @@
       </div>
       <div class="info">
         <p>
-        <?= $Language["about_info"] ?>
+          <?= $Language["about_info"] ?>
         </p>
       </div>
     </div>
