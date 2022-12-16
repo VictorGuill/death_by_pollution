@@ -21,6 +21,7 @@ name_input.addEventListener("input", function (e) {
 
 pass_input.addEventListener("input", function (e) {
   checkEmptyFields();
+  checkPasswordsMatch();
 });
 
 pass2_input.addEventListener("input", function (e) {
@@ -41,27 +42,32 @@ function switchPanel() {
     case "login":
       // store current state and change panel title
       loginState = "register";
-      panel_title.innerHTML = "Register";
+      panel_title.innerHTML = languageSelector(language, "Register", "Registro", "Registre");
 
       // empty and show second password field
       pass2_input.value = "";
       pass2_input.hidden = false;
 
       // set help text
-      switch_panel_text.innerHTML = "¿Ya tienes cuenta?";
+      switch_panel_text.innerHTML = languageSelector(
+        language,
+        "Already have an account?",
+        "¿Ya tienes cuenta?",
+        "Ja tens compte?"
+      );
       checkPasswordsMatch();
       break;
     case "register":
       // store current state and change panel title
       loginState = "login";
-      panel_title.innerHTML = "Log in";
+      panel_title.innerHTML = languageSelector(language, "Log in", "Iniciar sesión", "Iniciar sessió");
 
       // hide second password field
       pass2_input.value = "";
       pass2_input.hidden = true;
 
       // set help text
-      switch_panel_text.innerHTML = "crear cuenta";
+      switch_panel_text.innerHTML = languageSelector(language, "create an account", "crear cuenta", "crear compte");
       checkPasswordsMatch();
       break;
   }
@@ -71,17 +77,20 @@ function switchPanel() {
 
   // check if button should be enabled/disabled
   checkEmptyFields();
+  name_input.focus();
 }
 
 function showLogin() {
   login_panel.style.animation = "fade-in .5s ease";
   login_panel.style.display = "inherit";
   error_message_text.innerHTML = "";
+  name_input.focus();
 }
 
 function showLogin_noAnimation() {
   login_panel.style.display = "inherit";
   login_panel.style.animation = "";
+  name_input.focus();
 }
 
 function closeLoginPanel() {
@@ -129,7 +138,12 @@ function checkEmptyFields() {
 function checkPasswordsMatch() {
   if (loginState === "register") {
     if (pass_input.value !== pass2_input.value) {
-      error_message_text.innerHTML = "Las contraseñas deben coincidir.";
+      error_message_text.innerHTML = languageSelector(
+        language,
+        "Passwords do not match",
+        "Las contraseñas deben coincidir.",
+        "Les contrasenyes han de coincidir"
+      );
       submitBtn.disabled = true;
     } else {
       error_message_text.innerHTML = "";
@@ -139,4 +153,20 @@ function checkPasswordsMatch() {
     error_message_text.innerHTML = "";
     submitBtn.disabled = false;
   }
+}
+
+function languageSelector(lang, en_txt, es_txt, cat_txt) {
+  let final_txt;
+  switch (lang) {
+    case "en":
+      final_txt = en_txt;
+      break;
+    case "es":
+      final_txt = es_txt;
+      break;
+    case "ca":
+      final_txt = cat_txt;
+      break;
+  }
+  return final_txt;
 }

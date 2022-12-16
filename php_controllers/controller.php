@@ -13,7 +13,17 @@ if (isset($_POST["login"])) {
     $user = selectUser(strtolower($_POST["name"]), $hashedPassword);
 
     if (empty($user)) {
-        $_SESSION["error"] = "El usuario " . $_POST["name"] . " no existe o la contraseña es errónea.";
+        switch ($_SESSION["lang"]) {
+            case "en":
+                $_SESSION["error"] = "The user " . $_POST["name"] . " does not exist or the password does not match our security standards.";
+                break;
+            case "es":
+                $_SESSION["error"] = "El usuario " . $_POST["name"] . " no existe o la contraseña es errónea.";
+                break;
+            case "ca":
+                $_SESSION["error"] = "L'usuari " . $_POST["name"] . " no existeix o la contrasenya és incorrecta.";
+                break;
+          }
     } else {
         // foreach ($user as $key) {
         //     echo print_r($key);

@@ -27,13 +27,13 @@ if (isset($_SESSION["name"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Games menu</title>
+  <title>GAMES</title>
   <link rel="icon" type="image/x-icon" href="/death_by_pollution/media/icons/favicon32.png">
   <link rel="stylesheet" href="/death_by_pollution/tercers/boostrap5/bootstrap.min.css" />
   <script src="/death_by_pollution/tercers/boostrap5/bootstrap.bundle.min.js"></script>
@@ -65,7 +65,7 @@ if (isset($_SESSION["name"])) {
   <div id="gamesContainerWallpaper"></div>
   <div id="gamesContainer">
     <div id="headerContainer">
-      <p id="title"><span id="yellowTittle">|</span> GAMES</p>
+      <p id="title"><span id="yellowTittle">|</span><?= $Language["games_title"] ?></p>
     </div>
     <div id="games">
       <div id="game1" class="game <?php
@@ -87,7 +87,7 @@ if (isset($_SESSION["name"])) {
         <p class="title_game"><?php
                               if (isset($_SESSION['phase'])) {
                                 if ($_SESSION['phase'] >= 2) {
-                                  echo "SKY DIVE";
+                                  echo "TRAIN TRACK";
                                 }
                               } else {
                                 echo "";
@@ -116,7 +116,7 @@ if (isset($_SESSION["name"])) {
     </div>
     <div id="btnContainer">
       <div id="scoresBtn">
-        <a href="./scores.php">SCOREBOARDS</a>
+        <a href="./scores.php"><?= $Language["score_button"] ?></a>
         <!-- 🏆 -->
       </div>
     </div>

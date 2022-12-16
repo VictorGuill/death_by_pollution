@@ -2,6 +2,20 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+
+if (isset($_GET["lang"])) {
+    $_SESSION["lang"] = $_GET["lang"];
+} else if (!isset($_SESSION["lang"])) {
+    $_SESSION["lang"] = "en";
+}
+
+$path = $_SERVER["DOCUMENT_ROOT"] . "/death_by_pollution/lang/" . $_SESSION["lang"] . ".ini";
+$Language = parse_ini_file(($path));
+
+echo "<script type='text/javascript'>
+let language='" . $_SESSION["lang"] . "'
+</script>"
+
 ?>
 
 <nav id="landing_nav" class="navbar navbar-expand-lg navbar-dark p-3" id="headerNav">
@@ -16,7 +30,7 @@ if (!isset($_SESSION)) {
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 fs-5" href="/death_by_pollution/pages/about.php">About us</a>
+                    <a class="nav-link mx-2 fs-5" href="/death_by_pollution/pages/about.php"><?= $Language["aboutus"] ?></a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a id="logo" class="nav-link mx-2" href="/death_by_pollution/index.php">
@@ -24,13 +38,41 @@ if (!isset($_SESSION)) {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2 fs-5" href="/death_by_pollution/pages/gamesMenu.php">Games</a>
+                    <a class="nav-link mx-2 fs-5" href="/death_by_pollution/pages/gamesMenu.php"><?= $Language["games"] ?></a>
                 </li>
                 <ul id="navRightItems" class="navbar-nav">
-                    <li class="nav-item mx-2">
-                        <a id="languageIcon" class="nav-link h5">
-                            <img src="/death_by_pollution/media/icons/globe.svg" height="23" />
+                    <li class="nav-item mx-2 dropstart">
+                        <a id="languageIcon" class="nav-link h5t" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="<?php
+                                        switch ($_SESSION["lang"]) {
+                                            case 'en':
+                                                echo "/death_by_pollution/media/icons/us.svg";
+                                                break;
+                                            case 'es':
+                                                echo "/death_by_pollution/media/icons/spain.svg";
+                                                break;
+                                            case 'ca':
+                                                echo "/death_by_pollution/media/icons/catalonia.svg";
+                                                break;
+                                        } ?>" height="23" />
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href='?lang=en'>
+                                    ENGLISH <img src="/death_by_pollution/media/icons/us.svg" alt="UK flag">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href='?lang=es'>
+                                    ESPAÑOL <img src="/death_by_pollution/media/icons/spain.svg" alt="SPAIN flag">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href='?lang=ca'>
+                                    CATALÀ <img src="/death_by_pollution/media/icons/catalonia.svg" alt="CATALONIA flag">
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="mx-2">
                         <?php
@@ -75,22 +117,22 @@ if (!isset($_SESSION)) {
 
                     <form action="/death_by_pollution/php_controllers/controller.php" method="post">
                         <div id="elementsPanel" class="card-body p-5 pb-4 text-center">
-                            <h3 id="loginTitle" class="mb-5">Log in</h3>
+                            <h3 id="loginTitle" class="mb-5"><?= $Language["login"] ?></h3>
 
                             <div class="mb-4">
-                                <input id="nameInput" type="text" name="name" placeholder="Nombre" maxlength="30" autofocus />
+                                <input id="nameInput" type="text" name="name" placeholder="<?= $Language["name"] ?>" maxlength="30" autofocus />
                             </div>
 
                             <div class="mb-4">
-                                <input id="passInput" type="password" name="password" placeholder="contraseña" maxlength="20" />
+                                <input id="passInput" type="password" name="password" placeholder="<?= $Language["password"] ?>" maxlength="20" />
                             </div>
 
                             <div class="mb-4">
-                                <input id="pass2Input" type="password" name="password2" placeholder="contraseña" maxlength="20" hidden />
+                                <input id="pass2Input" type="password" name="password2" placeholder="<?= $Language["password"] ?>" maxlength="20" hidden />
                             </div>
 
                             <button id="loginButton" class="btn btn-primary btn-lg btn-block mt-4" type="submit" name="login" disabled>
-                                ACEPTAR
+                                <?= $Language["accept"] ?>
                             </button>
 
                             <p id="errorInfoMsg" class="mt-1">
@@ -102,7 +144,7 @@ if (!isset($_SESSION)) {
                             </p>
 
                             <h5 id="switchPanel" class="mt-5 mb-0" onclick="switchPanel()">
-                                crear cuenta
+                                <?= $Language["create_account"] ?>
                             </h5>
                     </form>
                 </div>

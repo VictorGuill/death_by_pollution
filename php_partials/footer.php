@@ -12,10 +12,10 @@
                     <a class="footer-legal" href="#">Legal</a>
                 </div>
                 <div class="col-6 text-end footer-socials">
-                    <a href="#"><img src="/death_by_pollution/media/icons/ig_logo.png" alt="ig_logo" /></a>
-                    <a href="#"><img src="/death_by_pollution/media/icons/tiktok_logo.png" alt="tiktok_logo" /></a>
-                    <a href="#"><img src="/death_by_pollution/media/icons/tw_logo.png" alt="tw_logo" /></a>
-                    <a href="#"><img src="/death_by_pollution/media/icons/fb_logo.png" alt="fb_logo" /></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="/death_by_pollution/media/icons/ig_logo.png" alt="ig_logo" /></a>
+                    <a href="https://www.tiktok.com/" target="_blank"><img src="/death_by_pollution/media/icons/tiktok_logo.png" alt="tiktok_logo" /></a>
+                    <a href="https://twitter.com/" target="_blank"><img src="/death_by_pollution/media/icons/tw_logo.png" alt="tw_logo" /></a>
+                    <a href="https://facebook.com/" target="_blank"><img src="/death_by_pollution/media/icons/fb_logo.png" alt="fb_logo" /></a>
                 </div>
             </div>
 
