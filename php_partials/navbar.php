@@ -12,6 +12,10 @@ if (isset($_GET["lang"])) {
 $path = $_SERVER["DOCUMENT_ROOT"] . "/death_by_pollution/lang/" . $_SESSION["lang"] . ".ini";
 $Language = parse_ini_file(($path));
 
+echo "<script type='text/javascript'>
+let language='" . $_SESSION["lang"] . "'
+</script>"
+
 ?>
 
 <nav id="landing_nav" class="navbar navbar-expand-lg navbar-dark p-3" id="headerNav">

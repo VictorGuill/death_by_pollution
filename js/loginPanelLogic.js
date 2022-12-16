@@ -41,7 +41,7 @@ function switchPanel() {
     case "login":
       // store current state and change panel title
       loginState = "register";
-      panel_title.innerHTML = "Register";
+      panel_title.innerHTML = languageSelector(language, "Register", "Registro", "Registre");
 
       // empty and show second password field
       pass2_input.value = "";
@@ -139,4 +139,20 @@ function checkPasswordsMatch() {
     error_message_text.innerHTML = "";
     submitBtn.disabled = false;
   }
+}
+
+function languageSelector(lang, en_txt, es_txt, cat_txt) {
+  let final_txt;
+  switch (lang) {
+    case "en":
+      final_txt = en_txt;
+      break;
+    case "es":
+      final_txt = es_txt;
+      break;
+    case "ca":
+      final_txt = cat_txt;
+      break;
+  }
+  return final_txt;
 }
