@@ -16,7 +16,7 @@ if (!isset($_SESSION)) {
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 fs-5" href="/death_by_pollution/pages/about.php">About us</a>
+                    <a class="nav-link mx-2 fs-5" href="/death_by_pollution/pages/about.php"><?= $Language["aboutus"] ?></a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a id="logo" class="nav-link mx-2" href="/death_by_pollution/index.php">
@@ -24,13 +24,18 @@ if (!isset($_SESSION)) {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2 fs-5" href="/death_by_pollution/pages/gamesMenu.php">Games</a>
+                    <a class="nav-link mx-2 fs-5" href="/death_by_pollution/pages/gamesMenu.php"><?= $Language["games"] ?></a>
                 </li>
                 <ul id="navRightItems" class="navbar-nav">
-                    <li class="nav-item mx-2">
-                        <a id="languageIcon" class="nav-link h5">
+                    <li class="nav-item mx-2 dropstart">
+                        <a id="languageIcon" class="nav-link h5t" ype="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="/death_by_pollution/media/icons/globe.svg" height="23" />
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href='?lang=en'>ENGLISH</a></li>
+                            <li><a class="dropdown-item" href='?lang=es'>ESPAÑOL</a></li>
+                            <li><a class="dropdown-item" href='?lang=ca'>CATALÀ</a></li>
+                        </ul>
                     </li>
                     <li class="mx-2">
                         <?php

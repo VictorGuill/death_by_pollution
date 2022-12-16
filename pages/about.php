@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About us</title>
+  <title>ABOUT US</title>
   <link rel="icon" type="image/x-icon" href="/death_by_pollution/media/icons/favicon32.png">
   <link rel="stylesheet" href="/death_by_pollution/tercers/boostrap5/bootstrap.min.css" />
   <script src="/death_by_pollution/tercers/boostrap5/bootstrap.bundle.min.js"></script>
@@ -16,13 +16,20 @@
 </head>
 
 <body>
+  <?php
+  $lang = "en";
+  if (isset($_GET["lang"])) {
+    $lang = $_GET["lang"];
+  }
+  $Language = parse_ini_file(("lang/$lang.ini"));
+  ?>
   <!-- NAVBAR -->
   <?php require_once("../php_partials/navbar.php"); ?>
 
   <div class="aboutus">
     <div class="aboutus-header">
       <div id="title">
-        <h1>ABOUT US</h1>
+        <h1><?= $Language["aboutus"] ?></h1>
       </div>
     </div>
 
@@ -32,24 +39,13 @@
       </div>
       <div class="info">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non
-          diam suscipit, consequat neque id, cursus odio. Ut ut felis sed
-          neque dapibus accumsan. Praesent elementum pulvinar purus sed
-          feugiat.</br></br> Nam at accumsan dolor. Pellentesque
-          maximus orci at vestibulum condimentum. Vivamus interdum convallis
-          eros et consectetur. Curabitur volutpat sed orci non pretium.
-          Integer feugiat libero in ante dictum, ac vehicula ante convallis.
-          Cras eu t.</br></br> Nam at accumsan dolor. Pellentesque
-          maximus orci at vestibulum condimentum. Vivamus interdum convallis
-          eros et consectetur. Curabitur volutpat sed orci non pretium.
-          Integer feugiat libero in ante dictum, ac vehicula ante convallis.
-          Cras eu t.
+        <?= $Language["about_info"] ?>
         </p>
       </div>
     </div>
 
     <div id="title">
-      <h1>TEAM MEMBERS</h1>
+      <h1><?= $Language["about_team"] ?></h1>
     </div>
     <div class="info-indiv">
       <div class="person1">
