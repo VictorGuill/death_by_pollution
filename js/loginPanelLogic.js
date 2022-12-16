@@ -21,6 +21,7 @@ name_input.addEventListener("input", function (e) {
 
 pass_input.addEventListener("input", function (e) {
   checkEmptyFields();
+  checkPasswordsMatch();
 });
 
 pass2_input.addEventListener("input", function (e) {
@@ -48,7 +49,12 @@ function switchPanel() {
       pass2_input.hidden = false;
 
       // set help text
-      switch_panel_text.innerHTML = languageSelector(language, "Already have an account?", "¿Ya tienes cuenta?", "Ja tens compte?");
+      switch_panel_text.innerHTML = languageSelector(
+        language,
+        "Already have an account?",
+        "¿Ya tienes cuenta?",
+        "Ja tens compte?"
+      );
       checkPasswordsMatch();
       break;
     case "register":
@@ -132,7 +138,12 @@ function checkEmptyFields() {
 function checkPasswordsMatch() {
   if (loginState === "register") {
     if (pass_input.value !== pass2_input.value) {
-      error_message_text.innerHTML = languageSelector(language, "Passwords do not match", "Las contraseñas deben coincidir.", "Les contrasenyes han de coincidir");
+      error_message_text.innerHTML = languageSelector(
+        language,
+        "Passwords do not match",
+        "Las contraseñas deben coincidir.",
+        "Les contrasenyes han de coincidir"
+      );
       submitBtn.disabled = true;
     } else {
       error_message_text.innerHTML = "";
