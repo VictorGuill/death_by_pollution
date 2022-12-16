@@ -117,22 +117,22 @@ let language='" . $_SESSION["lang"] . "'
 
                     <form action="/death_by_pollution/php_controllers/controller.php" method="post">
                         <div id="elementsPanel" class="card-body p-5 pb-4 text-center">
-                            <h3 id="loginTitle" class="mb-5">Log in</h3>
+                            <h3 id="loginTitle" class="mb-5"><?= $Language["login"] ?></h3>
 
                             <div class="mb-4">
-                                <input id="nameInput" type="text" name="name" placeholder="Nombre" maxlength="30" autofocus />
+                                <input id="nameInput" type="text" name="name" placeholder="<?= $Language["name"] ?>" maxlength="30" autofocus />
                             </div>
 
                             <div class="mb-4">
-                                <input id="passInput" type="password" name="password" placeholder="contraseña" maxlength="20" />
+                                <input id="passInput" type="password" name="password" placeholder="<?= $Language["password"] ?>" maxlength="20" />
                             </div>
 
                             <div class="mb-4">
-                                <input id="pass2Input" type="password" name="password2" placeholder="contraseña" maxlength="20" hidden />
+                                <input id="pass2Input" type="password" name="password2" placeholder="<?= $Language["password"] ?>" maxlength="20" hidden />
                             </div>
 
                             <button id="loginButton" class="btn btn-primary btn-lg btn-block mt-4" type="submit" name="login" disabled>
-                                ACEPTAR
+                                <?= $Language["accept"] ?>
                             </button>
 
                             <p id="errorInfoMsg" class="mt-1">
@@ -144,7 +144,7 @@ let language='" . $_SESSION["lang"] . "'
                             </p>
 
                             <h5 id="switchPanel" class="mt-5 mb-0" onclick="switchPanel()">
-                                crear cuenta
+                                <?= $Language["create_account"] ?>
                             </h5>
                     </form>
                 </div>

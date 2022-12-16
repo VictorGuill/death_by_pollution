@@ -21,7 +21,7 @@ if ($selection === "") {
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RANKINGS</title>
+  <title>SCOREBOARDS</title>
   <link rel="icon" type="image/x-icon" href="/death_by_pollution/media/icons/favicon32.png">
   <link rel="stylesheet" href="/death_by_pollution/tercers/boostrap5/bootstrap.min.css" />
   <script src="/death_by_pollution/tercers/boostrap5/bootstrap.bundle.min.js"></script>
@@ -41,7 +41,7 @@ if ($selection === "") {
       <div class="col-1"></div>
       <div class="col text-start">
         <div id="title">
-          <h1>RANKINGS</h1>
+          <h1><?= $Language["score_title"] ?></h1>
         </div>
       </div>
       <div class="col"></div>
@@ -119,9 +119,9 @@ if ($selection === "") {
                         <table class="table mb-0 text-center">
                           <thead>
                             <tr>
-                              <th scope="col">POSITION</th>
-                              <th scope="col">USER</th>
-                              <th scope="col">SCORE</th>
+                              <th scope="col"><?= $Language["position"] ?></th>
+                              <th scope="col"><?= $Language["user"] ?></th>
+                              <th scope="col"><?= $Language["score"] ?></th>
                             </tr>
                           </thead>
                           <tbody>

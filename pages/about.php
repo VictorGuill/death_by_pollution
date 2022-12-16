@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html>
 
 <head>
   <meta charset="UTF-8" />
@@ -46,7 +46,7 @@
           <img src="../media/about/guillem.jpg" alt="" />
         </div>
         <div class="name">Guillem Turró</div>
-        <div class="info">Junior Programmer</div>
+        <div class="info"><?= $Language["person_info"] ?></div>
         <div class="rrss">
           <a href="https://es.linkedin.com/" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" /></a>
@@ -61,7 +61,7 @@
           <img src="../media/about/maria.jpg" alt="" />
         </div>
         <div class="name">Maria Garriga</div>
-        <div class="info">Junior Programmer</div>
+        <div class="info"><?= $Language["person_info"] ?></div>
         <div class="rrss">
           <a href="https://es.linkedin.com/" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" /></a>
@@ -76,7 +76,7 @@
           <img src="../media/about/victor.jpg" alt="victor foto" />
         </div>
         <div class="name">Victor Guillén</div>
-        <div class="info">Junior Programmer</div>
+        <div class="info"><?= $Language["person_info"] ?></div>
         <div class="rrss">
           <a href="https://es.linkedin.com/" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" /></a>

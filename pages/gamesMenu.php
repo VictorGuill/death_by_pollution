@@ -27,7 +27,7 @@ if (isset($_SESSION["name"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8" />
@@ -65,7 +65,7 @@ if (isset($_SESSION["name"])) {
   <div id="gamesContainerWallpaper"></div>
   <div id="gamesContainer">
     <div id="headerContainer">
-      <p id="title"><span id="yellowTittle">|</span> GAMES</p>
+      <p id="title"><span id="yellowTittle">|</span><?= $Language["games_title"] ?></p>
     </div>
     <div id="games">
       <div id="game1" class="game <?php
@@ -116,7 +116,7 @@ if (isset($_SESSION["name"])) {
     </div>
     <div id="btnContainer">
       <div id="scoresBtn">
-        <a href="./scores.php">SCOREBOARDS</a>
+        <a href="./scores.php"><?= $Language["score_button"] ?></a>
         <!-- 🏆 -->
       </div>
     </div>
