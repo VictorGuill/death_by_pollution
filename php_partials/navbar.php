@@ -38,13 +38,36 @@ $Language = parse_ini_file(($path));
                 </li>
                 <ul id="navRightItems" class="navbar-nav">
                     <li class="nav-item mx-2 dropstart">
-                        <a id="languageIcon" class="nav-link h5t" ype="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/death_by_pollution/media/icons/globe.svg" height="23" />
+                        <a id="languageIcon" class="nav-link h5t" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="<?php
+                                        switch ($_SESSION["lang"]) {
+                                            case 'en':
+                                                echo "/death_by_pollution/media/icons/us.svg";
+                                                break;
+                                            case 'es':
+                                                echo "/death_by_pollution/media/icons/spain.svg";
+                                                break;
+                                            case 'ca':
+                                                echo "/death_by_pollution/media/icons/catalonia.svg";
+                                                break;
+                                        } ?>" height="23" />
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href='?lang=en'>ENGLISH 📗🧾📔⬇️</a></li>
-                            <li><a class="dropdown-item" href='?lang=es'>ESPAÑOL</a></li>
-                            <li><a class="dropdown-item" href='?lang=ca'>CATALÀ</a></li>
+                            <li>
+                                <a class="dropdown-item" href='?lang=en'>
+                                    ENGLISH <img src="/death_by_pollution/media/icons/us.svg" alt="UK flag">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href='?lang=es'>
+                                    ESPAÑOL <img src="/death_by_pollution/media/icons/spain.svg" alt="SPAIN flag">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href='?lang=ca'>
+                                    CATALÀ <img src="/death_by_pollution/media/icons/catalonia.svg" alt="CATALONIA flag">
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="mx-2">

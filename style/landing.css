@@ -61,6 +61,16 @@ body {
   color: var(--LIGHT);
 }
 
+#navRightItems .dropdown-item img {
+  width: 25px;
+  transform: translate(5px, -2px);
+}
+
+#languageIcon img {
+  height: 15px;
+  transform: translateY(-2px);
+}
+
 /* links animation */
 /* scale */
 .nav-link {
@@ -246,12 +256,7 @@ body {
   position: relative;
   overflow: hidden;
   background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 212, 255, 1) 0%,
-    rgba(9, 9, 121, 1) 30%,
-    rgba(2, 0, 36, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(0, 212, 255, 1) 0%, rgba(9, 9, 121, 1) 30%, rgba(2, 0, 36, 1) 100%);
 }
 
 .box1 {
@@ -327,8 +332,7 @@ body {
 #services {
   height: 96vh;
   scroll-snap-align: end;
-  background: radial-gradient(black 15%, transparent 16%) 0 0,
-    radial-gradient(black 15%, transparent 16%) 8px 8px,
+  background: radial-gradient(black 15%, transparent 16%) 0 0, radial-gradient(black 15%, transparent 16%) 8px 8px,
     radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
     radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
   background-color: #282828;

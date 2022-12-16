@@ -43,11 +43,11 @@ if (!isset($_SESSION)) {
           <div class='row justify-content-center'>
             <div class='col-12'>
               <div class='card shadow-2-strong'>
-                <div class='card-body'>
-                  <div class='table-responsive'>
+                <div class='card-body' style='padding: 0.25em;'>
+                  <div class='table-responsive' style='max-height: 400px;'>
                     <table class='table table-borderless mb-0'>
-                      <thead>
-                        <tr>
+                      <thead style='position: sticky; top:0;'>
+                        <tr style='background: white;'>
                           <th scope='col'>NAME</th>
                           <th scope='col'>PHASE</th>
                           <th scope='col'>USER TYPE</th>
