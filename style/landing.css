@@ -67,8 +67,8 @@ body {
 }
 
 #languageIcon img {
-  height: 15px;
-  transform: translateY(-2px);
+  height: 20px;
+  transform: translateY(2px);
 }
 
 /* links animation */
