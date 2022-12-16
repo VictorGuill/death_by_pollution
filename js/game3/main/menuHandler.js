@@ -15,8 +15,14 @@ export default class MenuHandler{
         this.tutorialMenu = new TutorialMenu(gp);
     }
 
-    checkKey() {
-
+    update(){
+        if (this.gp.menuState == mainMenu) {
+            this.mainMenu.checkKey();
+        } else if (this.gp.menuState == optionsMenu) {
+            this.optionsMenu.checkKey();
+        } else if (this.gp.menuState == tutorialMenu) {
+            this.tutorialMenu.checkKey();
+        }
     }
 
     draw() {

@@ -10,8 +10,6 @@ import MenuHandler from './menuHandler.js';
 //KEY INPUTS
 import input_codes from './keyHandler.js';
 
-//GAME HEIGHT
-export const gameHeight = 640;
 
 //GAME STATES
 export const 
@@ -57,7 +55,9 @@ export class GamePanel {
     }
 
     update(dt) {
-        if (this.gameState == playState){
+        if (this.gameState == titleState) {
+            this.mH.update();
+        }else if (this.gameState == playState){
             this.plane.update(dt);
             this.eH.update();
         } else if (this.gameState == pauseState){}

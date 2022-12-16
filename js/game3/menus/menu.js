@@ -1,33 +1,55 @@
 // import {titleState, playState, pauseState, endGameState, mainMenu, optionsMenu, tutorialMenu} from "./gamePanel.js";
 
-export default class Menu{
-    constructor(gp){
-        this.gp = gp;
+export default class Menu {
+  constructor(gp) {
+    this.gp = gp;
 
-        this.selector = 0;
-        this.maxSelector = 3;
+    this.selectorPos = 0;
+    this.maxSelector = 2;
+
+    this.keyUpPressed = false;
+    this.keyDownPressed = false;
+  }
+
+  selectorUp() {
+    this.selectorPos--;
+    if (this.selectorPos < 0) {
+        this.selectorPos = this.maxSelector;
+    }
+    this.keyUpPressed = true;
+    console.log("UP: "+this.keyUpPressed);
+    console.log(this.selectorPos);
+  }
+
+  selectorDown() {
+    this.selectorPos++;
+    if (this.selectorPos > this.maxSelector) {
+      this.selectorPos = 0;
+    }
+    this.keyDownPressed = true;
+    console.log("DOWN: "+this.keyDownPressed);
+    console.log(this.selectorPos);
+  }
+
+  removeMenu(){
+    this.element.remove();
+  }
+
+  checkKey() {
+    if (this.gp.input["ArrowUp"] || this.gp.input["ArrowLeft"]) {
+        if (!this.keyUpPressed) {
+          this.selectorUp();
+        } 
+    } else  {
+        this.keyUpPressed = false;
     }
 
-    selectorUp(){
-        this.selector++;
-        if (this.selector < 0) {
-            this.selector = this.maxSelector;
+    if (this.gp.input["ArrowDown"] || this.gp.input["ArrowRight"]) {
+        if (!this.keyDownPressed) {
+        this.selectorDown();
         }
+    } else {
+        this.keyDownPressed = false;
     }
-
-    selectorDown(){
-        this.selector--;
-        if (this.selector > this.maxSelector) {
-            this.selector = 0;
-        }
-    }
-
-    checkKey(){
-        if(this.gp.input("ArrowUp") || this.gp.input["ArrowLeft"]) {
-            selectorUp();
-        }
-        if(this.gp.input["ArrowDown"] || this.gp.input["ArrowRight"]){
-            selectorDown();
-        }
-    }
+  }
 }
