@@ -17,6 +17,8 @@ if (!isset($_SESSION)) {
   <link rel="icon" type="image/x-icon" href="/death_by_pollution/media/icons/favicon32.png">
   <link rel="stylesheet" href="/death_by_pollution/tercers/boostrap5/bootstrap.min.css" />
   <script src="/death_by_pollution/tercers/boostrap5/bootstrap.bundle.min.js"></script>
+  <script src="/death_by_pollution/tercers/jquery/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <link rel="stylesheet" href="../style/colores.css" />
   <link rel="stylesheet" href="../style/landing.css" />
   <link rel="stylesheet" href="../style/gamesMenu.css" />
@@ -77,7 +79,7 @@ if (!isset($_SESSION)) {
                           <td>" . $user['user_type_id'] . "</td>
                           <td style='display: flex;'>
                           <form method='post' action='../php_controllers/controller.php' enctype='multipart/form-data'>
-                            <button type='submit' class='btn btn-primary btn-sm' name='getUser' data-bs-toggle='modal' data-bs-target='#editModal' data-user-id=" . $user['id'] ." style='margin: 0 10px;'>
+                            <button type='button' class='btn btn-primary btn-sm' name='getUser' data-bs-toggle='modal' data-bs-target='#editModal' data-user-id=" . $user['id'] ." style='margin: 0 10px;'>
                               <i>✏️</i>
                             </button>
                           </form>";
@@ -140,7 +142,7 @@ if (!isset($_SESSION)) {
         <form>
           <div class="form-group">
             <label for="user-name" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" id="user-name">
+            <input type="text" class="form-control" id="user-name" value="">
           </div>
           <div class="form-group">
             <label for="user-path" class="col-form-label">Phase:</label>
@@ -157,22 +159,19 @@ if (!isset($_SESSION)) {
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger"  data-bs-target='#editModal' data-bs-dismiss="modal" onClick=closeModal()>Close</button>
+        <button type="button" class="btn btn-danger"  data-bs-target='#editModal' data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-success">Update</button>
       </div>
     </div>
   </div>
 </div>
 
-  <?php
-  if (isset($_SESSION['editing'])) {
-    echo 
-    "<script type='text/javascript'>
-      editing = ". $_SESSION['editing'] .";
-    </script>";
-  }
-  ?>
-  
+
+<!--   <script>
+    $(document).ready(function(){
+    $('#editModal').modal("show");
+  })
+  </script>   -->
   <script src=" ../js/loginPanelLogic.js"></script>
   <script src="../js/adminPanel.js"></script>
 </body>

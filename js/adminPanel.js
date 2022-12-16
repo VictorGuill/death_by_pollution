@@ -12,10 +12,10 @@ const editModal = document.getElementById('editModal');
 
 editModal.addEventListener('show.bs.modal', (e)=>{
   let editUserBtn = e.relatedTarget;
-  let userId = editUserBtn.dataset.userId;
+  if (editUserBtn != undefined || editUserBtn != null) {
+    let userId = editUserBtn.dataset.userId;
+    let papa =2;
+  }
+  
 })
 
-if (editing) {
-  editModal.classList.toggle("show");
-  editModal.style.display = "block";
-}
