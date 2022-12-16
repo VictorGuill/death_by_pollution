@@ -5,6 +5,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
+// LOG IN
 if (isset($_POST["login"])) {
 
     $hashedPassword = hash("sha512", $_POST["password"]);
@@ -30,6 +31,7 @@ if (isset($_POST["login"])) {
     die();
 }
 
+// REGISTER
 if (isset($_POST["register"])) {
 
     $hashedPassword = hash("sha512", $_POST["password"]);
@@ -61,6 +63,15 @@ if (isset($_POST["deleteUser"])) {
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
 }
+
+if (isset($_POST["getUser"])) {
+    $_SESSION['editing'] = true;
+    getUser($_POST["getUser"]);
+    header('Location: ' . $_SERVER["HTTP_REFERER"]);
+    die();
+}
+
+
 
 function setUserType($type)
 {

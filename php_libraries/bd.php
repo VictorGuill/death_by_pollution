@@ -5,7 +5,7 @@ function openDB()
     $servername = "localhost:3306";
     $username = "root";
     #region PASSWORD
-    $password = "1234";
+    $password = "12345";
     #endregion
 
     $conexion = new PDO("mysql:host=$servername;dbname=death_by_p", $username, $password);
@@ -133,6 +133,8 @@ function selectUserScores($gameID, $userID)
     return $result;
 }
 
+function changeUserName($userID, $newName) {}
+
 function changeUserPhase($userID, $newPhase)
 {
     $conexion = openDB();
@@ -148,6 +150,10 @@ function changeUserPhase($userID, $newPhase)
 
     return $result;
 }
+
+function changeUserType($userID, $newType) {}
+
+function changeUserPassword($userID, $newPassword) {}
 
 function selectGameScores($game)
 {
@@ -213,4 +219,6 @@ function deleteUser($userID)
 
     return $result;
 }
+
+function getUser($userID) {}
 #endregion

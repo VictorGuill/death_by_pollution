@@ -76,9 +76,11 @@ if (!isset($_SESSION)) {
                           <td>" . $user['phase'] . "</td>
                           <td>" . $user['user_type_id'] . "</td>
                           <td style='display: flex;'>
-                            <button type='button' class='btn btn-primary btn-sm' style='margin: 0 10px;'>
+                          <form method='post' action='../php_controllers/controller.php' enctype='multipart/form-data'>
+                            <button type='submit' class='btn btn-primary btn-sm' name='getUser' data-bs-toggle='modal' data-bs-target='#editModal' data-user-id=" . $user['id'] ." style='margin: 0 10px;'>
                               <i>✏️</i>
-                            </button>";
+                            </button>
+                          </form>";
 
       if ($user['user_type_id'] !== "super admin") {
         echo "<button type='button' class='btn btn-danger btn-sm btn-delete id:" . $user['id'] . "' data-bs-toggle='modal' data-bs-target='#deleteModal'>
@@ -102,13 +104,15 @@ if (!isset($_SESSION)) {
             </div>
             </section>";
   }
+
   ?>
-  <!-- Modal -->
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <!-- DELETE MODAL -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Borrar usuario</h5>
+          <h5 class="modal-title">Borrar usuario</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-footer">
@@ -123,18 +127,54 @@ if (!isset($_SESSION)) {
     </div>
   </div>
 
-  <script>
-    const toggleElements = document.querySelectorAll('.btn-delete');
-    const deleteUserBtn = document.getElementById("deleteUserBtn");
+  <!-- EDIT MODAL -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="form" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="user-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="user-name">
+          </div>
+          <div class="form-group">
+            <label for="user-path" class="col-form-label">Phase:</label>
+            <input class="form-control" id="user-path"></input>
+          </div>
+          <div class="form-group">
+            <label for="user-type" class="col-form-label">Type:</label>
+            <input class="form-control" id="user-type"></input>
+          </div>
+          <div class="form-group">
+            <label for="user-password" class="col-form-label">New password:</label>
+            <input class="form-control" id="user-password"></input>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"  data-bs-target='#editModal' data-bs-dismiss="modal" onClick=closeModal()>Close</button>
+        <button type="button" class="btn btn-success">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    toggleElements.forEach(e => {
-      e.addEventListener('click', function() {
-        deleteUserBtn.value = e.classList[4].substring(3, 4);
-      });
-    });
-  </script>
-
+  <?php
+  if (isset($_SESSION['editing'])) {
+    echo 
+    "<script type='text/javascript'>
+      editing = ". $_SESSION['editing'] .";
+    </script>";
+  }
+  ?>
+  
   <script src=" ../js/loginPanelLogic.js"></script>
+  <script src="../js/adminPanel.js"></script>
 </body>
 
 </html>

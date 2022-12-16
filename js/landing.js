@@ -204,3 +204,4 @@ function rotateCard(card) {
   console.log(rotState);
 },
 onComplete: () => {card.reversed = true} */
+
