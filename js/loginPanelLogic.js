@@ -71,17 +71,20 @@ function switchPanel() {
 
   // check if button should be enabled/disabled
   checkEmptyFields();
+  name_input.focus();
 }
 
 function showLogin() {
   login_panel.style.animation = "fade-in .5s ease";
   login_panel.style.display = "inherit";
   error_message_text.innerHTML = "";
+  name_input.focus();
 }
 
 function showLogin_noAnimation() {
   login_panel.style.display = "inherit";
   login_panel.style.animation = "";
+  name_input.focus();
 }
 
 function closeLoginPanel() {
