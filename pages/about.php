@@ -50,9 +50,9 @@
         <div class="rrss">
           <a href="https://es.linkedin.com/" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" /></a>
-          <a href="https://github.com/" target="_blank">
+          <a href="https://github.com/gturro" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" /></a>
-          <a href="https://twitter.com/home" target="_blank">
+          <a href="https://twitter.com/Gil_1197" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" alt="Twitter" /></a>
         </div>
       </div>

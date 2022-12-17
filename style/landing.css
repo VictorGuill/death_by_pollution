@@ -299,7 +299,7 @@ body {
   background-size: cover;
   background-position: top;
   scroll-snap-align: start;
-  height: 80vh;
+  height: 100vh;
 }
 #problem .card,
 #services .card {
@@ -348,7 +348,7 @@ body {
 
 /* #region SERVICES */
 #services {
-  height: 80vh;
+  height: 100vh;
   scroll-snap-align: start;
   background-image: url(../media/landing/gapp.png);
   background-size: cover;

@@ -116,7 +116,7 @@
       <div class="container my-auto">
         <div class="slide-content">
           <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col">
               <h3 id="service-title"><?= $Language["servicesTitle"] ?></h3>
             </div>
           </div>
@@ -160,32 +160,46 @@
           </div>
 
           <div class="row justify-content-around mt-5">
-            <div class="col-3 text-center d-flex flex-column">
+            <div class="col-3 text-center">
               <a href="./pages/gamesMenu.php" style="text-decoration: none;">
-                <p class="service-card-link mb-3"><?= $Language["service_card1_link"] ?></p>
+                <p class="service-card-link" style="line-height: 30px;"><?= $Language["service_card1_link"] ?></p>
+              </a>
+            </div>
+            <div class="col-3 text-center">
+              <a href="./pages/gamesMenu.php" style="text-decoration: none;">
+                <p class="service-card-link" style="line-height: 30px;"><?= $Language["service_card2_link"] ?></p>
+              </a>
+            </div>
+            <div class="col-3 text-center">
+              <a href="./pages/gamesMenu.php" style="text-decoration: none;">
+                <p class="service-card-link" style="line-height: 30px;"><?= $Language["service_card3_link"] ?></p>
+              </a>
+            </div>
+          </div>
+          <div class="row justify-content-around">
+            <div class="col-3 text-center">
+              <a href="./pages/gamesMenu.php" style="text-decoration: none;">
                 <svg width="30px" height="20px" class="mx-auto" style="transform: rotate(180deg);">
                   <path stroke="#FFFFFF" stroke-width="4px" style="fill: none; transform: scale(.5)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
                 </svg>
               </a>
             </div>
-            <div class="col-3 text-center d-flex flex-column">
+            <div class="col-3 text-center">
               <a href="./pages/gamesMenu.php" style="text-decoration: none;">
-                <p class="service-card-link mb-3"><?= $Language["service_card2_link"] ?></p>
                 <svg width="30px" height="20px" class="mx-auto" style="transform: rotate(180deg);">
                   <path stroke="#FFFFFF" stroke-width="4px" style="fill: none; transform: scale(.5)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
                 </svg>
               </a>
             </div>
-            <div class="col-3 text-center d-flex flex-column">
+            <div class="col-3 text-center">
               <a href="./pages/gamesMenu.php" style="text-decoration: none;">
-                <p class="service-card-link mb-3"><?= $Language["service_card3_link"] ?></p>
                 <svg width="30px" height="20px" class="mx-auto" style="transform: rotate(180deg);">
                   <path stroke="#FFFFFF" stroke-width="4px" style="fill: none; transform: scale(.5)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
                 </svg>
               </a>
             </div>
           </div>
-
+  
         </div>
       </div>
     </div>
