@@ -74,13 +74,25 @@ if (isset($_POST["deleteUser"])) {
     die();
 }
 
-if (isset($_POST["getUser"])) {
+if (isset($_POST["editUserID"])) {
     $_SESSION['editing'] = true;
-    getUser($_POST["getUser"]);
+    $userToEdit = getUser($_POST["editUserID"]);
+
+    $_SESSION["editUser"] = $userToEdit;
+    
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
 }
 
+if (isset($_POST["closeEdit"])) {
+    $_SESSION['editing'] = false;
+    if(isset($_SESSION["editUser"])){
+        unset($_SESSION['editing']);
+        unset($_SESSION["editUser"]);
+    }
+    header('Location: ' . $_SERVER["HTTP_REFERER"]);
+    die();
+}
 
 
 function setUserType($type)

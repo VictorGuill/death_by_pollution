@@ -220,5 +220,20 @@ function deleteUser($userID)
     return $result;
 }
 
-function getUser($userID) {}
+function getUser($userID) {
+    $conexion = openDB();
+
+    $queryText = "SELECT * FROM users WHERE users.id = $userID";
+    
+    $query = $conexion->prepare($queryText);
+    $query->execute();
+
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $conexion = closeDB();
+
+    return $result;
+}
+
+function updateUser($userID) {}
 #endregion

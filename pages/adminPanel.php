@@ -79,7 +79,7 @@ if (!isset($_SESSION)) {
                           <td>" . $user['user_type_id'] . "</td>
                           <td style='display: flex;'>
                           <form method='post' action='../php_controllers/controller.php' enctype='multipart/form-data'>
-                            <button type='button' class='btn btn-primary btn-sm' name='getUser' data-bs-toggle='modal' data-bs-target='#editModal' data-user-id=" . $user['id'] ." style='margin: 0 10px;'>
+                            <button type='submit' class='btn btn-primary btn-sm' name='editUserID' value=" . $user['id'] ." style='margin: 0 10px;'>
                               <i>✏️</i>
                             </button>
                           </form>";
@@ -142,15 +142,27 @@ if (!isset($_SESSION)) {
         <form>
           <div class="form-group">
             <label for="user-name" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" id="user-name" value="">
+            <input type="text" class="form-control" id="user-name" value="<?php 
+                if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null){
+                  echo $_SESSION['editUser'][0]['name'];
+                }
+              ?>">
           </div>
           <div class="form-group">
             <label for="user-path" class="col-form-label">Phase:</label>
-            <input class="form-control" id="user-path"></input>
+            <input class="form-control" id="user-path" value="<?php 
+                if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null){
+                  echo $_SESSION['editUser'][0]['phase'];
+                }
+              ?>"></input>
           </div>
           <div class="form-group">
             <label for="user-type" class="col-form-label">Type:</label>
-            <input class="form-control" id="user-type"></input>
+            <input class="form-control" id="user-type" min="0" max="2" value="<?php 
+                if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null){
+                  echo $_SESSION['editUser'][0]['user_type_id'];
+                }
+              ?>"></input>
           </div>
           <div class="form-group">
             <label for="user-password" class="col-form-label">New password:</label>
@@ -159,8 +171,10 @@ if (!isset($_SESSION)) {
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger"  data-bs-target='#editModal' data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Update</button>
+        <form method="POST" action='../php_controllers/controller.php' enctype='multipart/form-data'>
+          <button type="submit" class="btn btn-danger"  data-bs-target='#editModal' data-bs-dismiss="modal" name="closeEdit">Close</button>
+          <button type="submit" id="updateUser" class="btn btn-success" name="updateUser">Update</button>
+        </form>
       </div>
     </div>
   </div>
@@ -172,6 +186,14 @@ if (!isset($_SESSION)) {
     $('#editModal').modal("show");
   })
   </script>   -->
+  <?php  if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
+    echo "<script>
+    $(document).ready(function(){
+    $('#editModal').modal('show');
+    })
+    </script>";
+  }?>
+  
   <script src=" ../js/loginPanelLogic.js"></script>
   <script src="../js/adminPanel.js"></script>
 </body>
