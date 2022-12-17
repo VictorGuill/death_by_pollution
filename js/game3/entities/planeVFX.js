@@ -43,6 +43,7 @@ export default class planeVfx {
             this.chute.src= "/death_by_pollution/media/game3/vfx/chute.gif";
             this.chute.style.animation = "deploy-chute 1s linear forwards"
             this.plane.element.appendChild(this.chute);
+            
             this.plane.chute = true;
         }
     }
@@ -142,13 +143,7 @@ export default class planeVfx {
                 this.plane.speed -= .5;
             }
             this.plane.pitch = -10;
-        }
-
-        if (this.plane.fuel <= 0){
-            this.plane.chuteDeployRange = true;
-            this.plane.fuel = 0;
-            this.collision = true;
-        }
+        }   
     }
 
     update(){

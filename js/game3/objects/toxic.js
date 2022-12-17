@@ -12,7 +12,8 @@ export default class Toxic extends Object {
     this.ticked = false;
 
     this.createToxic();
-    this.generateHitboxUI();
+    // this.generateHitboxUI();
+
   }
 
   generateHitboxUI() {
@@ -65,8 +66,8 @@ export default class Toxic extends Object {
     this.hitboxY = this.y + this.h / 2;
 
     //DEBUG
-    this.hitbox.style.bottom = this.hitboxY + "px";
-    this.hitbox.style.left = this.hitboxX + "px";
+    /* this.hitbox.style.bottom = this.hitboxY + "px";
+    this.hitbox.style.left = this.hitboxX + "px"; */
   }
 
   update() {

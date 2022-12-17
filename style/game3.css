@@ -228,6 +228,30 @@ img {
     0px 0px 5px #871e1e, 0px 0px 10px #780808;
 }
 
+#alertEndGame {
+  font-family: aceCombat;
+  font-weight: 300;
+  padding: 5px;
+  font-size: 3vmin;
+  color: rgba(133, 247, 110, 0.702);
+  text-shadow: 
+    0px 0px 3px #80ff9f, 
+    0px 0px 5px #62b189, 
+    0px 0px 15px #509a7b,
+    0px 0px 11px #509a7b, 
+    0px 0px 15px #236752;
+
+  border: rgba(133, 247, 110, 0.702) 2px solid;
+  border-radius: 4px;
+  box-shadow: 
+  0px 0px 2px #80ff9f, 
+  0px 0px 2px #62b189,
+  0px 0px 5px #509a7b,
+  0px 0px 5px #509a7b,
+  0px 0px 10px #236752;
+    
+}
+
 #hud {
   position: absolute;
   display: flex;
@@ -501,4 +525,6 @@ input {
     background-size: 100vmax var(--scanLinesSize);
   }
 }
+
+
 /* #endregion */

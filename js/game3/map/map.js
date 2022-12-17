@@ -1,6 +1,6 @@
 //SET THIS VARIABLE TO MAX LAYER HEIGHT TO MATCH MAP SIZE
 const bgImgHeight = 1100;
-const airportWidth = 3000;
+export const airportWidth = 3000;
 
 import { playState } from "../main/gamePanel.js";
 
@@ -11,6 +11,8 @@ export default class Map {
         this.x = 0;
         this.y = 0;
         
+        this.worldWidth = 30000;
+
         this.elementsAdded = false;
     }
 
@@ -217,7 +219,7 @@ export default class Map {
 
     drawLayersX(){
         if (this.gp.plane.worldX >= airportWidth){
-            this.airport.style.backgroundPositionX = -30000 +(this.gp.plane.worldX) + "px";
+            this.airport.style.backgroundPositionX = -this.worldWidth +(this.gp.plane.worldX) + "px";
             this.airport.style.transform = "scaleX(-1)";
         } else {
             this.airport.style.backgroundPositionX = -(this.gp.plane.worldX) + "px";

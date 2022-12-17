@@ -103,7 +103,7 @@ export default class EventsGenerator{
                             break;
                         case "toxic":
                             if (!obj.ticked){
-                                this.gp.plane.hp--;
+                                // this.gp.plane.hp--;
                             }
                             obj.ticked = true;
                             break;

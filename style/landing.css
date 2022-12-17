@@ -354,6 +354,10 @@ body {
   color: var(--DARKTEXT);
 }
 
+#services .card:hover {
+  cursor: pointer;
+}
+
 #services .gamesLink {
   color: var(--LIGHT);
   font-weight: 600;
