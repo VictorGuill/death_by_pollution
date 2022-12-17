@@ -333,7 +333,6 @@ export default class UI {
         this.drawNearAirport();
         this.drawSlowDown();
         this.drawLowFuel(); */
-
         }
 
     }

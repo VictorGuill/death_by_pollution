@@ -45,7 +45,7 @@ img {
   width: 60%;
   height: var(--mapHeight);
   background-color: #838383;
-  transition: width 4s linear;
+  transition: width 3s linear;
 }
 
 #mainMenu:hover {
@@ -161,7 +161,7 @@ img {
   width: 70%;
   height: 94%;
   bottom: 20px;
-  left: 30px;
+  left: 40px;
   z-index: 200;
 }
 

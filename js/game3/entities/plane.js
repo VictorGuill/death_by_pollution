@@ -47,9 +47,9 @@ export default class Plane{
         this.cL = .5; //Lift coeficient
         this.cD = 1; //Drag coeficient
 
-        this.acceleration = 300;
-        this.deceleration = 150;
-        this.maxSpeed = 10000;
+        this.acceleration = 30;
+        this.deceleration = 15;
+        this.maxSpeed = 1000;
 
         this.canPSM = false;
         this.cobraRange = false;
@@ -179,7 +179,7 @@ export default class Plane{
                 this.gp.ui.drawLowFuel();
             } 
 
-            if (this.worldX >= this.gp.map.worldWidth - 20000/* airportWidth*2 */){
+            if (this.worldX >= this.gp.map.worldWidth - airportWidth*2){
                 if (this.worldX )
                 this.gp.ui.drawNearAirport();
        
@@ -359,7 +359,7 @@ export default class Plane{
         //console.log("Pitch: " +this.pitch);
         //console.log("pitch to rad: " +this.toRadiants(this.pitch));
         // console.log("-------POSITION-----");
-        console.log("World X: "+ Math.round(this.worldX));
+        // console.log("World   X: "+ Math.round(this.worldX));
         // console.log("World Y: " + Math.round(this.worldY))
         // console.log ("Screen X: "+ Math.round(this.screenX));
         // console.log("Screen Y: "+ Math.round(this.screenY));
