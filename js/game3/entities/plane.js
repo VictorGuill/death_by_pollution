@@ -51,7 +51,7 @@ export default class Plane{
         this.deceleration = 15;
         this.maxSpeed = 1000;
 
-        this.canPSM = false;
+        this.canPSM = true;
         this.cobraRange = false;
         this.cobraPitch = 0;
         this.inPSM = false;
@@ -102,13 +102,12 @@ export default class Plane{
     cobraManeuver(dt) {
         if (this.speed >= 300){
             this.inPSM = true;
-            this.vfx.thrustVFX.style.opacity = "0";
+            this.vfx.thrust.style.opacity = "0";
             this.cobraPitch += 8;
             if (this.cobraPitch >= 60){
                 this.cobraPitch = 60;
             }
-            this.speed -= this.deceleration * this.speed *0.02 * dt;
-            this.worldY += this.deceleration * dt;
+            this.speed -= this.deceleration * this.speed *0.005 * dt;
         } else {
             this.recoverCobra();
         }
@@ -120,7 +119,7 @@ export default class Plane{
             if (this.cobraPitch <= 0){
                 this.cobraPitch = 0;
                 this.inPSM = false;
-                this.vfx.thrustVFX.style.opacity = "1";
+                this.vfx.thrust.style.opacity = "1";
             }
         }
     }
@@ -254,7 +253,7 @@ export default class Plane{
             this.speedX = 0;
         }
 
-        if(this.canPSM && this.speed >= 1000) {
+        if(this.canPSM && this.speed >= 600) {
             this.cobraRange = true;
         } else {
             this.cobraRange = false;
