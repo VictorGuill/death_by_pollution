@@ -353,6 +353,10 @@ body {
   padding-top: 10px;
 }
 
+#services .card:hover {
+  cursor: pointer;
+}
+
 #services .card-text {
   font-size: 18px;
   color: var(--DARKTEXT);
