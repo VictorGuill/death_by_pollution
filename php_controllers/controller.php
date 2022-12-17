@@ -23,7 +23,7 @@ if (isset($_POST["login"])) {
             case "ca":
                 $_SESSION["error"] = "L'usuari " . $_POST["name"] . " no existeix o la contrasenya és incorrecta.";
                 break;
-          }
+        }
     } else {
         // foreach ($user as $key) {
         //     echo print_r($key);
@@ -79,17 +79,31 @@ if (isset($_POST["editUserID"])) {
     $userToEdit = getUser($_POST["editUserID"]);
 
     $_SESSION["editUser"] = $userToEdit;
-    
+
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
 }
 
 if (isset($_POST["closeEdit"])) {
     $_SESSION['editing'] = false;
-    if(isset($_SESSION["editUser"])){
+    if (isset($_SESSION["editUser"])) {
         unset($_SESSION['editing']);
         unset($_SESSION["editUser"]);
     }
+    header('Location: ' . $_SERVER["HTTP_REFERER"]);
+    die();
+}
+
+if (isset($_POST["updateUser"])) {
+
+    updateUser($_SESSION["editUser"][0]["id"], $_POST["newName"], $_POST["newPass"], $_POST["newType"], $_POST["newPhase"]);
+
+    $_SESSION['editing'] = false;
+    if (isset($_SESSION["editUser"])) {
+        unset($_SESSION['editing']);
+        // unset($_SESSION["editUser"]);
+    }
+
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
 }
