@@ -79,7 +79,7 @@ if (!isset($_SESSION)) {
                           <td>" . $user['user_type_id'] . "</td>
                           <td style='display: flex;'>
                           <form method='post' action='../php_controllers/controller.php' enctype='multipart/form-data'>
-                            <button type='submit' class='btn btn-primary btn-sm' name='editUserID' value=" . $user['id'] ." style='margin: 0 10px;'>
+                            <button type='submit' class='btn btn-primary btn-sm' name='editUserID' value=" . $user['id'] . " style='margin: 0 10px;'>
                               <i>✏️</i>
                             </button>
                           </form>";
@@ -131,69 +131,105 @@ if (!isset($_SESSION)) {
 
   <!-- EDIT MODAL -->
   <div class="modal fade" id="editModal" tabindex="-1" role="form" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Editar usuario</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="user-name" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" id="user-name" value="<?php 
-                if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null){
-                  echo $_SESSION['editUser'][0]['name'];
-                }
-              ?>">
-          </div>
-          <div class="form-group">
-            <label for="user-path" class="col-form-label">Phase:</label>
-            <input class="form-control" id="user-path" value="<?php 
-                if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null){
-                  echo $_SESSION['editUser'][0]['phase'];
-                }
-              ?>"></input>
-          </div>
-          <div class="form-group">
-            <label for="user-type" class="col-form-label">Type:</label>
-            <input class="form-control" id="user-type" min="0" max="2" value="<?php 
-                if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null){
-                  echo $_SESSION['editUser'][0]['user_type_id'];
-                }
-              ?>"></input>
-          </div>
-          <div class="form-group">
-            <label for="user-password" class="col-form-label">New password:</label>
-            <input class="form-control" id="user-password"></input>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <form method="POST" action='../php_controllers/controller.php' enctype='multipart/form-data'>
-          <button type="submit" class="btn btn-danger"  data-bs-target='#editModal' data-bs-dismiss="modal" name="closeEdit">Close</button>
-          <button type="submit" id="updateUser" class="btn btn-success" name="updateUser">Update</button>
-        </form>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action='../php_controllers/controller.php' enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="user-name" class="col-form-label">Name:</label>
+              <input id="user-name" name="newName" type="text" class="form-control" value="<?php
+                                                                                            if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
+                                                                                              echo $_SESSION['editUser'][0]['name'];
+                                                                                            }
+                                                                                            ?>">
+            </div>
+            <div class="form-group">
+              <label for="phaseSelect" class="col-form-label">Phase:</label>
+              <select id="phaseSelect" class="form-select" name="newPhase" style="margin: 5px;">
+                <option value='1' <?php
+                                  if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
+                                    if ($_SESSION['editUser'][0]['phase'] === 0) {
+                                      echo "selected";
+                                    }
+                                  }
+                                  ?>>1</option>
+                <option value='2' <?php
+                                  if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
+                                    if ($_SESSION['editUser'][0]['phase'] === 1) {
+                                      echo "selected";
+                                    }
+                                  }
+                                  ?>>2</option>
+                <option value='3' <?php
+                                  if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
+                                    if ($_SESSION['editUser'][0]['phase'] === 2) {
+                                      echo "selected";
+                                    }
+                                  }
+                                  ?>>3</option>
+
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="typeSelect" class="col-form-label">User type</label>
+              <select id="typeSelect" class="form-select" name="newType" aria-label="Default select example" style="margin: 5px;">
+                <option value='0' <?php
+                                  if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
+                                    if ($_SESSION['editUser'][0]['user_type_id'] === 0) {
+                                      echo "selected";
+                                    }
+                                  }
+                                  ?>>User</option>
+                <option value='1' <?php
+                                  if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
+                                    if ($_SESSION['editUser'][0]['user_type_id'] === 1) {
+                                      echo "selected";
+                                    }
+                                  }
+                                  ?>>Admin</option>
+                <option value='2' <?php
+                                  if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
+                                    if ($_SESSION['editUser'][0]['user_type_id'] === 2) {
+                                      echo "selected";
+                                    }
+                                  }
+                                  ?>>Super Admin</option>
+
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="user-password" class="col-form-label">New password:</label>
+              <input id="user-password" type="password" name="newPass" class="form-control"></input>
+            </div>
+            <div class="modal-footer">
+              <input type="submit" value="Update" class="btn btn-success" name="updateUser">
+              <input type="submit" value="close" data-bs-target='#editModal' data-bs-dismiss="modal" class="btn btn-danger" name="closeEdit">
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<!--   <script>
+  <!--   <script>
     $(document).ready(function(){
     $('#editModal').modal("show");
   })
   </script>   -->
-  <?php  if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
+  <?php if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
     echo "<script>
     $(document).ready(function(){
     $('#editModal').modal('show');
     })
     </script>";
-  }?>
-  
+  } ?>
+
   <script src=" ../js/loginPanelLogic.js"></script>
   <script src="../js/adminPanel.js"></script>
 </body>

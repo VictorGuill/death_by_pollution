@@ -5,7 +5,7 @@ function openDB()
     $servername = "localhost:3306";
     $username = "root";
     #region PASSWORD
-    $password = "1234";
+    $password = "12345";
     #endregion
 
     $conexion = new PDO("mysql:host=$servername;dbname=death_by_p", $username, $password);
@@ -133,7 +133,9 @@ function selectUserScores($gameID, $userID)
     return $result;
 }
 
-function changeUserName($userID, $newName) {}
+function changeUserName($userID, $newName)
+{
+}
 
 function changeUserPhase($userID, $newPhase)
 {
@@ -151,9 +153,13 @@ function changeUserPhase($userID, $newPhase)
     return $result;
 }
 
-function changeUserType($userID, $newType) {}
+function changeUserType($userID, $newType)
+{
+}
 
-function changeUserPassword($userID, $newPassword) {}
+function changeUserPassword($userID, $newPassword)
+{
+}
 
 function selectGameScores($game)
 {
@@ -220,11 +226,12 @@ function deleteUser($userID)
     return $result;
 }
 
-function getUser($userID) {
+function getUser($userID)
+{
     $conexion = openDB();
 
     $queryText = "SELECT * FROM users WHERE users.id = $userID";
-    
+
     $query = $conexion->prepare($queryText);
     $query->execute();
 
@@ -235,5 +242,25 @@ function getUser($userID) {
     return $result;
 }
 
-function updateUser($userID) {}
+function updateUser($userID, $newName, $newPass, $newType, $newPhase)
+{
+    $conexion = openDB();
+
+    if ($newPass === "") {
+        $queryText = "UPDATE users SET name = '" . $newName . "', phase = " . $newPhase . ", user_type_id = " . $newType . " WHERE users.id = " . $userID;
+    } else {
+        $hashedPassword = hash("sha512", $newPass);
+
+        $queryText = "UPDATE users SET name = '" . $newName . "', password = '" . $hashedPassword . "', phase = " . $newPhase . ", user_type_id = " . $newType . " WHERE users.id = " . $userID;
+    }
+
+    $query = $conexion->prepare($queryText);
+    $query->execute();
+
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $conexion = closeDB();
+
+    return $result;
+}
 #endregion

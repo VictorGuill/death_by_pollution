@@ -253,3 +253,18 @@ GROUP BY users.name
 ORDER BY MAX(score) DESC
 LIMIT 10000
 OFFSET 0;
+
+
+
+-- updates
+-- `name`,`password`,`phase`,`user_type_id`
+
+SELECT * FROM users
+WHERE users.id = 5;
+
+UPDATE users
+SET name = "newName", password = "", phase = 2, user_type_id = 2
+WHERE users.id = 5;
+
+SELECT * FROM users
+WHERE users.id = 5;
