@@ -72,7 +72,7 @@ problemTL.from(".problem-card",
   "-=.2"
 );
 
-const card1Img = document.querySelector("#serviceCard1 img");
+/* const card1Img = document.querySelector("#serviceCard1 img");
 const card1Body = document.querySelector("#serviceCard1 .card-body");
 const card1Link = document.querySelector("#serviceCard1 a");
 let serviceCard1 = gsap
@@ -192,12 +192,12 @@ function rotateCard(card) {
         serviceCard3.reverse();
       }
       break;
-  }
+  } */
 
   /* while(rotationState <= 90){
     console.log(rotationState);
-  } */
-}
+  } 
+}*/
 
 /* onUpdate: () => {
   rotState = gsap.getProperty(card, "rotationY");

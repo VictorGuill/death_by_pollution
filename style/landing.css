@@ -275,7 +275,9 @@ body {
 }
 #about .card {
   height: fit-content;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
 }
+
 
 #about .card-body {
   padding: 30px 60px;
@@ -292,29 +294,44 @@ body {
 
 /* #region THE PROBLEM */
 #problem {
-  background-image: url("../media/landing/plane.jpeg");
+  background-image: url(../media/landing/cutter.png);
   background-size: cover;
+  background-position: top;
   scroll-snap-align: start;
   height: 80vh;
 }
 #problem .card,
-#about .card {
+#services .card {
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+  padding-bottom: 12px;
 }
 #problem-title {
   font-size: 36px;
+  font-weight: 610;
   color: var(--SECONDARY-DARK);
   text-align: center;
 }
 
-#problem .card-text {
+#problem .card-header, #services .card-header{
+  border-bottom: none;
+}
+
+#problem .card-body, #services .card-body{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+#problem .card-text , #services .card-text{
   font-size: 18px;
   color: var(--DARKTEXT);
   text-align: center;
 }
-#problem .card-title {
+#problem .card-title , #services .card-title{
+  font-size: 26px;
   color: var(--DARK-ACCENT);
   text-align: center;
+  padding-top: 25px;
+  margin: 0;
 }
 
 .card-icon {
@@ -330,13 +347,10 @@ body {
 
 /* #region SERVICES */
 #services {
-  height: 96vh;
-  scroll-snap-align: end;
-  background: radial-gradient(black 15%, transparent 16%) 0 0, radial-gradient(black 15%, transparent 16%) 8px 8px,
-    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
-    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
-  background-color: #282828;
-  background-size: 16px 16px;
+  height: 80vh;
+  scroll-snap-align: start;
+  background-image: url(../media/landing/gapp.png);
+  background-size: cover;
 }
 
 #service-title {
@@ -348,31 +362,10 @@ body {
   width: fit-content;
 }
 
-#services .card {
-  height: fit-content;
-  padding-top: 10px;
-}
 
-#services .card:hover {
-  cursor: pointer;
-}
-
-#services .card-text {
-  font-size: 18px;
-  color: var(--DARKTEXT);
-}
-
-#services .gamesLink {
-  color: var(--LIGHT);
-  font-weight: 600;
-  background-color: var(--SECONDARY-DARK);
-  border-color: var(--DARK);
-  justify-content: center;
-}
-#services .gamesLink:hover {
-  color: var(--LIGHT);
-  background-color: var(--DARK);
-  border-color: var(--SECONDARY-DARK);
+.service-card-link{
+  font-size: 25px;
+  color: white;
 }
 
 /* #endregion */

@@ -66,7 +66,7 @@
     </div>
     <!-- THE PROBLEM -->
     <div id="problem" class="scroll-area">
-      <div class="container mt-6">
+      <div class="container my-auto">
         <div class="slide-content">
           <div class="row justify-content-center">
             <div class="col-3">
@@ -76,52 +76,35 @@
           <div class="row justify-content-center mb-5">
             <div class="col-1 d-flex justify-content-center">
               <svg width="30px" height="20px">
-                <path stroke="#510087" stroke-width="2px" style="fill: none;" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+                <path stroke="#510087" stroke-width="4px" style="fill: none; transform: scale(.8)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
               </svg>
             </div>
           </div>
 
-          <div class="row justify-content-between">
+          <div class="row justify-content-around">
             <div class="problem-card card col-3">
               <div class="card-header">
-                <div>
-                  <img class="card-title card-icon" src="./media/landing/ic-train.png" alt="train_ico">
-                </div>
-                <h1 class="card-title"><?= $Language["earthTitle"] ?></h1>
-              </div>
-              <div class="card-body">
-                <p class="card-text"><?= $Language["earthText"] ?></p>
-                <p class="card-text"><?= $Language["earthText2"] ?></p>
-                <br>
-                <h5>CO2 --> 19%</h5>
-              </div>
-            </div>
-            <div class="problem-card card col-3">
-              <div class="card-header">
-                <div>
-                  <img class="card-title card-icon" src="./media/landing/ic-ship.png" alt="ship_ico">
-                </div>
                 <h1 class="card-title"><?= $Language["oceanTitle"] ?></h1>
               </div>
               <div class="card-body">
                 <p class="card-text"><?= $Language["oceanText"] ?></p>
-                <p class="card-text"><?= $Language["oceanText2"] ?></p>
-                <br>
-                <h5>CO2 --> 19%</h5>
               </div>
             </div>
             <div class="problem-card card col-3">
               <div class="card-header">
-                <div>
-                  <img class="card-title card-icon" src="./media/landing/ic-plane.png" alt="plane_ico">
-                </div>
+                <h1 class="card-title"><?= $Language["earthTitle"] ?></h1>
+              </div>
+              <div class="card-body">
+                <p class="card-text"><?= $Language["earthText"] ?></p>
+              </div>
+            </div>
+            <div class="problem-card card col-3">
+              <div class="card-header">
+
                 <h1 class="card-title"><?= $Language["airTitle"] ?></h1>
               </div>
               <div class="card-body">
                 <p class="card-text"><?= $Language["airText"] ?></p>
-                <p class="card-text"><?= $Language["airText2"] ?></p>
-                <br>
-                <h5>CO2 --> 19%</h5>
               </div>
             </div>
           </div>
@@ -130,44 +113,79 @@
     </div>
     <!-- SERVICES -->
     <div id="services" class="scroll-area">
-      <div class="container mt-6">
+      <div class="container my-auto">
         <div class="slide-content">
           <div class="row justify-content-center">
-            <div class="col-2">
+            <div class="col-8">
               <h3 id="service-title"><?= $Language["servicesTitle"] ?></h3>
             </div>
           </div>
+          
           <div class="row justify-content-center mb-5">
             <div class="col-1 d-flex justify-content-center">
               <svg width="30px" height="20px">
-                <path stroke="#faffff" stroke-width="2px" style="fill: none;" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+                <path stroke="#faffff"  stroke-width="4px" style="fill: none; transform: scale(.8)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
               </svg>
             </div>
           </div>
-          <p class="slide-text contain-center mx-auto"><?= $Language["ourFleet"] ?></p>
-          <div class="row justify-content-between mt-5">
-            <div id="serviceCard1" class="card col-3" onclick=rotateCard(this)>
-              <img src="/death_by_pollution/media/landing/new_ship.jpeg" class="img-fluid card-img-top mb-2" alt="...">
+
+          <div class="row justify-content-around mt-5">
+            <div id="serviceCard1" class="card col-3">
+              <div class="card-header">
+                <h1 class="card-title"><?= $Language["service_card1_title"] ?></h1>
+              </div>
               <div class="card-body" style="display: inherit;">
-                <p class="card-text"><?= $Language["intro_game1"] ?></p>
+                <p class="card-text"><?= $Language["service_card1_body"] ?></p>
               </div>
               <a href="./pages/gamesMenu.php" class="btn gamesLink mb-2" style="display: none;">JUGAR</a>
             </div>
-            <div id="serviceCard2" class="card col-3" onclick=rotateCard(this)>
-              <img src="/death_by_pollution/media/landing/new_train.jpeg" class="img-fluid card-img-top mb-2" alt="...">
+            <div id="serviceCard2" class="card col-3">
+              <div class="card-header">
+                <h1 class="card-title"><?= $Language["service_card2_title"] ?></h1>
+              </div>
               <div class="card-body">
-                <p class="card-text"><?= $Language["intro_game2"] ?></p>
+                <p class="card-text"><?= $Language["service_card2_body"] ?></p>
               </div>
               <a href="./pages/gamesMenu.php" class="btn gamesLink mb-2" style="display: none;">JUGAR</a>
             </div>
-            <div id="serviceCard3" class="card col-3" onclick=rotateCard(this)>
-              <img src="/death_by_pollution/media/landing/new_plane.jpeg" class="img-fluid card-img-top mb-2" alt="...">
+            <div id="serviceCard3" class="card col-3">
+              <div class="card-header">
+                <h1 class="card-title"><?= $Language["service_card3_title"] ?></h1>
+              </div>
               <div class="card-body">
-                <p class="card-text"><?= $Language["intro_game3"] ?></p>
+                <p class="card-text"><?= $Language["service_card3_body"] ?></p>
               </div>
               <a href="./pages/gamesMenu.php" class="btn gamesLink mb-2" style="display: none;">JUGAR</a>
             </div>
           </div>
+
+          <div class="row justify-content-around mt-5">
+            <div class="col-3 text-center d-flex flex-column">
+              <a href="./pages/gamesMenu.php" style="text-decoration: none;">
+                <p class="service-card-link mb-3"><?= $Language["service_card1_link"] ?></p>
+                <svg width="30px" height="20px" class="mx-auto" style="transform: rotate(180deg);">
+                  <path stroke="#FFFFFF" stroke-width="4px" style="fill: none; transform: scale(.5)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+                </svg>
+              </a>
+            </div>
+            <div class="col-3 text-center d-flex flex-column">
+              <a href="./pages/gamesMenu.php" style="text-decoration: none;">
+                <p class="service-card-link mb-3"><?= $Language["service_card2_link"] ?></p>
+                <svg width="30px" height="20px" class="mx-auto" style="transform: rotate(180deg);">
+                  <path stroke="#FFFFFF" stroke-width="4px" style="fill: none; transform: scale(.5)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+                </svg>
+              </a>
+            </div>
+            <div class="col-3 text-center d-flex flex-column">
+              <a href="./pages/gamesMenu.php" style="text-decoration: none;">
+                <p class="service-card-link mb-3"><?= $Language["service_card3_link"] ?></p>
+                <svg width="30px" height="20px" class="mx-auto" style="transform: rotate(180deg);">
+                  <path stroke="#FFFFFF" stroke-width="4px" style="fill: none; transform: scale(.5)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
