@@ -2,6 +2,11 @@ import { playState } from "../main/gamePanel.js";
 import { airportWidth } from "../map/map.js";
 import planeVfx from "./planeVFX.js";
 
+const TAKEOFF = 0;
+const FLYING = 1;
+const OUTOFFUEL= 2;
+const LANDING = 3;
+
 export default class Plane{
     constructor(gp, inicialX, inicialY) {
         this.gp = gp;
@@ -28,7 +33,7 @@ export default class Plane{
         this.hp = 4;
 
         this.state = "neat";
-        this.status = "takeoff";
+        this.status = TAKEOFF;
         /* status:
         -takeoff
         -flying
@@ -107,7 +112,6 @@ export default class Plane{
         } else {
             this.recoverCobra();
         }
-        
     }
 
     recoverCobra() {
@@ -118,7 +122,7 @@ export default class Plane{
                 this.inPSM = false;
                 this.vfx.thrustVFX.style.opacity = "1";
             }
-        }  
+        }
     }
 
     levelPitch(dt) {
@@ -146,22 +150,20 @@ export default class Plane{
 
     checkState() {
         //takeOff
-
-
-        if (this.status === "takeoff") {
+        if (this.status ===  TAKEOFF) {
             if (this.worldX >= airportWidth) {
-                this.status = "flying";
+                this.status = FLYING;
             }
         }
-
-        if (this.status === "flying"){
+        //flying
+        if (this.status === FLYING){
             //crash check
             if(this.screenY <= 0 && this.speedY <= -200 && this.gp.physics.getPercentSpeed(this, this.speedX) >= 30){
                 console.log("CRASH!!!!!");
             }
 
             //pull up check
-            if (this.gp.physics.lift < this.weight && this.gp.physics.getPercentSpeed(this, this.speed) <= 40) {
+            if (this.gp.physics.lift < (this.weight - this.weight/3)) {
                 this.gp.ui.drawCaution();
                 this.gp.ui.drawPullUp();
             } else {
@@ -171,14 +173,21 @@ export default class Plane{
 
             //fuel checks
             if (this.fuel <= 0) {
-                this.status = "outoffuel";
+                this.status = OUTOFFUEL;
                 this.gp.ui.alertMessageOff("lowfuel");
             }else if (this.fuel <= 500) {
                 this.gp.ui.drawLowFuel();
             } 
+
+            if (this.worldX >= this.gp.map.worldWidth - 20000/* airportWidth*2 */){
+                if (this.worldX )
+                this.gp.ui.drawNearAirport();
+       
+                this.status = LANDING;
+            }
         }
-        
-        if (this.status === "outoffuel") {
+
+        if (this.status === OUTOFFUEL) {
             this.vfx.deployChuteVFX();
             this.speed -= (this.speed)/450;
             this.gp.physics.lift = this.weight-20;
@@ -187,16 +196,19 @@ export default class Plane{
             this.fuel = 0;
             this.collision = true;
         }
-        //landing
-        if (this.status === "landing") {
-            //airport near check
-            if (this.worldX >= this.gp.map.worldWidth - airportWidth*2){
-                if (this.worldX )
-                this.gp.ui.drawNearAirport();
-                this.gp.ui.drawSlowDown();
-            }
-        }
         
+        //landing
+        if (this.status === LANDING) {
+            this.fuel = 9999;
+            this.gp.ui.alertMessageOff("caution");
+            this.gp.ui.alertMessageOff("pullup");
+            if (this.speed >= 600){
+                this.gp.ui.drawSlowDown();
+            } else {
+                this.gp.ui.alertMessageOff("slowdown");
+            }
+            //airport near check
+        }
 
         if (this.state == "explosion"){
             this.gp.slot.saveScore();
@@ -216,7 +228,6 @@ export default class Plane{
         this.screenX = ((this.gp.map.screenPlaneZoneWidth-this.w) * (this.gp.physics.getPercentSpeed(this, this.speed)) * .01);
         this.screenY = this.worldY;
         // X = ( (7 * mapWidth * Vpercent) / 1000 )[when 100% speed --> maxScreenX = 70% of mapWidth]
-        
         if (this.worldX < 0) {
             this.worldX = 0;
         }

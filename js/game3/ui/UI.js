@@ -177,6 +177,11 @@ export default class UI {
         this.progressBar.bar.setAttribute("id", "bar");
         this.progressBar.bar.style.width = "1px";
         this.progressBar.appendChild(this.progressBar.bar);
+        const airport = document.createElement("img");
+        airport.src = "/death_by_pollution/media/game3/hud/airport.png";
+        airport.style.width = "40px";
+        airport.style.marginLeft = "auto";
+        this.progressBar.appendChild(airport);
         this.element.appendChild(this.progressBar);
     }
 
@@ -240,14 +245,14 @@ export default class UI {
     }
     drawSlowDown(){
         if (!this.slowDown) {
-            this.drawAlertMessage("SLOW DOWN", this.gp.map.h/4, true);
+            this.drawAlertMessage("SLOW DOWN", this.gp.map.h/1.2, true);
             this.slowDown = true
         }
     }
 
     drawNearAirport(){
         if (!this.airportNear) {
-            this.drawAlertMessage("AIRPORT NEAR", this.gp.map.h/3.6, false);
+            this.drawAlertMessage("AIRPORT NEAR", this.gp.map.h/6.5, false);
             this.airportNear = true;
         }
     }
@@ -292,6 +297,9 @@ export default class UI {
                 case "airportnear":
                     this.airportNear = false;
                     break;
+                case "slowdown":
+                    this.slowDown = false;
+                    break;
                 case "deploychute":
                     this.deployChute = false;
                     break;
@@ -321,7 +329,11 @@ export default class UI {
         this.drawTimeScore(timeElapsed);
         this.drawHudMetrics();
 
-        this.drawEndGame();
+/*         this.alertMessageOff("caution");
+        this.drawNearAirport();
+        this.drawSlowDown();
+        this.drawLowFuel(); */
+
         }
 
     }

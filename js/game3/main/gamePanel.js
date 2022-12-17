@@ -71,6 +71,5 @@ export class GamePanel {
             this.plane.draw();
             this.ui.draw(timeElapsed);
         }
-
     }
 }
