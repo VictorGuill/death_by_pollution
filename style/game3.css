@@ -39,18 +39,20 @@ img {
 
 /* #region MAIN MENU */
 #mainMenu {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   width: 60%;
   height: var(--mapHeight);
-  background-color: #838383;
-  transition: width 3s linear;
+  background-image: url("/death_by_pollution/media/game3/mainMenu_bg.png");
+  background-size: 2200px 1500px;
+  background-position: center;
+  z-index: 990;
 }
 
-#mainMenu:hover {
+/* #mainMenu:hover {
   width: 100%;
-}
+} */
 
 
 #title {
@@ -523,6 +525,20 @@ input {
       transparent 51%
     );
     background-size: 100vmax var(--scanLinesSize);
+  }
+}
+
+@keyframes mainTitle-fadeOut {
+  0%{
+    width: 60%;
+  }
+  50%{
+    width: 100%;
+    opacity: 1;
+  }
+  100%{
+    width: 100%;
+    opacity: 0;
   }
 }
 

@@ -59,7 +59,8 @@ export default class MainMenu extends Menu{
             case 0:
                 this.selector.className = "selec1";
                 if (this.gp.input["Enter"]) {
-                    this.removeMenu();
+                    this.element.style.animation = "mainTitle-fadeOut 4s forwards";
+                    
                     this.gp.gameState = playState;
                 }
                 break;
