@@ -88,7 +88,7 @@ export default class planeVfx {
     }
 
     removeVFX(e){
-        e.style.animation = "effect-out 4s linear forwards";
+        e.style.animation = "fade-out 4s linear forwards";
         setTimeout( function() {
             e.remove();
         }, 5000)

@@ -1,4 +1,4 @@
-import { playState } from "../main/gamePanel.js";
+import { PLAY_STATE, TUTORIAL_MENU } from "../main/gamePanel.js";
 import Menu from "./menu.js";
 
 
@@ -59,9 +59,7 @@ export default class MainMenu extends Menu{
             case 0:
                 this.selector.className = "selec1";
                 if (this.gp.input["Enter"]) {
-                    this.element.style.animation = "mainTitle-fadeOut 4s forwards";
-                    
-                    this.gp.gameState = playState;
+                    this.gp.menuState = TUTORIAL_MENU;
                 }
                 break;
             case 1:

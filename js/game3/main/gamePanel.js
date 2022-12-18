@@ -13,23 +13,23 @@ import input_codes from './keyHandler.js';
 
 //GAME STATES
 export const 
-    titleState = 0, 
-    playState = 1,
-    pauseState = 2,
-    endGameState = 3;
+    TITLE_STATE = 0, 
+    PLAY_STATE = 1,
+    PAUSE_STATE = 2,
+    ENDGAME_STATE = 3;
 //MENU STATES
 export const 
-    mainMenu = 4,
-    optionsMenu = 5,
-    tutorialMenu = 6;
+    MAIN_MENU = 4,
+    SETTINGS_MENU = 5,
+    TUTORIAL_MENU = 6;
 
 
 export class GamePanel {
     constructor (){
         this.id = "gp";
         
-        this.gameState = titleState;
-        this.menuState = mainMenu;
+        this.gameState = TITLE_STATE;
+        this.menuState = MAIN_MENU;
 
         //game data
         this.time = 0;
@@ -55,18 +55,18 @@ export class GamePanel {
     }
 
     update(dt) {
-        if (this.gameState == titleState) {
+        if (this.gameState == TITLE_STATE) {
             this.mH.update();
-        }else if (this.gameState == playState){
+        }else if (this.gameState == PLAY_STATE){
             this.plane.update(dt);
             this.eH.update();
-        } else if (this.gameState == pauseState){}
+        } else if (this.gameState == PAUSE_STATE){}
     }
 
     draw(timeElapsed) {
-        if (this.gameState == titleState) {
+        if (this.gameState == TITLE_STATE) {
             this.mH.draw();
-        } else if (this.gameState == playState) {
+        } else if (this.gameState == PLAY_STATE) {
             this.map.draw();
             this.plane.draw();
             this.ui.draw(timeElapsed);

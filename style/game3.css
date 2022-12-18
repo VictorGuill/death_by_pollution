@@ -38,22 +38,50 @@ img {
 }
 
 /* #region MAIN MENU */
-#mainMenu {
+#mainMenu, #tutorialMenu {
   position: absolute;
   display: flex;
   justify-content: center;
   width: 60%;
   height: var(--mapHeight);
-  background-image: url("/death_by_pollution/media/game3/mainMenu_bg.png");
-  background-size: 2200px 1500px;
+  background-image: url("/death_by_pollution/media/game3/bg-START.gif");
+  background-size: 100vw;
+  background-repeat: no-repeat;
   background-position: center;
   z-index: 990;
 }
 
+.tutorial-card{
+  width: 350px;
+  height: 70%;
+  margin-top: 50px;
+}
+
+
+
+.border-glow{
+  border: rgba(133, 247, 110, 0.702) 2px solid;
+  border-radius: 4px;
+  box-shadow: 
+  0px 0px 2px #80ff9f, 
+  0px 0px 2px #62b189,
+  0px 0px 5px #509a7b,
+  0px 0px 5px #509a7b,
+  0px 0px 10px #236752;
+}
 /* #mainMenu:hover {
   width: 100%;
 } */
 
+.text-glow{
+  color: rgba(133, 247, 110, 0.702);
+  text-shadow: 
+    0px 0px 3px #80ff9f, 
+    0px 0px 5px #62b189, 
+    0px 0px 15px #509a7b,
+    0px 0px 11px #509a7b, 
+    0px 0px 15px #236752;
+}
 
 #title {
     position: absolute;
@@ -62,7 +90,7 @@ img {
 }
 
 #title p {
-  font-size: 60px;
+  font-size: 100px;
   font-weight: bolder;
   color: rgba(133, 247, 110, 0.702);
   text-shadow: 
@@ -80,7 +108,7 @@ img {
     display: grid; 
     grid-template-columns: 10px 125px; 
     grid-template-rows: 40px 40px 40px; 
-    gap: 10px 10px; 
+    gap: 20px 10px; 
     grid-template-areas: 
     "selec1 optionPlay"
     "selec2 optionSettings"
@@ -95,7 +123,7 @@ img {
 .selec3 { grid-area: selec3; }
 
 #mainMenuOptions p {
-    font-size: 40px;
+    font-size: 50px;
     color: rgba(133, 247, 110, 0.702);
     text-shadow: 
       0px 0px 3px #80ff9f, 
@@ -132,7 +160,8 @@ img {
   justify-content: center;
   height: var(--mapHeight);
   width: 100%;
-  z-index: 900;
+  z-index: 1000;
+  animation: fade-in 2s forwards;
 }
 
 #map {
@@ -140,6 +169,7 @@ img {
   width: 100vw;
   height: var(--mapHeight);
   overflow: hidden;
+  animation: fade-in 2s forwards;
 }
 
 .layer-bg {
@@ -173,6 +203,7 @@ img {
   justify-content: center;
   align-items: center;
   z-index: 900;
+  animation: fade-in 2s forwards;
 }
 
 #progress-bar {
@@ -487,12 +518,21 @@ input {
   }
 }
 
-@keyframes effect-out {
+@keyframes fade-out {
   0% {
     opacity: 1;
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -528,7 +568,7 @@ input {
   }
 }
 
-@keyframes mainTitle-fadeOut {
+@keyframes titleState-fadeOut {
   0%{
     width: 60%;
   }

@@ -3,7 +3,7 @@ import Menu from "../menus/menu.js";
 import OptionsMenu from "../menus/optionsMenu.js";
 import TutorialMenu from "../menus/tutorialMenu.js";
 
-import {titleState, playState, pauseState, endGameState, mainMenu, optionsMenu, tutorialMenu} from "./gamePanel.js";
+import {TITLE_STATE, PLAY_STATE, PAUSE_STATE, ENDGAME_STATE, MAIN_MENU, SETTINGS_MENU, TUTORIAL_MENU} from "./gamePanel.js";
 
 export default class MenuHandler{
     constructor(gp){
@@ -16,22 +16,22 @@ export default class MenuHandler{
     }
 
     update(){
-        if (this.gp.menuState == mainMenu) {
+        if (this.gp.menuState == MAIN_MENU) {
             this.mainMenu.checkKey();
-        } else if (this.gp.menuState == optionsMenu) {
-            this.optionsMenu.checkKey();
-        } else if (this.gp.menuState == tutorialMenu) {
+        } else if (this.gp.menuState == TUTORIAL_MENU) {
             this.tutorialMenu.checkKey();
+        } else if (this.gp.menuState == SETTINGS_MENU) {
+            this.optionsMenu.checkKey();
         }
     }
 
     draw() {
-        if (this.gp.menuState == mainMenu) {
+        if (this.gp.menuState == MAIN_MENU) {
             this.mainMenu.draw();
-        } else if (this.gp.menuState == optionsMenu) {
-            this.optionsMenu.draw();
-        } else if (this.gp.menuState == tutorialMenu) {
+        }else if (this.gp.menuState == TUTORIAL_MENU) {
             this.tutorialMenu.draw();
-        }
+        } else if (this.gp.menuState == SETTINGS_MENU) {
+            this.optionsMenu.draw();
+        } 
     }
 }

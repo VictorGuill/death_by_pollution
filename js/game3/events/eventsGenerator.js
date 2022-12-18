@@ -9,6 +9,11 @@ export default class EventsGenerator{
 
         this.init = false;
         // this.generateToxicDebug(400, 200);
+
+        this.coinGen = true;
+        this.noteGen = true;
+        this.diamondGen = true;
+        this.toxicGen = true;
     }
 
     initGenerator() {
@@ -58,23 +63,33 @@ export default class EventsGenerator{
 
     spawnCheck() {
         let planeX = this.gp.plane.worldX; 
-
-        if (planeX >= this.spawnCoin){
-            this.generateCoin();
-            this.spawnCoin = planeX + this.random(this.fCoins, this.fCoins/4);
+        
+        if  (this.coinGen){
+            if (planeX >= this.spawnCoin){
+                this.generateCoin();
+                this.spawnCoin = planeX + this.random(this.fCoins, this.fCoins/4);
+            }
         }
-        if (planeX >= this.spawnNote){
-            this.generateNote();
-            this.spawnNote = planeX + this.random(this.fNotes, this.fNotes/3);
+        
+        if (this.noteGen){
+            if (planeX >= this.spawnNote){
+                this.generateNote();
+                this.spawnNote = planeX + this.random(this.fNotes, this.fNotes/3);
+            }
         }
-        if (planeX >= this.spawnDiamond){
-            this.generateDiamond();
-            this.spawnDiamond = planeX + this.random(this.fDiamonds, this.fDiamonds/2);
+        if (this.diamondGen) {
+            if (planeX >= this.spawnDiamond){
+                this.generateDiamond();
+                this.spawnDiamond = planeX + this.random(this.fDiamonds, this.fDiamonds/2);
+            }
         }
-        if(planeX >= this.spawnToxic){
-            this.generateToxic();
-            this.spawnToxic = planeX + this.random(this.fToxic, this.fToxic/2);
+        if (this.toxicGen){
+            if(planeX >= this.spawnToxic){
+                this.generateToxic();
+                this.spawnToxic = planeX + this.random(this.fToxic, this.fToxic/2);
+            }
         }
+        
     }
 
 

@@ -1,4 +1,4 @@
-import { playState } from "../main/gamePanel.js";
+import { PLAY_STATE } from "../main/gamePanel.js";
 
 export default class UI {
     constructor(gp){
@@ -321,7 +321,7 @@ export default class UI {
     }
 
     draw(timeElapsed) {
-        if (this.gp.gameState == playState) {
+        if (this.gp.gameState == PLAY_STATE) {
             if (!this.elementsAdded) {
                 this.addUI();
             }

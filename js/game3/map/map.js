@@ -2,7 +2,7 @@
 const bgImgHeight = 1100;
 export const airportWidth = 3000;
 
-import { playState } from "../main/gamePanel.js";
+import { PLAY_STATE } from "../main/gamePanel.js";
 
 export default class Map {
     constructor(gp) {
@@ -14,6 +14,8 @@ export default class Map {
         this.worldWidth = 30000;
 
         this.elementsAdded = false;
+
+        this.cityAdded = false;
     }
 
     addElements() {
@@ -165,9 +167,22 @@ export default class Map {
     addAirport(){
         this.airport = document.createElement("div");
         this.airport.setAttribute("id", "airport");
-        this.airport.style.backgroundImage = "url('/death_by_pollution/media/game3/background_1/layers/airport.png')"
-        this.airport.style.backgroundPositionY = "200px";
+        this.airport.style.backgroundImage = "url('/death_by_pollution/media/game3/background_1/layers/airport1.png')"
+        this.airport.style.backgroundPositionY = "100px";
         this.layersGroup.appendChild(this.airport);
+    }
+
+    addCity(){
+        this.city = document.createElement("div");
+        this.city.style.position = "absolute";
+        this.city.style.width = "100%"
+        this.city.style.height = "100%";
+        this.city.style.backgroundImage = "url('/death_by_pollution/media/game3/background_1/layers/img-city1.gif')"
+        this.city.style.backgroundRepeat = "no-repeat"
+        this.city.style.transform = "scaleX(-1)";
+        this.city.style.zIndex = "902";
+        this.layersGroup.appendChild(this.city);
+        this.cityAdded = true;
     }
 
     addObjectsLayer(){
@@ -219,7 +234,12 @@ export default class Map {
 
     drawLayersX(){
         if (this.gp.plane.worldX >= airportWidth){
+            if (!this.cityAdded) {
+                this.addCity();
+            }
+            this.airport.style.backgroundImage = "url('/death_by_pollution/media/game3/background_1/layers/img-airport2.gif')"
             this.airport.style.backgroundPositionX = -this.worldWidth +(this.gp.plane.worldX) + "px";
+            this.city.style.backgroundPositionX = -this.worldWidth +(this.gp.plane.worldX) + "px";
             this.airport.style.transform = "scaleX(-1)";
         } else {
             this.airport.style.backgroundPositionX = -(this.gp.plane.worldX) + "px";
@@ -243,11 +263,15 @@ export default class Map {
             }
         })
 
-        this.airport.style.backgroundPositionY = (this.gp.plane.worldY + 290) +"px";
+        this.airport.style.backgroundPositionY = (this.gp.plane.worldY + 300) +"px";
+        if (this.gp.plane.worldX >= airportWidth){
+            this.airport.style.backgroundPositionY = (this.gp.plane.worldY - 350) +"px";
+            this.city.style.backgroundPositionY = (this.gp.plane.worldY - 350) +"px";
+        }
     }
 
     draw() {
-        if (this.gp.gameState == playState) {
+        if (this.gp.gameState == PLAY_STATE) {
             if (!this.elementsAdded){
                 this.addElements();
             }

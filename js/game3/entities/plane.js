@@ -1,4 +1,4 @@
-import { playState } from "../main/gamePanel.js";
+import { PLAY_STATE } from "../main/gamePanel.js";
 import { airportWidth } from "../map/map.js";
 import planeVfx from "./planeVFX.js";
 
@@ -47,9 +47,9 @@ export default class Plane{
         this.cL = .5; //Lift coeficient
         this.cD = 1; //Drag coeficient
 
-        this.acceleration = 30;
-        this.deceleration = 15;
-        this.maxSpeed = 1000;
+        this.acceleration = 300;
+        this.deceleration = 100;
+        this.maxSpeed = 10000;
 
         this.canPSM = true;
         this.cobraRange = false;
@@ -149,6 +149,12 @@ export default class Plane{
 
     checkState() {
         //takeOff
+        if (this.status === TAKEOFF || this.status === LANDING){
+            if (this.worldY <= 40){
+                this.worldY = 40;
+            }
+        }
+
         if (this.status ===  TAKEOFF) {
             if (this.worldX >= airportWidth) {
                 this.status = FLYING;
@@ -367,7 +373,7 @@ export default class Plane{
 
 
     draw() {
-        if (this.gp.gameState == playState) {
+        if (this.gp.gameState == PLAY_STATE) {
             if (!this.elementAdded) {
                 this.addPlane();
             }
