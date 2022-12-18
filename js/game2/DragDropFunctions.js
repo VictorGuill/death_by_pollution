@@ -10,9 +10,6 @@ export function dragEndHandler(e) {
   e.target.style = 'border: none';
 }
 
-// export function dragEnterHandler(e) {
-// }
-
 export function dragOverHandler(e) {
   e.preventDefault();
   e.target.style = 'border: 2px dashed white;';

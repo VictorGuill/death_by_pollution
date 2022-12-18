@@ -130,7 +130,7 @@ piece2.addPiece(1);
 piece3.addPiece(2);
 let i = 3; //count pieces
 
-let numReload = 0;
+export let numReload = 0;
 
 //button to change the 3 pieces
 document.getElementById("button").addEventListener("click", reloadPieces);
@@ -150,6 +150,7 @@ function reloadPieces() {
     el.addEventListener('dragend', dragdrop.dragEndHandler);
   });
   numReload++;
+  console.log(numReload)
 }
 
 //load pieces first time

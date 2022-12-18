@@ -1,5 +1,6 @@
-import { startColumn, startRow, endRow, endColumn } from "./constants.js";
+import { startColumn, startRow } from "./constants.js";
 import EndScreen from "./screens/EndScreen.js";
+import { numReload } from "./main.js";
 
 export function getPositions(track) {
     let positionArr = [];
@@ -261,12 +262,31 @@ export function end_game() {
         }
     }
     console.log(trackCorrect.every(isTrue));
-    console.log(numPieces);
+    console.log(numPieces + " num reload: " + numReload);
+
+    let score;
+    if (numReload >= 0){
+        score = numPieces * numReload * rand(430, 380);
+    } else if (numReload>= 5 && age <= 10){
+        score = numPieces * numReload * rand(360, 310);
+    } else if (numReload>= 15 && age <= 45){
+        score = numPieces * numReload * rand(290, 240);
+    } else if (numReload>= 46 && age <= 100){
+        score = numPieces * numReload * rand(220, 170);
+    } else {
+        score = numPieces * numReload * rand(150, 50);
+    }
+
+    
     if (trackCorrect.every(isTrue) && numPieces >= 21) {
-        end.Winner(numPieces);
+        end.Winner(score);
     } else {
         end.GameOver();
     }
+}
+
+function rand(max, min) {
+    return (Math.floor(Math.random() * (max + 1 - min)) + min);
 }
 
 function isTrue(el) {

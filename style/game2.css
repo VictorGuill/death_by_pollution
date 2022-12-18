@@ -51,12 +51,14 @@
   margin-left: 1vmin;
 
   border-radius: 1vmin;
-  background-color: #009361;
+  background-color: #698f56;
 }
 
 #button,
 #button2,
 #timer {
+  cursor: pointer;
+
   border: 1em;
   width: 8vmin;
   height: 8vmin;
@@ -74,27 +76,38 @@
   color: white;
 
   border-radius: 1vmin;
-  background-color: #009361;
+  background-color: #698f56;
 }
 
 button {
+  cursor: hand;
   all: unset;
 }
 
 #button:hover {
-  background-color: #da6b38;
+  
+  background-color: #f39e65;
+}
+
+#timer {
+  cursor: default;
+  font-size: 20px;
+  padding: 2vw;
+  width: max-content;
+  margin-top: 30vh;
+  background-color: #8e6a52;
 }
 
 #button2 {
   font-size: 20px;
   padding: 1em;
   width: max-content;
-  margin-top: 30vh;
+  margin-top: 3vh;
   background-color: #c5324a;
 }
 
 #button2:hover {
-  background-color: #972638;
+  background-color: #971c31;
 }
 
 .start,
@@ -178,7 +191,13 @@ button {
 }
 
 #todo {
-  margin: 2vh
+  font-size: 20px;
+  color: white;
+  margin: 2vh;
+}
+
+#othertext {
+  margin-top: 5vh;
 }
 
 #text, #subtext {
@@ -187,6 +206,11 @@ button {
   justify-content: space-evenly;
   align-items: center;
 
+  margin: 0vh;
+}
+
+#subtext {
+  font-size: 25px;
   margin: 3vh;
 }
 
