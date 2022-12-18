@@ -15,7 +15,7 @@ export default class ExitMenu extends Menu{
         this.element.setAttribute("id", "exitMenu");
         this.element.style.position = "absolute";
         this.element.style.width = "30%";
-        this.element.style.top = "70%";
+        this.element.style.top = "65%";
         this.element.style.display = "flex";
         this.element.style.justifyContent = "space-around";
         this.gp.element.appendChild(this.element);
