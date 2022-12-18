@@ -128,12 +128,12 @@ INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 7, 51
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 7, 435, 60, now());
 
 -- GAME TRAIN TRACK
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 20, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 7, 20, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 23, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 3, 24, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 4, 18, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 5, 16, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 7659, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 7, 9261, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 8169, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 3, 9597, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 4, 9072, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 5, 7176, 120, now());
 
 -- GAME SKY DIVE
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 1, 75000, 60, now());

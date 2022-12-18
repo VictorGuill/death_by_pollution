@@ -198,7 +198,7 @@ export function orderPieces(array) {
 
 export function positionPiece(array) {
     let positions = [];
-    let images = [];
+    let imnumReloads = [];
     for (var i = 0; i < array.length; i++) {
         if (i + 1 < array.length) {
             let intRow = parseInt(array[i][0]);
@@ -219,12 +219,11 @@ export function positionPiece(array) {
                 positions.push('right');
             }
             let dropSpace = document.getElementById(intRowNext + "drop" + intColNext);
-            images.push(dropSpace.firstChild.className);
-            console.log("first child" + dropSpace.firstChild);
-            console.log(images);
+            imnumReloads.push(dropSpace.firstChild.className);
+            console.log(imnumReloads);
         }
     }
-    return [positions, images];
+    return [positions, imnumReloads];
 }
 
 export function end_game() {
@@ -241,16 +240,16 @@ export function end_game() {
             numPieces++; //counter of the number of pieces
         }
     }
-    if (numPieces < 21){
+    if (numPieces < 21) {
         end.GameOver();
     }
     //array with the positions of the pieces at the map
     let positionsArr = getPositions(track);
     //knowing the position of the piece and the next one
     let orderPositions = orderPieces(positionsArr);
-    let positions_images = positionPiece(orderPositions);
-    let positions = positions_images[0];
-    let trackImgs = positions_images[1];
+    let positions_imnumReloads = positionPiece(orderPositions);
+    let positions = positions_imnumReloads[0];
+    let trackImgs = positions_imnumReloads[1];
     console.log(trackImgs);
     //getting the img
     let trackCorrect = []; //array to check the path
@@ -264,20 +263,52 @@ export function end_game() {
     console.log(trackCorrect.every(isTrue));
     console.log(numPieces + " num reload: " + numReload);
 
-    let score;
-    if (numReload >= 0){
-        score = numPieces * numReload * rand(430, 380);
-    } else if (numReload>= 5 && age <= 10){
-        score = numPieces * numReload * rand(360, 310);
-    } else if (numReload>= 15 && age <= 45){
-        score = numPieces * numReload * rand(290, 240);
-    } else if (numReload>= 46 && age <= 100){
-        score = numPieces * numReload * rand(220, 170);
-    } else {
-        score = numPieces * numReload * rand(150, 50);
+    let score = 0, random = 0;
+    if (numPieces == 21 && (numReload >= 0 && numReload <= 2)) {
+        random = rand(550, 500);
     }
+    if (numPieces == 21) {
+        if (numReload >= 0 && numReload <= 5) {
+            random = rand(500, 450);
+        } else if (numReload >= 5 && numReload <= 10) {
+            random = rand(450, 400);
+        } else if (numReload >= 11 && numReload <= 15) {
+            random = rand(400, 350);
+        } else if (numReload >= 16 && numReload <= 20) {
+            random = rand(350, 300);
+        } else {
+            random = rand(300, 250);
+        }
+    }
+    if (numPieces >= 22 && numReload <= 23) {
+        if (numReload >= 0 && numReload <= 5) {
+            random = rand(400, 350);
+        } else if (numReload >= 5 && numReload <= 10) {
+            random = rand(350, 300);
+        } else if (numReload >= 11 && numReload <= 15) {
+            random = rand(300, 250);
+        } else if (numReload >= 16 && numReload <= 20) {
+            random = rand(250, 200);
+        } else {
+            random = rand(200, 150);
+        }
+    }
+    if (numPieces >= 24) {
+        if (numReload >= 0 && numReload <= 5) {
+            random = rand(350, 300);
+        } else if (numReload >= 5 && numReload <= 10) {
+            random = rand(300, 250);
+        } else if (numReload >= 11 && numReload <= 15) {
+            random = rand(250, 200);
+        } else if (numReload >= 16 && numReload <= 20) {
+            random = rand(200, 150);
+        } else {
+            random = rand(150, 100);
+        }
+    }
+    score = numPieces * random;
+    console.log(random);
 
-    
     if (trackCorrect.every(isTrue) && numPieces >= 21) {
         end.Winner(score);
     } else {

@@ -37,7 +37,7 @@ if (isset($_COOKIE['game2_score'])) {
       <div id="items_picker"></div>
       <div id="button">
         <button>
-          <img src="../media/game2/reload.png" width="60px" height="60px">
+          <img src="../media/game2/reload.png" width="50px" height="50px">
         </button>
       </div>
       <div id="timer"></div>
@@ -72,7 +72,7 @@ if (isset($_COOKIE['game2_score'])) {
       tick();
     }
 
-    countdown(1, 60);
+    countdown(3, 30);
 
     function GameOver() {
       const END_SCREEN = document.createElement("div");
