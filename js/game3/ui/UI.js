@@ -15,6 +15,7 @@ export default class UI {
         this.lowFuel = false;
         this.deployChute = false;
         this.endGame = false;
+        this.gameOver = false;
     }
 
     addUI(){
@@ -259,10 +260,34 @@ export default class UI {
 
     drawDeployChute(){
         if (!this.deployChute) {
-            this.drawAlertMessage("CHUTE DEPLOYED", this.gp.map.h/3.6, false);
+            const mDiv = document.createElement("div");
+            mDiv.setAttribute("id", "chuteDepolyed");
+            mDiv.style.position = "absolute";
+            mDiv.style.top = this.gp.map.h/3.6 + "px";
+            const m = document.createElement("p");
+            m.classList.add("alertMessage");
+            m.innerHTML = "CHUTE DEPLOYED<br>YOU DIDN'T LANDED!";
+            m.style.textAlign = "center";
+            mDiv.appendChild(m);
+            this.element.appendChild(mDiv);
             this.deployChute = true;
         }
 
+    }
+
+    drawGameOver(){
+        if (!this.gameOver){
+            const mDiv = document.createElement("div");
+            mDiv.setAttribute("id", "alertGameOver");
+            mDiv.style.position = "absolute";
+            mDiv.style.top = this.gp.map.h/2 + "px";
+            mDiv.style.transform = "scale(2)";
+            const m = document.createElement("span");
+            m.innerHTML = "GAME OVER";
+            mDiv.appendChild(m);
+            this.element.appendChild(mDiv);
+            this.gameOver = true;
+        }
     }
 
     drawEndGame() {
@@ -270,7 +295,8 @@ export default class UI {
             const mDiv = document.createElement("div");
             mDiv.setAttribute("id", "alertEndGame");
             mDiv.style.position = "absolute";
-            mDiv.style.top = this.gp.map.h/3.6 + "px";
+            mDiv.style.top = this.gp.map.h/2 + "px";
+            mDiv.style.transform = "scale(2)";
             const m = document.createElement("span");
             m.innerHTML = "MISSION ACOMPLISHED!";
             mDiv.appendChild(m);

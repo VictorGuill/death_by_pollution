@@ -1,6 +1,6 @@
 //SET THIS VARIABLE TO MAX LAYER HEIGHT TO MATCH MAP SIZE
 const bgImgHeight = 1100;
-export const airportWidth = 3000;
+export const airportWidth = 5000;
 
 import { PLAY_STATE } from "../main/gamePanel.js";
 
@@ -238,21 +238,21 @@ export default class Map {
                 this.addCity();
             }
             this.airport.style.backgroundImage = "url('/death_by_pollution/media/game3/background_1/layers/img-airport2.gif')"
-            this.airport.style.backgroundPositionX = -this.worldWidth +(this.gp.plane.worldX) + "px";
-            this.city.style.backgroundPositionX = -this.worldWidth +(this.gp.plane.worldX) + "px";
+            this.airport.style.backgroundPositionX = -this.worldWidth + 2500 +(this.gp.plane.worldX) + "px";
+            this.city.style.backgroundPositionX = -this.worldWidth + 2500 +(this.gp.plane.worldX) + "px";
             this.airport.style.transform = "scaleX(-1)";
         } else {
             this.airport.style.backgroundPositionX = -(this.gp.plane.worldX) + "px";
         }
         
-        this.rocks_5.style.backgroundPositionX = -(this.gp.plane.worldX / 2) + "px";
+        this.rocks_5.style.backgroundPositionX = -(this.gp.plane.worldX ) + "px";
         //this.rocks_4.style.backgroundPositionX = -(this.gp.plane.worldX/4) +"px";
-        this.clouds_4.style.backgroundPositionX = (this.gp.plane.worldX / 6) + "px";
-        this.rocks_1.style.backgroundPositionX = -(this.gp.plane.worldX / 10) + "px";
-        this.clouds_2.style.backgroundPositionX = -(this.gp.plane.worldX / 12) + "px";
-        this.clouds_3.style.backgroundPositionX = -(this.gp.plane.worldX / 14) + "px";
-        this.rocks_2.style.backgroundPositionX = -(this.gp.plane.worldX / 16) + "px";
-        this.clouds_1.style.backgroundPositionX = -(this.gp.plane.worldX / 18) + "px";
+        this.clouds_4.style.backgroundPositionX = (this.gp.plane.worldX / 20) + "px";
+        this.rocks_1.style.backgroundPositionX = -(this.gp.plane.worldX / 4) + "px";
+        this.clouds_2.style.backgroundPositionX = -(this.gp.plane.worldX / 6) + "px";
+        this.clouds_3.style.backgroundPositionX = -(this.gp.plane.worldX / 10) + "px";
+        this.rocks_2.style.backgroundPositionX = -(this.gp.plane.worldX / 12) + "px";
+        this.clouds_1.style.backgroundPositionX = -(this.gp.plane.worldX / 14) + "px";
     }
 
     drawLayersY(){

@@ -21,7 +21,8 @@ export const
 export const 
     MAIN_MENU = 4,
     SETTINGS_MENU = 5,
-    TUTORIAL_MENU = 6;
+    TUTORIAL_MENU = 6,
+    EXIT_MENU = 7;
 
 
 export class GamePanel {
@@ -29,7 +30,7 @@ export class GamePanel {
         this.id = "gp";
         
         this.gameState = TITLE_STATE;
-        this.menuState = TUTORIAL_MENU;
+        this.menuState = MAIN_MENU;
 
         //game data
         this.time = 0;
@@ -54,13 +55,33 @@ export class GamePanel {
         document.body.appendChild(this.element);
     }
 
+    tryAgain(){
+        this.map.element.remove();
+        this.ui.element.remove();
+        this.mH.exitMenu.element.remove();
+
+        this.score = 0;
+        this.mH = new MenuHandler(this);
+        this.map = new Map(this);
+        this.objects = new Array();
+        this.plane = new Plane(this, 140, 0);
+        this.ui = new UI (this);
+        this.slot = new Slot(this);
+        this.gameState = PLAY_STATE;
+    }
+
     update(dt) {
         if (this.gameState == TITLE_STATE) {
             this.mH.update();
         }else if (this.gameState == PLAY_STATE){
             this.plane.update(dt);
             this.eH.update();
-        } else if (this.gameState == PAUSE_STATE){}
+        } else if (this.gameState == PAUSE_STATE){
+
+        } else if (this.gameState == ENDGAME_STATE){
+            this.menuState = EXIT_MENU;
+            this.mH.update();
+        }
     }
 
     draw(timeElapsed) {
@@ -70,6 +91,8 @@ export class GamePanel {
             this.map.draw();
             this.plane.draw();
             this.ui.draw(timeElapsed);
+        } else if (this.gameState === ENDGAME_STATE){
+            this.mH.draw();
         }
     }
 }

@@ -19,11 +19,11 @@ export default class EventsGenerator{
     }
 
     initGenerator() {
-        this.fCoins = this.gp.map.w / 1.5;
-        this.fNotes = this.gp.map.w;
-        this.fDiamonds = this.gp.map.w * 2;
-        this.fGem = this.gp.map.w * 3;
-        this.fToxic = this.gp.map.w / 2;
+        this.fCoins = this.gp.map.w / 2;
+        this.fNotes = this.gp.map.w / 1.8;
+        this.fDiamonds = this.gp.map.w;
+        this.fGem = this.gp.map.w * 1.8 ;
+        this.fToxic = this.gp.map.w / 3;
 
         this.spawnCoin = this.fCoins;
         this.spawnNote = this.fNotes;
@@ -32,6 +32,14 @@ export default class EventsGenerator{
         this.spawnToxic = this.fToxic;
 
         this.init = true;
+    }
+
+    spawnOff() {
+        this.coinGen = false;
+        this.noteGen = false;
+        this.diamondGen = false;
+        this.gemGen = false;
+        this.toxicGen = false;
     }
 
     generateToxicDebug(x, y){
@@ -139,7 +147,7 @@ export default class EventsGenerator{
                                 this.gp.score += 1000;
                                 break;
                             case "toxic":
-                                    // this.gp.plane.hp--;
+                                    this.gp.plane.hp--;
                                 break;
                         }
                         obj.ticked = true;
@@ -147,9 +155,10 @@ export default class EventsGenerator{
                 }
             }
 
-            if (parseInt(obj.getX()) <= -Math.abs(obj.getWidth()+200)){
+            if (parseInt(obj.getX()) <= -Math.abs(obj.getWidth())){
                 obj.element.remove();
-                this.gp.objects.shift();
+                let index = this.gp.objects.indexOf(obj);
+                this.gp.objects.splice(index, 1);
             }
         });
     }

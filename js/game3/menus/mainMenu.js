@@ -1,4 +1,4 @@
-import { PLAY_STATE, TUTORIAL_MENU } from "../main/gamePanel.js";
+import { MAIN_MENU, PLAY_STATE, TUTORIAL_MENU } from "../main/gamePanel.js";
 import Menu from "./menu.js";
 
 
@@ -6,6 +6,8 @@ export default class MainMenu extends Menu{
     constructor(gp){
         super(gp);
         this.bgAdded = false;
+
+        this.maxSelector= 1;
     }
 
     addElement() {
@@ -32,16 +34,11 @@ export default class MainMenu extends Menu{
         this.optionPlay.classList.add("optionPlay")
         this.optionPlay.innerHTML = "PLAY";
 
-        this.optionSettings = document.createElement("p");
-        this.optionSettings.classList.add("optionSettings");
-        this.optionSettings.innerHTML = "SETTINGS";
-
         this.optionExit = document.createElement("p");
         this.optionExit.classList.add("optionExit");
         this.optionExit.innerHTML = "EXIT";    
 
         this.options.appendChild(this.optionPlay);
-        this.options.appendChild(this.optionSettings);
         this.options.appendChild(this.optionExit);
         this.element.appendChild(this.options);
     }
@@ -64,12 +61,11 @@ export default class MainMenu extends Menu{
                 break;
             case 1:
                 this.selector.className = "selec2";
-                break;
-            case 2:
-                this.selector.className = "selec3";
+                if (this.gp.input["Enter"]) {
+                    window.location.href = "../pages/gamesMenu.php";
+                }
                 break;
         }
-
     }
 
     draw(){

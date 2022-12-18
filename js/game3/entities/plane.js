@@ -1,4 +1,4 @@
-import { PLAY_STATE } from "../main/gamePanel.js";
+import { ENDGAME_STATE, PLAY_STATE } from "../main/gamePanel.js";
 import { airportWidth } from "../map/map.js";
 import planeVfx from "./planeVFX.js";
 
@@ -6,6 +6,10 @@ const TAKEOFF = 0;
 const FLYING = 1;
 const OUTOFFUEL= 2;
 const LANDING = 3;
+const ENDGAME = 4;
+const LANDED = 5;
+
+const deviceWidth = window.innerWidth;
 
 export default class Plane{
     constructor(gp, inicialX, inicialY) {
@@ -41,14 +45,14 @@ export default class Plane{
         -landing */
 
         this.pitch = 0;
-        this.pitchRate = 2;
+        this.pitchRate = 4.5;
         this.maxPitch = 45;
         
-        this.cL = .5; //Lift coeficient
-        this.cD = 1; //Drag coeficient
+        this.cL = 0.4; //Lift coeficient
+        this.cD = 0.8; //Drag coeficient
 
-        this.acceleration = 30;
-        this.deceleration = 10;
+        this.acceleration = 18;
+        this.deceleration = 5;
         this.maxSpeed = 1000;
 
         this.canPSM = true;
@@ -56,7 +60,7 @@ export default class Plane{
         this.cobraPitch = 0;
         this.inPSM = false;
 
-        this.mass = 100;
+        this.mass = 60;
         this.weight = this.gp.physics.getWeight(this);
 
         this.fuel = 4000;
@@ -149,7 +153,7 @@ export default class Plane{
 
     checkState() {
         //takeOff
-        if (this.status === TAKEOFF || this.status === LANDING){
+        if (this.status === TAKEOFF || this.status === LANDING || this.status === LANDED){
             if (this.worldY <= 40){
                 this.worldY = 40;
             }
@@ -185,6 +189,7 @@ export default class Plane{
             } 
 
             if (this.worldX >= this.gp.map.worldWidth - airportWidth*2){
+                console.log("AIRPORT");
                 if (this.worldX )
                 this.gp.ui.drawNearAirport();
        
@@ -204,6 +209,7 @@ export default class Plane{
         
         //landing
         if (this.status === LANDING) {
+            this.gp.eH.evG.spawnOff();
             this.fuel = 9999;
             this.gp.ui.alertMessageOff("caution");
             this.gp.ui.alertMessageOff("pullup");
@@ -212,12 +218,52 @@ export default class Plane{
             } else {
                 this.gp.ui.alertMessageOff("slowdown");
             }
+            if (this.worldX >= (this.gp.map.worldWidth - airportWidth + 1000) && this.worldY <= 75 && this.speed <= 400){
+                this.gp.ui.alertMessageOff("airportnear");
+                this.gp.ui.drawEndGame();
+                this.status = LANDED;
+            }
+            if (this.worldX >= this.gp.map.worldWidth + 500){
+                this.status = ENDGAME; 
+            }
+
             //airport near check
         }
 
-        if (this.state == "explosion"){
+        if (this.status === LANDED) {
             this.gp.slot.saveScore();
+            console.log("landing procedure");
             this.collision = true;
+            this.worldY-= .2;
+            this.speed-= 1;
+
+            if (this.speed <= 0) {
+                this.gp.gameState = ENDGAME_STATE;
+            }
+        }
+
+        if (this.status === ENDGAME){
+            if (this.state === "explosion"){
+                if (this.speed <= 0) {
+                    this.gp.gameState = ENDGAME_STATE;
+                }
+                this.collision = true;
+            }else {
+                this.gp.ui.drawGameOver();
+                this.gp.ui.alertMessageOff("slowdown");
+                this.gp.ui.alertMessageOff("airportnear");
+                this.vfx.deployChuteVFX();
+                this.speed -= (this.speed)/450;
+                this.gp.physics.lift = this.weight-20;
+                this.gp.ui.drawDeployChute();
+                this.chuteDeployRange = true;
+                this.fuel = 0;
+                this.collision = true;
+    
+                if (this.speed <= 0) {
+                    this.gp.gameState = ENDGAME_STATE;
+                }
+            } 
         }
 
     }
@@ -228,18 +274,28 @@ export default class Plane{
 
 
     updatePositions(dt) {
-        this.worldX += this.speedX * dt/10;
-        this.worldY += this.speedY * dt/10;
-        this.screenX = ((this.gp.map.screenPlaneZoneWidth-this.w) * (this.gp.physics.getPercentSpeed(this, this.speed)) * .01);
-        this.screenY = this.worldY;
-        // X = ( (7 * mapWidth * Vpercent) / 1000 )[when 100% speed --> maxScreenX = 70% of mapWidth]
-        if (this.worldX < 0) {
-            this.worldX = 0;
+         if (this.worldX >= this.gp.map.worldWidth - deviceWidth*2){
+            this.worldX += this.speedX * dt/10;
+            this.worldY += this.speedY * dt/10;
+            if (this.status != LANDED || this.status === ENDGAME){
+                this.screenX = ((this.gp.map.screenPlaneZoneWidth-this.w) * (this.gp.physics.getPercentSpeed(this, this.speed)) * .01);
+            }
+            this.screenY = this.worldY;
+        } else {
+            this.worldX += this.speedX * dt/10;
+            this.worldY += this.speedY * dt/10;
+            this.screenX = ((this.gp.map.screenPlaneZoneWidth - this.w) * (this.gp.physics.getPercentSpeed(this, this.speed)) * .01);
+            this.screenY = this.worldY;
+            // X = ( (7 * mapWidth * Vpercent) / 1000 )[when 100% speed --> maxScreenX = 70% of mapWidth]
+            if (this.worldX < 0) {
+                this.worldX = 0;
+            }
+    
+            /* if (this.worldY < 0) {
+                this.worldY = 0;
+            } */    
         }
 
-        /* if (this.worldY < 0) {
-            this.worldY = 0;
-        } */
     }
 
     updateSpeed(dt) {
@@ -259,7 +315,7 @@ export default class Plane{
             this.speedX = 0;
         }
 
-        if(this.canPSM && this.speed >= 600) {
+        if(this.canPSM && this.speed >= 970) {
             this.cobraRange = true;
         } else {
             this.cobraRange = false;

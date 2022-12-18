@@ -1,12 +1,15 @@
 import Object from "./object.js";
 
 export default class Toxic extends Object {
-  constructor(gp, y) {
+  constructor(gp, y, ) {
     super(gp);
     this.name = "toxic";
 
     this.initialY = y;
     this.y = this.initialY;
+
+    this.maxSize = 300;
+    this.minSize = 100;
 
     this.createToxic();
     // this.generateHitboxUI();
@@ -36,7 +39,14 @@ export default class Toxic extends Object {
   }
 
   randomCloud() {
-    let size = Math.floor(Math.random() * (300 - 100)) + 100;
+    if (this.gp.plane.worldX >= this.gp.map.worldWidth/1.8){
+      this.maxSize = 500;
+      this.minSize = 200;
+    }else if (this.gp.plane.worldX >= this.gp.map.worldWidth/3){
+      this.maxSize = 400;
+      this.minSize = 150;
+    }
+    let size = Math.floor(Math.random() * (this.maxSize - this.minSize)) + this.minSize;
     this.w = size;
     this.h = size;
     const num = Math.floor(Math.random() * (5 - 1)) + 1;

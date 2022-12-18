@@ -1,4 +1,4 @@
-import { PLAY_STATE } from "../main/gamePanel.js";
+import { MAIN_MENU, PLAY_STATE, TITLE_STATE } from "../main/gamePanel.js";
 import Menu from "./menu.js";
 
 export default class TutorialMenu extends Menu {
@@ -26,7 +26,9 @@ export default class TutorialMenu extends Menu {
         container.style.width = "90%";
         container.style.height = "90%";
         container.style.margin = "auto";
+        
         //tutorial cards
+        //CARD 1
         const card1 = document.createElement("div");
         card1.classList.add("tutorial-card");
         card1.classList.add("border-glow");
@@ -68,6 +70,7 @@ export default class TutorialMenu extends Menu {
         card1.appendChild(this.card1_text);
         container.appendChild(card1);
 
+        //CARD 2
         const card2 = document.createElement("div");
         card2.classList.add("tutorial-card");
         card2.classList.add("border-glow");
@@ -114,6 +117,7 @@ export default class TutorialMenu extends Menu {
 
         container.appendChild(card2);
 
+        //CARD 3
         const card3 = document.createElement("div");
         card3.classList.add("tutorial-card");
         card3.classList.add("border-glow");
@@ -197,15 +201,13 @@ export default class TutorialMenu extends Menu {
                 }
                 break;
             default:
-
         }
-
     }
 
     draw(){
         if (!this.bgAdded) {
             this.addElement();
-            this.fadeOut(this.element, this.gp.mH.mainMenu.element, 1.5);
+            this.fadeOut(this, this.gp.mH.mainMenu, 1.5);
         }
     }
 }

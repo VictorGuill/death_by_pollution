@@ -96,7 +96,7 @@ export default class planeVfx {
 
     updateThrust(){
         const statusEffects = document.querySelectorAll(".effectVFX");
-        this.thrust.style.transform = "scaleX(" + parseFloat((this.plane.speed) * .002) +") scaleY("+parseFloat((this.plane.speed) * .001)+") rotateZ("+(-this.plane.pitch*1.2)+"deg)";
+        this.thrust.style.transform = "scaleX(" + parseFloat((this.plane.speed) * .003) +") scaleY("+parseFloat((this.plane.speed) * .002)+") rotateZ("+(-this.plane.pitch)+"deg)";
         statusEffects.forEach(e=>{
             e.style.transform = "rotateZ("+(-this.plane.pitch/4)+"deg)";
         });
@@ -130,6 +130,7 @@ export default class planeVfx {
             this.fireVFX();
         } else if (planeHp == 0 && this.plane.state !== "explosion"){
             this.plane.state = "explosion";
+            this.plane.status = 4;
             this.explosionVFX();
             this.removeVFX(this.smoke_fire);
             this.removeVFX(this.fire);
