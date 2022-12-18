@@ -77,6 +77,25 @@ if (isset($_SESSION["name"])) {
       </div>
       <div id="game2" class="game <?php
                                   if (isset($_SESSION['phase'])) {
+                                    if ($_SESSION['phase'] < 1) {
+                                      echo "blocked";
+                                    }
+                                  } else {
+                                    echo "blocked";
+                                  }
+                                  ?>">
+        <p class="title_game"><?php
+                              if (isset($_SESSION['phase'])) {
+                                if ($_SESSION['phase'] >= 1) {
+                                  echo "TRAIN TRACK";
+                                }
+                              } else {
+                                echo "";
+                              }
+                              ?></p>
+      </div>
+      <div id="game3" class="game <?php
+                                  if (isset($_SESSION['phase'])) {
                                     if ($_SESSION['phase'] < 2) {
                                       echo "blocked";
                                     }
@@ -87,25 +106,6 @@ if (isset($_SESSION["name"])) {
         <p class="title_game"><?php
                               if (isset($_SESSION['phase'])) {
                                 if ($_SESSION['phase'] >= 2) {
-                                  echo "TRAIN TRACK";
-                                }
-                              } else {
-                                echo "";
-                              }
-                              ?></p>
-      </div>
-      <div id="game3" class="game <?php
-                                  if (isset($_SESSION['phase'])) {
-                                    if ($_SESSION['phase'] < 3) {
-                                      echo "blocked";
-                                    }
-                                  } else {
-                                    echo "blocked";
-                                  }
-                                  ?>">
-        <p class="title_game"><?php
-                              if (isset($_SESSION['phase'])) {
-                                if ($_SESSION['phase'] >= 3) {
                                   echo "SKY DIVE";
                                 }
                               } else {

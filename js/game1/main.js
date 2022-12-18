@@ -99,7 +99,9 @@ function gameLoop(millis) {
         ui.remove();
 
         end_screen.add(player.trash_collected);
-        setCookie("game1_score", player.trash_collected, 1);
+        if (player.trash_collected > 0) {
+          setCookie("game1_score", player.trash_collected, 1);
+        }
 
         screen_state = "end_screen";
 
@@ -156,11 +158,7 @@ function gameLoop(millis) {
 
 //#region RESIZE EVENT
 addEventListener("resize", (e) => {
-  if (
-    screen_state === "menu" ||
-    screen_state === "tutorial" ||
-    screen_state === "credits"
-  ) {
+  if (screen_state === "menu" || screen_state === "tutorial" || screen_state === "credits") {
     menu_start.resize();
   }
 
@@ -249,8 +247,7 @@ function checkTrashCollition(trash_items) {
       const animation_time = 1.2;
 
       const trash = document.getElementById(element.id);
-      trash.style.animation =
-        "pick-item " + animation_time + "s cubic-bezier(.2,1.1,.84,1.02)";
+      trash.style.animation = "pick-item " + animation_time + "s cubic-bezier(.2,1.1,.84,1.02)";
       trash.style.animationFillMode = "forwards";
 
       // delete element after animation ends
@@ -281,8 +278,7 @@ function checkPerksCollition(elapsedTime) {
       // apply pick up animation
       const animation_duration = 1.2;
       const perk = document.getElementById(element.id);
-      perk.style.animation =
-        "pick-perk " + animation_duration + "s cubic-bezier(.2,1.1,.84,1.02)";
+      perk.style.animation = "pick-perk " + animation_duration + "s cubic-bezier(.2,1.1,.84,1.02)";
       perk.style.animationFillMode = "forwards";
 
       // delete element after animation ends

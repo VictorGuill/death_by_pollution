@@ -5,7 +5,7 @@ function openDB()
     $servername = "localhost:3306";
     $username = "root";
     #region PASSWORD
-    $password = "1234";
+    $password = "12345";
     #endregion
 
     $conexion = new PDO("mysql:host=$servername;dbname=death_by_p", $username, $password);
@@ -45,6 +45,22 @@ function selectUser($name, $password)
     $conexion = openDB();
 
     $queryText = "SELECT * FROM users WHERE users.name = '" . strtolower($name) . "' AND users.password = '" . $password . "';";
+
+    $query = $conexion->prepare($queryText);
+    $query->execute();
+
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $conexion = closeDB();
+
+    return $result;
+}
+
+function selectUserName($name)
+{
+    $conexion = openDB();
+
+    $queryText = "SELECT * FROM users WHERE users.name = '" . strtolower($name) . "';";
 
     $query = $conexion->prepare($queryText);
     $query->execute();
