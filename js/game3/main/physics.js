@@ -50,11 +50,11 @@ export default class Phisics {
     
     // ------ SPEEDS ------
     calcSpeed(entity) {
-        return entity.speed - this.drag - this.staticDrag;
+        return entity.speed/*  - this.drag - this.staticDrag */;
     }
 
     calcSpeedY(entity) {
-        return entity.speed * Math.sin(this.toRadiants(entity.pitch)) - entity.weight + this.lift;
+        return entity.speed * Math.sin(this.toRadiants(entity.pitch)) /* - entity.weight + this.lift */;
     }
 
     calcSpeedX(entity) {

@@ -14,6 +14,8 @@ export default class Object{
 
         this.collision = false;
         
+        this.ticked = false;
+
         this.createObject();
     }
 

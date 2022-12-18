@@ -8,9 +8,6 @@ export default class Toxic extends Object {
     this.initialY = y;
     this.y = this.initialY;
 
-
-    this.ticked = false;
-
     this.createToxic();
     // this.generateHitboxUI();
 

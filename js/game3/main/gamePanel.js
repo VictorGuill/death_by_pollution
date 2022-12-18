@@ -29,7 +29,7 @@ export class GamePanel {
         this.id = "gp";
         
         this.gameState = TITLE_STATE;
-        this.menuState = MAIN_MENU;
+        this.menuState = TUTORIAL_MENU;
 
         //game data
         this.time = 0;

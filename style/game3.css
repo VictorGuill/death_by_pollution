@@ -52,10 +52,27 @@ img {
 }
 
 .tutorial-card{
+  position: relative;
   width: 350px;
   height: 70%;
   margin-top: 50px;
+  display: grid; 
+  grid-template-columns: auto auto; 
+  grid-template-rows: 35% 35%; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "tutorial_card_1 tutorial_card_2"
+    "tutorial_card_3 tutorial_card_4"
+    "tutorial_card_text tutorial_card_text"; 
 }
+
+.tutorial_card_1 { 
+  grid-area: tutorial_card_1; 
+}
+.tutorial_card_2 { grid-area: tutorial_card_2; }
+.tutorial_card_3 { grid-area: tutorial_card_3; }
+.tutorial_card_4 { grid-area: tutorial_card_4; }
+.tutorial_card_text { grid-area: tutorial_card_text; margin: auto}
 
 
 
@@ -572,7 +589,7 @@ input {
   0%{
     width: 60%;
   }
-  50%{
+  65%{
     width: 100%;
     opacity: 1;
   }

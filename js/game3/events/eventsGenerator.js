@@ -1,5 +1,6 @@
 import Coin from "../objects/coin.js";
 import Diamond from "../objects/diamond.js";
+import Gem from "../objects/gem.js";
 import Note from "../objects/note.js";
 import Toxic from "../objects/toxic.js";
 
@@ -13,18 +14,21 @@ export default class EventsGenerator{
         this.coinGen = true;
         this.noteGen = true;
         this.diamondGen = true;
+        this.gemGen = true;
         this.toxicGen = true;
     }
 
     initGenerator() {
-        this.fCoins = this.gp.map.w;
+        this.fCoins = this.gp.map.w / 1.5;
         this.fNotes = this.gp.map.w;
-        this.fDiamonds = this.gp.map.w * 3;
-        this.fToxic = this.gp.map.w/2;
+        this.fDiamonds = this.gp.map.w * 2;
+        this.fGem = this.gp.map.w * 3;
+        this.fToxic = this.gp.map.w / 2;
 
         this.spawnCoin = this.fCoins;
         this.spawnNote = this.fNotes;
         this.spawnDiamond = this.fDiamonds;
+        this.spawnGem = this.fGem;
         this.spawnToxic = this.fToxic;
 
         this.init = true;
@@ -55,6 +59,11 @@ export default class EventsGenerator{
         this.gp.objects.push(diamond);
     }
 
+    generateGem(){
+        const gem = new Gem(this.gp, this.random((this.gp.map.h * 2) - 20, this.gp.map.h-this.gp.plane.h));
+        this.gp.objects.push(gem);
+    }
+
     generateToxic(){
         const toxic = new Toxic(this.gp, this.random(this.gp.map.h * 2 - 20, 50));
         this.gp.objects.push(toxic);
@@ -83,6 +92,14 @@ export default class EventsGenerator{
                 this.spawnDiamond = planeX + this.random(this.fDiamonds, this.fDiamonds/2);
             }
         }
+
+        if  (this.gemGen) {
+            if (planeX >= this.spawnGem){
+                this.generateGem();
+                this.spawnGem = planeX + this.random(this.fGem, this.fGem/2);
+            }
+        }
+
         if (this.toxicGen){
             if(planeX >= this.spawnToxic){
                 this.generateToxic();
@@ -104,24 +121,28 @@ export default class EventsGenerator{
         this.gp.objects.forEach((obj) => {
             obj.update();
             obj.draw();
+            
             if (this.gp.plane.state != "explosion"){
                 if(this.gp.collisionDetection.objectCheck(obj)){
-                    switch(obj.name){
-                        case "coin":
-                            this.gp.score += 100;
-                            break;
-                        case "note":
-                            this.gp.score += 200;
-                            break
-                        case "diamond":
-                            this.gp.score += 500;
-                            break;
-                        case "toxic":
-                            if (!obj.ticked){
-                                // this.gp.plane.hp--;
-                            }
-                            obj.ticked = true;
-                            break;
+                    if (!obj.ticked){
+                        switch(obj.name){
+                            case "coin":
+                                this.gp.score += 100;
+                                break;
+                            case "note":
+                                this.gp.score += 200;
+                                break
+                            case "diamond":
+                                this.gp.score += 500;
+                                break;
+                            case "gem":
+                                this.gp.score += 1000;
+                                break;
+                            case "toxic":
+                                    // this.gp.plane.hp--;
+                                break;
+                        }
+                        obj.ticked = true;
                     }
                 }
             }
