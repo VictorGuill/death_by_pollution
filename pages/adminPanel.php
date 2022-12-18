@@ -75,7 +75,7 @@ if (!isset($_SESSION)) {
 
       echo "<tr>
                           <td>" . $user['name'] . "</td>
-                          <td>" . $user['phase'] . "</td>
+                          <td>" . $user['phase'] + 1 . "</td>
                           <td>" . $user['user_type_id'] . "</td>
                           <td style='display: flex;'>
                           <form method='post' action='../php_controllers/controller.php' enctype='multipart/form-data'>

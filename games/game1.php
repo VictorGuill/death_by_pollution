@@ -5,9 +5,9 @@ if (!isset($_SESSION)) {
 }
 
 switch ($_SESSION['phase']) {
-  case 1:
-    $_SESSION['phase'] = 2;
-    changeUserPhase($_SESSION['id'], 2);
+  case 0:
+    $_SESSION['phase'] = 1;
+    changeUserPhase($_SESSION['id'], 1);
     break;
 }
 

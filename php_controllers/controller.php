@@ -44,15 +44,32 @@ if (isset($_POST["login"])) {
 // REGISTER
 if (isset($_POST["register"])) {
 
-    $hashedPassword = hash("sha512", $_POST["password"]);
+    $user = selectUserName(strtolower($_POST["name"]));
 
-    insertUser(strtolower($_POST["name"]), $hashedPassword, 1, 0);
+    if (empty($user)) {
+        $hashedPassword = hash("sha512", $_POST["password"]);
 
-    $user = selectUser(strtolower($_POST["name"]), $hashedPassword);
-    $_SESSION["id"] = $user[0]["id"];
-    $_SESSION["name"] = $user[0]["name"];
-    $_SESSION["phase"] = $user[0]["phase"];
-    $_SESSION["user_type"] = setUserType($user[0]["user_type_id"]);
+        insertUser(strtolower($_POST["name"]), $hashedPassword, 0, 0);
+
+        $user = selectUser(strtolower($_POST["name"]), $hashedPassword);
+        $_SESSION["id"] = $user[0]["id"];
+        $_SESSION["name"] = $user[0]["name"];
+        $_SESSION["phase"] = $user[0]["phase"];
+        $_SESSION["user_type"] = setUserType($user[0]["user_type_id"]);
+    } else {
+        switch ($_SESSION["lang"]) {
+            case "en":
+                $_SESSION["error"] = "The user " . $_POST["name"] . " already exists.";
+                break;
+            case "es":
+                $_SESSION["error"] = "El usuario " . $_POST["name"] . " ya existe.";
+                break;
+            case "ca":
+                $_SESSION["error"] = "L'usuari " . $_POST["name"] . " ja existeix.";
+                break;
+        }
+    }
+
     header('Location: ' . $_SERVER["HTTP_REFERER"]);
     die();
 }
@@ -96,12 +113,18 @@ if (isset($_POST["closeEdit"])) {
 
 if (isset($_POST["updateUser"])) {
 
-    updateUser($_SESSION["editUser"][0]["id"], $_POST["newName"], $_POST["newPass"], $_POST["newType"], $_POST["newPhase"]);
+    updateUser($_SESSION["editUser"][0]["id"], $_POST["newName"], $_POST["newPass"], $_POST["newType"], $_POST["newPhase"] - 1);
+
+    if ($_SESSION["editUser"][0]["id"] === $_SESSION["id"]) {
+        $_SESSION["name"] = $_POST["newName"];
+        $_SESSION["phase"] = $_POST["newPhase"] - 1;
+        $_SESSION["user_type"] = setUserType($_POST["newType"]);
+    }
 
     $_SESSION['editing'] = false;
     if (isset($_SESSION["editUser"])) {
         unset($_SESSION['editing']);
-        // unset($_SESSION["editUser"]);
+        unset($_SESSION["editUser"]);
     }
 
     header('Location: ' . $_SERVER["HTTP_REFERER"]);

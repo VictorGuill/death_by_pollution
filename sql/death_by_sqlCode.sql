@@ -59,9 +59,9 @@ ENGINE = InnoDB;
 START TRANSACTION;
 USE `death_by_p`;
 -- SUPER ADMINDS
-INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('victor','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','3','2');
-INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('guillem','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','3','2');
-INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('maria','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','3','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('victor','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','2','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('guillem','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','2','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('maria','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','2','2');
 
 -- USERS
 INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('Ramon','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','0','0');
@@ -128,12 +128,12 @@ INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 7, 51
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 7, 435, 60, now());
 
 -- GAME TRAIN TRACK
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 20, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 7, 20, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 23, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 3, 24, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 4, 18, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 5, 16, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 7659, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 7, 9261, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 8169, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 3, 9597, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 4, 9072, 120, now());
+INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 5, 7176, 120, now());
 
 -- GAME SKY DIVE
 INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 1, 75000, 60, now());
@@ -147,14 +147,14 @@ INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 7, 12
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
------------------------------------------------------------------
+-- --------------------------------------------------------------
 -- CREATE DB END ------------------------------------------------
------------------------------------------------------------------
+-- --------------------------------------------------------------
 
 
------------------------------------------------------------------
+-- --------------------------------------------------------------
 -- BIG PILE OF TRASH QUERY TESTS ⬇️ ------------------------------
------------------------------------------------------------------
+-- --------------------------------------------------------------
 
 UPDATE users
 SET users.phase = 2
@@ -260,11 +260,14 @@ OFFSET 0;
 -- `name`,`password`,`phase`,`user_type_id`
 
 SELECT * FROM users
-WHERE users.id = 5;
+WHERE users.id = 7;
 
 UPDATE users
 SET name = "newName", password = "", phase = 2, user_type_id = 2
 WHERE users.id = 5;
 
+UPDATE users 
+SET name = karla, password = 333, phase = 2, user_type_id = 1 WHERE users.id = 7;
+
 SELECT * FROM users
-WHERE users.id = 5;
+WHERE users.id = 7;
