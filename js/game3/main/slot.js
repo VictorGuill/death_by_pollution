@@ -11,7 +11,7 @@ export default class Slot{
             try {
                 setCookie("game3_score", this.gp.score, 1);
                 setCookie("game3_time", this.gp.time, 1);
-                this.scoreSaved = true
+                this.scoreSaved = true;
             } catch (e) {
                 console.log(e);
             }

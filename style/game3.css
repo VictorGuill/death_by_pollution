@@ -1,431 +1,615 @@
 @font-face {
-    font-family: aceCombat;
-    src: url('/death_by_pollution/media/game3/font/ACES07_Light.otf') format('opentype');
-    font-style: normal;
-    font-weight: 100;
+  font-family: aceCombat;
+  src: url("/death_by_pollution/media/game3/font/ACES07_Light.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: 100;
 }
-:root{
-    --deviceWidth: 1920px;
-    --deviceHeight: 1080px;
+:root {
+  --deviceWidth: 1920px;
+  --deviceHeight: 1080px;
 
-    --mapHeight: 640px;
+  --mapHeight: 640px;
 
-    --powerHeight: 0%;
-    --maxPowerHeight: 92%;
-    --scanLinesSpeed: 0.8s;
-    --scanLinesOpacity: 0.12;
-    --scanLinesSize: 4px;
+  --powerHeight: 0%;
+  --maxPowerHeight: 92%;
+  --scanLinesSpeed: 0.8s;
+  --scanLinesOpacity: 0.12;
+  --scanLinesSize: 4px;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
 body {
-    padding: 0;
-    margin: 0;
-    background-color: black;
-    overflow-x: hidden;
+  font-family: aceCombat;
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  overflow-x: hidden;
 }
 
-img{
-    display: block;
+img {
+  display: block;
 }
 
+/* #region MAIN MENU */
+#mainMenu, #tutorialMenu {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  height: var(--mapHeight);
+  background-image: url("/death_by_pollution/media/game3/bg-START.gif");
+  background-size: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 990;
+}
+
+.tutorial-card{
+  position: relative;
+  width: 350px;
+  height: 70%;
+  margin-top: 50px;
+  display: grid; 
+  grid-template-columns: auto auto; 
+  grid-template-rows: 35% 35%; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "tutorial_card_1 tutorial_card_2"
+    "tutorial_card_3 tutorial_card_4"
+    "tutorial_card_text tutorial_card_text"; 
+}
+
+.tutorial_card_1 { 
+  grid-area: tutorial_card_1; 
+}
+.tutorial_card_2 { grid-area: tutorial_card_2; }
+.tutorial_card_3 { grid-area: tutorial_card_3; }
+.tutorial_card_4 { grid-area: tutorial_card_4; }
+.tutorial_card_text { grid-area: tutorial_card_text; margin: auto}
+
+
+
+.border-glow{
+  border: rgba(133, 247, 110, 0.702) 2px solid;
+  border-radius: 4px;
+  box-shadow: 
+  0px 0px 2px #80ff9f, 
+  0px 0px 2px #62b189,
+  0px 0px 5px #509a7b,
+  0px 0px 5px #509a7b,
+  0px 0px 10px #236752;
+}
+/* #mainMenu:hover {
+  width: 100%;
+} */
+
+.text-glow{
+  color: rgba(133, 247, 110, 0.702);
+  text-shadow: 
+    0px 0px 3px #80ff9f, 
+    0px 0px 5px #62b189, 
+    0px 0px 15px #509a7b,
+    0px 0px 11px #509a7b, 
+    0px 0px 15px #236752;
+}
+
+#title {
+    position: absolute;
+    width: fit-content;
+    top: 20%;
+}
+
+#title p {
+  font-size: 100px;
+  font-weight: bolder;
+  color: rgba(133, 247, 110, 0.702);
+  text-shadow: 
+    0px 0px 3px #80ff9f, 
+    0px 0px 5px #62b189, 
+    0px 0px 15px #509a7b,
+    0px 0px 11px #509a7b, 
+    0px 0px 15px #236752;
+}
+
+#mainMenuOptions{
+    position: absolute;
+    top: 50%;
+    height: fit-content;
+    display: grid; 
+    grid-template-columns: 10px 125px; 
+    grid-template-rows: 40px 40px 40px; 
+    gap: 20px 10px; 
+    grid-template-areas: 
+    "selec1 optionPlay"
+    "selec2 optionExit"
+}
+.optionPlay { grid-area: optionPlay; }
+.optionExit { grid-area: optionExit; }
+
+.selec1 { grid-area: selec1;}
+.selec2 { grid-area: selec2; }
+.selec3 { grid-area: selec3; }
+
+#mainMenuOptions p {
+    font-size: 50px;
+    color: rgba(133, 247, 110, 0.702);
+    text-shadow: 
+      0px 0px 3px #80ff9f, 
+      0px 0px 5px #62b189, 
+      0px 0px 15px #509a7b,
+      0px 0px 11px #509a7b, 
+      0px 0px 15px #236752;
+}
+
+#selector {
+    position: absolute;
+    right: 0;
+    background-image: url(../media/game3/objects/longinus_Spear.png);
+    background-position: center;
+    background-size: cover;
+    width: 150px;
+    height: 44px;
+}
+/* #endregion */
+
+/* #region GAME */
 #gp {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 #ui {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    height: var(--mapHeight);
-    width: 100%;
-    z-index: 900;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: var(--mapHeight);
+  width: 100%;
+  z-index: 1000;
+  animation: fade-in 2s forwards;
 }
 
 #map {
-    position: relative;
-    width: 100vw;
-    height: var(--mapHeight);
-    overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: var(--mapHeight);
+  overflow: hidden;
+  animation: fade-in 2s forwards;
 }
 
 .layer-bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-repeat: repeat-x;
-    background-size: var(--deviceWidth) var(--deviceHeight);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-size: var(--deviceWidth) var(--deviceHeight);
 }
 
-#airport{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    z-index: 100;
+#airport {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  z-index: 100;
 }
 
 #planeScreenZone {
-    position: absolute;
-    width: 70%;
-    height: 94%;
-    bottom: 20px;
-    left: 30px;
-    z-index: 200;
+  position: absolute;
+  width: 70%;
+  height: 94%;
+  bottom: 20px;
+  left: 40px;
+  z-index: 200;
 }
 
 #plane {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 900;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 900;
+  animation: fade-in 2s forwards;
 }
 
 #progress-bar {
-    position: absolute;
-    left: 50%;
-    width: 300px;
-    height: 50px;
-    display: flex;
-    align-items: flex-end;
-    border-bottom: 1px solid red;
-    transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+  width: 300px;
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+  transform: translateX(-50%);
 }
 
 #bar {
-    width: 100%;
-    height: 10px;
-    background-color: red;
+  width: 100%;
+  height: 10px;
+  background-color: rgb(255, 255, 255);
 }
 
-#time-score{
-    position: absolute;
-    left: 50px;
-    top: 20px;
-    height: fit-content;
-    max-width: 200px;
-    min-width: 110px;
-    background-color: rgba(100, 100, 100, 0.3);
+#time-score {
+  position: absolute;
+  left: 50px;
+  top: 20px;
+  height: fit-content;
+  max-width: 200px;
+  min-width: 110px;
+  background-color: rgba(100, 100, 100, 0.3);
 }
 
-#time-score p, #speedometer-label, #altimeter-label, #speedometer-value, #altimeter-value{
-    font-family: aceCombat;
-    padding: 5px;
-    font-size: 1.8vmin;
-    color: #85f76eb3;
-    text-shadow: 
-            0px 0px 1px #80ff9f,
-            0px 0px 2px #62b189, 
-            0px 0px 5px #509a7b, 
-            0px 0px 5px #509a7b,
-            0px 0px 10px #236752;
+#time-score p,
+#speedometer-label,
+#altimeter-label,
+#speedometer-value,
+#altimeter-value {
+  font-family: aceCombat;
+  padding: 5px;
+  font-size: 1.8vmin;
+  color: #85f76eb3;
+  text-shadow: 0px 0px 1px #80ff9f, 0px 0px 2px #62b189, 0px 0px 5px #509a7b,
+    0px 0px 5px #509a7b, 0px 0px 10px #236752;
 }
 
-.alertMessage{
-    font-family: aceCombat;
-    font-weight: 300;
-    padding: 5px;
-    font-size: 3vmin;
-    color: #e90000;
-    text-shadow: 
-            0px 0px 2px #c55f5f,
-            0px 0px 2px #cf4d4d, 
-            0px 0px 5px #e90000, 
-            0px 0px 5px #871e1e,
-            0px 0px 10px #780808;
+.alertMessage {
+  font-family: aceCombat;
+  font-weight: 300;
+  padding: 5px;
+  font-size: 3vmin;
+  color: #e90000;
+  text-shadow: 0px 0px 2px #c55f5f, 0px 0px 2px #cf4d4d, 0px 0px 5px #e90000,
+    0px 0px 5px #871e1e, 0px 0px 10px #780808;
 
-    border: #e90000 2px solid;
-    border-radius: 4px;
-    box-shadow: 
-            0px 0px 2px #c55f5f,
-            0px 0px 2px #cf4d4d, 
-            0px 0px 5px #b13131, 
-            0px 0px 5px #871e1e,
-            0px 0px 10px #780808;
+  border: #e90000 2px solid;
+  border-radius: 4px;
+  box-shadow: 0px 0px 2px #c55f5f, 0px 0px 2px #cf4d4d, 0px 0px 5px #b13131,
+    0px 0px 5px #871e1e, 0px 0px 10px #780808;
 }
 
+#alertEndGame {
+  font-family: aceCombat;
+  font-weight: bold;
+  padding: 5px;
+  font-size: 40px;
+  color: rgba(133, 247, 110, 0.702);
+  text-shadow: 
+    0px 0px 3px #80ff9f, 
+    0px 0px 5px #62b189, 
+    0px 0px 15px #509a7b,
+    0px 0px 11px #509a7b, 
+    0px 0px 15px #236752;
 
-#hud{
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 70%;
-    top: 20%;
+  border: rgba(133, 247, 110, 0.702) 2px solid;
+  border-radius: 4px;
+  box-shadow: 
+  0px 0px 2px #80ff9f, 
+  0px 0px 2px #62b189,
+  0px 0px 5px #509a7b,
+  0px 0px 5px #509a7b,
+  0px 0px 10px #236752;
 }
 
-#speedometer, #altimeter{
-    position: relative;
-    align-self: center;
-    margin: 0 2rem;
-    top: 0;
-    height: 100%;
-    width: min-content;
-}
-#speedometer img, #altimeter img {
-    height: 100%;
-    width: 8vw;
-}
+#alertGameOver{
+  font-family: aceCombat;
+  font-weight: 100;
+  padding: 5px;
+  font-size: 40px;
+  color: #e90000;
+  text-shadow: 0px 0px 2px #c55f5f, 0px 0px 2px #cf4d4d, 0px 0px 5px #e90000,
+    0px 0px 5px #871e1e, 0px 0px 10px #780808;
 
-
-
-#speedometerImgContainer::after{
-    content: "";
-    position: absolute;
-    bottom: 4.5%;
-    left: 80%;
-    height: var(--powerHeight);
-    width: 3px;
-    background-color: #69f690;
-    box-shadow: 
-            0px 0px 1px #80ff9f,
-            0px 0px 2px #62b189, 
-            0px 0px 5px #509a7b, 
-            0px 0px 5px #509a7b,
-            0px 0px 10px #236752;
-    z-index: -1;
+  border: #e90000 2px solid;
+  border-radius: 4px;
+  box-shadow: 0px 0px 2px #c55f5f, 0px 0px 2px #cf4d4d, 0px 0px 5px #b13131,
+    0px 0px 5px #871e1e, 0px 0px 10px #780808;
 }
 
-#speedometer-elements, #altimeter-elements{
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 6vw;
+#hud {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70%;
+  top: 20%;
 }
 
-#speedometer-label{
-    position: absolute;
-    font-weight: bold;
-    top: 40%;
-    left: 4%;
+#speedometer,
+#altimeter {
+  position: relative;
+  align-self: center;
+  margin: 0 2rem;
+  top: 0;
+  height: 100%;
+  width: min-content;
+}
+#speedometer img,
+#altimeter img {
+  height: 100%;
+  width: 8vw;
 }
 
-#speedometer-value{
-    position: absolute;
-    font-weight: bold;
-    top: 46%;
-    left: 12%;
+#speedometerImgContainer::after {
+  content: "";
+  position: absolute;
+  bottom: 4.5%;
+  left: 80%;
+  height: var(--powerHeight);
+  width: 3px;
+  background-color: #69f690;
+  box-shadow: 0px 0px 1px #80ff9f, 0px 0px 2px #62b189, 0px 0px 5px #509a7b,
+    0px 0px 5px #509a7b, 0px 0px 10px #236752;
+  z-index: -1;
 }
 
-#speedometer-metric{
-    background-image: url("/death_by_pollution/media/game3/hud/speedometer_metric_hud.png");
-    background-size: 100% 50%;
-    background-repeat: repeat-y;
-    position: absolute;
-    width: 1vw;
-    height: 20vh;
-    top: 20%;
-    left: 78%;
+#speedometer-elements,
+#altimeter-elements {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 6vw;
 }
 
-#altimeter-label{
-    position: absolute;
-    font-weight: bold;
-    top: 40%;
-    left: 68%;
+#speedometer-label {
+  position: absolute;
+  font-weight: bold;
+  top: 40%;
+  left: 4%;
 }
 
-#altimeter-value{
-    position: absolute;
-    font-weight: bold;
-    top: 46%;
-    left: 68%;
+#speedometer-value {
+  position: absolute;
+  font-weight: bold;
+  top: 46%;
+  left: 12%;
 }
 
-#altimeter-metric{
-    background-image: url("/death_by_pollution/media/game3/hud/altimeter_metric_hud.png");
-    background-size: 100% 50%;
-    background-repeat: repeat-y;
-    position: absolute;
-    width: 1vw;
-    height: 20vh;
-    top: 20%;
-    left: 35%;
+#speedometer-metric {
+  background-image: url("/death_by_pollution/media/game3/hud/speedometer_metric_hud.png");
+  background-size: 100% 50%;
+  background-repeat: repeat-y;
+  position: absolute;
+  width: 1vw;
+  height: 20vh;
+  top: 20%;
+  left: 78%;
+}
+
+#altimeter-label {
+  position: absolute;
+  font-weight: bold;
+  top: 40%;
+  left: 68%;
+}
+
+#altimeter-value {
+  position: absolute;
+  font-weight: bold;
+  top: 46%;
+  left: 68%;
+}
+
+#altimeter-metric {
+  background-image: url("/death_by_pollution/media/game3/hud/altimeter_metric_hud.png");
+  background-size: 100% 50%;
+  background-repeat: repeat-y;
+  position: absolute;
+  width: 1vw;
+  height: 20vh;
+  top: 20%;
+  left: 35%;
 }
 
 /* EVENTS  */
-.objects-layer{
-    overflow: hidden;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    z-index: 200;
+.objects-layer {
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 200;
 }
 
-.object{
-    position: absolute;
-    z-index: 200;
-    width: fit-content;
-    /* border: 4px solid magenta; */
+.object {
+  position: absolute;
+  z-index: 200;
+  width: fit-content;
+  /* border: 4px solid magenta; */
 }
 
-.coin{
-    /* animation: coin-animation 5s linear infinite; */
+.coin {
+  /* animation: coin-animation 5s linear infinite; */
 }
-
-
 
 /*DEBUG CONTROLS*/
-label {color: white;}
-input{ margin-right: 100px;}
+label {
+  color: white;
+}
+input {
+  margin-right: 100px;
+}
 
-
-/* #region CRT FX */
+/*  CRT FX */
 .scanline::after {
-    content: "";
-    position: absolute;
-  
-    inset: 0;
-  
-    will-change: background, background-size;
-    animation: scanlines var(--scanLinesSpeed) linear infinite;
-    z-index: 998;
+  content: "";
+  position: absolute;
+
+  inset: 0;
+
+  will-change: background, background-size;
+  animation: scanlines var(--scanLinesSpeed) linear infinite;
+  z-index: 998;
 }
 
 .crt_borders::after {
-    content: "";
-    position: absolute;
-  
-    width: 100.25%;
-    height: 100.25%;
-  
-    background-image: url("/death_by_pollution/media/game3/crt.png");
-    background-size: 100% 100%;
-    z-index: 999;
+  content: "";
+  position: absolute;
+
+  width: 100.25%;
+  height: 100.25%;
+
+  background-image: url("/death_by_pollution/media/game3/crt.png");
+  background-size: 100% 100%;
+  z-index: 999;
 }
 
-#smoke, #smoke_fire, #fire, #explosion{
-    animation: effect-in 2s linear forwards;
+#smoke,
+#smoke_fire,
+#fire,
+#explosion {
+  animation: effect-in 2s linear forwards;
 }
+/* #endregion */
+
+/* #region ANIMATIONS */
 @keyframes rotate-hitbox {
-    from { 
-        transform: rotate(0deg); 
-    } to { 
-        transform: rotate(720deg); 
-    }
-    
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(720deg);
+  }
 }
-.effectVFX{
-    transform-origin: right;
+.effectVFX {
+  transform-origin: right;
 }
-
 
 @keyframes deploy-chute {
-    0%{
-        transform-origin: right;
-        transform:  scaleY(0) scaleX(0);
-    }
-    20%{
-        transform: scaleX(1) scaleY(.2);;
-    }
-    50%{
-        transform: scaleY(.8);
-    }
-    100%{
-        transform: scaleY(1);
-    }
+  0% {
+    transform-origin: right;
+    transform: scaleY(0) scaleX(0);
+  }
+  20% {
+    transform: scaleX(1) scaleY(0.2);
+  }
+  50% {
+    transform: scaleY(0.8);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
 
 @keyframes fade-out {
-    100%{
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
-
 @keyframes pulse {
-	0% {
-		transform: scale(0.96);
-        opacity: .9;
-	}
+  0% {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
 
-	50% {
-		transform: scale(1);
-        opacity: 1;
-	}
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
 
-	100% {
-		transform: scale(0.96);
-        opacity: .9;
-	}
+  100% {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
 }
 
 @keyframes toxic-pulse {
-	0% {
-		transform: scale(1);
-        opacity: .9;
-	}
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
 
-	50% {
-		transform: scale(0.8);
-        opacity: 1;
-	}
+  50% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
 
-	100% {
-		transform: scale(1);
-        opacity: .9;
-	}
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
 }
 
 @keyframes effect-in {
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-@keyframes effect-out {
-    0%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-    }
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes pick-up {
-    0%{
-        transform-origin: center center;
-        transform: translate(0px, 0px);
-    }
-    15%{
-        transform: translateY(-40px);
-    }
-    100%{
-        transform: translate(140px, -40px) rotate(1080deg) scale(0);
-    }
-
+  0% {
+    transform-origin: center center;
+    transform: translate(0px, 0px);
+  }
+  15% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translate(140px, -40px) rotate(1080deg) scale(0);
+  }
 }
 
 @keyframes scanlines {
-    from {
-      background: linear-gradient(
-        to bottom,
-        transparent 50%,
-        rgba(0, 0, 0, var(--scanLinesOpacity)) 51%
-      );
-      background-size: 100vmax var(--scanLinesSize);
-    }
-    to {
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, var(--scanLinesOpacity)) 50%,
-        transparent 51%
-      );
-      background-size: 100vmax var(--scanLinesSize);
-    }
+  from {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, var(--scanLinesOpacity)) 51%
+    );
+    background-size: 100vmax var(--scanLinesSize);
   }
+  to {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, var(--scanLinesOpacity)) 50%,
+      transparent 51%
+    );
+    background-size: 100vmax var(--scanLinesSize);
+  }
+}
+
+@keyframes titleState-fadeOut {
+  0%{
+    width: 60%;
+  }
+  65%{
+    width: 100%;
+    opacity: 1;
+  }
+  100%{
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+
+/* #endregion */

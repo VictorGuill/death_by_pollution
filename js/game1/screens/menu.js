@@ -73,7 +73,6 @@ export default class Menu extends Screen {
           return "exit";
       }
     }
-
     return -1;
   }
 }

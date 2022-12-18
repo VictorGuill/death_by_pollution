@@ -1,25 +1,29 @@
+import { PLAY_STATE } from "../main/gamePanel.js";
+
 export default class UI {
     constructor(gp){
         this.gp = gp;
-        this.addUI();
-        this.addElements();
+
+        this.elementsAdded = false;
+        
         this.mssgOn = false;
 
         this.caution = false;
         this.airportNear = false;
         this.pullUp = false;
+        this.slowDown = false;
         this.lowFuel = false;
         this.deployChute = false;
-
-/*         this.drawCaution();
-        this.drawPullUp(); */
-
+        this.endGame = false;
+        this.gameOver = false;
     }
 
     addUI(){
         this.element = document.createElement("div");
         this.element.setAttribute("id", "ui");
         this.gp.element.appendChild(this.element);
+        this.addElements();
+        this.elementsAdded = true;
     }
 
     addElements(){
@@ -174,6 +178,11 @@ export default class UI {
         this.progressBar.bar.setAttribute("id", "bar");
         this.progressBar.bar.style.width = "1px";
         this.progressBar.appendChild(this.progressBar.bar);
+        const airport = document.createElement("img");
+        airport.src = "/death_by_pollution/media/game3/hud/airport.png";
+        airport.style.width = "40px";
+        airport.style.marginLeft = "auto";
+        this.progressBar.appendChild(airport);
         this.element.appendChild(this.progressBar);
     }
 
@@ -215,33 +224,114 @@ export default class UI {
     }
 
     drawCaution(){
-        if (!this.caution){
-            this.drawAlertMessage("CAUTION", this.gp.map.h/6, false);
+        if (!this.caution) {
+            this.drawAlertMessage("CAUTION", this.gp.map.h/6.5, false);
             this.caution = true;
         }
     }
 
     drawPullUp(){
-        if (!this.pullUp){
-            this.drawAlertMessage("PULL UP", this.gp.map.h/1.5, true);
+        if (!this.pullUp) {
+            this.drawCaution();
+            this.drawAlertMessage("PULL UP", this.gp.map.h/1.2, true);
+            this.pullUp = true;
         }
     }
     drawLowFuel(){
-        this.drawAlertMessage("LOW FUEL", this.gp.map.h/3.6, true);
+        if (!this.lowFuel) {
+            this.drawCaution();
+            this.drawAlertMessage("LOW FUEL", this.gp.map.h/4, true);
+            this.lowFuel = true
+        }
     }
+    drawSlowDown(){
+        if (!this.slowDown) {
+            this.drawAlertMessage("SLOW DOWN", this.gp.map.h/1.2, true);
+            this.slowDown = true
+        }
+    }
+
     drawNearAirport(){
-        this.drawAlertMessage("AIRPORT NEAR", this.gp.map.h/3.6, false);
+        if (!this.airportNear) {
+            this.drawAlertMessage("AIRPORT NEAR", this.gp.map.h/6.5, false);
+            this.airportNear = true;
+        }
     }
 
     drawDeployChute(){
-        this.drawAlertMessage("DEPLOY CHUTE", this.gp.map.h/3.6, true);
+        if (!this.deployChute) {
+            const mDiv = document.createElement("div");
+            mDiv.setAttribute("id", "chuteDepolyed");
+            mDiv.style.position = "absolute";
+            mDiv.style.top = this.gp.map.h/3.6 + "px";
+            const m = document.createElement("p");
+            m.classList.add("alertMessage");
+            m.innerHTML = "CHUTE DEPLOYED<br>YOU DIDN'T LANDED!";
+            m.style.textAlign = "center";
+            mDiv.appendChild(m);
+            this.element.appendChild(mDiv);
+            this.deployChute = true;
+        }
 
+    }
+
+    drawGameOver(){
+        if (!this.gameOver){
+            const mDiv = document.createElement("div");
+            mDiv.setAttribute("id", "alertGameOver");
+            mDiv.style.position = "absolute";
+            mDiv.style.top = this.gp.map.h/2 + "px";
+            mDiv.style.transform = "scale(2)";
+            const m = document.createElement("span");
+            m.innerHTML = "GAME OVER";
+            mDiv.appendChild(m);
+            this.element.appendChild(mDiv);
+            this.gameOver = true;
+        }
+    }
+
+    drawEndGame() {
+        if (!this.endGame){
+            const mDiv = document.createElement("div");
+            mDiv.setAttribute("id", "alertEndGame");
+            mDiv.style.position = "absolute";
+            mDiv.style.top = this.gp.map.h/2 + "px";
+            mDiv.style.transform = "scale(2)";
+            const m = document.createElement("span");
+            m.innerHTML = "MISSION ACOMPLISHED!";
+            mDiv.appendChild(m);
+            this.element.appendChild(mDiv);
+            this.endGame = true;
+        }
     }
 
     alertMessageOff(mssg){
         const alert = document.querySelector("#alert-"+mssg);
-        alert.style.animation = "fade-out 1s forwards";
-        alert.remove();
+        if(alert != null || alert != undefined){
+            alert.style.animation = "fade-out 1s forwards";
+            alert.remove();
+            switch(mssg){
+                case "caution":
+                    this.caution = false;
+                    break;
+                case "pullup":
+                    this.pullUp = false;
+                    break;
+                case "lowfuel":
+                    this.lowFuel = false;
+                    break;
+                case "airportnear":
+                    this.airportNear = false;
+                    break;
+                case "slowdown":
+                    this.slowDown = false;
+                    break;
+                case "deploychute":
+                    this.deployChute = false;
+                    break;
+            }
+        }
+        
     }
 
 
@@ -257,9 +347,19 @@ export default class UI {
     }
 
     draw(timeElapsed) {
-        // this.displayAlert();
+        if (this.gp.gameState == PLAY_STATE) {
+            if (!this.elementsAdded) {
+                this.addUI();
+            }
         this.drawProgressBar();
         this.drawTimeScore(timeElapsed);
         this.drawHudMetrics();
+
+/*         this.alertMessageOff("caution");
+        this.drawNearAirport();
+        this.drawSlowDown();
+        this.drawLowFuel(); */
+        }
+
     }
 }
