@@ -50,10 +50,10 @@ if (!isset($_SESSION)) {
                     <table class='table table-borderless mb-0'>
                       <thead style='position: sticky; top:0;'>
                         <tr style='background: white;'>
-                          <th scope='col'>NAME</th>
-                          <th scope='col'>PHASE</th>
-                          <th scope='col'>USER TYPE</th>
-                          <th scope='col'>ACTIONS</th>
+                          <th scope='col'>". $Language["name"] ."</th>
+                          <th scope='col'>". $Language["phase"] ."</th>
+                          <th scope='col'>". $Language["userType"] ."</th>
+                          <th scope='col'>". $Language["actions"] ."</th>
                         </tr>
                       </thead>
                       <tbody>";
@@ -114,14 +114,14 @@ if (!isset($_SESSION)) {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Borrar usuario</h5>
+          <h5 class="modal-title"><?php echo $Language["deleteModalTitle"] ?></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $Language["cancelBttn"] ?></button>
           <form method='post' action='../php_controllers/controller.php' enctype='multipart/form-data'>
             <button id="deleteUserBtn" type='submit' class='btn btn-danger' name='deleteUser' value=''>
-              <i>Borrar usuario</i>
+              <i><?php echo $Language["deleteBttn"] ?></i>
             </button>
           </form>
         </div>
@@ -134,12 +134,12 @@ if (!isset($_SESSION)) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Editar usuario</h5>
+          <h5 class="modal-title"><?php echo $Language["editModalTitle"] ?></h5>
         </div>
         <div class="modal-body">
           <form method="POST" action='../php_controllers/controller.php' enctype="multipart/form-data">
             <div class="form-group">
-              <label for="user-name" class="col-form-label">Name:</label>
+              <label for="user-name" class="col-form-label"><?php echo $Language["name"] ?>:</label>
               <input id="user-name" name="newName" type="text" class="form-control" value="<?php
                                                                                             if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
                                                                                               echo $_SESSION['editUser'][0]['name'];
@@ -147,8 +147,8 @@ if (!isset($_SESSION)) {
                                                                                             ?>">
             </div>
             <div class="form-group">
-              <label for="phaseSelect" class="col-form-label">Phase:</label>
-              <select id="phaseSelect" class="form-select" name="newPhase" style="margin: 5px;">
+              <label for="phaseSelect" class="col-form-label"><?php echo $Language["phase"] ?>:</label>
+              <select id="phaseSelect" class="form-select" name="newPhase" style="margin: 5px; text-align: center;">
                 <option value='1' <?php
                                   if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
                                     if ($_SESSION['editUser'][0]['phase'] === 0) {
@@ -174,8 +174,8 @@ if (!isset($_SESSION)) {
               </select>
             </div>
             <div class="form-group">
-              <label for="typeSelect" class="col-form-label">User type</label>
-              <select id="typeSelect" class="form-select" name="newType" aria-label="Default select example" style="margin: 5px;">
+              <label for="typeSelect" class="col-form-label"><?php echo $Language["userType"] ?>:</label>
+              <select id="typeSelect" class="form-select" name="newType" aria-label="Default select example" style="margin: 5px; text-align: center;">
                 <option value='0' <?php
                                   if (isset($_SESSION["editUser"]) && $_SESSION["editUser"] != null) {
                                     if ($_SESSION['editUser'][0]['user_type_id'] === 0) {
@@ -201,12 +201,12 @@ if (!isset($_SESSION)) {
               </select>
             </div>
             <div class="form-group">
-              <label for="user-password" class="col-form-label">New password:</label>
+              <label for="user-password" class="col-form-label"><?php echo $Language["newPass"] ?>:</label>
               <input id="user-password" type="password" name="newPass" class="form-control"></input>
             </div>
             <div class="modal-footer">
-              <input type="submit" value="Update" class="btn btn-success" name="updateUser">
-              <input type="submit" value="close" data-bs-target='#editModal' data-bs-dismiss="modal" class="btn btn-danger" name="closeEdit">
+              <input type="submit" value="<?php echo $Language["updateBttn"] ?>" class="btn btn-success" name="updateUser">
+              <input type="submit" value="<?php echo $Language["cancelBttn"] ?>" data-bs-target='#editModal' data-bs-dismiss="modal" class="btn btn-danger" name="closeEdit">
             </div>
           </form>
         </div>
