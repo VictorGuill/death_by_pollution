@@ -42,6 +42,25 @@ export default class EventsGenerator{
         this.toxicGen = false;
     }
 
+    spawnOn() {
+        this.coinGen = true;
+        this.noteGen = true;
+        this.diamondGen = true;
+        this.gemGen = true;
+        this.toxicGen = true;
+
+        this.fCoins = this.gp.map.w / 2;
+        this.fNotes = this.gp.map.w / 1.8;
+        this.fDiamonds = this.gp.map.w;
+        this.fGem = this.gp.map.w * 1.8 ;
+        this.fToxic = this.gp.map.w / 3;
+        
+        this.spawnCoin = this.fCoins;
+        this.spawnNote = this.fNotes;
+        this.spawnDiamond = this.fDiamonds;
+        this.spawnGem = this.fGem;
+        this.spawnToxic = this.fToxic;
+    }
     generateToxicDebug(x, y){
         const toxic = new Toxic(this.gp, y);
         toxic.element.style.left = x + "px"; 

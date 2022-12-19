@@ -59,6 +59,7 @@ export class GamePanel {
         this.map.element.remove();
         this.ui.element.remove();
         this.mH.exitMenu.element.remove();
+        this.eH.evG.spawnOn();
 
         this.score = 0;
         this.mH = new MenuHandler(this);
