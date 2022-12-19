@@ -9,6 +9,7 @@ export default class Menu {
 
     this.keyUpPressed = false;
     this.keyDownPressed = false;
+    this.keyEnterPressed = false;
 
     this.bgAdded = false;
   }
@@ -16,10 +17,10 @@ export default class Menu {
   selectorUp() {
     this.selectorPos--;
     if (this.selectorPos < 0) {
-        this.selectorPos = this.maxSelector;
+      this.selectorPos = this.maxSelector;
     }
     this.keyUpPressed = true;
-    console.log("UP: "+this.keyUpPressed);
+    console.log("UP: " + this.keyUpPressed);
     console.log(this.selectorPos);
   }
 
@@ -29,11 +30,11 @@ export default class Menu {
       this.selectorPos = 0;
     }
     this.keyDownPressed = true;
-    console.log("DOWN: "+this.keyDownPressed);
+    console.log("DOWN: " + this.keyDownPressed);
     console.log(this.selectorPos);
   }
 
-  removeMenu(){
+  removeMenu() {
     this.element.remove();
   }
 
@@ -41,35 +42,45 @@ export default class Menu {
     this.bgAdded = false;
   }
 
-
   fadeOut(menuIn, menuOut, t) {
-    const animOut = "fade-out " +t+"s ease-out forwards";
-    const animIn = "fade-in " +t+"s ease-in forwards";
+    const animOut = "fade-out " + t + "s ease-out forwards";
+    const animIn = "fade-in " + t + "s ease-in forwards";
     menuIn.element.style.animation = animIn;
     //debug
-    //ONLY HAPPENS WHEN STARTING IN DIFF MENU THAN MAIN 
+    //ONLY HAPPENS WHEN STARTING IN DIFF MENU THAN MAIN
     if (menuOut != null || menuOut != undefined) {
       menuOut.element.style.animation = animOut;
-      setTimeout( ()=> {menuOut.element.remove(); menuOut.bgAdded=false;}, t*1000);
+      setTimeout(() => {
+        menuOut.element.remove();
+        menuOut.bgAdded = false;
+      }, t * 1000);
     }
   }
 
   checkKey() {
     if (this.gp.input["ArrowUp"] || this.gp.input["ArrowLeft"]) {
-        if (!this.keyUpPressed) {
-          console.log(this.selectorPos);
-          this.selectorUp();
-        } 
-    } else  {
-        this.keyUpPressed = false;
+      if (!this.keyUpPressed) {
+        console.log(this.selectorPos);
+        this.selectorUp();
+      }
+    } else {
+      this.keyUpPressed = false;
     }
 
     if (this.gp.input["ArrowDown"] || this.gp.input["ArrowRight"]) {
-        if (!this.keyDownPressed) {
+      if (!this.keyDownPressed) {
         this.selectorDown();
-        }
+      }
     } else {
-        this.keyDownPressed = false;
+      this.keyDownPressed = false;
+    }
+
+    if (this.gp.input["Enter"]) {
+      if (!this.keyEnterPressed) {
+        this.keyEnterPressed = true;
+      }
+    } else {
+      this.keyEnterPressed = false;
     }
   }
 }

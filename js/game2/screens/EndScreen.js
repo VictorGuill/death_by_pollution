@@ -44,7 +44,9 @@ export default class EndScreen {
     const END_TITLE = document.querySelector("#endScreen #title");
     END_TITLE.innerHTML = "YOU WIN";
     END_TITLE.style.color = "#DAA520";
-    setCookie("game2_score", score, 1);
+    if (score > 0) {
+      setCookie("game2_score", score, 1);
+    }
   }
 
   GameOver() {

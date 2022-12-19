@@ -62,12 +62,9 @@ USE `death_by_p`;
 INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('victor','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','2','2');
 INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('guillem','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','2','2');
 INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('maria','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','2','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('francisco','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','2','2');
+INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('alba','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','2','2');
 
--- USERS
-INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('Ramon','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','0','0');
-INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('Sheila','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','0','0');
-INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('Josep','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','0','0');
-INSERT INTO `death_by_p`.`users` (`name`,`password`,`phase`,`user_type_id`) VALUES ('Carla','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2','0','0');
 COMMIT;
 
 -- -----------------------------------------------------
@@ -115,34 +112,6 @@ CREATE TABLE IF NOT EXISTS `death_by_p`.`scores` (
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
--- GAME SUPER SCUBA
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 1, 560, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 1, 472, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 2, 521, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 3, 498, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 4, 234, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 5, 284, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 6, 447, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 7, 512, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (0, 7, 435, 60, now());
-
--- GAME TRAIN TRACK
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 1, 7659, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 7, 9261, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 2, 8169, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 3, 9597, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 4, 9072, 120, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (1, 5, 7176, 120, now());
-
--- GAME SKY DIVE
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 1, 75000, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 2, 45000, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 3, 90000, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 4, 2000, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 6, 6000, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 7, 90000, 60, now());
-INSERT INTO scores (games_id, users_id, score, game_time, date) VALUES (2, 7, 1200000, 60, now());
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

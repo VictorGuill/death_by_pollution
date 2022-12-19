@@ -12,7 +12,7 @@ a:hover {
 
 /* Disable scrollbar */
 ::-webkit-scrollbar {
-  /* width: 0px; */
+  width: 0px;
 }
 
 body {
@@ -279,7 +279,6 @@ body {
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
 }
 
-
 #about .card-body {
   padding: 30px 60px;
 }
@@ -313,21 +312,25 @@ body {
   text-align: center;
 }
 
-#problem .card-header, #services .card-header{
+#problem .card-header,
+#services .card-header {
   border-bottom: none;
 }
 
-#problem .card-body, #services .card-body{
+#problem .card-body,
+#services .card-body {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 
-#problem .card-text , #services .card-text{
+#problem .card-text,
+#services .card-text {
   font-size: 18px;
   color: var(--DARKTEXT);
   text-align: center;
 }
-#problem .card-title , #services .card-title{
+#problem .card-title,
+#services .card-title {
   font-size: 26px;
   color: var(--DARK-ACCENT);
   text-align: center;
@@ -363,8 +366,7 @@ body {
   width: fit-content;
 }
 
-
-.service-card-link{
+.service-card-link {
   font-size: 25px;
   color: white;
 }
