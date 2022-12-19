@@ -79,7 +79,7 @@ export default class MainMenu extends Menu {
       //EXIT
       case 1:
         this.selector.className = "selec2";
-        if (this.gp.input["Enter"]) {
+        if (this.keyEnterPressed) {
           this.selector.style.animation = "stab-selector .4s forwards";
           setTimeout(()=>{
             this.fadeOut(this.element, 1);

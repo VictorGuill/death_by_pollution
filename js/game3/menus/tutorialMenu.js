@@ -38,6 +38,15 @@ export default class TutorialMenu extends Menu {
     coin.style.backgroundSize = "50%";
     coin.style.backgroundPosition = "center";
     coin.classList.add("tutorial_card_1");
+    const coinPoints = document.createElement("span");
+    coinPoints.style.position = "absolute";
+    coinPoints.style.bottom = "0";
+    coinPoints.style.left = "38%";
+    coinPoints.style.textAlign = "center";
+    coinPoints.innerHTML = "+100";
+    coinPoints.classList.add("tutorial_card_1");
+    coinPoints.classList.add("text-glow");
+    card1.appendChild(coinPoints);
     card1.appendChild(coin);
     const note = document.createElement("div");
     note.style.backgroundImage = "url('/death_by_pollution/media/game3/objects/note.gif')";
@@ -45,6 +54,15 @@ export default class TutorialMenu extends Menu {
     note.style.backgroundSize = "50%";
     note.style.backgroundPosition = "center";
     note.classList.add("tutorial_card_2");
+    const notePoints = document.createElement("span");
+    notePoints.style.position = "absolute";
+    notePoints.style.bottom = "0";
+    notePoints.style.left = "38%";
+    notePoints.style.textAlign = "center";
+    notePoints.innerHTML = "+200";
+    notePoints.classList.add("tutorial_card_2");
+    notePoints.classList.add("text-glow");
+    card1.appendChild(notePoints);
     card1.appendChild(note);
     const diamond = document.createElement("div");
     diamond.style.backgroundImage = "url('/death_by_pollution/media/game3/objects/diamond.gif')";
@@ -52,6 +70,15 @@ export default class TutorialMenu extends Menu {
     diamond.style.backgroundSize = "50%";
     diamond.style.backgroundPosition = "center";
     diamond.classList.add("tutorial_card_3");
+    const diamondPoints = document.createElement("span");
+    diamondPoints.style.position = "absolute";
+    diamondPoints.style.bottom = "0";
+    diamondPoints.style.left = "38%";
+    diamondPoints.style.textAlign = "center";
+    diamondPoints.innerHTML = "+500";
+    diamondPoints.classList.add("tutorial_card_3");
+    diamondPoints.classList.add("text-glow");
+    card1.appendChild(diamondPoints);
     card1.appendChild(diamond);
     const gem = document.createElement("div");
     gem.style.backgroundImage = "url('/death_by_pollution/media/game3/objects/gem.gif')";
@@ -59,6 +86,15 @@ export default class TutorialMenu extends Menu {
     gem.style.backgroundSize = "50%";
     gem.style.backgroundPosition = "center";
     gem.classList.add("tutorial_card_4");
+    const gemPoints = document.createElement("span");
+    gemPoints.style.position = "absolute";
+    gemPoints.style.bottom = "0";
+    gemPoints.style.left = "36%";
+    gemPoints.style.textAlign = "center";
+    gemPoints.innerHTML = "+1000";
+    gemPoints.classList.add("tutorial_card_4");
+    gemPoints.classList.add("text-glow");
+    card1.appendChild(gemPoints);
     card1.appendChild(gem);
 
     this.card1_text = document.createElement("p");
@@ -192,7 +228,7 @@ export default class TutorialMenu extends Menu {
         this.card1_text.style.transform = "scale(1)";
         this.card2_text.style.transform = "scale(1)";
         this.card3_text.style.transform = "scale(1)";
-        if (this.gp.input["Enter"]) {
+        if (this.keyEnterPressed) {
           this.element.style.animation = "titleState-fadeOut 3s forwards";
           setTimeout(() => {
             this.gp.gameState = PLAY_STATE;
