@@ -1,6 +1,8 @@
 import { MAIN_MENU, PLAY_STATE, TUTORIAL_MENU } from "../main/gamePanel.js";
 import Menu from "./menu.js";
 
+const FADEOUT_TIME = 1;
+
 export default class MainMenu extends Menu {
   constructor(gp) {
     super(gp);
@@ -17,12 +19,12 @@ export default class MainMenu extends Menu {
   }
 
   addTitle() {
-    const titleDiv = document.createElement("div");
-    titleDiv.setAttribute("id", "title");
+    this.titleDiv = document.createElement("div");
+    this.titleDiv.setAttribute("id", "title");
     const title = document.createElement("p");
     title.innerHTML = "SKY DIVE";
-    titleDiv.appendChild(title);
-    this.element.appendChild(titleDiv);
+    this.titleDiv.appendChild(title);
+    this.element.appendChild(this.titleDiv);
   }
 
   addOptions() {
@@ -49,20 +51,42 @@ export default class MainMenu extends Menu {
     this.options.appendChild(this.selector);
   }
 
+  fadeOutMainMenu(){
+    this.fadeOut(this.element, 4)
+    this.fadeOut(this.titleDiv, 1);
+    this.fadeOut(this.options, 1);
+  }
+
   checkKey() {
     super.checkKey();
     switch (this.selectorPos) {
+      //PLAY
       case 0:
         this.selector.className = "selec1";
-        if (this.gp.input["Enter"]) {
-          this.gp.menuState = TUTORIAL_MENU;
-          this.gp.input["Enter"] = false;
+        if (this.keyEnterPressed) {
+          this.selector.style.animation = "stab-selector .4s forwards";
+          setTimeout(()=>{
+            this.fadeOutMainMenu();
+            setTimeout(()=>{
+              this.element.remove();
+            }, (FADEOUT_TIME + 1) * 1000);
+  
+            this.gp.menuState = TUTORIAL_MENU;
+            this.gp.input["Enter"] = false;
+          }, 500);
         }
         break;
+      //EXIT
       case 1:
         this.selector.className = "selec2";
         if (this.gp.input["Enter"]) {
-          window.location.href = "../pages/gamesMenu.php";
+          this.selector.style.animation = "stab-selector .4s forwards";
+          setTimeout(()=>{
+            this.fadeOut(this.element, 1);
+            setTimeout(()=>{
+              window.location.href = "../pages/gamesMenu.php";
+            }, 500);
+          }, 500);
         }
         break;
     }

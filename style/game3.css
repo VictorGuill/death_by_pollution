@@ -48,8 +48,10 @@ img {
   background-size: 100vw;
   background-repeat: no-repeat;
   background-position: center;
+  animation: fade-in 4s forwards; 
   z-index: 990;
 }
+
 
 .tutorial-card{
   position: relative;
@@ -122,7 +124,7 @@ img {
     position: absolute;
     top: 50%;
     height: fit-content;
-    display: grid; 
+    display: grid;
     grid-template-columns: 10px 125px; 
     grid-template-rows: 40px 40px 40px; 
     gap: 20px 10px; 
@@ -193,6 +195,7 @@ img {
   height: 100%;
   background-repeat: repeat-x;
   background-size: var(--deviceWidth) var(--deviceHeight);
+  animation: day-to-night-bg 70s forwards;
 }
 
 #airport {
@@ -416,6 +419,7 @@ img {
   height: 100%;
   width: 100%;
   z-index: 200;
+  animation: day-to-night-obj 70s forwards;
 }
 
 .object {
@@ -610,6 +614,34 @@ input {
     opacity: 0;
   }
 }
+
+@keyframes stab-selector {
+  0%{
+    right: 0;
+  }
+  100%{
+    right: -60px;
+  }
+}
+
+@keyframes day-to-night-bg {
+  0%{
+    filter: brightness(1.1);
+  }
+  100%{
+    filter: brightness(0.3);
+  }
+}
+
+@keyframes day-to-night-obj {
+  0%{
+    filter: brightness(1);
+  }
+  100%{
+    filter: brightness(0.7);
+  }
+}
+
 
 
 /* #endregion */

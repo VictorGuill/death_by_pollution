@@ -207,7 +207,7 @@ export default class TutorialMenu extends Menu {
   draw() {
     if (!this.bgAdded) {
       this.addElement();
-      this.fadeOut(this, this.gp.mH.mainMenu, 1.5);
+      // this.fadeOut(this, this.gp.mH.mainMenu, 1.5);
     }
   }
 }

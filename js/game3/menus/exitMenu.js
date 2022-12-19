@@ -6,7 +6,7 @@ export default class ExitMenu extends Menu{
     constructor(gp){
         super(gp);
         this.bgAdded = false;
-        this.selectorPos = 0;
+        this.selectorPos = 1;
         this.maxSelector = 1;
     }
 
@@ -52,15 +52,19 @@ export default class ExitMenu extends Menu{
         if(this.bgAdded){
             switch(this.selectorPos){
                 case 0:
-                    this.exitBttn.style.transform = "scale(1)";
-                    this.tryBttn.style.transform = "scale(1.2)";
+                    this.exitBttn.style.transform = "scale(.9)";
+                    this.exitBttn.style.filter = "brightness(0.8)";
+                    this.tryBttn.style.transform = "scale(1.3)";
+                    this.tryBttn.style.filter = "brightness(1)";
                     if (this.gp.input["Enter"]) {
                         this.gp.tryAgain();
                     }
                     break;
                 case 1:
-                    this.exitBttn.style.transform = "scale(1.2)";
-                    this.tryBttn.style.transform = "scale(1)";
+                    this.exitBttn.style.transform = "scale(1.3)";
+                    this.exitBttn.style.filter = "brightness(1)";
+                    this.tryBttn.style.transform = "scale(.9)";
+                    this.tryBttn.style.filter = "brightness(0.8)";
                     if (this.gp.input["Enter"]) {
                         window.location.href = "../pages/gamesMenu.php";
                     }

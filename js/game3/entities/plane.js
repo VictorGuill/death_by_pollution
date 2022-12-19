@@ -188,7 +188,7 @@ export default class Plane {
 
       if (this.worldX >= this.gp.map.worldWidth - airportWidth * 2) {
         console.log("AIRPORT");
-        if (this.worldX) this.gp.ui.drawNearAirport();
+        this.gp.ui.drawNearAirport();
 
         this.status = LANDING;
       }
@@ -206,7 +206,10 @@ export default class Plane {
 
     //landing
     if (this.status === LANDING) {
-      this.gp.eH.evG.spawnOff();
+      if (this.worldX >= this.gp.map.worldWidth - airportWidth) {
+        this.gp.eH.evG.spawnOff();
+      }
+      
       this.fuel = 9999;
       this.gp.ui.alertMessageOff("caution");
       this.gp.ui.alertMessageOff("pullup");
