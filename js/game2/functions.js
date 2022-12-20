@@ -198,7 +198,7 @@ export function orderPieces(array) {
 
 export function positionPiece(array) {
     let positions = [];
-    let imnumReloads = [];
+    let image = [];
     for (var i = 0; i < array.length; i++) {
         if (i + 1 < array.length) {
             let intRow = parseInt(array[i][0]);
@@ -219,11 +219,11 @@ export function positionPiece(array) {
                 positions.push('right');
             }
             let dropSpace = document.getElementById(intRowNext + "drop" + intColNext);
-            imnumReloads.push(dropSpace.firstChild.className);
-            console.log(imnumReloads);
+            image.push(dropSpace.firstChild.className);
+            console.log(image);
         }
     }
-    return [positions, imnumReloads];
+    return [positions, image];
 }
 
 export function end_game() {
@@ -247,9 +247,9 @@ export function end_game() {
     let positionsArr = getPositions(track);
     //knowing the position of the piece and the next one
     let orderPositions = orderPieces(positionsArr);
-    let positions_imnumReloads = positionPiece(orderPositions);
-    let positions = positions_imnumReloads[0];
-    let trackImgs = positions_imnumReloads[1];
+    let positions_image = positionPiece(orderPositions);
+    let positions = positions_image[0];
+    let trackImgs = positions_image[1];
     console.log(trackImgs);
     //getting the img
     let trackCorrect = []; //array to check the path
