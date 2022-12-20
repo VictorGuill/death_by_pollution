@@ -165,6 +165,14 @@ export default class TutorialMenu extends Menu {
     airport.style.top = "0";
     airport.style.width = "100%";
     airport.style.height = "70%";
+    const landingPoints = document.createElement("span");
+    landingPoints.style.position = "absolute";
+    landingPoints.style.bottom = "38%";
+    landingPoints.style.left = "42%";
+    landingPoints.style.textAlign = "center";
+    landingPoints.innerHTML = "+2500";
+    landingPoints.classList.add("text-glow");
+    card3.appendChild(landingPoints);
     card3.appendChild(airport);
 
     this.card3_text = document.createElement("p");

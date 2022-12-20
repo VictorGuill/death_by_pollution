@@ -222,12 +222,14 @@ export default class Plane {
       } else {
         this.gp.ui.alertMessageOff("slowdown");
       }
-      if (this.worldX >= this.gp.map.worldWidth - airportWidth + 1500 && this.worldY <= 60 && this.speed <= 450) {
+      if (this.worldX >= this.gp.map.worldWidth - airportWidth + 1500) {
         this.gp.ui.alertMessageOff("airportnear");
-        this.gp.ui.drawEndGame();
-        this.status = LANDED;
+        
       }
-      if (this.worldX >= this.gp.map.worldWidth + 500) {
+      if (this.worldX >= this.gp.map.worldWidth - airportWidth && this.worldY <= 60 && this.speed <= 450) {
+        this.status = LANDED;
+        this.gp.ui.drawEndGame();
+      } else if (this.worldX >= this.gp.map.worldWidth + 500) {
         this.status = ENDGAME;
       }
 
@@ -235,6 +237,7 @@ export default class Plane {
     }
 
     if (this.status === LANDED) {
+      this.gp.score += 2500;
       this.gp.slot.saveScore();
       this.vfx.deployChuteVFX();
       console.log("landing procedure");
