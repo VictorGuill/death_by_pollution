@@ -71,6 +71,8 @@ export default class Plane {
 
     this.ezModePitch = true;
 
+    this.landingScoreApplied = false;
+
     this.elementAdded = false;
   }
 
@@ -237,7 +239,11 @@ export default class Plane {
     }
 
     if (this.status === LANDED) {
-      this.gp.score += 2500;
+      if (!this.landingScoreApplied){
+        this.gp.score += 2500;
+        this.landingScoreApplied = true;
+      }
+      
       this.gp.slot.saveScore();
       this.vfx.deployChuteVFX();
       console.log("landing procedure");
