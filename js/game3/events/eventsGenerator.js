@@ -49,10 +49,10 @@ export default class EventsGenerator{
         this.gemGen = true;
         this.toxicGen = true;
 
-        this.fCoins = this.gp.map.w / 8;
-        this.fNotes = this.gp.map.w / 4;
+        this.fCoins = this.gp.map.w / 2;
+        this.fNotes = this.gp.map.w / 2;
         this.fDiamonds = this.gp.map.w / 2;
-        this.fGem = this.gp.map.w * 1.8 ;
+        this.fGem = this.gp.map.w;
         this.fToxic = this.gp.map.w / 4;
         
         this.spawnCoin = this.fCoins;
