@@ -5,8 +5,12 @@ export default class TutorialMenu extends Menu {
   constructor(gp) {
     super(gp);
     this.bgAdded = false;
-    this.selectorPos = 3;
-    this.maxSelector = 3;
+    this.selectorPos = 0;
+    this.maxSelector = 0;
+
+    this.playClick = false;
+
+    this.action = false;
   }
 
   addElement() {
@@ -198,6 +202,10 @@ export default class TutorialMenu extends Menu {
     this.playBttn.style.fontWeight = "bolder";
     this.playBttn.style.textAlign = "center";
     this.playBttn.style.paddingTop = "3px";
+    this.playBttn.style.cursor = "pointer";
+    this.playBttn.addEventListener("mouseover", ()=>{this.playBttn.style.transform = "scale(1.2)";});
+    this.playBttn.addEventListener("mouseout", ()=>{this.playBttn.style.transform = "scale(1)";});
+    this.playBttn.addEventListener("click", ()=>{this.playClick = true;})
 
     card3.appendChild(this.playBttn);
     this.element.appendChild(container);
@@ -214,34 +222,17 @@ export default class TutorialMenu extends Menu {
     super.checkKey();
     switch (this.selectorPos) {
       case 0:
-        this.playBttn.style.transform = "scale(1)";
-        this.card1_text.style.transform = "scale(1.2)";
-        this.card2_text.style.transform = "scale(1)";
-        this.card3_text.style.transform = "scale(1)";
-        break;
-      case 1:
-        this.playBttn.style.transform = "scale(1)";
-        this.card1_text.style.transform = "scale(1)";
-        this.card2_text.style.transform = "scale(1.2)";
-        this.card3_text.style.transform = "scale(1)";
-        break;
-      case 2:
-        this.playBttn.style.transform = "scale(1)";
-        this.card1_text.style.transform = "scale(1)";
-        this.card2_text.style.transform = "scale(1)";
-        this.card3_text.style.transform = "scale(1.2)";
-        break;
-      case 3:
-        this.playBttn.style.transform = "scale(1.2)";
-        this.card1_text.style.transform = "scale(1)";
-        this.card2_text.style.transform = "scale(1)";
-        this.card3_text.style.transform = "scale(1)";
-        if (this.keyEnterPressed) {
-          this.element.style.animation = "titleState-fadeOut 3s forwards";
-          setTimeout(() => {
-            this.gp.gameState = PLAY_STATE;
-            this.element.remove();
-          }, 2500);
+        if (this.keyEnterPressed || this.playClick) {
+          if (!this.action) {
+            this.playBttn.style.transform = "scale(1.2)";
+            this.element.style.animation = "titleState-fadeOut 3s forwards";
+            setTimeout(() => {
+              this.gp.gameState = PLAY_STATE;
+              this.element.remove();
+            }, 2500);
+            this.action = true;
+          }
+
         }
         break;
       default:

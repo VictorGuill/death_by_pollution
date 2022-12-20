@@ -9,6 +9,11 @@ export default class MainMenu extends Menu {
     this.bgAdded = false;
 
     this.maxSelector = 1;
+
+    this.playClick = false;
+    this.exitClick = false;
+
+    this.action = false;
   }
 
   addElement() {
@@ -33,11 +38,19 @@ export default class MainMenu extends Menu {
 
     this.optionPlay = document.createElement("p");
     this.optionPlay.classList.add("optionPlay");
+    this.optionPlay.style.cursor = "pointer";
     this.optionPlay.innerHTML = "PLAY";
+    this.optionPlay.addEventListener("mouseover", ()=>{this.selectorPos = 0;})
+    this.optionPlay.addEventListener("click", ()=>{this.playClick = true;})
+    this.clickEvList(this.optionPlay);
+
 
     this.optionExit = document.createElement("p");
     this.optionExit.classList.add("optionExit");
+    this.optionExit.style.cursor = "pointer";
     this.optionExit.innerHTML = "EXIT";
+    this.optionExit.addEventListener("mouseover", ()=>{this.selectorPos = 1;})
+    this.optionExit.addEventListener("click", ()=>{this.exitClick = true;})
 
     this.options.appendChild(this.optionPlay);
     this.options.appendChild(this.optionExit);
@@ -63,30 +76,39 @@ export default class MainMenu extends Menu {
       //PLAY
       case 0:
         this.selector.className = "selec1";
-        if (this.keyEnterPressed) {
-          this.selector.style.animation = "stab-selector .4s forwards";
-          setTimeout(()=>{
-            this.fadeOutMainMenu();
+        
+        if (this.keyEnterPressed || this.playClick) {
+          if (!this.action) {
+            this.selector.style.animation = "stab-selector .4s forwards";
             setTimeout(()=>{
-              this.element.remove();
-            }, (FADEOUT_TIME + 1) * 1000);
-  
-            this.gp.menuState = TUTORIAL_MENU;
-            this.gp.input["Enter"] = false;
-          }, 500);
+              this.fadeOutMainMenu();
+              setTimeout(()=>{
+                this.element.remove();
+              }, (FADEOUT_TIME + 1) * 1000);
+    
+              this.gp.menuState = TUTORIAL_MENU;
+              this.gp.input["Enter"] = false;
+            }, 500);
+            this.action = true;
+          }
+
         }
         break;
       //EXIT
       case 1:
         this.selector.className = "selec2";
-        if (this.keyEnterPressed) {
-          this.selector.style.animation = "stab-selector .4s forwards";
-          setTimeout(()=>{
-            this.fadeOut(this.element, 1);
+        if (this.keyEnterPressed || this.exitClick) {
+          if(!this.action){
+            this.selector.style.animation = "stab-selector .4s forwards";
             setTimeout(()=>{
-              window.location.href = "../pages/gamesMenu.php";
+              this.fadeOut(this.element, 1);
+              setTimeout(()=>{
+                window.location.href = "../pages/gamesMenu.php";
+              }, 500);
             }, 500);
-          }, 500);
+            this.action = true;
+          }
+    
         }
         break;
     }

@@ -14,6 +14,10 @@ export default class Menu {
     this.bgAdded = false;
   }
 
+  clickEvList(element){
+    element.addEventListener("click", ()=>{this.keyEnterPressed = true; console.log("ENTER "+ this.keyEnterPressed);})
+  }
+
   selectorUp() {
     this.selectorPos--;
     if (this.selectorPos < 0) {
@@ -83,11 +87,15 @@ export default class Menu {
     }
 
     if (this.gp.input["Enter"] || this.gp.input[" "]) {
+      
       if (!this.keyEnterPressed) {
         this.keyEnterPressed = true;
+        // console.log("ENTER" + this.keyEnterPressed);
       }
     } else {
+      // console.log("ENTER" + this.keyEnterPressed);
       this.keyEnterPressed = false;
     }
+    
   }
 }

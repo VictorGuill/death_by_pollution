@@ -9,7 +9,6 @@
 </head>
 <body>
     <div class="scanline"></div>
-    <div id="game-wrapper"></div>
     <script type="module" src="../js/game3/main/main.js"></script>
 </body>
 </html>

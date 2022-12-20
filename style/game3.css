@@ -23,7 +23,10 @@
   margin: 0;
   padding: 0;
 }
-
+#game-wrapper{
+  width: 100%;
+  height: 200px;
+}
 html,
 body {
   font-family: aceCombat;
@@ -178,6 +181,7 @@ img {
   height: var(--mapHeight);
   width: 100%;
   z-index: 1000;
+  pointer-events: none;
   animation: fade-in 2s forwards;
 }
 
@@ -186,6 +190,7 @@ img {
   width: 100vw;
   height: var(--mapHeight);
   overflow: hidden;
+  pointer-events: none;
   animation: fade-in 2s forwards;
 }
 
@@ -445,6 +450,8 @@ input {
 .scanline::after {
   content: "";
   position: absolute;
+
+  pointer-events: none;
 
   inset: 0;
 
