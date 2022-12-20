@@ -20,10 +20,10 @@ export default class EventsGenerator{
 
     initGenerator() {
         this.fCoins = this.gp.map.w / 2;
-        this.fNotes = this.gp.map.w / 1.8;
-        this.fDiamonds = this.gp.map.w;
-        this.fGem = this.gp.map.w * 1.8 ;
-        this.fToxic = this.gp.map.w / 3;
+        this.fNotes = this.gp.map.w / 2;
+        this.fDiamonds = this.gp.map.w / 2;
+        this.fGem = this.gp.map.w;
+        this.fToxic = this.gp.map.w / 4;
 
         this.spawnCoin = this.fCoins;
         this.spawnNote = this.fNotes;
@@ -49,11 +49,11 @@ export default class EventsGenerator{
         this.gemGen = true;
         this.toxicGen = true;
 
-        this.fCoins = this.gp.map.w / 2;
-        this.fNotes = this.gp.map.w / 1.8;
-        this.fDiamonds = this.gp.map.w;
+        this.fCoins = this.gp.map.w / 8;
+        this.fNotes = this.gp.map.w / 4;
+        this.fDiamonds = this.gp.map.w / 2;
         this.fGem = this.gp.map.w * 1.8 ;
-        this.fToxic = this.gp.map.w / 3;
+        this.fToxic = this.gp.map.w / 4;
         
         this.spawnCoin = this.fCoins;
         this.spawnNote = this.fNotes;
@@ -82,12 +82,12 @@ export default class EventsGenerator{
     }
 
     generateDiamond(){
-        const diamond = new Diamond(this.gp, this.random((this.gp.map.h * 2) - 20, this.gp.map.h-this.gp.plane.h));
+        const diamond = new Diamond(this.gp, this.random((this.gp.map.h * 2) - 20, this.gp.map.h - this.gp.map.h/3 -this.gp.plane.h));
         this.gp.objects.push(diamond);
     }
 
     generateGem(){
-        const gem = new Gem(this.gp, this.random((this.gp.map.h * 2) - 20, this.gp.map.h-this.gp.plane.h));
+        const gem = new Gem(this.gp, this.random((this.gp.map.h * 2) - 20, this.gp.map.h -this.gp.map.h/5 -this.gp.plane.h));
         this.gp.objects.push(gem);
     }
 
@@ -103,14 +103,14 @@ export default class EventsGenerator{
         if  (this.coinGen){
             if (planeX >= this.spawnCoin){
                 this.generateCoin();
-                this.spawnCoin = planeX + this.random(this.fCoins, this.fCoins/4);
+                this.spawnCoin = planeX + this.random(this.fCoins, this.fCoins/6);
             }
         }
         
         if (this.noteGen){
             if (planeX >= this.spawnNote){
                 this.generateNote();
-                this.spawnNote = planeX + this.random(this.fNotes, this.fNotes/3);
+                this.spawnNote = planeX + this.random(this.fNotes, this.fNotes/4);
             }
         }
         if (this.diamondGen) {
@@ -123,14 +123,14 @@ export default class EventsGenerator{
         if  (this.gemGen) {
             if (planeX >= this.spawnGem){
                 this.generateGem();
-                this.spawnGem = planeX + this.random(this.fGem, this.fGem/2);
+                this.spawnGem = planeX + this.random(this.fGem, this.fGem);
             }
         }
 
         if (this.toxicGen){
             if(planeX >= this.spawnToxic){
                 this.generateToxic();
-                this.spawnToxic = planeX + this.random(this.fToxic, this.fToxic/2);
+                this.spawnToxic = planeX + this.random(this.fToxic, this.fToxic/3);
             }
         }
         

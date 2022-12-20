@@ -47,11 +47,11 @@ export default class Plane {
     this.pitchRate = 4.5;
     this.maxPitch = 45;
 
-    this.cL = 0.4; //Lift coeficient
+    this.cL = 0.5; //Lift coeficient
     this.cD = 0.8; //Drag coeficient
 
-    this.acceleration = 18;
-    this.deceleration = 5;
+    this.acceleration = 16;
+    this.deceleration = 8;
     this.maxSpeed = 1000;
 
     this.canPSM = true;
@@ -145,7 +145,9 @@ export default class Plane {
 
   pitchDown(dt) {
     if (!this.inPSM) {
-      this.pitch -= this.pitchRate * dt;
+      if (this.status != TAKEOFF){
+        this.pitch -= this.pitchRate * dt;
+      }
     }
   }
 
@@ -158,7 +160,9 @@ export default class Plane {
     }
 
     if (this.status === TAKEOFF) {
-      if (this.worldX >= airportWidth) {
+      if (this.worldY >= 50){
+        this.status = FLYING;
+      } else if (this.worldX >= airportWidth) {
         this.status = FLYING;
       }
     }
@@ -188,7 +192,7 @@ export default class Plane {
 
       if (this.worldX >= this.gp.map.worldWidth - airportWidth * 2) {
         console.log("AIRPORT");
-        if (this.worldX) this.gp.ui.drawNearAirport();
+        this.gp.ui.drawNearAirport();
 
         this.status = LANDING;
       }
@@ -206,7 +210,10 @@ export default class Plane {
 
     //landing
     if (this.status === LANDING) {
-      this.gp.eH.evG.spawnOff();
+      if (this.worldX >= this.gp.map.worldWidth - airportWidth * 1.5) {
+        this.gp.eH.evG.spawnOff();
+      }
+      
       this.fuel = 9999;
       this.gp.ui.alertMessageOff("caution");
       this.gp.ui.alertMessageOff("pullup");
@@ -215,7 +222,7 @@ export default class Plane {
       } else {
         this.gp.ui.alertMessageOff("slowdown");
       }
-      if (this.worldX >= this.gp.map.worldWidth - airportWidth + 1000 && this.worldY <= 75 && this.speed <= 400) {
+      if (this.worldX >= this.gp.map.worldWidth - airportWidth + 1500 && this.worldY <= 60 && this.speed <= 450) {
         this.gp.ui.alertMessageOff("airportnear");
         this.gp.ui.drawEndGame();
         this.status = LANDED;
@@ -229,6 +236,7 @@ export default class Plane {
 
     if (this.status === LANDED) {
       this.gp.slot.saveScore();
+      this.vfx.deployChuteVFX();
       console.log("landing procedure");
       this.collision = true;
       this.worldY -= 0.2;
@@ -333,7 +341,7 @@ export default class Plane {
     if (this.inPSM) {
       this.rotate(this.cobraPitch);
       this.recoverCobra();
-    } else if (this.chute) {
+    } else if (this.chute && this.status === ENDGAME) {
       this.chuteRotation -= 0.2;
       if (this.chuteRotation <= -90) {
         this.chuteRotation = -90;

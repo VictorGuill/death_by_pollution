@@ -20,8 +20,7 @@ export default class Menu {
       this.selectorPos = this.maxSelector;
     }
     this.keyUpPressed = true;
-    console.log("UP: " + this.keyUpPressed);
-    console.log(this.selectorPos);
+
   }
 
   selectorDown() {
@@ -30,9 +29,13 @@ export default class Menu {
       this.selectorPos = 0;
     }
     this.keyDownPressed = true;
-    console.log("DOWN: " + this.keyDownPressed);
-    console.log(this.selectorPos);
+
   }
+
+  fadeOut(element, t){
+    element.style.animation = "fade-out "+t+ "s forwards";
+  }
+
 
   removeMenu() {
     this.element.remove();
@@ -42,7 +45,7 @@ export default class Menu {
     this.bgAdded = false;
   }
 
-  fadeOut(menuIn, menuOut, t) {
+/*   fadeOut(menuIn, menuOut, t) {
     const animOut = "fade-out " + t + "s ease-out forwards";
     const animIn = "fade-in " + t + "s ease-in forwards";
     menuIn.element.style.animation = animIn;
@@ -55,13 +58,15 @@ export default class Menu {
         menuOut.bgAdded = false;
       }, t * 1000);
     }
-  }
+  } */
 
   checkKey() {
     if (this.gp.input["ArrowUp"] || this.gp.input["ArrowLeft"]) {
       if (!this.keyUpPressed) {
         console.log(this.selectorPos);
         this.selectorUp();
+        console.log("UP: " + this.keyUpPressed);
+        console.log(this.selectorPos);
       }
     } else {
       this.keyUpPressed = false;
@@ -70,12 +75,14 @@ export default class Menu {
     if (this.gp.input["ArrowDown"] || this.gp.input["ArrowRight"]) {
       if (!this.keyDownPressed) {
         this.selectorDown();
+        console.log("DOWN: " + this.keyDownPressed);
+        console.log(this.selectorPos);  
       }
     } else {
       this.keyDownPressed = false;
     }
 
-    if (this.gp.input["Enter"]) {
+    if (this.gp.input["Enter"] || this.gp.input[" "]) {
       if (!this.keyEnterPressed) {
         this.keyEnterPressed = true;
       }

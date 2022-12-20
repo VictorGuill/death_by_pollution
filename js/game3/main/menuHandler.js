@@ -21,7 +21,6 @@ export default class MenuHandler{
         if (this.gp.menuState == MAIN_MENU) {
             this.mainMenu.checkKey();
         } else if (this.gp.menuState === TUTORIAL_MENU) {
-            this.mainMenu.removeMenu();
             this.tutorialMenu.checkKey();
         } else if (this.gp.menuState === SETTINGS_MENU) {
             this.optionsMenu.checkKey();

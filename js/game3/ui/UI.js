@@ -8,6 +8,8 @@ export default class UI {
         
         this.mssgOn = false;
 
+        this.menuTime;
+
         this.caution = false;
         this.airportNear = false;
         this.pullUp = false;
@@ -191,7 +193,7 @@ export default class UI {
     }
 
     drawTimeScore(t){
-        this.gp.time = this.secondsToTime(t/1000);
+        this.gp.time = this.secondsToTime((t - this.menuTime)/1000);
         this.timeLabel.innerHTML = "TIME " + this.gp.time;
         this.scoreLabel.innerHTML = "SCORE " + this.gp.score;
     }
@@ -350,6 +352,7 @@ export default class UI {
         if (this.gp.gameState == PLAY_STATE) {
             if (!this.elementsAdded) {
                 this.addUI();
+                this.menuTime = timeElapsed;
             }
         this.drawProgressBar();
         this.drawTimeScore(timeElapsed);

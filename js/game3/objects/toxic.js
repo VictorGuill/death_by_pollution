@@ -8,8 +8,8 @@ export default class Toxic extends Object {
     this.initialY = y;
     this.y = this.initialY;
 
-    this.maxSize = 300;
-    this.minSize = 100;
+    this.maxSize = 200;
+    this.minSize = 80;
 
     this.createToxic();
     // this.generateHitboxUI();
@@ -43,7 +43,7 @@ export default class Toxic extends Object {
       this.maxSize = 500;
       this.minSize = 200;
     }else if (this.gp.plane.worldX >= this.gp.map.worldWidth/3){
-      this.maxSize = 400;
+      this.maxSize = 300;
       this.minSize = 150;
     }
     let size = Math.floor(Math.random() * (this.maxSize - this.minSize)) + this.minSize;
