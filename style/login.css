@@ -1,0 +1,125 @@
+/* #region LOGIN */
+#loginPanel,
+#registerPanel {
+  display: none;
+  position: fixed;
+  inset: 0;
+
+  height: 100vh;
+  width: 100vw;
+
+  backdrop-filter: blur(15px);
+
+  z-index: 99;
+}
+
+#loginIcon,
+#languageIcon {
+  cursor: pointer;
+}
+
+#loginIcon::after,
+#languageIcon::after {
+  transform: scale(0);
+}
+
+#loginPanel button,
+#registerPanel button {
+  background: rgb(61, 0, 102);
+  background: linear-gradient(90deg, rgba(61, 0, 102, 1) 0%, rgba(171, 9, 174, 1) 100%);
+
+  padding: 2% 10%;
+  border: none;
+
+  margin-bottom: 40px;
+}
+
+#loginCard {
+  border-bottom: 5px solid var(--ACCENT);
+  position: relative;
+}
+
+#closePanel {
+  position: absolute;
+
+  right: 0;
+  top: -30px;
+
+  cursor: pointer;
+
+  filter: grayscale(1) brightness(10);
+}
+
+#loginCard h3 {
+  color: var(--DARK-ACCENT);
+  font-weight: 400;
+  margin: 10px 0px;
+}
+
+#loginCard h5 {
+  color: var(--DARK-ACCENT);
+  font-weight: 300;
+  cursor: pointer;
+}
+
+#loginCard h5:hover {
+  font-weight: 500;
+}
+
+input {
+  text-align: center;
+  text-transform: lowercase;
+  letter-spacing: 0.2em;
+  font-size: 1.25em;
+
+  width: 100%;
+  border-radius: 10px;
+
+  padding: 5px 0;
+  border: none;
+  border-bottom: 2px solid #767676;
+
+  transition: all 0.25s ease-in-out;
+
+  margin: 5px;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--DARK-ACCENT);
+}
+
+input:focus::placeholder {
+  opacity: 0.5;
+}
+
+#userName {
+}
+
+#userName ul {
+  left: unset;
+  right: 0;
+  background-color: var(--LIGHT);
+}
+
+#userName ul li a,
+#userName ul li button {
+  color: var(--DARK);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+#userName a::after {
+  content: none;
+}
+
+#userName ul li a:active {
+  background-color: var(--DARK);
+  color: var(--LIGHT);
+}
+
+/* #endregion */
+
+#errorInfoMsg {
+  color: red;
+}

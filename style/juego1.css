@@ -1,0 +1,477 @@
+/* #region GLOBAL */
+@font-face {
+  font-family: "Press Start 2P";
+  src: url(../media/game1_assets/PressStart2P-Regular.ttf);
+}
+
+:root {
+  --opacityMagnetFX: 0;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+
+  image-rendering: pixelated;
+  overflow: hidden;
+
+  user-select: none;
+  /* border: 1px solid white; */
+}
+
+body {
+  position: relative;
+
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: #000;
+  filter: contrast(var(--contrast)) saturate(var(--saturation))
+    brightness(var(--brightness));
+
+  perspective: 500vmin;
+}
+/* #endregion */
+
+/* #region CRT FX */
+.scanline::before {
+  content: "";
+  position: absolute;
+
+  inset: 0;
+
+  will-change: background, background-size;
+  animation: scanlines var(--scanLinesSpeed) linear infinite;
+  z-index: 59;
+
+  pointer-events: none;
+}
+
+.crt_borders::after {
+  content: "";
+  position: absolute;
+
+  width: 100.25%;
+  height: 100.25%;
+
+  background-image: url("../media/game1_assets/crt.png");
+  background-size: cover;
+  z-index: 60;
+}
+/* #endregion */
+
+/* #region MENU */
+#menu_start::before {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgb(35, 9, 97);
+
+  background-image: url("../media/game1_assets/background.gif");
+  background-size: 135%;
+  background-blend-mode: hard-light;
+
+  z-index: -1;
+
+  filter: blur(4px) saturate(0.6) contrast(1.3);
+}
+
+#menu_start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  /* text properties */
+  color: white;
+  font-family: "Press Start 2P", cursive;
+  text-transform: uppercase;
+  font-size: 5vmin;
+
+  /* background-color: rgb(35, 9, 97); */
+
+  filter: url(#chromaticAberration);
+}
+
+#play,
+#tutorial,
+#credits,
+#exit {
+  margin: 1vmin;
+}
+
+#menu_start .selected {
+  color: rgb(255, 51, 51);
+  transform: scale(1.1);
+  margin: 1vmin;
+  /* transform-style: preserve-3d;
+  transform: rotate3d(-1, 1, 0, 30deg);
+  transition: all 0.2s ease-in-out; */
+}
+
+#playerScore {
+  font-size: 5vmin;
+  margin-bottom: 5vmin;
+  color: yellow;
+  text-align: center;
+  animation: score 1s ease-in-out infinite;
+}
+
+#gameTitle {
+  font-size: 9vmin;
+  margin-bottom: 8vmin;
+  color: yellow;
+  text-align: center;
+}
+
+#gameTitle span {
+  font-size: 12vmin;
+  margin-bottom: 10vmin;
+}
+
+#tutorialModal,
+#creditsModal {
+  display: none;
+
+  width: 80vmin;
+
+  position: fixed;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+
+  border: 3px solid red;
+  border-left: none;
+  border-top: none;
+
+  background-color: white;
+  z-index: 50;
+
+  font-size: 2vmin;
+  text-transform: uppercase;
+  font-family: "Press Start 2P", cursive;
+
+  backdrop-filter: blur(10px);
+}
+
+#tutorialModal {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 10% 40% 25% 25%;
+
+  height: 60vmin;
+}
+
+#tutorialModal .title,
+#creditsModal .title {
+  grid-area: 1 / 1 / 2 / 2;
+
+  padding: 2vmin;
+
+  font-size: 2.8vmin;
+  color: yellow;
+  background-color: black;
+}
+
+#tutorialModal p:nth-child(2) {
+  grid-area: 2 / 1 / 3 / 4;
+
+  align-self: center;
+
+  line-height: 140%;
+  font-size: 2.6vmin;
+  padding: 0 5vmin;
+}
+
+#tutorialModal p:nth-child(3) {
+  grid-area: 3 / 1 / 4 / 3;
+
+  align-self: center;
+
+  line-height: 140%;
+  font-size: 1.8vmin;
+  padding: 0 5vmin;
+}
+
+#tutorialModal img:nth-child(4) {
+  grid-area: 3 / 3 / 4 / 4;
+
+  width: 90%;
+  height: auto;
+
+  align-self: center;
+}
+
+#tutorialModal p:nth-child(5) {
+  grid-area: 4 / 1 / 5 / 3;
+
+  align-self: center;
+
+  line-height: 140%;
+  font-size: 1.8vmin;
+  padding: 0 5vmin;
+}
+
+#tutorialModal img:nth-child(6) {
+  grid-area: 4 / 3 / 5 / 4;
+
+  margin-left: 2vmin;
+
+  width: 70%;
+  height: auto;
+
+  align-self: center;
+}
+
+#tutorialModal span,
+#creditsModal span {
+  color: red;
+  text-shadow: 2px 2px black;
+}
+
+#creditsModal {
+  height: 40vmin;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 20% 80%;
+}
+
+#creditsModal span {
+  font-size: 2.8vmin;
+  animation: credits-name 1s linear infinite;
+}
+
+#creditsModal .title {
+  margin-bottom: auto;
+  height: 95%;
+}
+
+#creditsModal p {
+  grid-area: 2 / 2 / 3 / 4;
+  align-self: center;
+  padding: 0 4vmin 0 1vmin;
+  text-align: center;
+  line-height: 160%;
+  font-size: 2.4vmin;
+  transform: translateY(-2.5vmin);
+}
+
+#creditsModal div {
+  background-image: url("../media/game1_assets/victorPixel.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  grid-area: 2 / 1 / 3 / 2;
+
+  width: 80%;
+  aspect-ratio: 1 / 1;
+
+  padding-left: 7.5vmin;
+  align-self: center;
+  justify-self: flex-end;
+
+  border-radius: 50%;
+  border: 0.25vmin solid black;
+  transform: translateY(-1vmin);
+}
+
+#githubLogo {
+  background-image: url("../media/game1_assets/github.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  grid-area: 2 / 2 / 3 / 4;
+  height: 25%;
+  width: auto;
+  cursor: pointer;
+
+  margin-bottom: 7vmin;
+
+  transition: transform 0.1s linear;
+  align-self: flex-end;
+}
+
+#githubLogo:hover {
+  transform: scale(1.15);
+}
+/* #endregion */
+
+/* #region GAME */
+#map {
+  position: relative;
+
+  background-image: url("../media/game1_assets/background.gif");
+  background-size: cover;
+}
+
+#player {
+  position: absolute;
+
+  background-size: cover;
+
+  z-index: 5;
+
+  animation: item-spawn 0.75s;
+
+  overflow: visible;
+}
+
+#player::after {
+  content: "";
+  position: absolute;
+
+  width: 30vmin;
+  aspect-ratio: 1/1;
+
+  top: 50%;
+  left: 50%;
+  transform: translateY(-38%) translateX(-43%);
+
+  background-image: url("../media/game1_assets/magnet_effect.gif");
+  background-size: 85%;
+  background-repeat: no-repeat;
+
+  filter: drop-shadow(5px 5px 5px #222);
+  opacity: var(--opacityMagnetFX);
+}
+
+.trash {
+  position: absolute;
+
+  background-size: cover;
+  background-position: center;
+
+  animation: item-spawn 0.75s, item-idle 10s linear infinite;
+  animation-direction: alternate;
+}
+
+.perk {
+  position: absolute;
+
+  background-size: cover;
+  background-position: center;
+
+  animation: item-spawn 0.75s, perk-idle 0.5s ease-in-out infinite,
+    perk-idle 0.5s ease-in-out infinite;
+  animation-direction: alternate;
+}
+
+.ship {
+  position: absolute;
+
+  background-size: cover;
+  background-position: center;
+
+  animation: item-spawn 0.75s, ship-idle 5s linear infinite;
+  animation-direction: alternate;
+}
+
+#ui {
+  height: 3vmin;
+  width: 90vmin;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: flex-end center;
+
+  color: white;
+  font-family: "Press Start 2P", cursive;
+  text-transform: uppercase;
+  font-size: 2.3vmin;
+
+  filter: url(#chromaticAberration);
+}
+
+#trashText {
+  margin-left: auto;
+
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+
+#game_text {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+#timer_text {
+  margin-left: 1vmin;
+  margin-right: auto;
+
+  grid-column: 1/2;
+  grid-row: 1/2;
+
+  text-transform: lowercase;
+}
+
+/* #endregion */
+
+/* #region END SCREEN */
+#end::before {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgb(35, 9, 97);
+
+  background-image: url("../media/game1_assets/background.gif");
+  background-size: 135%;
+  background-blend-mode: hard-light;
+
+  z-index: -1;
+
+  filter: blur(4px) saturate(0.35) contrast(1.3);
+}
+
+#end {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  /* text properties */
+  color: white;
+  font-family: "Press Start 2P", cursive;
+  text-transform: uppercase;
+  font-size: 5vmin;
+
+  /* background-color: rgb(35, 9, 97); */
+
+  filter: url(#chromaticAberration);
+}
+
+#menu {
+  margin: 1vmin;
+}
+
+#end .selected {
+  color: rgb(255, 51, 51);
+  transform: scale(1.1);
+  margin: 1vmin;
+  /* transform-style: preserve-3d;
+  transform: rotate3d(-1, 1, 0, 30deg);
+  transition: all 0.2s ease-in-out; */
+}
+
+#gameTitle {
+  font-size: 9vmin;
+  margin-bottom: 8vmin;
+  color: yellow;
+  text-align: center;
+}
+
+#gameTitle span {
+  font-size: 12vmin;
+  margin-bottom: 10vmin;
+}
+/* #endregion */

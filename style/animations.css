@@ -1,0 +1,122 @@
+/* Animations */
+
+@keyframes score {
+  0% {
+    transform: scale(80%);
+  }
+  50% {
+    transform: scale(95%);
+  }
+  100% {
+    transform: scale(80%);
+  }
+}
+
+@keyframes credits-name {
+  0% {
+    text-shadow: 2px 2px black;
+  }
+  49% {
+    text-shadow: 2px 2px black;
+  }
+  50% {
+    text-shadow: 2px 2px rgba(0, 0, 0, 0);
+  }
+  100% {
+    text-shadow: 2px 2px rgba(0, 0, 0, 0);
+  }
+}
+
+/* #region ITEMS */
+@keyframes item-spawn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes item-idle {
+  0% {
+  }
+  100% {
+    transform: translate(30%, 20%);
+  }
+}
+
+@keyframes perk-idle {
+  0% {
+    transform: scale(80%);
+  }
+  100% {
+    transform: scale(95%);
+    filter: drop-shadow(0 0 0.5vmin rgb(255, 255, 255));
+  }
+}
+
+@keyframes pick-item {
+  0% {
+    transform-origin: center;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(20%) rotate(260deg);
+    opacity: 0;
+    top: 11.4vmin;
+    left: 15vmin;
+  }
+}
+
+@keyframes pick-perk {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(50%) rotate(260deg);
+    opacity: 0;
+  }
+}
+/* #endregion */
+
+@keyframes ship-idle {
+  0% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    transform: translate(10%) scaleX(-1);
+  }
+}
+
+@keyframes rainbow {
+  from {
+    filter: hue-rotate(0deg) saturate(2.5);
+  }
+  to {
+    filter: hue-rotate(-360deg) saturate(2.5);
+  }
+}
+
+@keyframes scanlines {
+  from {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, var(--scanLinesOpacity)) 51%
+    );
+    background-size: 100vmax var(--scanLinesSize);
+  }
+  to {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, var(--scanLinesOpacity)) 50%,
+      transparent 51%
+    );
+    background-size: 100vmax var(--scanLinesSize);
+  }
+}

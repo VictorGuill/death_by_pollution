@@ -1,0 +1,240 @@
+@font-face {
+  font-family: "Press Start 2P";
+  src: url(../media/game2/PressStart2P-Regular.ttf);
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#game {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Press Start 2P", cursive;
+  text-transform: uppercase;
+
+  background-color: #181818;
+}
+
+#map {
+  display: grid;
+  grid-template-columns: repeat(var(--gridSize), var(--gridPx));
+  grid-template-rows: repeat(var(--gridSize), var(--gridPx));
+
+  border-radius: 0.5vmin;
+  background-image: url("../media/game2/objects/grass.png");
+  background-repeat: repeat;
+  background-size: 300px;
+  width: 840px;
+  height: 840px;
+  background-color: #dadada;
+}
+
+#tools {
+  display: flex;
+  flex-direction: column;
+}
+
+#items_picker {
+  width: 8vmin;
+  height: 28vmin;
+
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+
+  margin-left: 1vmin;
+
+  border-radius: 1vmin;
+  background-color: #698f56;
+}
+
+#button,
+#button2,
+#timer {
+  cursor: pointer;
+
+  border: 1em;
+  width: 8vmin;
+  height: 8vmin;
+
+  margin-top: 1vmin;
+  margin-left: 1vmin;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Press Start 2P", cursive;
+  text-transform: uppercase;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+
+  border-radius: 1vmin;
+  background-color: #698f56;
+}
+
+button {
+  cursor: hand;
+  all: unset;
+}
+
+#button:hover {
+  
+  background-color: #f39e65;
+}
+
+#timer {
+  cursor: default;
+  font-size: 20px;
+  padding: 2vw;
+  width: max-content;
+  margin-top: 30vh;
+  background-color: #8e6a52;
+}
+
+#button2 {
+  font-size: 20px;
+  padding: 1em;
+  width: max-content;
+  margin-top: 3vh;
+  background-color: #c5324a;
+}
+
+#button2:hover {
+  background-color: #971c31;
+}
+
+.start,
+.end,
+.tree,
+.mountain,
+.dropSpace {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.5vmin;
+}
+
+#piece {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+#piece:hover {
+  cursor: pointer;
+}
+
+#timer {
+  font-size: 18px;
+}
+
+#endScreen,
+#instructions {
+  position: absolute;
+  border-radius: 0.5vmin;
+  width: 90vw;
+  height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+
+  background-image: url('../media/game2/objects/grass.png');
+  background-repeat: repeat;
+  background-size: 300px;
+}
+
+#title,
+#text,
+#subtext,
+#score,
+#playAgain,
+#exit {
+  font-family: "Press Start 2P", cursive;
+  text-transform: uppercase;
+  font-size: 30px;
+  color: white;
+  margin: auto;
+}
+
+#subtext {
+  font-size: 20px;
+}
+
+#title {
+  font-size: 90px;
+  color: #c4a126;
+}
+
+#play {
+  margin: auto;
+}
+
+#play a {
+  text-decoration: none;
+  font-size: 50px;
+  color: #a8650d;
+}
+
+#play a:hover {
+  color: #91570b;
+}
+
+#todo {
+  font-size: 20px;
+  color: white;
+  margin: 2vh;
+}
+
+#othertext {
+  margin-top: 5vh;
+}
+
+#text, #subtext {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  margin: 0vh;
+}
+
+#subtext {
+  font-size: 25px;
+  margin: 3vh;
+}
+
+#text img, #subtext img  {
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+#playAgain {
+  margin-bottom: 0;
+}
+
+#playAgain a,
+#exit a {
+  text-decoration: none;
+  color: #a8650d;
+}
+
+#playAgain a:hover,
+#exit a:hover {
+  color: #91570b;
+}
+
+#score p {
+  margin-top: 50px;
+  font-size: 100px;
+}
