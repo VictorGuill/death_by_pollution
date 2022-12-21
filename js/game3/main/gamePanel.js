@@ -20,7 +20,7 @@ export const
 //MENU STATES
 export const 
     MAIN_MENU = 4,
-    SETTINGS_MENU = 5,
+    PAUSE_MENU = 5,
     TUTORIAL_MENU = 6,
     EXIT_MENU = 7;
 
@@ -29,8 +29,8 @@ export class GamePanel {
     constructor (){
         this.id = "gp";
         
-        this.gameState = TITLE_STATE;
-        this.menuState = MAIN_MENU;
+        this.gameState = PLAY_STATE;
+        this.menuState = PAUSE_MENU;
 
         //game data
         this.time = 0;
@@ -79,6 +79,8 @@ export class GamePanel {
             this.eH.update();
             this.eH.checkEscape();
         } else if (this.gameState === PAUSE_STATE){
+            this.menuState = PAUSE_MENU;
+            this.mH.update();
             this.eH.checkEscape();
         } else if (this.gameState === ENDGAME_STATE){
             this.menuState = EXIT_MENU;
@@ -93,6 +95,8 @@ export class GamePanel {
             this.map.draw();
             this.plane.draw();
             this.ui.draw(timeElapsed);
+        } else if (this.gameState === PAUSE_STATE) {
+            this.mH.draw();
         } else if (this.gameState === ENDGAME_STATE){
             this.mH.draw();
         }

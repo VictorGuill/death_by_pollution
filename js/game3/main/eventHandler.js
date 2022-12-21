@@ -1,5 +1,5 @@
 import EventsGenerator from "../events/eventsGenerator.js";
-import { PAUSE_STATE, PLAY_STATE } from "./gamePanel.js";
+import { ENDGAME_STATE, PAUSE_STATE, PLAY_STATE } from "./gamePanel.js";
 
 export default class EventHandler{
     constructor(gp){
@@ -10,12 +10,13 @@ export default class EventHandler{
     }
 
     checkEscape(){
-        if (this.gp.input["Escape"]){
+        if (this.gp.input["Escape"] && this.gp.gameState !== ENDGAME_STATE){
             if (!this.escPressed) {
                 if (this.gp.gameState === PLAY_STATE){
                     this.gp.gameState = PAUSE_STATE;
                 } else if (this.gp.gameState === PAUSE_STATE){
                     this.gp.gameState = PLAY_STATE;
+                    this.gp.mH.pauseMenu.removeMenu();
                 }
                 this.escPressed = true;
             }

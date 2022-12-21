@@ -41,13 +41,11 @@ export default class Menu {
   }
 
 
-  removeMenu() {
+  removeMenu(){
     this.element.remove();
-  }
-
-  resetBg() {
     this.bgAdded = false;
-  }
+}
+
 
 /*   fadeOut(menuIn, menuOut, t) {
     const animOut = "fade-out " + t + "s ease-out forwards";
