@@ -29,8 +29,8 @@ export class GamePanel {
     constructor (){
         this.id = "gp";
         
-        this.gameState = PLAY_STATE;
-        this.menuState = PAUSE_MENU;
+        this.gameState = TITLE_STATE;
+        this.menuState = MAIN_MENU;
 
         //game data
         this.time = 0;
