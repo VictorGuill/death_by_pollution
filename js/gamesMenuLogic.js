@@ -17,7 +17,7 @@ onmouseover = (e) => {
 };
 
 game1.addEventListener("click", (e) => {
-  if (!e.target.classList.contains("blocked")) {
+  if (!e.target.classList.contains("blocked") && !e.target.classList.contains("blocked-name")) {
     window.location.href = "../games/game1.php";
   }
 });
