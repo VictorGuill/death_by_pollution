@@ -29,7 +29,7 @@ export class GamePanel {
     constructor (){
         this.id = "gp";
         
-        this.gameState = PLAY_STATE;
+        this.gameState = TITLE_STATE;
         this.menuState = MAIN_MENU;
 
         //game data
@@ -72,14 +72,15 @@ export class GamePanel {
     }
 
     update(dt) {
-        if (this.gameState == TITLE_STATE) {
+        if (this.gameState === TITLE_STATE) {
             this.mH.update();
-        }else if (this.gameState == PLAY_STATE){
+        }else if (this.gameState === PLAY_STATE){
             this.plane.update(dt);
             this.eH.update();
-        } else if (this.gameState == PAUSE_STATE){
-
-        } else if (this.gameState == ENDGAME_STATE){
+            this.eH.checkEscape();
+        } else if (this.gameState === PAUSE_STATE){
+            this.eH.checkEscape();
+        } else if (this.gameState === ENDGAME_STATE){
             this.menuState = EXIT_MENU;
             this.mH.update();
         }
