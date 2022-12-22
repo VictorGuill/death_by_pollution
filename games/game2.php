@@ -34,6 +34,7 @@ if (isset($_COOKIE['game2_score'])) {
   <div id='game'>
     <div id="map"></div>
     <div id='tools'>
+    <div id="exitGame"><a href='../pages/gamesMenu.php'>X</a></div>
       <div id="items_picker"></div>
       <div id="button">
         <button>

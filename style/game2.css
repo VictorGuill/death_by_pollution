@@ -40,6 +40,21 @@
   flex-direction: column;
 }
 
+
+#exitGame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Press Start 2P";
+  text-transform: uppercase;
+}
+
+#exitGame a{
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+}
+
 #items_picker {
   width: 8vmin;
   height: 28vmin;

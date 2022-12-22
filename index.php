@@ -59,12 +59,21 @@
                   <p class="about-card-secondary"><?= $Language["ecoTravellingWayTravel"] ?></p>
                 </div>
               </div>
+
+              <div id="aboutBtnRow">
+                <a id="aboutBtn" href="#problem">
+                  <svg width="30px" height="20px">
+                    <path stroke="#FFFFFF" stroke-width="4px" style="fill: none; transform: scale(.8)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+                  </svg>
+                </a>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- THE PROBLEM -->
     <div id="problem" class="scroll-area">
       <div class="container my-auto">
@@ -76,10 +85,11 @@
           </div>
           <div class="row justify-content-center mb-5">
             <div class="col-1 d-flex justify-content-center">
-      
-              <svg width="30px" height="20px">
-                <path stroke="#510087" stroke-width="4px" style="fill: none; transform: scale(.8)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
-              </svg>
+              <a id="problemBtn" href="#services">
+                <svg width="30px" height="20px">
+                  <path stroke="#510087" stroke-width="4px" style="fill: none; transform: scale(.8)" d="M2.000,5.000 L15.000,18.000 L28.000,5.000 "></path>
+                </svg>
+              </a>
             </div>
           </div>
 
