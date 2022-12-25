@@ -22,8 +22,8 @@ for (let i = 0; i < gridSize; i++) {
   arrTrack[i] = new Array(gridSize);
   arrTrack[i].fill(0);
 }
-if (arrTrack[ct.startRow-1][ct.startColumn-1] == 0) {
-  arrTrack[ct.startRow-1][ct.startColumn-1] = 'start';
+if (arrTrack[ct.startRow - 1][ct.startColumn - 1] == 0) {
+  arrTrack[ct.startRow - 1][ct.startColumn - 1] = 'start';
 }
 if (arrTrack[ct.endRow - 1][ct.endColumn - 1] == 0) {
   arrTrack[ct.endRow - 1][ct.endColumn - 1] = 'end';
@@ -151,6 +151,7 @@ function reloadPieces() {
   });
   numReload++;
   console.log(numReload)
+
 }
 
 //load pieces first time
@@ -188,5 +189,86 @@ dropSpaces.forEach(el => {
   el.addEventListener('drop', dragdrop.dropHandler);
 })
 
-//check train track
-document.getElementById("button2").addEventListener("click", f.end_game);
+document.addEventListener('DOMSubtreeModified', (e) => {
+  
+  let dropImg = document.querySelectorAll(".dropSpace > .img0, .dropSpace > .img1, .dropSpace > .img2, .dropSpace > .img3, .dropSpace > .img4, .dropSpace > .img5, .dropSpace > .img6, .dropSpace > .img7");
+
+  let unlock_start = false;
+  let dropStart = [];
+  let dropStartTop = document.getElementById("0drop1");
+  console.log("ST: " + dropStartTop);
+  if (dropStartTop != null) {
+    dropStart.push(dropStartTop);
+  }
+  let dropStartLeft = document.getElementById("1drop0");
+  console.log("SL: " + dropStartLeft);
+  if (dropStartLeft != null) {
+    dropStart.push(dropStartLeft);
+  }
+  let dropStartBottom = document.getElementById("2drop1");
+  console.log("SB: " + dropStartBottom);
+  if (dropStartBottom != null) {
+    dropStart.push(dropStartBottom);
+  }
+  let dropStartRight = document.getElementById("1drop2");
+  console.log("SR: " + dropStartRight);
+  if (dropStartRight != null) {
+    dropStart.push(dropStartRight);
+  }
+  
+  console.log(dropStart);
+
+  let startChild = 0;
+  
+  for (let i = 0; i < dropStart.length; i++) {
+    startChild += dropStart[i].childElementCount;
+    console.log("start CHILDREN:  " + startChild);
+  }
+
+  if (startChild == 1) {
+    unlock_start = true;
+  }
+
+  let dropEnd = [];
+  let unlock_end = false;
+
+  let dropEndTop = document.getElementById("11drop12");
+  if (dropEndTop !== null) {
+    dropEnd.push(dropEndTop);
+  }
+  let dropEndLeft = document.getElementById("12drop11");
+  console.log("EL: " + dropEndLeft);
+  if (dropEndLeft !== null) {
+    dropEnd.push(dropEndLeft);
+  }
+  let dropEndBottom = document.getElementById("13drop12");
+  console.log("EB: " + dropEndBottom);
+  if (dropEndBottom !== null) {
+    dropEnd.push(dropEndBottom);
+  }
+  let dropEndRight = document.getElementById("12drop13");
+  console.log("ER: " + dropEndRight);
+  if (dropEndRight != null) {
+    dropEnd.push(dropEndRight);
+  }
+
+  let endChild = 0;
+  for (let i = 0; i < dropEnd.length; i++) {
+    endChild += dropEnd[i].childElementCount;
+    console.log("end CHILDREN:  " + endChild);
+  }
+
+  if (endChild == 1) {
+    unlock_end = true;
+  }
+
+  if (dropImg.length >= 21 && unlock_start && unlock_end) {
+    document.getElementById("buttonCheckTrack").classList.remove('blocked');
+    document.getElementById("buttonCheckTrack").classList.add('no_blocked');
+  }
+
+  let no_blocked = document.querySelector("div#buttonCheckTrack.no_blocked");
+  if (no_blocked != null) {
+    no_blocked.addEventListener("click", f.end_game);
+  }
+})

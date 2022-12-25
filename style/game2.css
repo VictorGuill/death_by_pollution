@@ -70,7 +70,7 @@
 }
 
 #button,
-#button2,
+#buttonCheckTrack,
 #timer {
   cursor: pointer;
 
@@ -95,7 +95,6 @@
 }
 
 button {
-  cursor: hand;
   all: unset;
 }
 
@@ -113,7 +112,7 @@ button {
   background-color: #8e6a52;
 }
 
-#button2 {
+#buttonCheckTrack {
   font-size: 20px;
   padding: 1em;
   width: max-content;
@@ -121,8 +120,13 @@ button {
   background-color: #c5324a;
 }
 
-#button2:hover {
+.no_blocked:hover {
   background-color: #971c31;
+}
+
+#buttonCheckTrack.blocked {
+  filter: grayscale(1) contrast(0.5);
+  cursor: not-allowed;
 }
 
 .start,

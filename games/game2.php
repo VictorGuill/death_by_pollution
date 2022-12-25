@@ -42,7 +42,7 @@ if (isset($_COOKIE['game2_score'])) {
         </button>
       </div>
       <div id="timer"></div>
-      <div id='button2'>
+      <div id='buttonCheckTrack' class="blocked">
         <button>CHECK TRACK</button>
       </div>
     </div>
